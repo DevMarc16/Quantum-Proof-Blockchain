@@ -8,25 +8,25 @@ import (
 	"net/http"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_query struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_query struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestQueryTx() {
 	// Query the transaction we just submitted
 	txHash := "0xb20fb16a788e9a5e6aeb70cb6c45ad375f46a8a393d537711e64f43b896e01ba"
 	
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_query{
 		JSONRPC: "2.0",
 		Method:  "eth_getTransactionByHash",
 		Params:  []string{txHash},
@@ -45,7 +45,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_query
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		log.Fatal("Response decode error:", err)

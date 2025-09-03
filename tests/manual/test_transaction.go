@@ -10,7 +10,7 @@ import (
 	"quantum-blockchain/chain/types"
 )
 
-func main() {
+func runTestTransaction() {
 	// Generate keys
 	privKey, _, err := crypto.GenerateDilithiumKeyPair()
 	if err != nil {

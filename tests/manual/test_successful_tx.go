@@ -14,21 +14,21 @@ import (
 	"quantum-blockchain/chain/types"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_success struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_success struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestSuccessfulTx() {
 	fmt.Println("🚀 Successful Quantum Transaction Test")
 	fmt.Println("=====================================")
 	
@@ -41,12 +41,12 @@ func main() {
 	fmt.Println("✅ Got validator private key")
 	
 	// Step 2: Get validator address from the node  
-	validatorAddr, err := getValidatorAddress()
+	validatorAddr, err := getValidatorAddress_success()
 	if err != nil {
 		log.Fatal("Failed to get validator address:", err)
 	}
 	fmt.Printf("💰 Checking validator balance: %s\n", validatorAddr)
-	balance := getBalance(validatorAddr)
+	balance := getBalance_success(validatorAddr)
 	fmt.Printf("✅ Validator balance: %s QTM\n", balance)
 	
 	if balance == "0x0" {
@@ -110,7 +110,7 @@ func main() {
 		log.Fatal("JSON marshal error:", err)
 	}
 	
-	txHash, err := submitTransaction(string(txJSON))
+	txHash, err := submitTransaction_success(string(txJSON))
 	if err != nil {
 		log.Fatal("Failed to submit transaction:", err)
 	}
@@ -133,14 +133,14 @@ func main() {
 }
 
 func getValidatorPrivateKey() (string, error) {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "test_getValidatorKey",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return "", err
 	}
@@ -156,15 +156,15 @@ func getValidatorPrivateKey() (string, error) {
 	return "", fmt.Errorf("unexpected result type")
 }
 
-func getValidatorAddress() (string, error) {
-	req := JSONRPCRequest{
+func getValidatorAddress_success() (string, error) {
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "test_getValidatorAddress",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return "", err
 	}
@@ -180,15 +180,15 @@ func getValidatorAddress() (string, error) {
 	return "", fmt.Errorf("unexpected result type")
 }
 
-func getBalance(address string) string {
-	req := JSONRPCRequest{
+func getBalance_success(address string) string {
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "eth_getBalance",
 		Params:  []interface{}{address, "latest"},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return "ERROR"
 	}
@@ -205,14 +205,14 @@ func getBalance(address string) string {
 }
 
 func getNonce(address string) string {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "eth_getTransactionCount",
 		Params:  []interface{}{address, "latest"},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return "0x0"
 	}
@@ -228,15 +228,15 @@ func getNonce(address string) string {
 	return "0x0"
 }
 
-func submitTransaction(txJSON string) (string, error) {
-	req := JSONRPCRequest{
+func submitTransaction_success(txJSON string) (string, error) {
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "eth_sendRawTransaction",
 		Params:  []string{txJSON},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return "", err
 	}
@@ -253,14 +253,14 @@ func submitTransaction(txJSON string) (string, error) {
 }
 
 func getTransaction(txHash string) (interface{}, error) {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_success{
 		JSONRPC: "2.0",
 		Method:  "eth_getTransactionByHash",
 		Params:  []string{txHash},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_success(req)
 	if err != nil {
 		return nil, err
 	}
@@ -272,7 +272,7 @@ func getTransaction(txHash string) (interface{}, error) {
 	return resp.Result, nil
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_success(req JSONRPCRequest_success) (*JSONRPCResponse_success, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -284,7 +284,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 	
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_success
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

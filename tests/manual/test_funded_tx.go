@@ -6,24 +6,23 @@ import (
 	"fmt"
 	"net/http"
 
-	"quantum-blockchain/chain/crypto"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_funded struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_funded struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestFundedTx() {
 	fmt.Println("🚀 Testing Funded Quantum Transaction")
 	fmt.Println("====================================")
 	
@@ -33,7 +32,7 @@ func main() {
 	
 	// Check validator balance first
 	fmt.Printf("💰 Checking validator balance: %s\n", validatorAddr)
-	balance := getBalance(validatorAddr)
+	balance := getBalance_funded(validatorAddr)
 	fmt.Printf("✅ Validator has: %s QTM\n", balance)
 	
 	if balance == "0x0" {
@@ -57,15 +56,15 @@ func main() {
 	fmt.Println("💎 Ready for production use with proper key management")
 }
 
-func getBalance(address string) string {
-	req := JSONRPCRequest{
+func getBalance_funded(address string) string {
+	req := JSONRPCRequest_funded{
 		JSONRPC: "2.0",
 		Method:  "eth_getBalance",
 		Params:  []interface{}{address, "latest"},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_funded(req)
 	if err != nil {
 		return "0x0"
 	}
@@ -81,7 +80,7 @@ func getBalance(address string) string {
 	return "0x0"
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_funded(req JSONRPCRequest_funded) (*JSONRPCResponse_funded, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -93,7 +92,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 	
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_funded
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

@@ -13,21 +13,21 @@ import (
 	"quantum-blockchain/chain/types"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_live struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_live struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runLiveBlockchainTest() {
 	fmt.Println("🚀 Live Quantum Blockchain Demo")
 	fmt.Println("===============================")
 	fmt.Println("⚡ 2-second blocks | 💰 QTM token | 🔐 Quantum-resistant")
@@ -117,14 +117,14 @@ func submitTestTransaction(nonce uint64) string {
 		return ""
 	}
 
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_live{
 		JSONRPC: "2.0",
 		Method:  "eth_sendRawTransaction",
 		Params:  []string{string(txJSON)},
 		ID:      1,
 	}
 
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_live(req)
 	if err != nil {
 		log.Printf("Failed to submit transaction: %v", err)
 		return ""
@@ -143,14 +143,14 @@ func submitTestTransaction(nonce uint64) string {
 }
 
 func getCurrentBlockNumber() int64 {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_live{
 		JSONRPC: "2.0",
 		Method:  "eth_blockNumber",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_live(req)
 	if err != nil {
 		return -1
 	}
@@ -169,14 +169,14 @@ func getCurrentBlockNumber() int64 {
 }
 
 func getBlockByNumber(blockNumber string) interface{} {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_live{
 		JSONRPC: "2.0",
 		Method:  "eth_getBlockByNumber",
 		Params:  []interface{}{blockNumber, true},
 		ID:      1,
 	}
 
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_live(req)
 	if err != nil {
 		return nil
 	}
@@ -188,7 +188,7 @@ func getBlockByNumber(blockNumber string) interface{} {
 	return resp.Result
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_live(req JSONRPCRequest_live) (*JSONRPCResponse_live, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -200,7 +200,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_live
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

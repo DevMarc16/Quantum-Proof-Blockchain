@@ -7,21 +7,21 @@ import (
 	"net/http"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_simple struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_simple struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestSimpleBalance() {
 	fmt.Println("🔍 Quantum Blockchain Balance Check")
 	fmt.Println("==================================")
 	
@@ -38,7 +38,7 @@ func main() {
 	fmt.Printf("✅ Validator balance: %s QTM\n", validatorBalance)
 	
 	// Show current block number
-	blockNum := getCurrentBlockNumber()
+	blockNum := getCurrentBlockNumber_simple()
 	fmt.Printf("📦 Current block: %s\n", blockNum)
 	
 	fmt.Println("\n🎯 Analysis:")
@@ -56,14 +56,14 @@ func main() {
 }
 
 func getBalance(address string) string {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_simple{
 		JSONRPC: "2.0",
 		Method:  "eth_getBalance",
 		Params:  []interface{}{address, "latest"},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_simple(req)
 	if err != nil {
 		return "ERROR"
 	}
@@ -79,15 +79,15 @@ func getBalance(address string) string {
 	return "ERROR"
 }
 
-func getCurrentBlockNumber() string {
-	req := JSONRPCRequest{
+func getCurrentBlockNumber_simple() string {
+	req := JSONRPCRequest_simple{
 		JSONRPC: "2.0",
 		Method:  "eth_blockNumber",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_simple(req)
 	if err != nil {
 		return "ERROR"
 	}
@@ -103,7 +103,7 @@ func getCurrentBlockNumber() string {
 	return "ERROR"
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_simple(req JSONRPCRequest_simple) (*JSONRPCResponse_simple, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -115,7 +115,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 	
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_simple
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

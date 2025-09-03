@@ -26,7 +26,7 @@ type JSONRPCResponse struct {
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestRPCSubmit() {
 	// Generate keys
 	privKey, _, err := crypto.GenerateDilithiumKeyPair()
 	if err != nil {

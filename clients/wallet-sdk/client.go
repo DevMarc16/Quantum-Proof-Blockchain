@@ -268,7 +268,6 @@ type Wallet struct {
 func NewWallet(algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, error) {
 	var privateKey []byte
 	var publicKey []byte
-	var err error
 	
 	switch algorithm {
 	case crypto.SigAlgDilithium:

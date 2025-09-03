@@ -13,21 +13,21 @@ import (
 	"quantum-blockchain/chain/types"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_fast struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_fast struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runFastPerformanceTest() {
 	fmt.Println("🚀 Testing Fast Quantum Blockchain Performance")
 	fmt.Println("=============================================")
 	
@@ -149,14 +149,14 @@ func main() {
 }
 
 func getChainID() (string, error) {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_fast{
 		JSONRPC: "2.0",
 		Method:  "eth_chainId",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_fast(req)
 	if err != nil {
 		return "", err
 	}
@@ -173,14 +173,14 @@ func getChainID() (string, error) {
 }
 
 func submitTransaction(txJSON string) (string, error) {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_fast{
 		JSONRPC: "2.0",
 		Method:  "eth_sendRawTransaction",
 		Params:  []string{txJSON},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_fast(req)
 	if err != nil {
 		return "", err
 	}
@@ -197,14 +197,14 @@ func submitTransaction(txJSON string) (string, error) {
 }
 
 func getTransaction(txHash string) (interface{}, error) {
-	req := JSONRPCRequest{
+	req := JSONRPCRequest_fast{
 		JSONRPC: "2.0",
 		Method:  "eth_getTransactionByHash",
 		Params:  []string{txHash},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_fast(req)
 	if err != nil {
 		return nil, err
 	}
@@ -216,7 +216,7 @@ func getTransaction(txHash string) (interface{}, error) {
 	return resp.Result, nil
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_fast(req JSONRPCRequest_fast) (*JSONRPCResponse_fast, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -229,7 +229,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 	
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_fast
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

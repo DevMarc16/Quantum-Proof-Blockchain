@@ -21,14 +21,16 @@ func TestNodeStartup(t *testing.T) {
 
 	// Create node configuration
 	config := &node.Config{
-		DataDir:    tempDir,
-		NetworkID:  8888,
-		ListenAddr: "127.0.0.1:0", // Use any available port
-		HTTPPort:   0,             // Use any available port
-		WSPort:     0,             // Use any available port
-		Mining:     false,
-		GasLimit:   15000000,
-		GasPrice:   big.NewInt(1000000000),
+		DataDir:      tempDir,
+		NetworkID:    8888,
+		ListenAddr:   "127.0.0.1:0", // Use any available port
+		HTTPPort:     0,             // Use any available port
+		WSPort:       0,             // Use any available port
+		ValidatorKey: "auto",        // Enable validator for mining
+		ValidatorAlg: "dilithium",
+		Mining:       false,
+		GasLimit:     15000000,
+		GasPrice:     big.NewInt(1000000000),
 	}
 
 	// Create and start node
@@ -227,14 +229,16 @@ func TestTransactionLifecycle(t *testing.T) {
 
 	// Create node configuration
 	config := &node.Config{
-		DataDir:    tempDir,
-		NetworkID:  8888,
-		ListenAddr: "127.0.0.1:0",
-		HTTPPort:   0,
-		WSPort:     0,
-		Mining:     true, // Enable mining for this test
-		GasLimit:   15000000,
-		GasPrice:   big.NewInt(1000000000),
+		DataDir:      tempDir,
+		NetworkID:    8888,
+		ListenAddr:   "127.0.0.1:0",
+		HTTPPort:     0,
+		WSPort:       0,
+		ValidatorKey: "auto",        // Enable validator for mining
+		ValidatorAlg: "dilithium",
+		Mining:       true, // Enable mining for this test
+		GasLimit:     15000000,
+		GasPrice:     big.NewInt(1000000000),
 	}
 
 	// Create and start node
@@ -311,14 +315,16 @@ func TestConsensus(t *testing.T) {
 
 	// Create validator node configuration
 	config := &node.Config{
-		DataDir:    tempDir,
-		NetworkID:  8888,
-		ListenAddr: "127.0.0.1:0",
-		HTTPPort:   0,
-		WSPort:     0,
-		Mining:     true,
-		GasLimit:   15000000,
-		GasPrice:   big.NewInt(1000000000),
+		DataDir:      tempDir,
+		NetworkID:    8888,
+		ListenAddr:   "127.0.0.1:0",
+		HTTPPort:     0,
+		WSPort:       0,
+		ValidatorKey: "auto",        // Enable validator for mining
+		ValidatorAlg: "dilithium",
+		Mining:       true,
+		GasLimit:     15000000,
+		GasPrice:     big.NewInt(1000000000),
 	}
 
 	// Create and start validator node

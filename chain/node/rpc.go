@@ -2,6 +2,7 @@ package node
 
 import (
 	"context"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -214,6 +215,7 @@ func (s *RPCServer) registerMethods() {
 	s.methods["quantum_getSupportedAlgorithms"] = s.quantumGetSupportedAlgorithms
 	s.methods["quantum_validateSignature"] = s.quantumValidateSignature
 	s.methods["quantum_getValidatorSet"] = s.quantumGetValidatorSet
+	s.methods["quantum_sendRawTransaction"] = s.quantumSendRawTransaction
 	
 	// Mining methods
 	s.methods["miner_start"] = s.minerStart
@@ -699,6 +701,46 @@ func (s *RPCServer) quantumGetValidatorSet(params json.RawMessage) (interface{},
 	}
 	
 	return validatorSet, nil
+}
+
+func (s *RPCServer) quantumSendRawTransaction(params json.RawMessage) (interface{}, error) {
+	var p []string
+	err := json.Unmarshal(params, &p)
+	if err != nil || len(p) < 1 {
+		return nil, fmt.Errorf("invalid parameters")
+	}
+	
+	// Decode the raw transaction hex
+	rawTxHex := p[0]
+	if strings.HasPrefix(rawTxHex, "0x") {
+		rawTxHex = rawTxHex[2:]
+	}
+	
+	rawTxBytes, err := hex.DecodeString(rawTxHex)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode hex transaction: %w", err)
+	}
+	
+	// Decode the RLP transaction
+	tx, err := types.DecodeRLPTransaction(rawTxBytes)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode RLP transaction: %w", err)
+	}
+	
+	// Validate the quantum transaction
+	if err := s.validateQuantumTransaction(tx); err != nil {
+		return nil, fmt.Errorf("invalid quantum transaction: %w", err)
+	}
+	
+	// Add to transaction pool
+	if s.node != nil && s.node.txPool != nil {
+		if err := s.node.txPool.AddTransaction(tx); err != nil {
+			return nil, fmt.Errorf("failed to add transaction to pool: %w", err)
+		}
+	}
+	
+	// Return transaction hash
+	return tx.Hash().Hex(), nil
 }
 
 // Mining methods

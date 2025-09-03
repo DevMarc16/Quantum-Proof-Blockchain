@@ -8,21 +8,21 @@ import (
 	"net/http"
 )
 
-type JSONRPCRequest struct {
+type JSONRPCRequest_genesis struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Method  string      `json:"method"`
 	Params  interface{} `json:"params"`
 	ID      int         `json:"id"`
 }
 
-type JSONRPCResponse struct {
+type JSONRPCResponse_genesis struct {
 	JSONRPC string      `json:"jsonrpc"`
 	Result  interface{} `json:"result,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	ID      int         `json:"id"`
 }
 
-func main() {
+func runTestFundedGenesisTx() {
 	fmt.Println("🚀 Genesis-Funded Quantum Transaction Test")
 	fmt.Println("==========================================")
 	
@@ -31,7 +31,7 @@ func main() {
 	fmt.Printf("💰 Using genesis test address: %s\n", genesisAddr)
 	
 	// Check genesis balance
-	balance := getBalance(genesisAddr)
+	balance := getBalance_genesis(genesisAddr)
 	fmt.Printf("✅ Genesis address balance: %s QTM\n", balance)
 	
 	if balance == "0x0" {
@@ -49,11 +49,11 @@ func main() {
 	fmt.Println("✅ Quantum cryptography is initialized")
 	
 	// Show current block to prove blockchain is active
-	blockNum := getCurrentBlockNumber()
+	blockNum := getCurrentBlockNumber_genesis()
 	fmt.Printf("✅ Current block: %s (blockchain is actively mining)\n", blockNum)
 	
 	// Show validator is earning rewards
-	validatorAddr, _ := getValidatorAddress()
+	validatorAddr, _ := getValidatorAddress_genesis()
 	if validatorAddr != "" {
 		fmt.Printf("✅ Active validator: %s\n", validatorAddr)
 		// The validator starts with 0 balance but earns 1 QTM per block
@@ -77,15 +77,15 @@ func main() {
 	fmt.Println("The 'insufficient balance' errors prove security validation works.")
 }
 
-func getBalance(address string) string {
-	req := JSONRPCRequest{
+func getBalance_genesis(address string) string {
+	req := JSONRPCRequest_genesis{
 		JSONRPC: "2.0",
 		Method:  "eth_getBalance",
 		Params:  []interface{}{address, "latest"},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_genesis(req)
 	if err != nil {
 		return "ERROR"
 	}
@@ -101,15 +101,15 @@ func getBalance(address string) string {
 	return "ERROR"
 }
 
-func getCurrentBlockNumber() string {
-	req := JSONRPCRequest{
+func getCurrentBlockNumber_genesis() string {
+	req := JSONRPCRequest_genesis{
 		JSONRPC: "2.0",
 		Method:  "eth_blockNumber",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_genesis(req)
 	if err != nil {
 		return "ERROR"
 	}
@@ -125,15 +125,15 @@ func getCurrentBlockNumber() string {
 	return "ERROR"
 }
 
-func getValidatorAddress() (string, error) {
-	req := JSONRPCRequest{
+func getValidatorAddress_genesis() (string, error) {
+	req := JSONRPCRequest_genesis{
 		JSONRPC: "2.0",
 		Method:  "test_getValidatorAddress",
 		Params:  []interface{}{},
 		ID:      1,
 	}
 	
-	resp, err := makeRPCRequest(req)
+	resp, err := makeRPCRequest_genesis(req)
 	if err != nil {
 		return "", err
 	}
@@ -149,7 +149,7 @@ func getValidatorAddress() (string, error) {
 	return "", fmt.Errorf("unexpected result type")
 }
 
-func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
+func makeRPCRequest_genesis(req JSONRPCRequest_genesis) (*JSONRPCResponse_genesis, error) {
 	reqData, err := json.Marshal(req)
 	if err != nil {
 		return nil, err
@@ -161,7 +161,7 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 	}
 	defer resp.Body.Close()
 	
-	var rpcResp JSONRPCResponse
+	var rpcResp JSONRPCResponse_genesis
 	err = json.NewDecoder(resp.Body).Decode(&rpcResp)
 	if err != nil {
 		return nil, err

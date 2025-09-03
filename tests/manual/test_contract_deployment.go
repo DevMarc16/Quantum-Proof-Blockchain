@@ -21,7 +21,7 @@ var contractBytecode = []byte{
 	0x5b, 0x50, 0x60, 0x04, 0x36, 0x10, 0x61, 0x00, 0x49, 0x57, 0x60, 0x00, 0x35, 0x60, 0xe0, 0x1c,
 }
 
-func main() {
+func runTestContractDeployment() {
 	fmt.Println("🧪 Testing Quantum Blockchain EVM Smart Contract Deployment")
 	fmt.Println("=" + fmt.Sprintf("%s", make([]rune, 60)))
 
@@ -37,7 +37,7 @@ func main() {
 
 	// Test 2: Check deployer balance
 	fmt.Println("\n2️⃣ Checking deployer balance...")
-	balance := getBalance(deployer)
+	balance := getBalance_contract(deployer)
 	fmt.Printf("✅ Deployer balance: %s QTM\n", balance)
 
 	if balance == "0x0" {
@@ -46,7 +46,7 @@ func main() {
 
 	// Test 3: Get current block number
 	fmt.Println("\n3️⃣ Getting current block number...")
-	blockNumber := getBlockNumber()
+	blockNumber := getBlockNumber_contract()
 	fmt.Printf("✅ Current block number: %s\n", blockNumber)
 
 	// Test 4: Create contract deployment transaction
@@ -86,7 +86,7 @@ func main() {
 
 	// Test 5: Submit contract deployment transaction
 	fmt.Println("\n5️⃣ Submitting contract deployment transaction...")
-	txHash, err := submitTransaction(tx)
+	txHash, err := submitTransaction_contract(tx)
 	if err != nil {
 		log.Printf("   ❌ Contract deployment failed: %v", err)
 		fmt.Println("   💡 This is expected if deployer has insufficient balance")
@@ -119,7 +119,7 @@ func main() {
 	// Test rate limiting
 	fmt.Println("   🔒 Testing rate limiting...")
 	for i := 0; i < 12; i++ {
-		resp := makeRPCRequest("eth_blockNumber", []interface{}{})
+		resp := makeRPCRequest_contract("eth_blockNumber", []interface{}{})
 		if i >= 10 && resp == "" {
 			fmt.Println("   ✅ Rate limiting active after 10 requests")
 			break
@@ -129,7 +129,7 @@ func main() {
 	
 	// Test input validation
 	fmt.Println("   🔒 Testing input validation...")
-	invalidResp := makeRPCRequest("INVALID_METHOD", []interface{}{})
+	invalidResp := makeRPCRequest_contract("INVALID_METHOD", []interface{}{})
 	if invalidResp == "" {
 		fmt.Println("   ✅ Invalid method requests properly rejected")
 	}
@@ -144,15 +144,15 @@ func main() {
 	fmt.Println("   ✅ Production ready: TRUE")
 }
 
-func getBalance(addr types.Address) string {
-	return makeRPCRequest("eth_getBalance", []interface{}{addr.Hex(), "latest"})
+func getBalance_contract(addr types.Address) string {
+	return makeRPCRequest_contract("eth_getBalance", []interface{}{addr.Hex(), "latest"})
 }
 
-func getBlockNumber() string {
-	return makeRPCRequest("eth_blockNumber", []interface{}{})
+func getBlockNumber_contract() string {
+	return makeRPCRequest_contract("eth_blockNumber", []interface{}{})
 }
 
-func submitTransaction(tx *types.QuantumTransaction) (string, error) {
+func submitTransaction_contract(tx *types.QuantumTransaction) (string, error) {
 	// Convert transaction to hex format
 	txData, err := json.Marshal(tx)
 	if err != nil {
@@ -160,7 +160,7 @@ func submitTransaction(tx *types.QuantumTransaction) (string, error) {
 	}
 	
 	// Submit via quantum_sendRawTransaction
-	txHash := makeRPCRequest("quantum_sendRawTransaction", []interface{}{string(txData)})
+	txHash := makeRPCRequest_contract("quantum_sendRawTransaction", []interface{}{string(txData)})
 	if txHash == "" {
 		return "", fmt.Errorf("transaction submission failed")
 	}
@@ -169,10 +169,10 @@ func submitTransaction(tx *types.QuantumTransaction) (string, error) {
 }
 
 func getTransactionReceipt(txHash string) string {
-	return makeRPCRequest("eth_getTransactionReceipt", []interface{}{txHash})
+	return makeRPCRequest_contract("eth_getTransactionReceipt", []interface{}{txHash})
 }
 
-func makeRPCRequest(method string, params []interface{}) string {
+func makeRPCRequest_contract(method string, params []interface{}) string {
 	requestBody := map[string]interface{}{
 		"jsonrpc": "2.0",
 		"method":  method,

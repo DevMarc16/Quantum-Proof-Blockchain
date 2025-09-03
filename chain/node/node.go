@@ -2,9 +2,12 @@ package node
 
 import (
 	"context"
+	"encoding/hex"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math/big"
+	"os"
 	"sync"
 	"time"
 
@@ -96,6 +99,8 @@ func NewNode(config *Config) (*Node, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to initialize validator: %w", err)
 		}
+	} else {
+		log.Printf("⚠️ No validator private key found - mining will not be enabled")
 	}
 	
 	// Initialize blockchain
@@ -155,23 +160,109 @@ func NewNode(config *Config) (*Node, error) {
 }
 
 func (n *Node) initValidator() error {
-	// For demo purposes, generate a new key if none provided
-	// In production, this should load from secure storage
+	if n.config.ValidatorKey == "auto" {
+		// Auto-generate validator key and persist it
+		return n.generateAndSaveValidator()
+	} else {
+		// Load existing validator key
+		return n.loadValidator(n.config.ValidatorKey)
+	}
+}
+
+func (n *Node) generateAndSaveValidator() error {
+	// Try to load existing validator key first
+	keyPath := n.config.DataDir + "/validator.key"
+	if existingKey, err := n.loadValidatorFromFile(keyPath); err == nil {
+		log.Printf("🔑 Loaded existing validator key from %s", keyPath)
+		n.validatorPrivKey = existingKey
+		n.validatorAlg = crypto.SigAlgDilithium
+		
+		// Derive address from private key
+		privKey, err := crypto.DilithiumPrivateKeyFromBytes(existingKey)
+		if err != nil {
+			return fmt.Errorf("failed to parse existing validator key: %w", err)
+		}
+		pubKey := privKey.Public()
+		n.validatorAddr = types.PublicKeyToAddress(pubKey.Bytes())
+		
+		log.Printf("🔑 Validator address: %s", n.validatorAddr.Hex())
+		return nil
+	}
+	
+	// Generate new validator key
+	log.Printf("🔑 Generating new validator key...")
 	privKey, pubKey, err := crypto.GenerateDilithiumKeyPair()
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to generate validator key: %w", err)
 	}
 	
 	n.validatorPrivKey = privKey.Bytes()
 	n.validatorAlg = crypto.SigAlgDilithium
 	n.validatorAddr = types.PublicKeyToAddress(pubKey.Bytes())
 	
-	// Fund the validator for testing (if blockchain is available)
-	if n.blockchain != nil && n.blockchain.stateDB != nil {
-		validatorBalance := new(big.Int).Mul(big.NewInt(1000), big.NewInt(1e18)) // 1000 QTM
-		n.blockchain.stateDB.SetBalance(n.validatorAddr, validatorBalance)
-		n.blockchain.stateDB.SetNonce(n.validatorAddr, 0)
-		log.Printf("💰 Funded validator %s with 1000 QTM", n.validatorAddr.Hex())
+	// Save the key for persistence
+	err = n.saveValidatorToFile(keyPath, n.validatorPrivKey)
+	if err != nil {
+		log.Printf("⚠️ Failed to save validator key: %v", err)
+		// Continue anyway - validator will work but key won't persist
+	} else {
+		log.Printf("💾 Saved validator key to %s", keyPath)
+	}
+	
+	log.Printf("🔑 Generated validator address: %s", n.validatorAddr.Hex())
+	return nil
+}
+
+func (n *Node) loadValidator(keyHex string) error {
+	// Load validator from hex string
+	keyBytes, err := hex.DecodeString(keyHex)
+	if err != nil {
+		return fmt.Errorf("invalid validator key hex: %w", err)
+	}
+	
+	n.validatorPrivKey = keyBytes
+	n.validatorAlg = crypto.SigAlgDilithium
+	
+	// Derive address
+	privKey, err := crypto.DilithiumPrivateKeyFromBytes(keyBytes)
+	if err != nil {
+		return fmt.Errorf("failed to parse validator key: %w", err)
+	}
+	pubKey := privKey.Public()
+	n.validatorAddr = types.PublicKeyToAddress(pubKey.Bytes())
+	
+	return nil
+}
+
+func (n *Node) loadValidatorFromFile(keyPath string) ([]byte, error) {
+	if _, err := os.Stat(keyPath); os.IsNotExist(err) {
+		return nil, fmt.Errorf("validator key file not found: %s", keyPath)
+	}
+	
+	hexData, err := ioutil.ReadFile(keyPath)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read validator key file: %w", err)
+	}
+	
+	keyBytes, err := hex.DecodeString(string(hexData))
+	if err != nil {
+		return nil, fmt.Errorf("invalid hex in validator key file: %w", err)
+	}
+	
+	return keyBytes, nil
+}
+
+func (n *Node) saveValidatorToFile(keyPath string, keyBytes []byte) error {
+	// Create directory if it doesn't exist
+	err := os.MkdirAll(n.config.DataDir, 0755)
+	if err != nil {
+		return fmt.Errorf("failed to create data directory: %w", err)
+	}
+	
+	hexData := hex.EncodeToString(keyBytes)
+	err = ioutil.WriteFile(keyPath, []byte(hexData), 0600) // Secure permissions
+	if err != nil {
+		return fmt.Errorf("failed to write validator key file: %w", err)
 	}
 	
 	return nil
@@ -360,6 +451,13 @@ func (n *Node) produceFastBlock() {
 		MixDigest:   types.ZeroHash,           // Not used in PoS
 		Nonce:       0,                        // Not used in PoS
 	}, transactions, nil)
+	
+	// Sign the block with validator signature
+	err = block.Header.SignBlock(n.validatorPrivKey, n.validatorAlg, n.validatorAddr)
+	if err != nil {
+		log.Printf("Failed to sign block: %v", err)
+		return
+	}
 	
 	// Validate block using fast consensus
 	err = n.fastConsensus.ValidateBlock(block, n.validatorAddr)

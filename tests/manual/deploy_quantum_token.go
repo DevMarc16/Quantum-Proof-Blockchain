@@ -35,7 +35,7 @@ var quantumTokenBytecode = []byte{
 	0x15, 0x61, 0x01, 0x06, 0x57, 0x60, 0x00, 0x80, 0xfd,
 }
 
-func main() {
+func runDeployQuantumToken() {
 	fmt.Println("🚀 Deploying Quantum Token Contract to Quantum Blockchain")
 	fmt.Println("=" + fmt.Sprintf("%s", make([]rune, 55)))
 
@@ -51,10 +51,10 @@ func main() {
 
 	// Check current blockchain state
 	fmt.Println("\n2️⃣ Checking blockchain state...")
-	blockNumber := getBlockNumber()
+	blockNumber := getBlockNumberDeploy()
 	fmt.Printf("   📦 Current block: %s\n", blockNumber)
 	
-	balance := getBalance(deployer)
+	balance := getBalanceDeploy(deployer)
 	fmt.Printf("   💰 Deployer balance: %s QTM\n", balance)
 	
 	if balance == "0x0" {
@@ -123,7 +123,7 @@ func main() {
 	time.Sleep(6 * time.Second) // Wait for ~3 blocks
 
 	// Verify deployment
-	code := getCode(contractAddr)
+	code := getCodeDeploy(contractAddr)
 	if code != "0x" && code != "" {
 		fmt.Printf("   ✅ Contract deployed successfully!\n")
 		fmt.Printf("   📝 Contract code: %s...\n", code[:min(50, len(code))])
@@ -137,7 +137,7 @@ func main() {
 
 	// Performance summary
 	fmt.Println("\n🎯 Quantum Blockchain Performance Summary:")
-	newBlockNumber := getBlockNumber()
+	newBlockNumber := getBlockNumberDeploy()
 	fmt.Printf("   • Blocks processed: %s → %s\n", blockNumber, newBlockNumber)
 	fmt.Printf("   • Average block time: ~2 seconds\n")
 	fmt.Printf("   • Gas optimization: 98%% reduction achieved\n")
@@ -148,14 +148,17 @@ func main() {
 }
 
 func deployContract(tx *types.QuantumTransaction) (string, string, error) {
-	// Serialize transaction
+	// Serialize transaction as JSON (current RLP implementation uses JSON)
 	txData, err := json.Marshal(tx)
 	if err != nil {
 		return "", "", fmt.Errorf("failed to marshal transaction: %w", err)
 	}
 	
+	// Convert to hex string for submission (as expected by DecodeRLPTransaction)
+	hexTx := fmt.Sprintf("0x%x", txData)
+	
 	// Submit via quantum_sendRawTransaction
-	result := makeRPCRequest("quantum_sendRawTransaction", []interface{}{string(txData)})
+	result := makeRPCRequestDeploy("quantum_sendRawTransaction", []interface{}{hexTx})
 	if result == "" {
 		return "", "", fmt.Errorf("transaction submission failed")
 	}
@@ -171,7 +174,7 @@ func testContractInteraction(contractAddr string) {
 	fmt.Printf("   📞 Testing contract call to %s...\n", contractAddr[:10]+"...")
 	
 	// This would be a real contract call in a full implementation
-	result := makeRPCRequest("eth_call", []interface{}{
+	result := makeRPCRequestDeploy("eth_call", []interface{}{
 		map[string]interface{}{
 			"to":   contractAddr,
 			"data": "0x70a08231", // balanceOf(address) function signature
@@ -186,19 +189,19 @@ func testContractInteraction(contractAddr string) {
 	}
 }
 
-func getBlockNumber() string {
-	return makeRPCRequest("eth_blockNumber", []interface{}{})
+func getBlockNumberDeploy() string {
+	return makeRPCRequestDeploy("eth_blockNumber", []interface{}{})
 }
 
-func getBalance(addr types.Address) string {
-	return makeRPCRequest("eth_getBalance", []interface{}{addr.Hex(), "latest"})
+func getBalanceDeploy(addr types.Address) string {
+	return makeRPCRequestDeploy("eth_getBalance", []interface{}{addr.Hex(), "latest"})
 }
 
-func getCode(contractAddr string) string {
-	return makeRPCRequest("eth_getCode", []interface{}{contractAddr, "latest"})
+func getCodeDeploy(contractAddr string) string {
+	return makeRPCRequestDeploy("eth_getCode", []interface{}{contractAddr, "latest"})
 }
 
-func makeRPCRequest(method string, params []interface{}) string {
+func makeRPCRequestDeploy(method string, params []interface{}) string {
 	requestBody := map[string]interface{}{
 		"jsonrpc": "2.0",
 		"method":  method,
