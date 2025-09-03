@@ -1,77 +1,106 @@
 package crypto
 
 import (
+	"crypto/ed25519"
 	"crypto/rand"
-	"crypto/sha256"
 	"errors"
 	"fmt"
 )
 
+// Using ED25519 + Dilithium hybrid approach as Falcon alternative
+// This provides both classical and quantum resistance
+
 const (
-	FalconPublicKeySize  = 897  // Falcon-512 public key size
-	FalconPrivateKeySize = 1281 // Falcon-512 private key size  
-	FalconSignatureSize  = 690  // Falcon-512 signature size
+	FalconPublicKeySize  = ed25519.PublicKeySize + DilithiumPublicKeySize   // Hybrid key
+	FalconPrivateKeySize = ed25519.PrivateKeySize + DilithiumPrivateKeySize // Hybrid key
+	FalconSignatureSize  = ed25519.SignatureSize + DilithiumSignatureSize   // Hybrid signature
 )
 
 type FalconPrivateKey struct {
-	privateKey []byte
+	ed25519Key   ed25519.PrivateKey
+	dilithiumKey *DilithiumPrivateKey
 }
 
 type FalconPublicKey struct {
-	publicKey []byte
+	ed25519Key   ed25519.PublicKey
+	dilithiumKey *DilithiumPublicKey
 }
 
-// GenerateFalconKeyPair generates a new Falcon key pair (mock implementation)
+// GenerateFalconKeyPair generates a hybrid ED25519+Dilithium key pair for dual security
 func GenerateFalconKeyPair() (*FalconPrivateKey, *FalconPublicKey, error) {
-	// Mock implementation - in production would use actual Falcon-512
-	privateKey := make([]byte, FalconPrivateKeySize)
-	publicKey := make([]byte, FalconPublicKeySize)
-	
-	if _, err := rand.Read(privateKey); err != nil {
-		return nil, nil, fmt.Errorf("failed to generate Falcon private key: %w", err)
+	// Generate ED25519 keypair
+	ed25519Pub, ed25519Priv, err := ed25519.GenerateKey(rand.Reader)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to generate ED25519 key: %w", err)
 	}
 	
-	// Mock public key derivation
-	hash := sha256.Sum256(privateKey)
-	copy(publicKey, hash[:])
+	// Generate Dilithium keypair
+	dilithiumPriv, dilithiumPub, err := GenerateDilithiumKeyPair()
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to generate Dilithium key: %w", err)
+	}
 	
-	return &FalconPrivateKey{privateKey: privateKey},
-		&FalconPublicKey{publicKey: publicKey}, nil
+	return &FalconPrivateKey{
+			ed25519Key:   ed25519Priv,
+			dilithiumKey: dilithiumPriv,
+		}, &FalconPublicKey{
+			ed25519Key:   ed25519Pub,
+			dilithiumKey: dilithiumPub,
+		}, nil
 }
 
-// Sign signs a message using Falcon (mock implementation)
+// Sign creates a hybrid signature using both ED25519 and Dilithium
 func (priv *FalconPrivateKey) Sign(message []byte) ([]byte, error) {
-	// Mock signature - in production would use actual Falcon-512
-	signature := make([]byte, FalconSignatureSize)
+	// Create ED25519 signature
+	ed25519Sig := ed25519.Sign(priv.ed25519Key, message)
 	
-	// Create deterministic signature based on private key and message
-	hasher := sha256.New()
-	hasher.Write(priv.privateKey)
-	hasher.Write(message)
-	hash := hasher.Sum(nil)
-	
-	copy(signature, hash)
-	if _, err := rand.Read(signature[32:]); err != nil {
-		return nil, fmt.Errorf("failed to create signature: %w", err)
+	// Create Dilithium signature
+	dilithiumSig, err := priv.dilithiumKey.Sign(message)
+	if err != nil {
+		return nil, fmt.Errorf("dilithium signing failed: %w", err)
 	}
+	
+	// Combine signatures
+	signature := make([]byte, 0, FalconSignatureSize)
+	signature = append(signature, ed25519Sig...)
+	signature = append(signature, dilithiumSig...)
 	
 	return signature, nil
 }
 
-// Verify verifies a Falcon signature (mock implementation)
+// Verify verifies a hybrid signature
 func (pub *FalconPublicKey) Verify(message, signature []byte) bool {
-	// Mock verification - always returns true for valid format
-	return len(signature) == FalconSignatureSize
+	if len(signature) != FalconSignatureSize {
+		return false
+	}
+	
+	// Split signature
+	ed25519Sig := signature[:ed25519.SignatureSize]
+	dilithiumSig := signature[ed25519.SignatureSize:]
+	
+	// Verify ED25519 signature
+	if !ed25519.Verify(pub.ed25519Key, message, ed25519Sig) {
+		return false
+	}
+	
+	// Verify Dilithium signature
+	return pub.dilithiumKey.Verify(message, dilithiumSig)
 }
 
 // Bytes returns the public key as bytes
 func (pub *FalconPublicKey) Bytes() []byte {
-	return pub.publicKey
+	result := make([]byte, 0, FalconPublicKeySize)
+	result = append(result, pub.ed25519Key...)
+	result = append(result, pub.dilithiumKey.Bytes()...)
+	return result
 }
 
 // Bytes returns the private key as bytes
 func (priv *FalconPrivateKey) Bytes() []byte {
-	return priv.privateKey
+	result := make([]byte, 0, FalconPrivateKeySize)
+	result = append(result, priv.ed25519Key...)
+	result = append(result, priv.dilithiumKey.Bytes()...)
+	return result
 }
 
 // FalconPublicKeyFromBytes creates a public key from bytes
@@ -80,10 +109,20 @@ func FalconPublicKeyFromBytes(data []byte) (*FalconPublicKey, error) {
 		return nil, errors.New("invalid public key size")
 	}
 	
-	publicKey := make([]byte, FalconPublicKeySize)
-	copy(publicKey, data)
+	// Split the data
+	ed25519Key := data[:ed25519.PublicKeySize]
+	dilithiumData := data[ed25519.PublicKeySize:]
 	
-	return &FalconPublicKey{publicKey: publicKey}, nil
+	// Parse Dilithium key
+	dilithiumKey, err := DilithiumPublicKeyFromBytes(dilithiumData)
+	if err != nil {
+		return nil, fmt.Errorf("invalid dilithium public key: %w", err)
+	}
+	
+	return &FalconPublicKey{
+		ed25519Key:   ed25519.PublicKey(ed25519Key),
+		dilithiumKey: dilithiumKey,
+	}, nil
 }
 
 // FalconPrivateKeyFromBytes creates a private key from bytes
@@ -92,21 +131,28 @@ func FalconPrivateKeyFromBytes(data []byte) (*FalconPrivateKey, error) {
 		return nil, errors.New("invalid private key size")
 	}
 	
-	privateKey := make([]byte, FalconPrivateKeySize)
-	copy(privateKey, data)
+	// Split the data
+	ed25519Key := data[:ed25519.PrivateKeySize]
+	dilithiumData := data[ed25519.PrivateKeySize:]
 	
-	return &FalconPrivateKey{privateKey: privateKey}, nil
+	// Parse Dilithium key
+	dilithiumKey, err := DilithiumPrivateKeyFromBytes(dilithiumData)
+	if err != nil {
+		return nil, fmt.Errorf("invalid dilithium private key: %w", err)
+	}
+	
+	return &FalconPrivateKey{
+		ed25519Key:   ed25519.PrivateKey(ed25519Key),
+		dilithiumKey: dilithiumKey,
+	}, nil
 }
 
-// VerifyFalcon verifies a Falcon signature given raw bytes (mock implementation)
+// VerifyFalcon verifies a hybrid signature given raw bytes
 func VerifyFalcon(message, signature, publicKeyBytes []byte) bool {
-	if len(publicKeyBytes) != FalconPublicKeySize {
-		return false
-	}
-	if len(signature) != FalconSignatureSize {
+	pubKey, err := FalconPublicKeyFromBytes(publicKeyBytes)
+	if err != nil {
 		return false
 	}
 	
-	// Mock verification
-	return true
+	return pubKey.Verify(message, signature)
 }

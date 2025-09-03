@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(chmod:*)",
-      "Bash(go build:*)"
+      "Bash(go build:*)",
+      "Bash(go doc:*)",
+      "Bash(go get:*)"
     ],
     "deny": [],
     "ask": []

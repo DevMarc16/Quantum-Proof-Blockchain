@@ -2,89 +2,85 @@ package crypto
 
 import (
 	"crypto/rand"
-	"crypto/sha256"
 	"errors"
 	"fmt"
+
+	"github.com/cloudflare/circl/kem/kyber/kyber512"
 )
 
 const (
-	KyberPublicKeySize   = 800  // Kyber-512 public key size
-	KyberPrivateKeySize  = 1632 // Kyber-512 private key size
-	KyberCiphertextSize  = 768  // Kyber-512 ciphertext size
-	KyberSharedSecretSize = 32  // Kyber-512 shared secret size
+	KyberPublicKeySize    = kyber512.PublicKeySize
+	KyberPrivateKeySize   = kyber512.PrivateKeySize
+	KyberCiphertextSize   = kyber512.CiphertextSize
+	KyberSharedSecretSize = kyber512.SharedKeySize
 )
 
 type KyberPrivateKey struct {
-	privateKey []byte
+	privateKey [KyberPrivateKeySize]byte
 }
 
 type KyberPublicKey struct {
-	publicKey []byte
+	publicKey [KyberPublicKeySize]byte
 }
 
-// GenerateKyberKeyPair generates a new Kyber key pair (mock implementation)
+// GenerateKyberKeyPair generates a new Kyber key pair using real CRYSTALS-Kyber
 func GenerateKyberKeyPair() (*KyberPrivateKey, *KyberPublicKey, error) {
-	// Mock implementation - in production would use actual Kyber-512
-	privateKey := make([]byte, KyberPrivateKeySize)
-	publicKey := make([]byte, KyberPublicKeySize)
-	
-	if _, err := rand.Read(privateKey); err != nil {
-		return nil, nil, fmt.Errorf("failed to generate Kyber private key: %w", err)
+	publicKey, privateKey, err := kyber512.GenerateKeyPair(rand.Reader)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to generate Kyber key pair: %w", err)
 	}
+
+	// Pack keys into arrays
+	var privKey KyberPrivateKey
+	var pubKey KyberPublicKey
 	
-	// Mock public key derivation
-	hash := sha256.Sum256(privateKey)
-	copy(publicKey, hash[:])
-	
-	return &KyberPrivateKey{privateKey: privateKey},
-		&KyberPublicKey{publicKey: publicKey}, nil
+	privateKey.Pack(privKey.privateKey[:])
+	publicKey.Pack(pubKey.publicKey[:])
+
+	return &privKey, &pubKey, nil
 }
 
-// Encapsulate generates a shared secret and encapsulates it (mock implementation)
+// Encapsulate generates a shared secret and encapsulates it using Kyber KEM
 func (pub *KyberPublicKey) Encapsulate() ([]byte, []byte, error) {
-	// Mock implementation - in production would use actual Kyber-512
+	// Unpack public key
+	var publicKey kyber512.PublicKey
+	publicKey.Unpack(pub.publicKey[:])
+
+	// Generate encapsulated shared secret
 	ciphertext := make([]byte, KyberCiphertextSize)
 	sharedSecret := make([]byte, KyberSharedSecretSize)
 	
-	if _, err := rand.Read(ciphertext); err != nil {
-		return nil, nil, fmt.Errorf("failed to generate ciphertext: %w", err)
-	}
-	
-	if _, err := rand.Read(sharedSecret); err != nil {
-		return nil, nil, fmt.Errorf("failed to generate shared secret: %w", err)
-	}
+	// Use the Encapsulate function
+	publicKey.EncapsulateTo(ciphertext, sharedSecret, nil)
 	
 	return ciphertext, sharedSecret, nil
 }
 
-// Decapsulate recovers the shared secret from the ciphertext (mock implementation)
+// Decapsulate recovers the shared secret from the ciphertext using Kyber KEM
 func (priv *KyberPrivateKey) Decapsulate(ciphertext []byte) ([]byte, error) {
 	if len(ciphertext) != KyberCiphertextSize {
 		return nil, errors.New("invalid ciphertext size")
 	}
 	
-	// Mock implementation - in production would use actual Kyber-512
+	// Unpack private key
+	var privateKey kyber512.PrivateKey
+	privateKey.Unpack(priv.privateKey[:])
+	
+	// Decapsulate the shared secret
 	sharedSecret := make([]byte, KyberSharedSecretSize)
-	
-	// Create deterministic shared secret based on private key and ciphertext
-	hasher := sha256.New()
-	hasher.Write(priv.privateKey)
-	hasher.Write(ciphertext)
-	hash := hasher.Sum(nil)
-	
-	copy(sharedSecret, hash[:KyberSharedSecretSize])
+	privateKey.DecapsulateTo(sharedSecret, ciphertext)
 	
 	return sharedSecret, nil
 }
 
 // Bytes returns the public key as bytes
 func (pub *KyberPublicKey) Bytes() []byte {
-	return pub.publicKey
+	return pub.publicKey[:]
 }
 
 // Bytes returns the private key as bytes
 func (priv *KyberPrivateKey) Bytes() []byte {
-	return priv.privateKey
+	return priv.privateKey[:]
 }
 
 // KyberPublicKeyFromBytes creates a public key from bytes
@@ -93,10 +89,14 @@ func KyberPublicKeyFromBytes(data []byte) (*KyberPublicKey, error) {
 		return nil, errors.New("invalid public key size")
 	}
 	
-	publicKey := make([]byte, KyberPublicKeySize)
-	copy(publicKey, data)
+	var pubKey KyberPublicKey
+	copy(pubKey.publicKey[:], data)
 	
-	return &KyberPublicKey{publicKey: publicKey}, nil
+	// Validate by unpacking
+	var publicKey kyber512.PublicKey
+	publicKey.Unpack(pubKey.publicKey[:])
+	
+	return &pubKey, nil
 }
 
 // KyberPrivateKeyFromBytes creates a private key from bytes
@@ -105,13 +105,17 @@ func KyberPrivateKeyFromBytes(data []byte) (*KyberPrivateKey, error) {
 		return nil, errors.New("invalid private key size")
 	}
 	
-	privateKey := make([]byte, KyberPrivateKeySize)
-	copy(privateKey, data)
+	var privKey KyberPrivateKey
+	copy(privKey.privateKey[:], data)
 	
-	return &KyberPrivateKey{privateKey: privateKey}, nil
+	// Validate by unpacking
+	var privateKey kyber512.PrivateKey
+	privateKey.Unpack(privKey.privateKey[:])
+	
+	return &privKey, nil
 }
 
-// KyberDecapsulate performs KEM decapsulation given raw bytes (mock implementation)
+// KyberDecapsulate performs KEM decapsulation given raw bytes
 func KyberDecapsulate(ciphertext, privateKeyBytes []byte) ([]byte, error) {
 	if len(privateKeyBytes) != KyberPrivateKeySize {
 		return nil, errors.New("invalid private key size")
@@ -120,16 +124,17 @@ func KyberDecapsulate(ciphertext, privateKeyBytes []byte) ([]byte, error) {
 		return nil, errors.New("invalid ciphertext size")
 	}
 	
-	// Mock implementation
+	// Create private key array
+	var privKeyArray [KyberPrivateKeySize]byte
+	copy(privKeyArray[:], privateKeyBytes)
+	
+	// Unpack private key
+	var privateKey kyber512.PrivateKey
+	privateKey.Unpack(privKeyArray[:])
+	
+	// Decapsulate
 	sharedSecret := make([]byte, KyberSharedSecretSize)
-	
-	// Create deterministic shared secret based on private key and ciphertext
-	hasher := sha256.New()
-	hasher.Write(privateKeyBytes)
-	hasher.Write(ciphertext)
-	hash := hasher.Sum(nil)
-	
-	copy(sharedSecret, hash[:KyberSharedSecretSize])
+	privateKey.DecapsulateTo(sharedSecret, ciphertext)
 	
 	return sharedSecret, nil
 }

@@ -2,76 +2,78 @@ package crypto
 
 import (
 	"crypto/rand"
-	"crypto/sha256"
 	"errors"
 	"fmt"
+
+	"github.com/cloudflare/circl/sign/dilithium/mode2"
 )
 
 const (
-	DilithiumPublicKeySize  = 1312 // Dilithium-II public key size
-	DilithiumPrivateKeySize = 2528 // Dilithium-II private key size
-	DilithiumSignatureSize  = 2420 // Dilithium-II signature size
+	DilithiumPublicKeySize  = mode2.PublicKeySize
+	DilithiumPrivateKeySize = mode2.PrivateKeySize
+	DilithiumSignatureSize  = mode2.SignatureSize
 )
 
 type DilithiumPrivateKey struct {
-	privateKey []byte
+	privateKey [DilithiumPrivateKeySize]byte
 }
 
 type DilithiumPublicKey struct {
-	publicKey []byte
+	publicKey [DilithiumPublicKeySize]byte
 }
 
-// GenerateDilithiumKeyPair generates a new Dilithium key pair (mock implementation)
+// GenerateDilithiumKeyPair generates a new Dilithium key pair using real CRYSTALS-Dilithium
 func GenerateDilithiumKeyPair() (*DilithiumPrivateKey, *DilithiumPublicKey, error) {
-	// Mock implementation - in production would use actual Dilithium-II
-	privateKey := make([]byte, DilithiumPrivateKeySize)
-	publicKey := make([]byte, DilithiumPublicKeySize)
-	
-	if _, err := rand.Read(privateKey); err != nil {
-		return nil, nil, fmt.Errorf("failed to generate Dilithium private key: %w", err)
+	publicKey, privateKey, err := mode2.GenerateKey(rand.Reader)
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to generate Dilithium key pair: %w", err)
 	}
+
+	// Pack keys into arrays
+	var privKey DilithiumPrivateKey
+	var pubKey DilithiumPublicKey
 	
-	// Mock public key derivation
-	hash := sha256.Sum256(privateKey)
-	copy(publicKey, hash[:])
-	
-	return &DilithiumPrivateKey{privateKey: privateKey},
-		&DilithiumPublicKey{publicKey: publicKey}, nil
+	privateKey.Pack(&privKey.privateKey)
+	publicKey.Pack(&pubKey.publicKey)
+
+	return &privKey, &pubKey, nil
 }
 
-// Sign signs a message using Dilithium (mock implementation)
+// Sign signs a message using Dilithium
 func (priv *DilithiumPrivateKey) Sign(message []byte) ([]byte, error) {
-	// Mock signature - in production would use actual Dilithium-II
-	signature := make([]byte, DilithiumSignatureSize)
+	// Unpack private key
+	var privateKey mode2.PrivateKey
+	privateKey.Unpack(&priv.privateKey)
+
+	// Sign the message
+	var signature [DilithiumSignatureSize]byte
+	mode2.SignTo(&privateKey, message, signature[:])
 	
-	// Create deterministic signature based on private key and message
-	hasher := sha256.New()
-	hasher.Write(priv.privateKey)
-	hasher.Write(message)
-	hash := hasher.Sum(nil)
-	
-	copy(signature, hash)
-	if _, err := rand.Read(signature[32:]); err != nil {
-		return nil, fmt.Errorf("failed to create signature: %w", err)
-	}
-	
-	return signature, nil
+	return signature[:], nil
 }
 
-// Verify verifies a Dilithium signature (mock implementation)
+// Verify verifies a Dilithium signature
 func (pub *DilithiumPublicKey) Verify(message, signature []byte) bool {
-	// Mock verification - always returns true for valid format
-	return len(signature) == DilithiumSignatureSize
+	if len(signature) != DilithiumSignatureSize {
+		return false
+	}
+	
+	// Unpack public key
+	var publicKey mode2.PublicKey
+	publicKey.Unpack(&pub.publicKey)
+
+	// Verify signature
+	return mode2.Verify(&publicKey, message, signature)
 }
 
 // Bytes returns the public key as bytes
 func (pub *DilithiumPublicKey) Bytes() []byte {
-	return pub.publicKey
+	return pub.publicKey[:]
 }
 
 // Bytes returns the private key as bytes
 func (priv *DilithiumPrivateKey) Bytes() []byte {
-	return priv.privateKey
+	return priv.privateKey[:]
 }
 
 // DilithiumPublicKeyFromBytes creates a public key from bytes
@@ -80,10 +82,14 @@ func DilithiumPublicKeyFromBytes(data []byte) (*DilithiumPublicKey, error) {
 		return nil, errors.New("invalid public key size")
 	}
 	
-	publicKey := make([]byte, DilithiumPublicKeySize)
-	copy(publicKey, data)
+	var pubKey DilithiumPublicKey
+	copy(pubKey.publicKey[:], data)
 	
-	return &DilithiumPublicKey{publicKey: publicKey}, nil
+	// Validate by unpacking
+	var publicKey mode2.PublicKey
+	publicKey.Unpack(&pubKey.publicKey)
+	
+	return &pubKey, nil
 }
 
 // DilithiumPrivateKeyFromBytes creates a private key from bytes
@@ -92,13 +98,17 @@ func DilithiumPrivateKeyFromBytes(data []byte) (*DilithiumPrivateKey, error) {
 		return nil, errors.New("invalid private key size")
 	}
 	
-	privateKey := make([]byte, DilithiumPrivateKeySize)
-	copy(privateKey, data)
+	var privKey DilithiumPrivateKey
+	copy(privKey.privateKey[:], data)
 	
-	return &DilithiumPrivateKey{privateKey: privateKey}, nil
+	// Validate by unpacking
+	var privateKey mode2.PrivateKey
+	privateKey.Unpack(&privKey.privateKey)
+	
+	return &privKey, nil
 }
 
-// VerifyDilithium verifies a Dilithium signature given raw bytes (mock implementation)
+// VerifyDilithium verifies a Dilithium signature given raw bytes
 func VerifyDilithium(message, signature, publicKeyBytes []byte) bool {
 	if len(publicKeyBytes) != DilithiumPublicKeySize {
 		return false
@@ -107,6 +117,13 @@ func VerifyDilithium(message, signature, publicKeyBytes []byte) bool {
 		return false
 	}
 	
-	// Mock verification
-	return true
+	// Create public key array
+	var pubKeyArray [DilithiumPublicKeySize]byte
+	copy(pubKeyArray[:], publicKeyBytes)
+	
+	// Unpack public key and verify
+	var publicKey mode2.PublicKey
+	publicKey.Unpack(&pubKeyArray)
+	
+	return mode2.Verify(&publicKey, message, signature)
 }

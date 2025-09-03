@@ -1,9 +1,11 @@
 module quantum-blockchain
 
-go 1.21
+go 1.22.0
+
+toolchain go1.22.2
 
 require (
-	github.com/cloudflare/circl v1.3.7
+	github.com/cloudflare/circl v1.6.1
 	github.com/ethereum/go-ethereum v1.13.14
 	github.com/gorilla/websocket v1.5.0
 	github.com/holiman/uint256 v1.2.4
