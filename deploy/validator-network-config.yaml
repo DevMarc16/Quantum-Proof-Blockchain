@@ -1,0 +1,162 @@
+# Quantum Blockchain Multi-Validator Network Configuration
+
+# Network Configuration
+network:
+  name: "quantum-mainnet"
+  chain_id: 8888
+  network_id: 8888
+  genesis_time: "2024-01-01T00:00:00Z"
+  block_time: "2s"
+  epoch_blocks: 7200  # ~4 hours at 2-second blocks
+
+# Consensus Configuration
+consensus:
+  type: "multi-validator-quantum-pos"
+  min_validators: 3
+  max_validators: 21
+  min_stake: "100000000000000000000000"  # 100,000 QTM
+  slashing_percentage: 0.05  # 5%
+  finalization_quorum: 0.67  # 67%
+  voting_period: "168h"  # 7 days
+  execution_delay: "24h"  # 1 day
+  jail_duration: "24h"
+  unbonding_period: "504h"  # 21 days
+
+# Validator Configuration
+validators:
+  bootstrap_validators:
+    - name: "genesis-validator-1"
+      address: "0x1234567890123456789012345678901234567890"
+      stake: "1000000000000000000000000"  # 1M QTM
+      commission: 0.05
+      endpoint: "validator1.quantum.network:30303"
+      rpc_endpoint: "http://validator1.quantum.network:8545"
+      region: "us-west-2"
+      
+    - name: "genesis-validator-2"
+      address: "0x2345678901234567890123456789012345678901"
+      stake: "1000000000000000000000000"  # 1M QTM
+      commission: 0.05
+      endpoint: "validator2.quantum.network:30303"
+      rpc_endpoint: "http://validator2.quantum.network:8545"
+      region: "eu-west-1"
+      
+    - name: "genesis-validator-3"
+      address: "0x3456789012345678901234567890123456789012"
+      stake: "1000000000000000000000000"  # 1M QTM
+      commission: 0.05
+      endpoint: "validator3.quantum.network:30303"
+      rpc_endpoint: "http://validator3.quantum.network:8545"
+      region: "ap-southeast-1"
+
+# P2P Network Configuration
+p2p:
+  listen_addr: "0.0.0.0:30303"
+  max_peers: 50
+  min_peer_latency: "50ms"
+  enable_tls: true
+  permissioned: false
+  bootstrap_peers:
+    - "validator1.quantum.network:30303"
+    - "validator2.quantum.network:30303"
+    - "validator3.quantum.network:30303"
+    - "seed1.quantum.network:30303"
+    - "seed2.quantum.network:30303"
+
+# RPC Configuration
+rpc:
+  http_listen_addr: "0.0.0.0:8545"
+  ws_listen_addr: "0.0.0.0:8546"
+  enable_cors: true
+  cors_origins: ["*"]
+  max_connections: 1000
+  rate_limit: 1000  # requests per minute
+  enable_auth: false
+  
+# Monitoring Configuration
+monitoring:
+  metrics:
+    enabled: true
+    listen_addr: "0.0.0.0:9090"
+    path: "/metrics"
+  health:
+    enabled: true
+    path: "/health"
+  logging:
+    level: "info"
+    format: "json"
+    file: "/var/log/quantum/node.log"
+    max_size: "100MB"
+    max_files: 10
+
+# Security Configuration
+security:
+  rate_limiting:
+    enabled: true
+    global_limit: 10000  # requests per minute
+    per_ip_limit: 100    # requests per minute
+  ddos_protection:
+    enabled: true
+    threshold: 1000      # requests per second
+    ban_duration: "1h"
+  firewall:
+    enabled: true
+    allowed_ports: [22, 8545, 8546, 9090, 30303]
+    fail2ban: true
+
+# Storage Configuration
+storage:
+  data_dir: "/var/lib/quantum"
+  blockchain_db: "leveldb"
+  state_db: "leveldb"
+  log_level: "info"
+  cache_size: "1GB"
+  file_descriptor_limit: 65536
+  
+# Resource Limits
+resources:
+  memory_limit: "8GB"
+  cpu_limit: "4"
+  disk_space_min: "500GB"
+  bandwidth_limit: "1Gbps"
+
+# Backup Configuration
+backup:
+  enabled: true
+  interval: "24h"
+  retention: "30d"
+  s3_bucket: "quantum-blockchain-backups"
+  encryption: true
+  
+# Governance Configuration
+governance:
+  proposal_deposit: "10000000000000000000000"  # 10,000 QTM
+  voting_period: "168h"  # 7 days
+  execution_delay: "24h"  # 1 day
+  quorum: 0.4  # 40%
+  threshold: 0.5  # 50%
+  
+# Token Economics
+tokenomics:
+  total_supply: "1000000000000000000000000000"  # 1B QTM with 18 decimals
+  block_reward: "1000000000000000000"  # 1 QTM per block
+  reward_reduction_rate: 0.95  # 5% reduction per year
+  inflation_rate: 0.05  # 5% annual inflation cap
+  
+# Upgrade Configuration
+upgrades:
+  auto_download: false
+  verification_required: true
+  consensus_required: true
+  min_validator_approval: 0.8  # 80% of validators must approve
+
+# Development/Testing Configuration
+development:
+  enabled: false
+  fast_blocks: false
+  debug_mode: false
+  test_accounts:
+    - address: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
+      balance: "10000000000000000000000"  # 10,000 QTM
+    - address: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      balance: "10000000000000000000000"  # 10,000 QTM

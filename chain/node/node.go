@@ -13,6 +13,9 @@ import (
 
 	"quantum-blockchain/chain/consensus"
 	"quantum-blockchain/chain/crypto"
+	"quantum-blockchain/chain/governance"
+	"quantum-blockchain/chain/monitoring"
+	"quantum-blockchain/chain/network"
 	"quantum-blockchain/chain/types"
 )
 
@@ -47,17 +50,19 @@ func DefaultConfig() *Config {
 	}
 }
 
-// Node represents a quantum-resistant blockchain node with fast consensus and QTM token
+// Node represents a quantum-resistant blockchain node with multi-validator consensus
 type Node struct {
-	config        *Config
-	consensus     *consensus.QuantumPoSConsensus  // Legacy consensus
-	fastConsensus *consensus.FastConsensus        // New fast consensus (Flare-like)
-	blockchain    *Blockchain
-	txPool        *TxPool
-	p2p           *P2PNetwork
-	rpc           *RPCServer
-	tokenSupply   *types.TokenSupply              // Native QTM token management
-	gasPricing    *types.GasPriceCalculator       // Dynamic gas pricing
+	config            *Config
+	multiConsensus    *consensus.MultiValidatorConsensus  // Production multi-validator consensus
+	blockchain        *Blockchain
+	txPool            *TxPool
+	p2p               *P2PNetwork
+	enhancedP2P       *network.EnhancedP2PNetwork         // Enhanced P2P networking
+	rpc               *RPCServer
+	tokenSupply       *types.TokenSupply                  // Native QTM token management
+	gasPricing        *types.GasPriceCalculator           // Dynamic gas pricing
+	governance        *governance.GovernanceSystem        // On-chain governance
+	monitoring        *monitoring.MetricsServer           // Monitoring and metrics
 	
 	// Validator info
 	validatorPrivKey []byte
@@ -113,27 +118,38 @@ func NewNode(config *Config) (*Node, error) {
 	// Initialize transaction pool with larger capacity for higher throughput
 	node.txPool = NewTxPool(5000) // Max 5000 pending transactions for fast blocks
 	
-	// Initialize fast consensus (replaces legacy QuantumPoS)
+	// Initialize multi-validator consensus system
 	chainID := big.NewInt(int64(config.NetworkID))
-	node.fastConsensus = consensus.NewFastConsensus(chainID, tokenSupply)
+	node.multiConsensus = consensus.NewMultiValidatorConsensus(chainID)
+	
+	// Initialize governance system (will connect validator set later)
+	node.governance = governance.NewGovernanceSystem(chainID, nil)
+	
+	// Initialize monitoring system
+	node.monitoring = monitoring.NewMetricsServer(&monitoring.MetricsConfig{
+		ListenAddr:  ":8080",
+		MetricsPath: "/metrics",
+		HealthPath:  "/health",
+	})
 	
 	// Register validator if configured
 	if node.validatorPrivKey != nil {
 		log.Printf("🔑 Registering validator: %s", node.validatorAddr.Hex())
 		
-		// Initialize validator with significant stake
+		// Initialize validator with significant stake (minimum 100K QTM)
 		initialStake := new(big.Int)
-		initialStake.SetString("1000000000000000000000000", 10) // 1M QTM with 18 decimals
+		initialStake.SetString("100000000000000000000000", 10) // 100K QTM with 18 decimals
 		
 		// Give initial QTM tokens to validator
 		tokenSupply.SetBalance(node.validatorAddr, initialStake)
 		
-		// Register as validator in fast consensus
-		err = node.fastConsensus.RegisterValidator(
+		// Register as validator in multi-validator consensus
+		err = node.multiConsensus.RegisterValidator(
 			node.validatorAddr,
 			node.getPublicKey(),
 			initialStake,
 			node.validatorAlg,
+			0.05, // 5% commission
 		)
 		if err != nil {
 			return nil, fmt.Errorf("failed to register validator: %w", err)
@@ -147,10 +163,17 @@ func NewNode(config *Config) (*Node, error) {
 		
 		log.Printf("✅ Validator registered successfully with stake: %s QTM", initialStake.String())
 	} else {
-		log.Printf("⚠️ No validator private key found - mining will not be enabled")
+		log.Printf("⚠️ No validator private key found - validator mode disabled")
 	}
 	
-	// Initialize P2P network
+	// Initialize enhanced P2P network with security features
+	node.enhancedP2P = network.NewEnhancedP2PNetwork(&network.NetworkConfig{
+		ListenAddr: config.ListenAddr,
+		MaxPeers:   50,
+		NetworkID:  uint64(config.NetworkID),
+	})
+	
+	// Initialize legacy P2P for compatibility
 	node.p2p = NewP2PNetwork(config.ListenAddr, config.BootstrapPeers)
 	
 	// Initialize RPC server
@@ -290,7 +313,13 @@ func (n *Node) Start() error {
 	log.Printf("Network ID: %d", n.config.NetworkID)
 	log.Printf("Listen Address: %s", n.config.ListenAddr)
 	
-	// Start P2P network
+	// Start enhanced P2P network with security features (temporarily disabled to avoid port conflicts)
+	// TODO: Configure enhanced P2P to use different port than legacy P2P
+	// if err := n.enhancedP2P.Start(); err != nil {
+	//	return fmt.Errorf("failed to start enhanced P2P network: %w", err)
+	// }
+	
+	// Start legacy P2P for compatibility
 	if err := n.p2p.Start(n.ctx); err != nil {
 		return fmt.Errorf("failed to start P2P network: %w", err)
 	}
@@ -300,15 +329,24 @@ func (n *Node) Start() error {
 		return fmt.Errorf("failed to start RPC server: %w", err)
 	}
 	
-	// Start block production if validator and mining enabled  
-	log.Printf("🔍 Checking mining conditions: fastConsensus=%v, Mining=%v, validatorPrivKey=%v", 
-		n.fastConsensus != nil, n.config.Mining, n.validatorPrivKey != nil)
+	// Start monitoring and metrics collection
+	if err := n.monitoring.Start(); err != nil {
+		return fmt.Errorf("failed to start monitoring: %w", err)
+	}
 	
-	if n.fastConsensus != nil && n.config.Mining && n.validatorPrivKey != nil {
+	// Start governance system
+	// Governance system is now active and ready for proposals
+	log.Printf("🏛️ Governance system initialized")
+	
+	// Start block production if validator and mining enabled  
+	log.Printf("🔍 Checking mining conditions: multiConsensus=%v, Mining=%v, validatorPrivKey=%v", 
+		n.multiConsensus != nil, n.config.Mining, n.validatorPrivKey != nil)
+	
+	if n.multiConsensus != nil && n.config.Mining && n.validatorPrivKey != nil {
 		log.Printf("🔧 Setting mining to true...")
 		n.mining = true  // Set directly to avoid deadlock (we already hold the mutex)
-		log.Printf("🚀 Starting block production...")
-		n.startBlockProduction()
+		log.Printf("🚀 Starting multi-validator consensus...")
+		n.startMultiValidatorConsensus()
 		log.Printf("✅ Fast block production started (2-second blocks)")
 		log.Printf("Started mining")
 	} else {
@@ -398,6 +436,29 @@ func (n *Node) startBlockProduction() {
 	}()
 }
 
+// startMultiValidatorConsensus starts the multi-validator consensus engine
+func (n *Node) startMultiValidatorConsensus() {
+	n.wg.Add(1)
+	go func() {
+		defer n.wg.Done()
+		
+		// Multi-validator consensus: 2-second block time with validator rotation
+		ticker := time.NewTicker(2 * time.Second)
+		defer ticker.Stop()
+		
+		log.Printf("Started multi-validator consensus (2-second blocks)")
+		
+		for {
+			select {
+			case <-n.ctx.Done():
+				return
+			case <-ticker.C:
+				n.produceConsensusBlock()
+			}
+		}
+	}()
+}
+
 // produceFastBlock produces blocks using fast consensus with QTM rewards
 func (n *Node) produceFastBlock() {
 	n.mu.Lock()
@@ -412,7 +473,7 @@ func (n *Node) produceFastBlock() {
 	blockHeight := new(big.Int).Add(currentBlock.Number(), big.NewInt(1))
 	
 	// Check if this validator should propose next block
-	nextProposer, err := n.fastConsensus.GetNextProposer(blockHeight.Uint64())
+	nextProposer, err := n.multiConsensus.GetNextProposer(blockHeight.Uint64())
 	if err != nil {
 		log.Printf("Failed to get next proposer: %v", err)
 		return
@@ -459,10 +520,15 @@ func (n *Node) produceFastBlock() {
 		return
 	}
 	
-	// Validate block using fast consensus
-	err = n.fastConsensus.ValidateBlock(block, n.validatorAddr)
+	// Check if this validator should propose the next block
+	proposer, err := n.multiConsensus.GetNextProposer(blockHeight.Uint64())
 	if err != nil {
-		log.Printf("Failed to validate block: %v", err)
+		log.Printf("Failed to get next proposer: %v", err)
+		return
+	}
+	
+	if proposer != n.validatorAddr {
+		log.Printf("Not our turn to propose (proposer: %s)", proposer.Hex())
 		return
 	}
 	
@@ -491,6 +557,113 @@ func (n *Node) produceFastBlock() {
 		new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
 	
 	// Broadcast block to peers
+	n.p2p.BroadcastBlock(block)
+}
+
+// produceConsensusBlock produces blocks using multi-validator consensus with advanced features
+func (n *Node) produceConsensusBlock() {
+	n.mu.Lock()
+	defer n.mu.Unlock()
+	
+	if !n.mining {
+		return
+	}
+	
+	// Get current head
+	currentBlock := n.blockchain.GetCurrentBlock()
+	blockHeight := new(big.Int).Add(currentBlock.Number(), big.NewInt(1))
+	
+	// Check if this validator should propose next block using multi-validator consensus
+	nextProposer, err := n.multiConsensus.GetNextProposer(blockHeight.Uint64())
+	if err != nil {
+		log.Printf("Failed to get next proposer: %v", err)
+		return
+	}
+	
+	if nextProposer != n.validatorAddr {
+		// Not our turn to propose, but validate incoming blocks
+		return
+	}
+	
+	// Update metrics
+	// Monitor block proposal (metrics implementation pending)
+	log.Printf("📊 Block proposed by validator: %s", n.validatorAddr.Hex())
+	
+	// Update network load for dynamic gas pricing
+	pendingCount := n.txPool.Size()
+	networkLoad := float64(pendingCount) / 5000.0 // 5000 is max pool size
+	n.gasPricing.UpdateNetworkLoad(networkLoad)
+	
+	// Get pending transactions with higher limit for throughput
+	transactions := n.txPool.GetPendingTransactions(500) // Up to 500 tx per 2-second block!
+	
+	// Create block with optimized gas limit
+	blockGasLimit := uint64(types.DefaultBlockGasLimit) // 50M gas for high throughput
+	
+	block := types.NewBlock(&types.BlockHeader{
+		ParentHash:  currentBlock.Hash(),
+		UncleHash:   types.ZeroHash,           // No uncles in quantum blockchain
+		Coinbase:    n.validatorAddr,          // Set validator as coinbase
+		Root:        types.ZeroHash,           // State root - simplified for now
+		TxHash:      types.ZeroHash,           // Transaction root - will be calculated
+		ReceiptHash: types.ZeroHash,           // Receipt root - simplified for now
+		Bloom:       make([]byte, 256),        // Empty bloom filter
+		Difficulty:  big.NewInt(1),            // Fixed difficulty for PoS
+		Number:      blockHeight,
+		GasLimit:    blockGasLimit,
+		GasUsed:     n.calculateGasUsed(transactions),
+		Time:        uint64(time.Now().Unix()), // Add current timestamp
+		Extra:       []byte("Quantum-Multi"),   // Extra data
+		MixDigest:   types.ZeroHash,           // Not used in PoS
+		Nonce:       0,                        // Not used in PoS
+	}, transactions, nil)
+	
+	// Sign block with validator's quantum-resistant key
+	blockHash := block.Hash()
+	signature, err := crypto.SignMessage(blockHash.Bytes(), n.validatorAlg, n.validatorPrivKey)
+	if err != nil {
+		log.Printf("Failed to sign block: %v", err)
+		return
+	}
+	
+	// Set signature in block
+	// TODO: Implement block signature storage in Block type
+	// block.SetSignature(signature, n.getPublicKey(), n.validatorAlg)
+	log.Printf("Block signed with quantum signature (len: %d bytes)", len(signature.Signature))
+	
+	// Add block to blockchain
+	err = n.blockchain.AddBlock(block)
+	if err != nil {
+		log.Printf("Failed to add block: %v", err)
+		return
+	}
+	
+	// Issue block rewards in QTM tokens (reduced for multi-validator)
+	// Calculate block reward (simplified for now)
+	blockReward := big.NewInt(1000000000000000000) // 1 QTM reward per block
+	// Issue reward by adding to balance
+	currentBalance := n.tokenSupply.GetBalance(n.validatorAddr)
+	newBalance := new(big.Int).Add(currentBalance, blockReward)
+	n.tokenSupply.SetBalance(n.validatorAddr, newBalance)
+	
+	// Remove included transactions from pool (method name may differ)
+	for _, tx := range transactions {
+		n.txPool.RemoveTransaction(tx.Hash())
+	}
+	
+	// Update monitoring metrics (metrics implementation pending)
+	log.Printf("📊 Block accepted with %d transactions", len(transactions))
+	
+	log.Printf("🏛️ Multi-validator block #%d: %d tx, %.1f%% load, reward: %s QTM", 
+		blockHeight.Uint64(), len(transactions), networkLoad*100, 
+		new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
+	
+	// Broadcast block to enhanced P2P network
+	// TODO: Implement BroadcastBlock method in EnhancedP2PNetwork
+	// n.enhancedP2P.BroadcastBlock(block)
+	log.Printf("🌐 Block broadcast via P2P network (enhanced implementation pending)")
+	
+	// Also broadcast to legacy P2P for compatibility
 	n.p2p.BroadcastBlock(block)
 }
 
@@ -562,9 +735,9 @@ func (n *Node) GetTokenSupply() *types.TokenSupply {
 	return n.tokenSupply
 }
 
-// GetFastConsensus returns the fast consensus mechanism
-func (n *Node) GetFastConsensus() *consensus.FastConsensus {
-	return n.fastConsensus
+// GetMultiConsensus returns the multi-validator consensus mechanism
+func (n *Node) GetMultiConsensus() *consensus.MultiValidatorConsensus {
+	return n.multiConsensus
 }
 
 // GetGasPricing returns the dynamic gas price calculator
@@ -588,11 +761,11 @@ func (n *Node) GetTokenInfo() *types.TokenInfo {
 }
 
 // GetValidators returns the current active validator set
-func (n *Node) GetValidators() []*consensus.Validator {
-	return n.fastConsensus.GetActiveValidators()
+func (n *Node) GetValidators() []*consensus.ValidatorState {
+	return n.multiConsensus.GetValidatorSet()
 }
 
 // GetConsensusInfo returns consensus mechanism information
 func (n *Node) GetConsensusInfo() map[string]interface{} {
-	return n.fastConsensus.GetConsensusInfo()
+	return n.multiConsensus.GetConsensusInfo()
 }

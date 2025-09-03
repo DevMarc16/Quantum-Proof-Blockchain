@@ -691,11 +691,11 @@ func (s *RPCServer) quantumValidateSignature(params json.RawMessage) (interface{
 }
 
 func (s *RPCServer) quantumGetValidatorSet(params json.RawMessage) (interface{}, error) {
-	if s.node.consensus == nil {
+	if s.node.multiConsensus == nil {
 		return nil, fmt.Errorf("consensus engine not initialized")
 	}
 	
-	validatorSet := s.node.consensus.GetValidatorSet()
+	validatorSet := s.node.multiConsensus.GetValidatorSet()
 	if validatorSet == nil {
 		return nil, fmt.Errorf("validator set not available")
 	}

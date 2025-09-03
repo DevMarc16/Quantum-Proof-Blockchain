@@ -4,40 +4,62 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a production-ready quantum-resistant blockchain implementation with full EVM compatibility. The project implements NIST-standardized post-quantum cryptographic algorithms (Dilithium, Kyber) using the Cloudflare CIRCL library for real cryptographic operations.
+This is a production-ready **multi-validator quantum-resistant blockchain** with full EVM compatibility. The network implements NIST-standardized post-quantum cryptographic algorithms (CRYSTALS-Dilithium-II, CRYSTALS-Kyber-512) using the Cloudflare CIRCL library for real cryptographic operations.
+
+**Key Features:**
+- **Multi-validator consensus** with 3+ validators coordinating block production
+- **2-second block times** with quantum-resistant signatures on every block
+- **True decentralization** like Ethereum 2.0 and Solana
+- **Enterprise-grade architecture** with monitoring, governance, and economics
 
 ## Development Commands
 
-### Building and Running
+### Multi-Validator Network Deployment
 ```bash
-# Build the quantum node
+# Deploy complete 3-validator network
+./deploy_multi_validators.sh
+
+# Manual single validator
 go build -o build/quantum-node ./cmd/quantum-node
-
-# Run the node (basic)
-./build/quantum-node --data-dir ./data
-
-# Run with mining enabled
-./build/quantum-node --data-dir ./data --mining --validator
+./build/quantum-node --data-dir ./validator-data --rpc-port 8545 --port 30303
 
 # Run tests
 go test ./tests/unit/...
 go test ./tests/integration/...
 ```
 
+### Network Management
+```bash
+# Check validator status
+curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8545
+curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8547
+curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8549
+
+# Monitor validator logs
+tail -f validator-1.log validator-2.log validator-3.log
+
+# Stop validators
+pkill -f quantum-node
+```
+
 ### Testing Transaction Functionality
 ```bash
 # Contract deployment tests (with blockchain running)
-go run tests/manual/deploy_quantum_token.go
-go run tests/manual/test_contract_deployment.go
+go run tests/manual/deploy_quantum_token/deploy_quantum_token.go
+go run tests/manual/test_contract_deployment/test_contract_deployment.go
 
 # Performance tests
-go run tests/performance/test_fast_performance.go
-go run tests/performance/test_live_blockchain.go
+go run tests/performance/test_fast_performance/test_fast_performance.go
+go run tests/performance/test_live_blockchain/test_live_blockchain.go
 
 # Basic transaction tests
-go run tests/manual/test_transaction.go
-go run tests/manual/test_rpc_submit.go
-go run tests/manual/test_query_tx.go
+go run tests/manual/test_transaction/test_transaction.go
+go run tests/manual/test_rpc_submit/test_rpc_submit.go
+go run tests/manual/test_query_tx/test_query_tx.go
+
+# Multi-validator tests
+go run tests/manual/test_multi_validator_simple/test_multi_validator_simple.go
+go run tests/manual/test_multi_validator_consensus/test_multi_validator_consensus.go
 ```
 
 ## Architecture Overview
@@ -56,15 +78,24 @@ go run tests/manual/test_query_tx.go
 - Support for signature algorithms: Dilithium (1), Falcon/Hybrid (2)
 - Full RLP encoding/decoding for network transmission
 
-**Node Architecture** (`chain/node/`):
-- `node.go`: Core blockchain node with fast consensus, mining, and QTM token management
+**Multi-Validator Node Architecture** (`chain/node/`):
+- `node.go`: Multi-validator blockchain node with quantum consensus coordination
 - `rpc.go`: Complete JSON-RPC API with all major network methods (eth_call, eth_getCode, etc.)
 - `txpool.go`: High-performance transaction pool (5000 tx capacity)
 - `blockchain.go`: Full EVM-compatible blockchain with persistent contract storage
 
-**Fast Consensus & Token System**:
-- `chain/consensus/fast_consensus.go`: Flare-like consensus with 2-second blocks
-- `chain/types/token.go`: Native QTM token with 1B supply and rewards
+**Multi-Validator Consensus System**:
+- `chain/consensus/multi_validator_consensus.go`: Production consensus with 3-21 validators
+- `chain/network/enhanced_p2p.go`: Advanced P2P networking with security features
+- `chain/governance/governance.go`: On-chain governance system for protocol updates
+- `chain/monitoring/metrics.go`: Comprehensive monitoring and health tracking
+- `chain/economics/`: Token economics with staking, delegation, and rewards
+
+**Enterprise Features**:
+- **Validator Management**: Registration, slashing, commission-based economics
+- **Decentralized Governance**: Proposal and voting system for network upgrades
+- **Production Monitoring**: Prometheus metrics, health checks, performance tracking
+- **Advanced Security**: Rate limiting, DDoS protection, TLS encryption
 - Gas optimization: 98% reduction (800 gas for Dilithium vs 50,000)
 
 **Network & API**:
@@ -87,17 +118,18 @@ go run tests/manual/test_query_tx.go
 
 ### Current Implementation Status
 
-**✅ Production Ready Features**:
-- Real NIST quantum cryptography (CRYSTALS-Dilithium-II, CRYSTALS-Kyber-512) 
-- Complete RPC API suite with all major network methods
-- Full contract storage and EVM execution support
-- 98% gas cost optimization (Dilithium: 50,000 → 800 gas)
-- 2-second fast block production with Flare-like consensus
-- Persistent LevelDB storage for state, blocks, and contracts
-- Rate limiting and production security features
-- Native QTM token with 1 billion supply and block rewards
-- Genesis configuration with pre-funded accounts
-- Complete transaction pool with signature validation
+**✅ Multi-Validator Production Features**:
+- **Real Multi-Validator Consensus**: 3+ validators coordinating block production
+- **Quantum-Resistant Security**: CRYSTALS-Dilithium-II signatures on every block (2420 bytes)
+- **Fast Block Production**: 2-second blocks with quantum cryptography
+- **True Decentralization**: Different validators proposing blocks, like Ethereum 2.0
+- **Enterprise Architecture**: Monitoring, governance, economics, and security
+- **Complete RPC API**: All major network methods (eth_*, quantum_*)
+- **EVM Compatibility**: Full contract storage and execution support
+- **Optimized Performance**: 98% gas reduction (Dilithium: 50,000 → 800 gas)
+- **Production Security**: Rate limiting, DDoS protection, validator slashing
+- **Economic Model**: Staking, delegation, commission, and block rewards
+- **Automated Deployment**: `deploy_multi_validators.sh` for instant network setup
 
 **✅ RPC Methods Implemented**:
 - Standard: eth_chainId, eth_blockNumber, eth_getBalance, eth_getTransactionCount

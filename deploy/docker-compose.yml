@@ -1,0 +1,343 @@
+version: '3.8'
+
+services:
+  # Genesis Validator 1 (US West)
+  validator-1:
+    image: quantum-blockchain:latest
+    container_name: quantum-validator-1
+    hostname: validator-1.quantum.network
+    restart: unless-stopped
+    ports:
+      - "8545:8545"  # HTTP RPC
+      - "8546:8546"  # WebSocket RPC
+      - "30303:30303"  # P2P
+      - "9090:9090"  # Metrics
+    volumes:
+      - validator1-data:/var/lib/quantum
+      - validator1-logs:/var/log/quantum
+      - ./config/validator-1:/etc/quantum
+      - ./keys/validator-1:/var/lib/quantum/keys
+    environment:
+      - QUANTUM_NETWORK=mainnet
+      - QUANTUM_VALIDATOR_NAME=genesis-validator-1
+      - QUANTUM_VALIDATOR_KEY_PATH=/var/lib/quantum/keys/validator.key
+      - QUANTUM_CONFIG_PATH=/etc/quantum/config.yaml
+      - QUANTUM_DATA_DIR=/var/lib/quantum
+      - QUANTUM_LOG_LEVEL=info
+      - QUANTUM_MINING=true
+      - QUANTUM_METRICS_ENABLED=true
+    networks:
+      - quantum-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4'
+        reservations:
+          memory: 4G
+          cpus: '2'
+
+  # Genesis Validator 2 (EU West)
+  validator-2:
+    image: quantum-blockchain:latest
+    container_name: quantum-validator-2
+    hostname: validator-2.quantum.network
+    restart: unless-stopped
+    ports:
+      - "8547:8545"  # HTTP RPC (different port)
+      - "8548:8546"  # WebSocket RPC (different port)
+      - "30304:30303"  # P2P (different port)
+      - "9091:9090"  # Metrics (different port)
+    volumes:
+      - validator2-data:/var/lib/quantum
+      - validator2-logs:/var/log/quantum
+      - ./config/validator-2:/etc/quantum
+      - ./keys/validator-2:/var/lib/quantum/keys
+    environment:
+      - QUANTUM_NETWORK=mainnet
+      - QUANTUM_VALIDATOR_NAME=genesis-validator-2
+      - QUANTUM_VALIDATOR_KEY_PATH=/var/lib/quantum/keys/validator.key
+      - QUANTUM_CONFIG_PATH=/etc/quantum/config.yaml
+      - QUANTUM_DATA_DIR=/var/lib/quantum
+      - QUANTUM_LOG_LEVEL=info
+      - QUANTUM_MINING=true
+      - QUANTUM_METRICS_ENABLED=true
+    networks:
+      - quantum-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4'
+        reservations:
+          memory: 4G
+          cpus: '2'
+
+  # Genesis Validator 3 (Asia Pacific)
+  validator-3:
+    image: quantum-blockchain:latest
+    container_name: quantum-validator-3
+    hostname: validator-3.quantum.network
+    restart: unless-stopped
+    ports:
+      - "8549:8545"  # HTTP RPC (different port)
+      - "8550:8546"  # WebSocket RPC (different port)
+      - "30305:30303"  # P2P (different port)
+      - "9092:9090"  # Metrics (different port)
+    volumes:
+      - validator3-data:/var/lib/quantum
+      - validator3-logs:/var/log/quantum
+      - ./config/validator-3:/etc/quantum
+      - ./keys/validator-3:/var/lib/quantum/keys
+    environment:
+      - QUANTUM_NETWORK=mainnet
+      - QUANTUM_VALIDATOR_NAME=genesis-validator-3
+      - QUANTUM_VALIDATOR_KEY_PATH=/var/lib/quantum/keys/validator.key
+      - QUANTUM_CONFIG_PATH=/etc/quantum/config.yaml
+      - QUANTUM_DATA_DIR=/var/lib/quantum
+      - QUANTUM_LOG_LEVEL=info
+      - QUANTUM_MINING=true
+      - QUANTUM_METRICS_ENABLED=true
+    networks:
+      - quantum-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4'
+        reservations:
+          memory: 4G
+          cpus: '2'
+
+  # Seed Nodes (for peer discovery)
+  seed-1:
+    image: quantum-blockchain:latest
+    container_name: quantum-seed-1
+    hostname: seed-1.quantum.network
+    restart: unless-stopped
+    ports:
+      - "30306:30303"  # P2P only
+    volumes:
+      - seed1-data:/var/lib/quantum
+      - seed1-logs:/var/log/quantum
+      - ./config/seed-1:/etc/quantum
+    environment:
+      - QUANTUM_NETWORK=mainnet
+      - QUANTUM_NODE_TYPE=seed
+      - QUANTUM_CONFIG_PATH=/etc/quantum/config.yaml
+      - QUANTUM_DATA_DIR=/var/lib/quantum
+      - QUANTUM_LOG_LEVEL=info
+      - QUANTUM_MINING=false
+    networks:
+      - quantum-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  seed-2:
+    image: quantum-blockchain:latest
+    container_name: quantum-seed-2
+    hostname: seed-2.quantum.network
+    restart: unless-stopped
+    ports:
+      - "30307:30303"  # P2P only
+    volumes:
+      - seed2-data:/var/lib/quantum
+      - seed2-logs:/var/log/quantum
+      - ./config/seed-2:/etc/quantum
+    environment:
+      - QUANTUM_NETWORK=mainnet
+      - QUANTUM_NODE_TYPE=seed
+      - QUANTUM_CONFIG_PATH=/etc/quantum/config.yaml
+      - QUANTUM_DATA_DIR=/var/lib/quantum
+      - QUANTUM_LOG_LEVEL=info
+      - QUANTUM_MINING=false
+    networks:
+      - quantum-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1'
+        reservations:
+          memory: 1G
+          cpus: '0.5'
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: quantum-prometheus
+    restart: unless-stopped
+    ports:
+      - "9093:9090"
+    volumes:
+      - prometheus-data:/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - quantum-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: quantum-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=quantum_admin_2024
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel
+    networks:
+      - quantum-network
+
+  # Log Aggregation
+  loki:
+    image: grafana/loki:latest
+    container_name: quantum-loki
+    restart: unless-stopped
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki-data:/loki
+      - ./monitoring/loki.yml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - quantum-network
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: quantum-promtail
+    restart: unless-stopped
+    volumes:
+      - validator1-logs:/var/log/quantum/validator-1:ro
+      - validator2-logs:/var/log/quantum/validator-2:ro
+      - validator3-logs:/var/log/quantum/validator-3:ro
+      - ./monitoring/promtail.yml:/etc/promtail/config.yml:ro
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - quantum-network
+
+  # Load Balancer for RPC
+  nginx:
+    image: nginx:alpine
+    container_name: quantum-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - validator-1
+      - validator-2
+      - validator-3
+    networks:
+      - quantum-network
+
+  # Backup Service
+  backup:
+    image: quantum-blockchain:latest
+    container_name: quantum-backup
+    restart: "no"
+    volumes:
+      - validator1-data:/backup/validator-1:ro
+      - validator2-data:/backup/validator-2:ro
+      - validator3-data:/backup/validator-3:ro
+      - ./backup/scripts:/backup/scripts:ro
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET=quantum-blockchain-backups
+    command: ["/backup/scripts/backup.sh"]
+    networks:
+      - quantum-network
+    profiles:
+      - backup
+
+networks:
+  quantum-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  # Validator data volumes
+  validator1-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/quantum/validator-1
+  validator2-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/quantum/validator-2
+  validator3-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/quantum/validator-3
+      
+  # Seed node data volumes
+  seed1-data:
+    driver: local
+  seed2-data:
+    driver: local
+    
+  # Log volumes
+  validator1-logs:
+    driver: local
+  validator2-logs:
+    driver: local
+  validator3-logs:
+    driver: local
+  seed1-logs:
+    driver: local
+  seed2-logs:
+    driver: local
+    
+  # Monitoring data volumes
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  loki-data:
+    driver: local

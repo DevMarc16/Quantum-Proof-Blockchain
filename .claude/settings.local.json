@@ -9,7 +9,13 @@
       "Bash(pkill:*)",
       "Bash(grep:*)",
       "Bash(sed:*)",
-      "Bash(go test:*)"
+      "Bash(go test:*)",
+      "Bash(find:*)",
+      "Bash(netstat:*)",
+      "Bash(timeout:*)",
+      "Bash(lsof:*)",
+      "Bash(go run:*)",
+      "Bash(pgrep:*)"
     ],
     "deny": [],
     "ask": []

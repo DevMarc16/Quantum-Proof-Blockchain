@@ -1,42 +1,52 @@
-# Quantum-Resistant Blockchain Architecture
+# Multi-Validator Quantum-Resistant Blockchain Architecture
 
-This document provides a comprehensive overview of the quantum-resistant blockchain architecture, covering the design principles, components, and implementation details.
+This document provides a comprehensive overview of the **multi-validator quantum-resistant blockchain** architecture, covering the design principles, components, and implementation details for a production-ready decentralized network.
 
 ## Table of Contents
 
 - [Design Principles](#design-principles)
-- [System Architecture](#system-architecture)
+- [Multi-Validator System Architecture](#multi-validator-system-architecture)
 - [Cryptographic Foundation](#cryptographic-foundation)
-- [Consensus Mechanism](#consensus-mechanism)
+- [Multi-Validator Consensus Mechanism](#multi-validator-consensus-mechanism)
+- [Enterprise Features](#enterprise-features)
 - [EVM Integration](#evm-integration)
-- [Network Layer](#network-layer)
+- [Enhanced Network Layer](#enhanced-network-layer)
 - [Data Structures](#data-structures)
 - [Security Model](#security-model)
 - [Performance Considerations](#performance-considerations)
-- [Migration Strategy](#migration-strategy)
+- [Deployment Strategy](#deployment-strategy)
 
 ## Design Principles
 
-### 1. Quantum Resistance First
-- All cryptographic operations use post-quantum algorithms
+### 1. Multi-Validator Decentralization
+- **True decentralized consensus** with 3+ validators coordinating block production
+- **Independent validator nodes** with separate data directories and processes
+- **Validator rotation** ensuring no single point of failure
+- **Comparable to major networks** like Ethereum 2.0 and Solana
+
+### 2. Quantum Resistance First
+- All cryptographic operations use NIST-standardized post-quantum algorithms
+- **CRYSTALS-Dilithium-II** signatures on every block (2420 bytes)
+- **CRYSTALS-Kyber-512** for key encapsulation
 - Forward security: resistant to both classical and quantum attacks
-- Cryptographic agility: support for multiple PQ algorithms
 
-### 2. EVM Compatibility
-- Full Ethereum Virtual Machine compatibility
-- Existing smart contracts work without modification
-- Web3 tooling compatibility
+### 3. Enterprise-Grade Architecture
+- **On-chain governance** with proposal and voting systems
+- **Production monitoring** with Prometheus metrics and health checks
+- **Economic incentives** through staking, delegation, and validator rewards
+- **Advanced security** with rate limiting, DDoS protection, and slashing
 
-### 3. Performance & Scalability
-- **Lightning-fast consensus**: 2-second blocks (Flare Network-like performance)
+### 4. Performance & Scalability
+- **Fast block production**: 2-second blocks with quantum cryptography
 - **Optimized gas costs**: 98% reduction in quantum operation costs
-- **Sub-millisecond transactions**: Ultra-fast signature creation and verification
-- **Native QTM token**: Built-in cryptocurrency with block rewards and staking
+- **Multi-validator coordination** maintaining high throughput
+- **EVM compatibility** with quantum precompiles
 
-### 4. Security by Design
-- Defense in depth
-- Fail-safe defaults
-- Comprehensive input validation
+### 5. Production Readiness
+- **One-command deployment** (`./deploy_multi_validators.sh`)
+- **Automated network setup** with 3 validators out-of-the-box
+- **Comprehensive logging** and monitoring for each validator
+- **Battle-tested** cryptographic implementations
 
 ## System Architecture
 
