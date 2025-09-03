@@ -1,20 +1,6 @@
 =============== Sep 3, 2025 (MST) ===============
-11:19:13.251462 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-11:19:13.264515 db@open opening
-11:19:13.270357 version@stat F·[] S·0B[] Sc·[]
-11:19:13.273427 db@janitor F·2 G·0
-11:19:13.273595 db@open done T·8.888688ms
-11:19:31.015597 db@close closing
-11:19:31.016432 db@close done T·832.806µs
-=============== Sep 3, 2025 (MST) ===============
-11:19:37.619837 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-11:19:37.622760 version@stat F·[] S·0B[] Sc·[]
-11:19:37.623048 db@open opening
-11:19:37.623797 journal@recovery F·1
-11:19:37.626634 journal@recovery recovering @1
-11:19:37.631360 memdb@flush created L0@2 N·43 S·4KiB "bal..\x00\x00\x01,v1":"rec..!\x83A,v40"
-11:19:37.632351 version@stat F·[1] S·4KiB[4KiB] Sc·[0.25]
-11:19:37.644983 db@janitor F·3 G·0
-11:19:37.645130 db@open done T·21.956866ms
-11:19:53.080122 db@close closing
-11:19:53.082275 db@close done T·2.145699ms
+11:29:06.119860 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+11:29:06.130079 db@open opening
+11:29:06.140686 version@stat F·[] S·0B[] Sc·[]
+11:29:06.143477 db@janitor F·2 G·0
+11:29:06.143629 db@open done T·13.405701ms
