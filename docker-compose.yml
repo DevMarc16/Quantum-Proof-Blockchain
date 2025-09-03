@@ -1,0 +1,179 @@
+version: '3.8'
+
+services:
+  # Bootstrap node (validator)
+  quantum-bootstrap:
+    build: .
+    container_name: quantum-bootstrap
+    hostname: quantum-bootstrap
+    ports:
+      - "30303:30303"  # P2P
+      - "8545:8545"    # HTTP RPC
+      - "8546:8546"    # WebSocket RPC
+    volumes:
+      - bootstrap_data:/root/data
+      - ./configs:/root/configs:ro
+    environment:
+      - QUANTUM_NETWORK_ID=8888
+      - QUANTUM_DATA_DIR=/root/data
+      - QUANTUM_LISTEN_ADDR=0.0.0.0:30303
+      - QUANTUM_HTTP_PORT=8545
+      - QUANTUM_WS_PORT=8546
+      - QUANTUM_MINING=true
+      - QUANTUM_VALIDATOR=true
+    command: [
+      "--network-id", "8888",
+      "--data-dir", "/root/data",
+      "--listen-addr", "0.0.0.0:30303",
+      "--http-port", "8545",
+      "--ws-port", "8546",
+      "--mining",
+      "--validator"
+    ]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8545/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Regular node 1
+  quantum-node-1:
+    build: .
+    container_name: quantum-node-1
+    hostname: quantum-node-1
+    ports:
+      - "30304:30303"  # P2P
+      - "8547:8545"    # HTTP RPC
+      - "8548:8546"    # WebSocket RPC
+    volumes:
+      - node1_data:/root/data
+      - ./configs:/root/configs:ro
+    environment:
+      - QUANTUM_NETWORK_ID=8888
+      - QUANTUM_DATA_DIR=/root/data
+      - QUANTUM_LISTEN_ADDR=0.0.0.0:30303
+      - QUANTUM_HTTP_PORT=8545
+      - QUANTUM_WS_PORT=8546
+      - QUANTUM_BOOTSTRAP_PEERS=quantum-bootstrap:30303
+    command: [
+      "--network-id", "8888",
+      "--data-dir", "/root/data",
+      "--listen-addr", "0.0.0.0:30303",
+      "--http-port", "8545",
+      "--ws-port", "8546",
+      "--bootstrap-peers", "quantum-bootstrap:30303"
+    ]
+    depends_on:
+      quantum-bootstrap:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8545/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Regular node 2
+  quantum-node-2:
+    build: .
+    container_name: quantum-node-2
+    hostname: quantum-node-2
+    ports:
+      - "30305:30303"  # P2P
+      - "8549:8545"    # HTTP RPC
+      - "8550:8546"    # WebSocket RPC
+    volumes:
+      - node2_data:/root/data
+      - ./configs:/root/configs:ro
+    environment:
+      - QUANTUM_NETWORK_ID=8888
+      - QUANTUM_DATA_DIR=/root/data
+      - QUANTUM_LISTEN_ADDR=0.0.0.0:30303
+      - QUANTUM_HTTP_PORT=8545
+      - QUANTUM_WS_PORT=8546
+      - QUANTUM_BOOTSTRAP_PEERS=quantum-bootstrap:30303
+    command: [
+      "--network-id", "8888",
+      "--data-dir", "/root/data",
+      "--listen-addr", "0.0.0.0:30303",
+      "--http-port", "8545",
+      "--ws-port", "8546",
+      "--bootstrap-peers", "quantum-bootstrap:30303"
+    ]
+    depends_on:
+      quantum-bootstrap:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8545/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Monitoring service (Prometheus)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: quantum-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: quantum-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=quantum123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    restart: unless-stopped
+    depends_on:
+      - prometheus
+
+  # Load balancer for RPC endpoints
+  nginx:
+    image: nginx:alpine
+    container_name: quantum-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./infra/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./infra/nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - quantum-bootstrap
+      - quantum-node-1
+      - quantum-node-2
+    restart: unless-stopped
+
+volumes:
+  bootstrap_data:
+    driver: local
+  node1_data:
+    driver: local
+  node2_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  default:
+    name: quantum-network
+    driver: bridge

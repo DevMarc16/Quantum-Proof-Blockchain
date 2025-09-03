@@ -1,0 +1,116 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+  
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0.8
+  gocyclo:
+    min-complexity: 15
+  maligned:
+    suggest-new: true
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 3
+    min-occurrences: 2
+  misspell:
+    locale: US
+  lll:
+    line-length: 120
+  goimports:
+    local-prefixes: quantum-blockchain
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - experimental
+    disabled-checks:
+      - wrapperFunc
+      - hugeParam
+
+linters:
+  enable:
+    - bodyclose
+    - deadcode
+    - depguard
+    - dogsled
+    - dupl
+    - errcheck
+    - exportloopref
+    - exhaustive
+    - goconst
+    - gocritic
+    - gofmt
+    - goimports
+    - golint
+    - gomnd
+    - goprintffuncname
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - lll
+    - misspell
+    - nakedret
+    - nolintlint
+    - rowserrcheck
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+
+  disable:
+    - gochecknoinits
+    - gochecknoglobals
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gomnd
+        - lll
+        - dupl
+    - path: tests/
+      linters:
+        - gomnd
+        - lll
+        - dupl
+    - text: "shadow: declaration of \"err\" shadows declaration"
+      linters:
+        - govet
+    - text: "G404:" # Use of weak random number generator
+      linters:
+        - gosec
+      path: tests/
+    - text: "G601:" # Implicit memory aliasing in for loop
+      linters:
+        - gosec
+
+  exclude:
+    # Allow complex cryptographic code
+    - "cyclomatic complexity .* of func .*(Sign|Verify|Generate|Encrypt|Decrypt)"
+    # Allow long lines in generated code
+    - "line is .* characters, out of 120 max"
+    # Allow TODO/FIXME comments in development
+    - "Line contains TODO/BUG/FIXME"
+
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+severity:
+  default-severity: error
+  rules:
+    - linters:
+        - dupl
+      severity: info
+    - linters:
+        - gomnd
+      severity: warning
