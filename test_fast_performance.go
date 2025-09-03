@@ -222,8 +222,8 @@ func makeRPCRequest(req JSONRPCRequest) (*JSONRPCResponse, error) {
 		return nil, err
 	}
 	
-	// Use port 8546 for the fast blockchain
-	resp, err := http.Post("http://localhost:8546", "application/json", bytes.NewBuffer(reqData))
+	// Use port 8547 for the fast blockchain
+	resp, err := http.Post("http://localhost:8547", "application/json", bytes.NewBuffer(reqData))
 	if err != nil {
 		return nil, err
 	}

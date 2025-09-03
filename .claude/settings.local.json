@@ -4,7 +4,8 @@
       "Bash(chmod:*)",
       "Bash(go build:*)",
       "Bash(go doc:*)",
-      "Bash(go get:*)"
+      "Bash(go get:*)",
+      "Bash(./build/quantum-node:*)"
     ],
     "deny": [],
     "ask": []

@@ -48,14 +48,16 @@ func runNode(cmd *cobra.Command, args []string) {
 	fmt.Printf("📊 Build: %s (commit: %s)\n", BuildTime, Commit)
 	
 	config := &node.Config{
-		DataDir:    dataDir,
-		NetworkID:  8888,
-		ListenAddr: fmt.Sprintf(":%d", port),
-		HTTPPort:   rpcPort,
-		WSPort:     rpcPort + 1,
-		Mining:     true,
-		GasLimit:   15000000,
-		GasPrice:   big.NewInt(1000000000), // 1 Gwei
+		DataDir:      dataDir,
+		NetworkID:    8888,
+		ListenAddr:   fmt.Sprintf(":%d", port),
+		HTTPPort:     rpcPort,
+		WSPort:       rpcPort + 1,
+		ValidatorKey: "auto",  // Enable validator mode (key will be auto-generated)
+		ValidatorAlg: "dilithium",
+		Mining:       true,
+		GasLimit:     15000000,
+		GasPrice:     big.NewInt(1000000000), // 1 Gwei
 	}
 
 	// Create and start the node

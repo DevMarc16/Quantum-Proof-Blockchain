@@ -37,9 +37,9 @@ func DefaultConfig() *Config {
 		HTTPPort:       8545,
 		WSPort:         8546,
 		BootstrapPeers: []string{},
-		Mining:         false,
-		GasLimit:       15000000,
-		GasPrice:       big.NewInt(1000000000), // 1 Gwei
+		Mining:         true,  // Enable mining by default for fast block production
+		GasLimit:       50000000, // Increased for high throughput
+		GasPrice:       big.NewInt(1000000), // Lower gas price for cheap transactions
 	}
 }
 
@@ -113,6 +113,8 @@ func NewNode(config *Config) (*Node, error) {
 	
 	// Register validator if configured
 	if node.validatorPrivKey != nil {
+		log.Printf("🔑 Registering validator: %s", node.validatorAddr.Hex())
+		
 		// Initialize validator with significant stake
 		initialStake := new(big.Int)
 		initialStake.SetString("1000000000000000000000000", 10) // 1M QTM with 18 decimals
@@ -136,6 +138,10 @@ func NewNode(config *Config) (*Node, error) {
 		if err != nil {
 			return nil, fmt.Errorf("failed to stake tokens: %w", err)
 		}
+		
+		log.Printf("✅ Validator registered successfully with stake: %s QTM", initialStake.String())
+	} else {
+		log.Printf("⚠️ No validator private key found - mining will not be enabled")
 	}
 	
 	// Initialize P2P network
@@ -194,9 +200,19 @@ func (n *Node) Start() error {
 		return fmt.Errorf("failed to start RPC server: %w", err)
 	}
 	
-	// Start block production if validator
-	if n.consensus != nil && n.config.Mining {
+	// Start block production if validator and mining enabled  
+	log.Printf("🔍 Checking mining conditions: fastConsensus=%v, Mining=%v, validatorPrivKey=%v", 
+		n.fastConsensus != nil, n.config.Mining, n.validatorPrivKey != nil)
+	
+	if n.fastConsensus != nil && n.config.Mining && n.validatorPrivKey != nil {
+		log.Printf("🔧 Setting mining to true...")
+		n.mining = true  // Set directly to avoid deadlock (we already hold the mutex)
+		log.Printf("🚀 Starting block production...")
 		n.startBlockProduction()
+		log.Printf("✅ Fast block production started (2-second blocks)")
+		log.Printf("Started mining")
+	} else {
+		log.Printf("⚠️ Mining not started - missing requirements")
 	}
 	
 	n.running = true
@@ -319,11 +335,21 @@ func (n *Node) produceFastBlock() {
 	blockGasLimit := uint64(types.DefaultBlockGasLimit) // 50M gas for high throughput
 	
 	block := types.NewBlock(&types.BlockHeader{
-		ParentHash: currentBlock.Hash(),
-		Number:     blockHeight,
-		GasLimit:   blockGasLimit,
-		GasUsed:    n.calculateGasUsed(transactions),
-		// Simplified header for now - would need to match actual BlockHeader struct
+		ParentHash:  currentBlock.Hash(),
+		UncleHash:   types.ZeroHash,           // No uncles in quantum blockchain
+		Coinbase:    n.validatorAddr,          // Set validator as coinbase
+		Root:        types.ZeroHash,           // State root - simplified for now
+		TxHash:      types.ZeroHash,           // Transaction root - will be calculated
+		ReceiptHash: types.ZeroHash,           // Receipt root - simplified for now
+		Bloom:       make([]byte, 256),        // Empty bloom filter
+		Difficulty:  big.NewInt(1),            // Fixed difficulty for PoS
+		Number:      blockHeight,
+		GasLimit:    blockGasLimit,
+		GasUsed:     n.calculateGasUsed(transactions),
+		Time:        uint64(time.Now().Unix()), // Add current timestamp
+		Extra:       []byte("Quantum-Fast"),    // Extra data
+		MixDigest:   types.ZeroHash,           // Not used in PoS
+		Nonce:       0,                        // Not used in PoS
 	}, transactions, nil)
 	
 	// Validate block using fast consensus
