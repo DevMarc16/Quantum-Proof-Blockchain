@@ -1,8 +1,10 @@
 package types
 
 import (
+	"encoding/hex"
 	"encoding/json"
 	"math/big"
+	"strings"
 
 	"quantum-blockchain/chain/crypto"
 
@@ -249,14 +251,160 @@ func (tx *QuantumTransaction) MarshalJSON() ([]byte, error) {
 		Gas:       gas.Hex(),
 		To:        toAddr,
 		Value:     value.Hex(),
-		Data:      "0x" + string(tx.Data),
+		Data:      "0x" + hex.EncodeToString(tx.Data),
 		SigAlg:    uint8(tx.SigAlg),
-		PublicKey: "0x" + string(tx.PublicKey),
-		Signature: "0x" + string(tx.Signature),
-		KemCapsule: "0x" + string(tx.KemCapsule),
+		PublicKey: "0x" + hex.EncodeToString(tx.PublicKey),
+		Signature: "0x" + hex.EncodeToString(tx.Signature),
+		KemCapsule: "0x" + hex.EncodeToString(tx.KemCapsule),
 		From:      tx.From().Hex(),
 		Size:      size.Hex(),
 	})
+}
+
+// UnmarshalJSON implements JSON unmarshaling for QuantumTransaction
+func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
+	type txJSON struct {
+		Hash      string `json:"hash"`
+		ChainID   string `json:"chainId"`
+		Nonce     string `json:"nonce"`
+		GasPrice  string `json:"gasPrice"`
+		Gas       string `json:"gas"`
+		To        string `json:"to,omitempty"`
+		Value     string `json:"value"`
+		Data      string `json:"input"`
+		SigAlg    uint8  `json:"sigAlg"`
+		PublicKey string `json:"publicKey,omitempty"`
+		Signature string `json:"signature"`
+		KemCapsule string `json:"kemCapsule,omitempty"`
+		From      string `json:"from"`
+		Size      string `json:"size"`
+	}
+
+	var txData txJSON
+	if err := json.Unmarshal(data, &txData); err != nil {
+		return err
+	}
+	
+	// Parse chain ID
+	chainID := new(big.Int)
+	if txData.ChainID != "" {
+		chainID.SetString(strings.TrimPrefix(txData.ChainID, "0x"), 16)
+	}
+	tx.ChainID = chainID
+	
+	// Parse nonce
+	if txData.Nonce != "" {
+		nonce, err := uint256.FromHex(txData.Nonce)
+		if err == nil {
+			tx.Nonce = nonce.Uint64()
+		}
+	}
+	
+	// Parse gas price
+	gasPrice := new(big.Int)
+	if txData.GasPrice != "" {
+		gasPrice.SetString(strings.TrimPrefix(txData.GasPrice, "0x"), 16)
+	}
+	tx.GasPrice = gasPrice
+	
+	// Parse gas limit
+	if txData.Gas != "" {
+		gas, err := uint256.FromHex(txData.Gas)
+		if err == nil {
+			tx.Gas = gas.Uint64()
+		}
+	}
+	
+	// Parse to address
+	if txData.To != "" && txData.To != "0x" {
+		addr, err := HexToAddress(txData.To)
+		if err != nil {
+			return err
+		}
+		tx.To = &addr
+	}
+	
+	// Parse value
+	value := new(big.Int)
+	if txData.Value != "" {
+		value.SetString(strings.TrimPrefix(txData.Value, "0x"), 16)
+	}
+	tx.Value = value
+	
+	// Parse data
+	if txData.Data != "" && strings.HasPrefix(txData.Data, "0x") {
+		data, err := hex.DecodeString(strings.TrimPrefix(txData.Data, "0x"))
+		if err == nil {
+			tx.Data = data
+		} else {
+			// If hex decode fails, treat as raw string
+			tx.Data = []byte(strings.TrimPrefix(txData.Data, "0x"))
+		}
+	}
+	
+	// Parse signature algorithm
+	tx.SigAlg = crypto.SignatureAlgorithm(txData.SigAlg)
+	
+	// Parse public key - stored as raw bytes in JSON, need to decode properly
+	if txData.PublicKey != "" && strings.HasPrefix(txData.PublicKey, "0x") {
+		pubKeyData := strings.TrimPrefix(txData.PublicKey, "0x")
+		// Try hex decode first
+		if decoded, err := hex.DecodeString(pubKeyData); err == nil {
+			tx.PublicKey = decoded
+		} else {
+			// Fallback to raw bytes
+			tx.PublicKey = []byte(pubKeyData)
+		}
+	} else if txData.PublicKey != "" {
+		// Raw binary data in JSON
+		tx.PublicKey = []byte(txData.PublicKey)
+	}
+	
+	// Parse signature - stored as raw bytes in JSON, need to decode properly  
+	if txData.Signature != "" && strings.HasPrefix(txData.Signature, "0x") {
+		sigData := strings.TrimPrefix(txData.Signature, "0x")
+		// Try hex decode first
+		if decoded, err := hex.DecodeString(sigData); err == nil {
+			tx.Signature = decoded
+		} else {
+			// Fallback to raw bytes
+			tx.Signature = []byte(sigData)
+		}
+	} else if txData.Signature != "" {
+		// Raw binary data in JSON
+		tx.Signature = []byte(txData.Signature)
+	}
+	
+	// Parse KEM capsule
+	if txData.KemCapsule != "" && strings.HasPrefix(txData.KemCapsule, "0x") {
+		kemData, err := hex.DecodeString(strings.TrimPrefix(txData.KemCapsule, "0x"))
+		if err == nil {
+			tx.KemCapsule = kemData
+		}
+	}
+	
+	return nil
+}
+
+// DecodeRLPTransaction decodes a quantum transaction from RLP bytes
+func DecodeRLPTransaction(data []byte) (*QuantumTransaction, error) {
+	// For now, assume the data is hex-encoded JSON
+	// In a full implementation, this would be proper RLP decoding
+	if len(data) > 2 && data[0] == '0' && data[1] == 'x' {
+		// Hex encoded
+		decoded, err := hex.DecodeString(string(data[2:]))
+		if err != nil {
+			return nil, err
+		}
+		data = decoded
+	}
+	
+	var tx QuantumTransaction
+	if err := json.Unmarshal(data, &tx); err != nil {
+		return nil, err
+	}
+	
+	return &tx, nil
 }
 
 // Helper function to convert uint64 to bytes

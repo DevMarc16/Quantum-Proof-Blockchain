@@ -10,6 +10,7 @@ import (
 	"strconv"
 	"strings"
 
+	"quantum-blockchain/chain/crypto"
 	"quantum-blockchain/chain/types"
 
 	"github.com/gorilla/websocket"
@@ -381,8 +382,69 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 		return nil, fmt.Errorf("invalid parameters")
 	}
 	
-	// For now, return an error since we need to implement transaction parsing
-	return nil, fmt.Errorf("raw transaction parsing not implemented")
+	// Decode the raw transaction
+	rawTx := p[0]
+	tx, err := types.DecodeRLPTransaction([]byte(rawTx))
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode transaction: %w", err)
+	}
+	
+	// Validate the transaction
+	if err := s.validateQuantumTransaction(tx); err != nil {
+		return nil, fmt.Errorf("invalid transaction: %w", err)
+	}
+	
+	// Add to transaction pool
+	if s.node != nil && s.node.txPool != nil {
+		if err := s.node.txPool.AddTransaction(tx); err != nil {
+			return nil, fmt.Errorf("failed to add transaction to pool: %w", err)
+		}
+	}
+	
+	// Return transaction hash
+	return tx.Hash().Hex(), nil
+}
+
+// validateQuantumTransaction validates a quantum-resistant transaction
+func (s *RPCServer) validateQuantumTransaction(tx *types.QuantumTransaction) error {
+	// Verify quantum-resistant signature using the signing hash
+	sigHash := tx.SigningHash()
+	qrSig := &crypto.QRSignature{
+		Algorithm: tx.SigAlg,
+		Signature: tx.Signature,
+		PublicKey: tx.PublicKey,
+	}
+	
+	valid, err := crypto.VerifySignature(sigHash[:], qrSig)
+	if err != nil {
+		return fmt.Errorf("signature verification failed: %w", err)
+	}
+	if !valid {
+		return fmt.Errorf("invalid quantum signature")
+	}
+	
+	// Basic transaction validation
+	if tx.ChainID == nil || tx.ChainID.Uint64() != 8888 {
+		return fmt.Errorf("invalid chain ID")
+	}
+	
+	if tx.GasPrice == nil || tx.GasPrice.Sign() <= 0 {
+		return fmt.Errorf("invalid gas price")
+	}
+	
+	if tx.Gas == 0 {
+		return fmt.Errorf("invalid gas limit")
+	}
+	
+	// Validate signature algorithm
+	switch tx.SigAlg {
+	case crypto.SigAlgDilithium, crypto.SigAlgFalcon:
+		// Valid
+	default:
+		return fmt.Errorf("unsupported signature algorithm: %v", tx.SigAlg)
+	}
+	
+	return nil
 }
 
 func (s *RPCServer) ethGasPrice(params json.RawMessage) (interface{}, error) {

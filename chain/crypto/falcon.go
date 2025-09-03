@@ -103,6 +103,17 @@ func (priv *FalconPrivateKey) Bytes() []byte {
 	return result
 }
 
+// Public returns the corresponding public key
+func (priv *FalconPrivateKey) Public() *FalconPublicKey {
+	ed25519Pub := priv.ed25519Key.Public().(ed25519.PublicKey)
+	dilithiumPub := priv.dilithiumKey.Public()
+	
+	return &FalconPublicKey{
+		ed25519Key:   ed25519Pub,
+		dilithiumKey: dilithiumPub,
+	}
+}
+
 // FalconPublicKeyFromBytes creates a public key from bytes
 func FalconPublicKeyFromBytes(data []byte) (*FalconPublicKey, error) {
 	if len(data) != FalconPublicKeySize {

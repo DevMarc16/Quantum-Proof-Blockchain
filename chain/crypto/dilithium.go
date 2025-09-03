@@ -76,6 +76,20 @@ func (priv *DilithiumPrivateKey) Bytes() []byte {
 	return priv.privateKey[:]
 }
 
+// Public returns the corresponding public key
+func (priv *DilithiumPrivateKey) Public() *DilithiumPublicKey {
+	var privateKey mode2.PrivateKey
+	privateKey.Unpack(&priv.privateKey)
+	
+	var publicKeyBytes [DilithiumPublicKeySize]byte
+	publicKey := privateKey.Public().(*mode2.PublicKey)
+	publicKey.Pack(&publicKeyBytes)
+	
+	return &DilithiumPublicKey{
+		publicKey: publicKeyBytes,
+	}
+}
+
 // DilithiumPublicKeyFromBytes creates a public key from bytes
 func DilithiumPublicKeyFromBytes(data []byte) (*DilithiumPublicKey, error) {
 	if len(data) != DilithiumPublicKeySize {

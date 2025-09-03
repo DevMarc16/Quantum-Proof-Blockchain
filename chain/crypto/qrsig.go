@@ -53,16 +53,13 @@ func SignMessage(message []byte, algorithm SignatureAlgorithm, privateKeyBytes [
 		}
 		
 		// Derive public key from private key properly
-		// For Dilithium, we need to extract the public key portion from the private key
-		// The private key contains both private and public components
-		if len(privateKeyBytes) >= DilithiumPublicKeySize {
-			// The public key is embedded in the private key structure
-			// We generate a new keypair and extract just the public key
-			// In production, we'd store the public key separately
-			publicKey = make([]byte, DilithiumPublicKeySize)
-			// For now, use first part of private key as placeholder
-			// Real implementation would properly extract the public component
-			copy(publicKey, privateKeyBytes[:DilithiumPublicKeySize])
+		// For Dilithium, the private key contains the public key as part of its structure
+		// We need to extract the actual public key from the private key object
+		pubKeyObj := priv.Public()
+		if pubKeyObj != nil {
+			publicKey = pubKeyObj.Bytes()
+		} else {
+			return nil, fmt.Errorf("failed to derive public key from private key")
 		}
 
 	case SigAlgFalcon:
@@ -76,10 +73,12 @@ func SignMessage(message []byte, algorithm SignatureAlgorithm, privateKeyBytes [
 			return nil, fmt.Errorf("Falcon signing failed: %w", err)
 		}
 		
-		// Similar approach for Falcon
-		if len(privateKeyBytes) >= FalconPublicKeySize {
-			publicKey = make([]byte, FalconPublicKeySize)
-			copy(publicKey, privateKeyBytes[:FalconPublicKeySize])
+		// Derive public key from private key properly for Falcon
+		pubKeyObj := priv.Public()
+		if pubKeyObj != nil {
+			publicKey = pubKeyObj.Bytes()
+		} else {
+			return nil, fmt.Errorf("failed to derive public key from private key")
 		}
 
 	default:
