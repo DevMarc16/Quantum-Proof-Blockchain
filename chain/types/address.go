@@ -141,11 +141,24 @@ func PublicKeyToAddress(publicKey []byte) Address {
 	return BytesToAddress(hash[12:]) // Take last 20 bytes
 }
 
+// CreateContractAddress creates a contract address from sender and nonce
+func CreateContractAddress(sender Address, nonce uint64) Address {
+	// Use RLP encoding of sender + nonce to create contract address
+	// This is a simplified version of Ethereum's contract address creation
+	data := append(sender.Bytes(), byte(nonce))
+	return BytesToAddress(Keccak256(data)[12:])
+}
+
 // Keccak256 computes the Keccak256 hash
 func Keccak256(data []byte) []byte {
 	hasher := sha3.NewLegacyKeccak256()
 	hasher.Write(data)
 	return hasher.Sum(nil)
+}
+
+// Keccak256Hash computes the Keccak256 hash and returns it as a Hash
+func Keccak256Hash(data []byte) Hash {
+	return BytesToHash(Keccak256(data))
 }
 
 // SHA256 computes the SHA256 hash

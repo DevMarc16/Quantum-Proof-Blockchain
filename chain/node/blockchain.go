@@ -8,8 +8,11 @@ import (
 	"path/filepath"
 	"sync"
 
+	"quantum-blockchain/chain/config"
+	"quantum-blockchain/chain/evm"
 	"quantum-blockchain/chain/types"
 
+	etypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/opt"
 )
@@ -19,11 +22,14 @@ type Blockchain struct {
 	db          *leveldb.DB
 	currentBlock *types.Block
 	genesis     *types.Block
+	genesisConfig *config.GenesisConfig
 	mu          sync.RWMutex
 	
 	// State management
-	stateDB    *StateDB
-	receipts   map[types.Hash][]*Receipt
+	stateDB *StateDB
+	
+	// EVM execution engine
+	evm *evm.SimpleEVM
 	
 	// Chain metrics
 	totalDifficulty *big.Int
@@ -45,34 +51,31 @@ type Receipt struct {
 	Logs            []*Log       `json:"logs"`
 }
 
-// Log represents an event log
-type Log struct {
-	Address     types.Address `json:"address"`
-	Topics      []types.Hash  `json:"topics"`
-	Data        []byte        `json:"data"`
-	BlockNumber uint64        `json:"blockNumber"`
-	TxHash      types.Hash    `json:"transactionHash"`
-	TxIndex     uint          `json:"transactionIndex"`
-	BlockHash   types.Hash    `json:"blockHash"`
-	Index       uint          `json:"logIndex"`
-}
+// Log represents an event log (alias for Ethereum log)
+type Log = etypes.Log
 
-// StateDB represents the state database (simplified)
+// StateDB represents the state database with full EVM support
 type StateDB struct {
-	db      *leveldb.DB
-	balances map[types.Address]*big.Int
-	nonces   map[types.Address]uint64
-	storage  map[types.Address]map[types.Hash][]byte
-	mu       sync.RWMutex
+	db          *leveldb.DB
+	balances    map[types.Address]*big.Int
+	nonces      map[types.Address]uint64
+	storage     map[types.Address]map[types.Hash]types.Hash
+	code        map[types.Address][]byte
+	codeHashes  map[types.Address]types.Hash
+	suicides    map[types.Address]bool
+	mu          sync.RWMutex
 }
 
 // NewStateDB creates a new state database
 func NewStateDB(db *leveldb.DB) *StateDB {
 	return &StateDB{
-		db:       db,
-		balances: make(map[types.Address]*big.Int),
-		nonces:   make(map[types.Address]uint64),
-		storage:  make(map[types.Address]map[types.Hash][]byte),
+		db:         db,
+		balances:   make(map[types.Address]*big.Int),
+		nonces:     make(map[types.Address]uint64),
+		storage:    make(map[types.Address]map[types.Hash]types.Hash),
+		code:       make(map[types.Address][]byte),
+		codeHashes: make(map[types.Address]types.Hash),
+		suicides:   make(map[types.Address]bool),
 	}
 }
 
@@ -146,10 +149,210 @@ func (s *StateDB) SetNonce(addr types.Address, nonce uint64) {
 	s.db.Put(key, big.NewInt(int64(nonce)).Bytes(), nil)
 }
 
+// GetState returns contract storage value
+func (s *StateDB) GetState(addr types.Address, hash types.Hash) types.Hash {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	if storage, exists := s.storage[addr]; exists {
+		if value, exists := storage[hash]; exists {
+			return value
+		}
+	}
+	
+	// Try to load from persistent storage
+	key := append(append([]byte("storage-"), addr.Bytes()...), hash.Bytes()...)
+	data, err := s.db.Get(key, nil)
+	if err != nil {
+		return types.Hash{}
+	}
+	
+	value := types.BytesToHash(data)
+	
+	// Cache it
+	if s.storage[addr] == nil {
+		s.storage[addr] = make(map[types.Hash]types.Hash)
+	}
+	s.storage[addr][hash] = value
+	
+	return value
+}
+
+// SetState sets contract storage value
+func (s *StateDB) SetState(addr types.Address, hash types.Hash, value types.Hash) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	
+	if s.storage[addr] == nil {
+		s.storage[addr] = make(map[types.Hash]types.Hash)
+	}
+	s.storage[addr][hash] = value
+	
+	// Persist to storage
+	key := append(append([]byte("storage-"), addr.Bytes()...), hash.Bytes()...)
+	s.db.Put(key, value.Bytes(), nil)
+}
+
+// GetCode returns contract code
+func (s *StateDB) GetCode(addr types.Address) []byte {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	if code, exists := s.code[addr]; exists {
+		return code
+	}
+	
+	// Try to load from persistent storage
+	key := append([]byte("code-"), addr.Bytes()...)
+	data, err := s.db.Get(key, nil)
+	if err != nil {
+		return nil
+	}
+	
+	s.code[addr] = data
+	return data
+}
+
+// SetCode sets contract code
+func (s *StateDB) SetCode(addr types.Address, code []byte) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	
+	s.code[addr] = code
+	
+	// Calculate code hash
+	codeHash := types.Keccak256Hash(code)
+	s.codeHashes[addr] = codeHash
+	
+	// Persist to storage
+	codeKey := append([]byte("code-"), addr.Bytes()...)
+	s.db.Put(codeKey, code, nil)
+	
+	hashKey := append([]byte("codehash-"), addr.Bytes()...)
+	s.db.Put(hashKey, codeHash.Bytes(), nil)
+}
+
+// GetCodeHash returns contract code hash
+func (s *StateDB) GetCodeHash(addr types.Address) types.Hash {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	if hash, exists := s.codeHashes[addr]; exists {
+		return hash
+	}
+	
+	// Try to load from persistent storage
+	key := append([]byte("codehash-"), addr.Bytes()...)
+	data, err := s.db.Get(key, nil)
+	if err != nil {
+		// Calculate hash from code if available
+		code := s.GetCode(addr)
+		if len(code) == 0 {
+			return types.Hash{}
+		}
+		hash := types.Keccak256Hash(code)
+		s.codeHashes[addr] = hash
+		return hash
+	}
+	
+	hash := types.BytesToHash(data)
+	s.codeHashes[addr] = hash
+	return hash
+}
+
+// GetCodeSize returns contract code size
+func (s *StateDB) GetCodeSize(addr types.Address) int {
+	code := s.GetCode(addr)
+	return len(code)
+}
+
+// Exist checks if account exists
+func (s *StateDB) Exist(addr types.Address) bool {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	// Account exists if it has balance, nonce, or code
+	if _, exists := s.balances[addr]; exists {
+		return true
+	}
+	if _, exists := s.nonces[addr]; exists {
+		return true
+	}
+	if _, exists := s.code[addr]; exists {
+		return true
+	}
+	
+	// Check persistent storage
+	balanceKey := append([]byte("balance-"), addr.Bytes()...)
+	if _, err := s.db.Get(balanceKey, nil); err == nil {
+		return true
+	}
+	
+	nonceKey := append([]byte("nonce-"), addr.Bytes()...)
+	if _, err := s.db.Get(nonceKey, nil); err == nil {
+		return true
+	}
+	
+	codeKey := append([]byte("code-"), addr.Bytes()...)
+	if _, err := s.db.Get(codeKey, nil); err == nil {
+		return true
+	}
+	
+	return false
+}
+
+// Empty checks if account is empty (no balance, nonce, or code)
+func (s *StateDB) Empty(addr types.Address) bool {
+	if !s.Exist(addr) {
+		return true
+	}
+	
+	balance := s.GetBalance(addr)
+	nonce := s.GetNonce(addr)
+	code := s.GetCode(addr)
+	
+	return balance.Sign() == 0 && nonce == 0 && len(code) == 0
+}
+
+// Suicide marks an account for deletion
+func (s *StateDB) Suicide(addr types.Address) bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	
+	if !s.Exist(addr) {
+		return false
+	}
+	
+	s.suicides[addr] = true
+	return true
+}
+
+// HasSuicided checks if account is marked for deletion
+func (s *StateDB) HasSuicided(addr types.Address) bool {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	
+	return s.suicides[addr]
+}
+
 // NewBlockchain creates a new blockchain instance
-func NewBlockchain(dataDir string) (*Blockchain, error) {
+func NewBlockchain(dataDir string, genesisConfigPath string) (*Blockchain, error) {
+	// Load genesis configuration
+	var genesisConfig *config.GenesisConfig
+	var err error
+	
+	if genesisConfigPath != "" {
+		genesisConfig, err = config.LoadGenesisConfig(genesisConfigPath)
+		if err != nil {
+			return nil, fmt.Errorf("failed to load genesis config: %w", err)
+		}
+	} else {
+		// Use default genesis config
+		genesisConfig = config.DefaultGenesisConfig()
+	}
+	
 	// Ensure data directory exists
-	err := os.MkdirAll(dataDir, 0755)
+	err = os.MkdirAll(dataDir, 0755)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create data directory: %w", err)
 	}
@@ -163,13 +366,16 @@ func NewBlockchain(dataDir string) (*Blockchain, error) {
 	
 	blockchain := &Blockchain{
 		db:              db,
-		receipts:        make(map[types.Hash][]*Receipt),
+		genesisConfig:   genesisConfig,
 		totalDifficulty: big.NewInt(0),
 		gasUsed:         0,
 	}
 	
 	// Initialize state database
 	blockchain.stateDB = NewStateDB(db)
+	
+	// Initialize simplified EVM
+	blockchain.evm = evm.NewSimpleEVM(blockchain.stateDB, big.NewInt(8888))
 	
 	// Load or create genesis block
 	genesis, err := blockchain.loadOrCreateGenesis()
@@ -221,12 +427,40 @@ func (bc *Blockchain) loadOrCreateGenesis() (*types.Block, error) {
 }
 
 func (bc *Blockchain) initializeGenesisState(genesis *types.Block) {
-	// Give initial balance to a test address for demo purposes
-	testAddr, _ := types.HexToAddress("0x0000000000000000000000000000000000000001")
-	initialBalance := new(big.Int).Mul(big.NewInt(1000000), big.NewInt(1e18)) // 1M tokens
+	// Load allocations from genesis config
+	allocations, err := bc.genesisConfig.GetAllocations()
+	if err != nil {
+		// Log error but continue with default allocation
+		fmt.Printf("Error loading genesis allocations: %v\n", err)
+		
+		// Fallback to default allocation
+		testAddr, _ := types.HexToAddress("0x0000000000000000000000000000000000000001")
+		initialBalance := new(big.Int).Mul(big.NewInt(1000000), big.NewInt(1e18)) // 1M tokens
+		bc.stateDB.SetBalance(testAddr, initialBalance)
+		bc.stateDB.SetNonce(testAddr, 0)
+		return
+	}
 	
-	bc.stateDB.SetBalance(testAddr, initialBalance)
-	bc.stateDB.SetNonce(testAddr, 0)
+	// Set balances from genesis configuration
+	for addr, balance := range allocations {
+		bc.stateDB.SetBalance(addr, balance)
+		bc.stateDB.SetNonce(addr, 0)
+	}
+	
+	// Initialize validators if specified
+	validators, err := bc.genesisConfig.GetValidators()
+	if err != nil {
+		fmt.Printf("Error loading genesis validators: %v\n", err)
+	} else {
+		// Set validator stakes (for now, just ensure they have balance)
+		for _, validator := range validators {
+			currentBalance := bc.stateDB.GetBalance(validator.Address)
+			if currentBalance.Sign() == 0 {
+				// Give validator minimum balance if not already allocated
+				bc.stateDB.SetBalance(validator.Address, validator.Stake)
+			}
+		}
+	}
 }
 
 // AddBlock adds a new block to the blockchain
@@ -246,8 +480,11 @@ func (bc *Blockchain) AddBlock(block *types.Block) error {
 		return fmt.Errorf("transaction execution failed: %w", err)
 	}
 	
-	// Store receipts
-	bc.receipts[block.Hash()] = receipts
+	// Store receipts to persistent storage
+	err = bc.storeReceipts(block.Hash(), receipts)
+	if err != nil {
+		return fmt.Errorf("failed to store receipts: %w", err)
+	}
 	
 	// Store block
 	err = bc.storeBlock(block)
@@ -332,11 +569,16 @@ func (bc *Blockchain) executeTransactions(block *types.Block) ([]*Receipt, error
 func (bc *Blockchain) executeTransaction(tx *types.QuantumTransaction, block *types.Block, txIndex uint, cumulativeGasUsed uint64) (*Receipt, error) {
 	from := tx.From()
 	
-	// Deduct gas cost and value
+	// Pre-execution validation
 	balance := bc.stateDB.GetBalance(from)
 	cost := new(big.Int).Mul(big.NewInt(int64(tx.GetGas())), tx.GetGasPrice())
 	cost.Add(cost, tx.GetValue())
 	
+	if balance.Cmp(cost) < 0 {
+		return nil, fmt.Errorf("insufficient balance for transaction")
+	}
+	
+	// Deduct gas cost upfront
 	balance.Sub(balance, cost)
 	bc.stateDB.SetBalance(from, balance)
 	
@@ -344,26 +586,29 @@ func (bc *Blockchain) executeTransaction(tx *types.QuantumTransaction, block *ty
 	nonce := bc.stateDB.GetNonce(from)
 	bc.stateDB.SetNonce(from, nonce+1)
 	
-	// Transfer value if not contract creation
-	var contractAddress *types.Address
-	gasUsed := uint64(21000) // Base transaction cost
+	// Execute transaction using EVM
+	result, err := bc.evm.ExecuteTransaction(tx, block, block.Header.GasLimit)
 	
-	if tx.IsContractCreation() {
-		// Contract creation (simplified)
-		// In a real implementation, this would deploy the contract code
-		addr := types.PublicKeyToAddress(append(from.Bytes(), byte(nonce)))
-		contractAddress = &addr
-		gasUsed += uint64(len(tx.GetData())) * 4 // 4 gas per byte of data
+	var (
+		gasUsed         uint64
+		contractAddress *types.Address
+		status          uint = 1 // Success
+		logs            []*Log
+	)
+	
+	if err != nil {
+		// Transaction failed, but still consume gas
+		gasUsed = tx.GetGas() // Use all gas on failure
+		status = 0            // Failure
+		logs = []*Log{}
 	} else {
-		// Value transfer
-		if tx.GetTo() != nil {
-			toBalance := bc.stateDB.GetBalance(*tx.GetTo())
-			toBalance.Add(toBalance, tx.GetValue())
-			bc.stateDB.SetBalance(*tx.GetTo(), toBalance)
-		}
+		gasUsed = result.GasUsed
+		contractAddress = result.ContractAddress
+		logs = result.Logs
 		
-		// Add gas for data
-		gasUsed += uint64(len(tx.GetData())) * 4
+		// Success - convert logs (simplified for now)
+		// In a real implementation, we would properly convert the log structure
+		logs = []*Log{} // Empty logs for now
 	}
 	
 	// Refund unused gas
@@ -374,7 +619,7 @@ func (bc *Blockchain) executeTransaction(tx *types.QuantumTransaction, block *ty
 		bc.stateDB.SetBalance(from, balance)
 	}
 	
-	// Give gas fees to block producer
+	// Give gas fees to block producer (coinbase)
 	gasFees := new(big.Int).Mul(big.NewInt(int64(gasUsed)), tx.GetGasPrice())
 	producerBalance := bc.stateDB.GetBalance(block.Coinbase())
 	producerBalance.Add(producerBalance, gasFees)
@@ -390,9 +635,36 @@ func (bc *Blockchain) executeTransaction(tx *types.QuantumTransaction, block *ty
 		GasUsed:           gasUsed,
 		CumulativeGasUsed: cumulativeGasUsed + gasUsed,
 		ContractAddress:   contractAddress,
-		Status:            1, // Success
-		Logs:              []*Log{},
+		Status:            status,
+		Logs:              logs,
 	}, nil
+}
+
+
+func (bc *Blockchain) storeReceipts(blockHash types.Hash, receipts []*Receipt) error {
+	receiptsData, err := json.Marshal(receipts)
+	if err != nil {
+		return fmt.Errorf("failed to marshal receipts: %w", err)
+	}
+	
+	receiptsKey := append([]byte("receipts-"), blockHash.Bytes()...)
+	return bc.db.Put(receiptsKey, receiptsData, nil)
+}
+
+func (bc *Blockchain) getReceiptsByBlockHash(blockHash types.Hash) ([]*Receipt, error) {
+	receiptsKey := append([]byte("receipts-"), blockHash.Bytes()...)
+	receiptsData, err := bc.db.Get(receiptsKey, nil)
+	if err != nil {
+		return nil, fmt.Errorf("receipts not found: %w", err)
+	}
+	
+	var receipts []*Receipt
+	err = json.Unmarshal(receiptsData, &receipts)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal receipts: %w", err)
+	}
+	
+	return receipts, nil
 }
 
 func (bc *Blockchain) storeBlock(block *types.Block) error {
@@ -470,8 +742,22 @@ func (bc *Blockchain) GetTransactionReceipt(txHash types.Hash) (*Receipt, error)
 	bc.mu.RLock()
 	defer bc.mu.RUnlock()
 	
-	// Find the receipt in memory first
-	for _, receipts := range bc.receipts {
+	// We need to search through all blocks to find the receipt
+	// In a real implementation, we'd maintain a txhash->blockHash index
+	// For now, we'll do a simple search starting from the current block
+	currentHeight := bc.currentBlock.Number().Uint64()
+	
+	for height := currentHeight; height > 0; height-- {
+		block, err := bc.GetBlockByNumber(big.NewInt(int64(height)))
+		if err != nil {
+			continue
+		}
+		
+		receipts, err := bc.getReceiptsByBlockHash(block.Hash())
+		if err != nil {
+			continue
+		}
+		
 		for _, receipt := range receipts {
 			if receipt.TxHash.Equal(txHash) {
 				return receipt, nil
@@ -490,6 +776,16 @@ func (bc *Blockchain) GetBalance(addr types.Address) *big.Int {
 // GetNonce returns the nonce of an address
 func (bc *Blockchain) GetNonce(addr types.Address) uint64 {
 	return bc.stateDB.GetNonce(addr)
+}
+
+// GetCode returns the contract code at the given address
+func (bc *Blockchain) GetCode(addr types.Address) []byte {
+	return bc.stateDB.GetCode(addr)
+}
+
+// GetState returns the contract storage value at the given address and key
+func (bc *Blockchain) GetState(addr types.Address, key types.Hash) types.Hash {
+	return bc.stateDB.GetState(addr, key)
 }
 
 // Close closes the blockchain database

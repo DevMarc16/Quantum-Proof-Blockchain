@@ -28,10 +28,11 @@ var rootCmd = &cobra.Command{
 }
 
 var (
-	configFile string
-	port       int
-	rpcPort    int
-	dataDir    string
+	configFile    string
+	port          int
+	rpcPort       int
+	dataDir       string
+	genesisConfig string
 )
 
 func init() {
@@ -39,6 +40,7 @@ func init() {
 	rootCmd.PersistentFlags().IntVar(&port, "port", 30303, "P2P network port")
 	rootCmd.PersistentFlags().IntVar(&rpcPort, "rpc-port", 8545, "JSON-RPC server port")
 	rootCmd.PersistentFlags().StringVar(&dataDir, "data-dir", "./data", "data directory")
+	rootCmd.PersistentFlags().StringVar(&genesisConfig, "genesis", "./config/genesis.json", "genesis configuration file")
 
 	viper.BindPFlags(rootCmd.PersistentFlags())
 }
@@ -48,16 +50,17 @@ func runNode(cmd *cobra.Command, args []string) {
 	fmt.Printf("📊 Build: %s (commit: %s)\n", BuildTime, Commit)
 	
 	config := &node.Config{
-		DataDir:      dataDir,
-		NetworkID:    8888,
-		ListenAddr:   fmt.Sprintf(":%d", port),
-		HTTPPort:     rpcPort,
-		WSPort:       rpcPort + 1,
-		ValidatorKey: "auto",  // Enable validator mode (key will be auto-generated)
-		ValidatorAlg: "dilithium",
-		Mining:       true,
-		GasLimit:     15000000,
-		GasPrice:     big.NewInt(1000000000), // 1 Gwei
+		DataDir:       dataDir,
+		NetworkID:     8888,
+		ListenAddr:    fmt.Sprintf(":%d", port),
+		HTTPPort:      rpcPort,
+		WSPort:        rpcPort + 1,
+		ValidatorKey:  "auto",  // Enable validator mode (key will be auto-generated)
+		ValidatorAlg:  "dilithium",
+		GenesisConfig: genesisConfig,
+		Mining:        true,
+		GasLimit:      15000000,
+		GasPrice:      big.NewInt(1000000000), // 1 Gwei
 	}
 
 	// Create and start the node

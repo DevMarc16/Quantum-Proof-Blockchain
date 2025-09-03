@@ -23,6 +23,7 @@ type Config struct {
 	BootstrapPeers  []string          `json:"bootstrapPeers"`
 	ValidatorKey    string            `json:"validatorKey,omitempty"`
 	ValidatorAlg    string            `json:"validatorAlg,omitempty"`
+	GenesisConfig   string            `json:"genesisConfig,omitempty"`
 	Mining          bool              `json:"mining"`
 	GasLimit        uint64            `json:"gasLimit"`
 	GasPrice        *big.Int          `json:"gasPrice"`
@@ -98,7 +99,7 @@ func NewNode(config *Config) (*Node, error) {
 	}
 	
 	// Initialize blockchain
-	blockchain, err := NewBlockchain(config.DataDir)
+	blockchain, err := NewBlockchain(config.DataDir, config.GenesisConfig)
 	if err != nil {
 		return nil, fmt.Errorf("failed to initialize blockchain: %w", err)
 	}
@@ -164,6 +165,14 @@ func (n *Node) initValidator() error {
 	n.validatorPrivKey = privKey.Bytes()
 	n.validatorAlg = crypto.SigAlgDilithium
 	n.validatorAddr = types.PublicKeyToAddress(pubKey.Bytes())
+	
+	// Fund the validator for testing (if blockchain is available)
+	if n.blockchain != nil && n.blockchain.stateDB != nil {
+		validatorBalance := new(big.Int).Mul(big.NewInt(1000), big.NewInt(1e18)) // 1000 QTM
+		n.blockchain.stateDB.SetBalance(n.validatorAddr, validatorBalance)
+		n.blockchain.stateDB.SetNonce(n.validatorAddr, 0)
+		log.Printf("💰 Funded validator %s with 1000 QTM", n.validatorAddr.Hex())
+	}
 	
 	return nil
 }

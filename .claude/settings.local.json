@@ -5,7 +5,8 @@
       "Bash(go build:*)",
       "Bash(go doc:*)",
       "Bash(go get:*)",
-      "Bash(./build/quantum-node:*)"
+      "Bash(./build/quantum-node:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []

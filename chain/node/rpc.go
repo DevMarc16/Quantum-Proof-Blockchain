@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"sync"
+	"time"
 
 	"quantum-blockchain/chain/crypto"
 	"quantum-blockchain/chain/types"
@@ -39,11 +41,26 @@ type RPCError struct {
 	Data    interface{} `json:"data,omitempty"`
 }
 
+// RateLimiter implements simple token bucket rate limiting
+type RateLimiter struct {
+	requests map[string]*ClientBucket
+	mu       sync.RWMutex
+	limit    int           // Requests per window
+	window   time.Duration // Time window
+}
+
+// ClientBucket tracks request count for a client
+type ClientBucket struct {
+	count     int
+	resetTime time.Time
+}
+
 // RPCServer handles JSON-RPC requests
 type RPCServer struct {
 	node       *Node
 	httpServer *http.Server
 	wsUpgrader websocket.Upgrader
+	rateLimiter *RateLimiter
 	httpPort   int
 	wsPort     int
 	
@@ -59,14 +76,73 @@ func NewRPCServer(node *Node, httpPort, wsPort int) *RPCServer {
 		wsPort:   wsPort,
 		wsUpgrader: websocket.Upgrader{
 			CheckOrigin: func(r *http.Request) bool {
-				return true // Allow all origins for development
+				return true // TODO: Implement proper CORS in production
 			},
+		},
+		rateLimiter: &RateLimiter{
+			requests: make(map[string]*ClientBucket),
+			limit:    100,                // 100 requests per minute
+			window:   time.Minute,
 		},
 		methods: make(map[string]func(json.RawMessage) (interface{}, error)),
 	}
 	
 	server.registerMethods()
 	return server
+}
+
+// NewRateLimiter creates a new rate limiter
+func NewRateLimiter(limit int, window time.Duration) *RateLimiter {
+	return &RateLimiter{
+		requests: make(map[string]*ClientBucket),
+		limit:    limit,
+		window:   window,
+	}
+}
+
+// IsAllowed checks if a request from the client is allowed
+func (rl *RateLimiter) IsAllowed(clientID string) bool {
+	rl.mu.Lock()
+	defer rl.mu.Unlock()
+	
+	now := time.Now()
+	bucket, exists := rl.requests[clientID]
+	
+	if !exists {
+		rl.requests[clientID] = &ClientBucket{
+			count:     1,
+			resetTime: now.Add(rl.window),
+		}
+		return true
+	}
+	
+	// Check if the window has expired
+	if now.After(bucket.resetTime) {
+		bucket.count = 1
+		bucket.resetTime = now.Add(rl.window)
+		return true
+	}
+	
+	// Check if under limit
+	if bucket.count < rl.limit {
+		bucket.count++
+		return true
+	}
+	
+	return false
+}
+
+// Clean removes expired entries to prevent memory leaks
+func (rl *RateLimiter) Clean() {
+	rl.mu.Lock()
+	defer rl.mu.Unlock()
+	
+	now := time.Now()
+	for clientID, bucket := range rl.requests {
+		if now.After(bucket.resetTime.Add(rl.window)) {
+			delete(rl.requests, clientID)
+		}
+	}
 }
 
 // Start starts the RPC server
@@ -78,12 +154,29 @@ func (s *RPCServer) Start() error {
 	s.httpServer = &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.httpPort),
 		Handler: mux,
+		// Security settings
+		ReadTimeout:  30 * time.Second,
+		WriteTimeout: 30 * time.Second,
+		IdleTimeout:  120 * time.Second,
 	}
 	
-	log.Printf("Starting RPC server on port %d", s.httpPort)
+	// Start rate limiter cleanup routine
+	go func() {
+		ticker := time.NewTicker(5 * time.Minute)
+		defer ticker.Stop()
+		
+		for {
+			select {
+			case <-ticker.C:
+				s.rateLimiter.Clean()
+			}
+		}
+	}()
+	
+	log.Printf("🔧 Starting RPC server on port %d", s.httpPort)
 	go func() {
 		if err := s.httpServer.ListenAndServe(); err != http.ErrServerClosed {
-			log.Printf("RPC server error: %v", err)
+			log.Printf("❌ RPC server error: %v", err)
 		}
 	}()
 	
@@ -110,6 +203,10 @@ func (s *RPCServer) registerMethods() {
 	s.methods["eth_sendRawTransaction"] = s.ethSendRawTransaction
 	s.methods["eth_gasPrice"] = s.ethGasPrice
 	s.methods["eth_estimateGas"] = s.ethEstimateGas
+	s.methods["eth_call"] = s.ethCall
+	s.methods["eth_getCode"] = s.ethGetCode
+	s.methods["eth_getLogs"] = s.ethGetLogs
+	s.methods["eth_getStorageAt"] = s.ethGetStorageAt
 	s.methods["net_version"] = s.netVersion
 	s.methods["net_peerCount"] = s.netPeerCount
 	
@@ -122,11 +219,13 @@ func (s *RPCServer) registerMethods() {
 	s.methods["miner_start"] = s.minerStart
 	s.methods["miner_stop"] = s.minerStop
 	s.methods["miner_setEtherbase"] = s.minerSetEtherbase
+	
+	// Test methods (removed insecure methods that exposed private keys)
 }
 
 func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*") // TODO: Restrict in production
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	
@@ -140,15 +239,92 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
+	// Rate limiting
+	clientIP := s.getClientIP(r)
+	if !s.rateLimiter.IsAllowed(clientIP) {
+		s.writeError(w, &RPCError{
+			Code:    -32005,
+			Message: "Rate limit exceeded",
+		}, nil)
+		return
+	}
+	
+	// Input size validation
+	if r.ContentLength > 1024*1024 { // 1MB limit
+		s.writeError(w, &RPCError{
+			Code:    -32006,
+			Message: "Request too large",
+		}, nil)
+		return
+	}
+	
 	var req JSONRPCRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
-		s.writeError(w, &RPCError{Code: -32700, Message: "Parse error"}, nil)
+		s.writeError(w, &RPCError{
+			Code:    -32700,
+			Message: "Parse error: " + err.Error(),
+		}, nil)
+		return
+	}
+	
+	// Basic request validation
+	if err := s.validateRequest(&req); err != nil {
+		s.writeError(w, &RPCError{
+			Code:    -32600,
+			Message: "Invalid Request: " + err.Error(),
+		}, req.ID)
 		return
 	}
 	
 	response := s.handleRequest(&req)
 	json.NewEncoder(w).Encode(response)
+}
+
+// getClientIP extracts the real client IP from the request
+func (s *RPCServer) getClientIP(r *http.Request) string {
+	// Check X-Forwarded-For header first (for proxy/load balancer)
+	if xff := r.Header.Get("X-Forwarded-For"); xff != "" {
+		if idx := strings.Index(xff, ","); idx != -1 {
+			return strings.TrimSpace(xff[:idx])
+		}
+		return strings.TrimSpace(xff)
+	}
+	
+	// Check X-Real-IP header
+	if xri := r.Header.Get("X-Real-IP"); xri != "" {
+		return strings.TrimSpace(xri)
+	}
+	
+	// Fall back to RemoteAddr
+	if idx := strings.LastIndex(r.RemoteAddr, ":"); idx != -1 {
+		return r.RemoteAddr[:idx]
+	}
+	
+	return r.RemoteAddr
+}
+
+// validateRequest performs basic validation on JSON-RPC requests
+func (s *RPCServer) validateRequest(req *JSONRPCRequest) error {
+	if req.JSONRPC != "2.0" {
+		return fmt.Errorf("invalid jsonrpc version: %s", req.JSONRPC)
+	}
+	
+	if req.Method == "" {
+		return fmt.Errorf("missing method")
+	}
+	
+	// Validate method name format
+	if len(req.Method) > 128 {
+		return fmt.Errorf("method name too long")
+	}
+	
+	// Check for potentially dangerous method names
+	if strings.Contains(req.Method, "..") || strings.Contains(req.Method, "/") {
+		return fmt.Errorf("invalid method name format")
+	}
+	
+	return nil
 }
 
 func (s *RPCServer) handleWebSocket(w http.ResponseWriter, r *http.Request) {
@@ -179,6 +355,7 @@ func (s *RPCServer) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 func (s *RPCServer) handleRequest(req *JSONRPCRequest) *JSONRPCResponse {
 	method, exists := s.methods[req.Method]
 	if !exists {
+		log.Printf("⚠️ Unknown method requested: %s", req.Method)
 		return &JSONRPCResponse{
 			JSONRPC: "2.0",
 			Error:   &RPCError{Code: -32601, Message: "Method not found"},
@@ -186,8 +363,12 @@ func (s *RPCServer) handleRequest(req *JSONRPCRequest) *JSONRPCResponse {
 		}
 	}
 	
+	// Log method calls for security monitoring
+	log.Printf("📞 RPC call: %s", req.Method)
+	
 	result, err := method(req.Params)
 	if err != nil {
+		log.Printf("❌ RPC method %s failed: %v", req.Method, err)
 		return &JSONRPCResponse{
 			JSONRPC: "2.0",
 			Error:   &RPCError{Code: -32000, Message: err.Error()},
@@ -452,7 +633,28 @@ func (s *RPCServer) ethGasPrice(params json.RawMessage) (interface{}, error) {
 }
 
 func (s *RPCServer) ethEstimateGas(params json.RawMessage) (interface{}, error) {
-	return "0x5208", nil // 21000 gas
+	var p []interface{}
+	err := json.Unmarshal(params, &p)
+	if err != nil || len(p) < 1 {
+		return "0x5208", nil // Default 21000 gas
+	}
+	
+	txMap, ok := p[0].(map[string]interface{})
+	if !ok {
+		return "0x5208", nil // Default 21000 gas
+	}
+	
+	// Check if it's a contract deployment (no to address)
+	if txMap["to"] == nil {
+		return "0x1e8480", nil // 2,000,000 gas for contract deployment
+	}
+	
+	// Check if there's data (contract interaction)
+	if data, ok := txMap["data"].(string); ok && len(data) > 2 {
+		return "0xc350", nil // 50,000 gas for contract interaction
+	}
+	
+	return "0x5208", nil // 21000 gas for simple transfer
 }
 
 func (s *RPCServer) netVersion(params json.RawMessage) (interface{}, error) {
@@ -514,4 +716,106 @@ func (s *RPCServer) minerStop(params json.RawMessage) (interface{}, error) {
 func (s *RPCServer) minerSetEtherbase(params json.RawMessage) (interface{}, error) {
 	// For now, just return success
 	return true, nil
+}
+
+// Test methods removed for security - they exposed private keys
+
+// Critical EVM methods for production networks
+
+func (s *RPCServer) ethCall(params json.RawMessage) (interface{}, error) {
+	var p []interface{}
+	err := json.Unmarshal(params, &p)
+	if err != nil || len(p) < 2 {
+		return nil, fmt.Errorf("invalid parameters")
+	}
+	
+	txMap, ok := p[0].(map[string]interface{})
+	if !ok {
+		return nil, fmt.Errorf("invalid transaction object")
+	}
+	
+	// Execute the call (read-only)
+	to, _ := txMap["to"].(string)
+	data, _ := txMap["data"].(string)
+	
+	// For now, return a simple result for testing
+	// In production, this would execute the EVM call
+	if to == "0x000000000000000000000000000000000000000a" {
+		// Dilithium precompile
+		return "0x0000000000000000000000000000000000000000000000000000000000000001", nil
+	}
+	
+	// For contract calls, check if there's actual code to execute
+	if data != "" && data != "0x" {
+		// This would normally execute the contract bytecode
+		// For now, return empty result
+		return "0x", nil
+	}
+	
+	return "0x", nil
+}
+
+func (s *RPCServer) ethGetCode(params json.RawMessage) (interface{}, error) {
+	var p []interface{}
+	err := json.Unmarshal(params, &p)
+	if err != nil || len(p) < 1 {
+		return nil, fmt.Errorf("invalid parameters")
+	}
+	
+	addrStr, ok := p[0].(string)
+	if !ok {
+		return nil, fmt.Errorf("invalid address")
+	}
+	
+	addr, err := types.HexToAddress(addrStr)
+	if err != nil {
+		return nil, fmt.Errorf("invalid address format: %w", err)
+	}
+	
+	// Get contract code from blockchain state
+	code := s.node.blockchain.GetCode(addr)
+	if len(code) == 0 {
+		return "0x", nil
+	}
+	
+	return fmt.Sprintf("0x%x", code), nil
+}
+
+func (s *RPCServer) ethGetLogs(params json.RawMessage) (interface{}, error) {
+	// Return empty logs for now
+	// In production, this would query event logs
+	return []interface{}{}, nil
+}
+
+func (s *RPCServer) ethGetStorageAt(params json.RawMessage) (interface{}, error) {
+	var p []interface{}
+	err := json.Unmarshal(params, &p)
+	if err != nil || len(p) < 2 {
+		return nil, fmt.Errorf("invalid parameters")
+	}
+	
+	addrStr, ok := p[0].(string)
+	if !ok {
+		return nil, fmt.Errorf("invalid address")
+	}
+	
+	posStr, ok := p[1].(string)
+	if !ok {
+		return nil, fmt.Errorf("invalid position")
+	}
+	
+	addr, err := types.HexToAddress(addrStr)
+	if err != nil {
+		return nil, fmt.Errorf("invalid address format: %w", err)
+	}
+	
+	pos, err := types.HexToHash(posStr)
+	if err != nil {
+		return nil, fmt.Errorf("invalid position format: %w", err)
+	}
+	
+	// Get storage value from blockchain state
+	value := s.node.blockchain.GetState(addr, pos)
+	
+	return value.Hex(), nil
 }
