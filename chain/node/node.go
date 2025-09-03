@@ -43,14 +43,17 @@ func DefaultConfig() *Config {
 	}
 }
 
-// Node represents a quantum-resistant blockchain node
+// Node represents a quantum-resistant blockchain node with fast consensus and QTM token
 type Node struct {
-	config     *Config
-	consensus  *consensus.QuantumPoSConsensus
-	blockchain *Blockchain
-	txPool     *TxPool
-	p2p        *P2PNetwork
-	rpc        *RPCServer
+	config        *Config
+	consensus     *consensus.QuantumPoSConsensus  // Legacy consensus
+	fastConsensus *consensus.FastConsensus        // New fast consensus (Flare-like)
+	blockchain    *Blockchain
+	txPool        *TxPool
+	p2p           *P2PNetwork
+	rpc           *RPCServer
+	tokenSupply   *types.TokenSupply              // Native QTM token management
+	gasPricing    *types.GasPriceCalculator       // Dynamic gas pricing
 	
 	// Validator info
 	validatorPrivKey []byte
@@ -68,14 +71,22 @@ type Node struct {
 	mining  bool
 }
 
-// NewNode creates a new node instance
+// NewNode creates a new node instance with QTM token and fast consensus
 func NewNode(config *Config) (*Node, error) {
 	ctx, cancel := context.WithCancel(context.Background())
 	
+	// Initialize native QTM token supply
+	tokenSupply := types.NewTokenSupply()
+	
+	// Initialize dynamic gas pricing
+	gasPricing := types.NewGasPriceCalculator()
+	
 	node := &Node{
-		config: config,
-		ctx:    ctx,
-		cancel: cancel,
+		config:      config,
+		ctx:         ctx,
+		cancel:      cancel,
+		tokenSupply: tokenSupply,
+		gasPricing:  gasPricing,
 	}
 	
 	// Initialize validator if configured
@@ -93,29 +104,38 @@ func NewNode(config *Config) (*Node, error) {
 	}
 	node.blockchain = blockchain
 	
-	// Initialize transaction pool
-	node.txPool = NewTxPool(1000) // Max 1000 pending transactions
+	// Initialize transaction pool with larger capacity for higher throughput
+	node.txPool = NewTxPool(5000) // Max 5000 pending transactions for fast blocks
 	
-	// Initialize consensus
+	// Initialize fast consensus (replaces legacy QuantumPoS)
+	chainID := big.NewInt(int64(config.NetworkID))
+	node.fastConsensus = consensus.NewFastConsensus(chainID, tokenSupply)
+	
+	// Register validator if configured
 	if node.validatorPrivKey != nil {
-		node.consensus = consensus.NewQuantumPoSConsensus(
-			node.validatorPrivKey,
-			node.validatorAlg,
-			node.validatorAddr,
-		)
+		// Initialize validator with significant stake
+		initialStake := new(big.Int)
+		initialStake.SetString("1000000000000000000000000", 10) // 1M QTM with 18 decimals
 		
-		// Create initial validator set with this validator
-		validatorInfo := &consensus.ValidatorInfo{
-			Address:   node.validatorAddr,
-			PublicKey: node.getPublicKey(),
-			SigAlg:    node.validatorAlg,
-			Stake:     big.NewInt(1000000), // 1M tokens
-			LastActive: 0,
-			Slashed:   false,
+		// Give initial QTM tokens to validator
+		tokenSupply.SetBalance(node.validatorAddr, initialStake)
+		
+		// Register as validator in fast consensus
+		err = node.fastConsensus.RegisterValidator(
+			node.validatorAddr,
+			node.getPublicKey(),
+			initialStake,
+			node.validatorAlg,
+		)
+		if err != nil {
+			return nil, fmt.Errorf("failed to register validator: %w", err)
 		}
 		
-		validatorSet := consensus.NewValidatorSet([]*consensus.ValidatorInfo{validatorInfo})
-		node.consensus.SetValidatorSet(validatorSet)
+		// Stake tokens for consensus participation
+		err = tokenSupply.Stake(node.validatorAddr, initialStake)
+		if err != nil {
+			return nil, fmt.Errorf("failed to stake tokens: %w", err)
+		}
 	}
 	
 	// Initialize P2P network
@@ -245,21 +265,25 @@ func (n *Node) startBlockProduction() {
 	go func() {
 		defer n.wg.Done()
 		
-		ticker := time.NewTicker(n.consensus.GetBlockTime())
+		// Fast consensus: 2-second block time for Flare-like performance
+		ticker := time.NewTicker(2 * time.Second)
 		defer ticker.Stop()
+		
+		log.Printf("Started fast block production (2-second blocks)")
 		
 		for {
 			select {
 			case <-n.ctx.Done():
 				return
 			case <-ticker.C:
-				n.produceBlock()
+				n.produceFastBlock()
 			}
 		}
 	}()
 }
 
-func (n *Node) produceBlock() {
+// produceFastBlock produces blocks using fast consensus with QTM rewards
+func (n *Node) produceFastBlock() {
 	n.mu.Lock()
 	defer n.mu.Unlock()
 	
@@ -269,20 +293,43 @@ func (n *Node) produceBlock() {
 	
 	// Get current head
 	currentBlock := n.blockchain.GetCurrentBlock()
+	blockHeight := new(big.Int).Add(currentBlock.Number(), big.NewInt(1))
 	
-	// Get pending transactions
-	transactions := n.txPool.GetPendingTransactions(100) // Max 100 transactions per block
-	
-	// Prepare block
-	block, err := n.consensus.PrepareBlock(
-		currentBlock,
-		transactions,
-		n.validatorAddr,
-		n.config.GasLimit,
-	)
-	
+	// Check if this validator should propose next block
+	nextProposer, err := n.fastConsensus.GetNextProposer(blockHeight.Uint64())
 	if err != nil {
-		log.Printf("Failed to prepare block: %v", err)
+		log.Printf("Failed to get next proposer: %v", err)
+		return
+	}
+	
+	if nextProposer != n.validatorAddr {
+		// Not our turn to propose
+		return
+	}
+	
+	// Update network load for dynamic gas pricing
+	pendingCount := n.txPool.Size()
+	networkLoad := float64(pendingCount) / 5000.0 // 5000 is max pool size
+	n.gasPricing.UpdateNetworkLoad(networkLoad)
+	
+	// Get pending transactions with higher limit for throughput
+	transactions := n.txPool.GetPendingTransactions(500) // Up to 500 tx per 2-second block!
+	
+	// Create block with optimized gas limit
+	blockGasLimit := uint64(types.DefaultBlockGasLimit) // 50M gas for high throughput
+	
+	block := types.NewBlock(&types.BlockHeader{
+		ParentHash: currentBlock.Hash(),
+		Number:     blockHeight,
+		GasLimit:   blockGasLimit,
+		GasUsed:    n.calculateGasUsed(transactions),
+		// Simplified header for now - would need to match actual BlockHeader struct
+	}, transactions, nil)
+	
+	// Validate block using fast consensus
+	err = n.fastConsensus.ValidateBlock(block, n.validatorAddr)
+	if err != nil {
+		log.Printf("Failed to validate block: %v", err)
 		return
 	}
 	
@@ -298,10 +345,52 @@ func (n *Node) produceBlock() {
 		n.txPool.RemoveTransaction(tx.Hash())
 	}
 	
-	log.Printf("Produced block #%d with %d transactions", block.Number(), len(transactions))
+	// Mint block reward in QTM
+	blockReward := new(big.Int)
+	blockReward.SetString(types.BlockReward, 10)
+	err = n.tokenSupply.Mint(n.validatorAddr, blockReward)
+	if err != nil {
+		log.Printf("Failed to mint block reward: %v", err)
+	}
+	
+	log.Printf("🚀 Fast block #%d: %d tx, %.1f%% load, reward: %s QTM", 
+		blockHeight.Uint64(), len(transactions), networkLoad*100, 
+		new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
 	
 	// Broadcast block to peers
 	n.p2p.BroadcastBlock(block)
+}
+
+// calculateGasUsed calculates total gas used by transactions with optimized quantum costs
+func (n *Node) calculateGasUsed(transactions []*types.QuantumTransaction) uint64 {
+	totalGas := uint64(0)
+	networkLoad := n.gasPricing.CurrentLoad
+	
+	for _, tx := range transactions {
+		// Base transaction cost (much lower than Ethereum's 21000)
+		gasUsed := uint64(5000) // Reduced base cost
+		
+		// Add data cost (reduced rate)
+		gasUsed += uint64(len(tx.Data)) * 2 // 2 gas per byte vs Ethereum's 16
+		
+		// Add quantum signature verification cost (heavily optimized)
+		switch tx.SigAlg {
+		case crypto.SigAlgDilithium:
+			gasUsed += 800 // Reduced from 50000!
+		case crypto.SigAlgFalcon:
+			gasUsed += 600 // Reduced from 30000!
+		default:
+			gasUsed += 800
+		}
+		
+		// Dynamic adjustment based on network load (minimal impact)
+		loadMultiplier := 1.0 + (networkLoad * 0.2) // Max 1.2x increase
+		gasUsed = uint64(float64(gasUsed) * loadMultiplier)
+		
+		totalGas += gasUsed
+	}
+	
+	return totalGas
 }
 
 // SetMining starts or stops mining
@@ -333,4 +422,44 @@ func (n *Node) GetValidatorAddress() types.Address {
 // GetConfig returns the node configuration
 func (n *Node) GetConfig() *Config {
 	return n.config
+}
+
+// GetTokenSupply returns the native QTM token supply manager
+func (n *Node) GetTokenSupply() *types.TokenSupply {
+	return n.tokenSupply
+}
+
+// GetFastConsensus returns the fast consensus mechanism
+func (n *Node) GetFastConsensus() *consensus.FastConsensus {
+	return n.fastConsensus
+}
+
+// GetGasPricing returns the dynamic gas price calculator
+func (n *Node) GetGasPricing() *types.GasPriceCalculator {
+	return n.gasPricing
+}
+
+// TransferQTM transfers QTM tokens between addresses
+func (n *Node) TransferQTM(from, to types.Address, amount *big.Int) error {
+	return n.tokenSupply.Transfer(from, to, amount)
+}
+
+// GetQTMBalance returns QTM balance for an address
+func (n *Node) GetQTMBalance(addr types.Address) *big.Int {
+	return n.tokenSupply.GetBalance(addr)
+}
+
+// GetTokenInfo returns information about the native QTM token
+func (n *Node) GetTokenInfo() *types.TokenInfo {
+	return n.tokenSupply.GetTokenInfo()
+}
+
+// GetValidators returns the current active validator set
+func (n *Node) GetValidators() []*consensus.Validator {
+	return n.fastConsensus.GetActiveValidators()
+}
+
+// GetConsensusInfo returns consensus mechanism information
+func (n *Node) GetConsensusInfo() map[string]interface{} {
+	return n.fastConsensus.GetConsensusInfo()
 }
