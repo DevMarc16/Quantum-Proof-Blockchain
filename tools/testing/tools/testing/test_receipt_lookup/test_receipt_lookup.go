@@ -169,7 +169,7 @@ func main() {
 					fmt.Printf("⛽ Gas used: %s\n", gasUsed)
 				}
 			}
-			
+
 			fmt.Println("🎯 Receipt lookup test PASSED!")
 			return
 		}

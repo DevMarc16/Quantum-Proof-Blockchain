@@ -20,20 +20,20 @@ func main() {
 		Port string
 	}{
 		{"Validator 1 (Primary)", "http://localhost:8545", "8545"},
-		{"Validator 2 (Secondary)", "http://localhost:8547", "8547"}, 
+		{"Validator 2 (Secondary)", "http://localhost:8547", "8547"},
 		{"Validator 3 (Tertiary)", "http://localhost:8549", "8549"},
 	}
 
 	fmt.Println("1️⃣ Testing Validator Connectivity...")
 	for _, validator := range validators {
 		fmt.Printf("   Testing %s...\n", validator.Name)
-		
+
 		client, err := ethclient.Dial(validator.URL)
 		if err != nil {
 			fmt.Printf("   ❌ Connection failed: %v\n", err)
 			continue
 		}
-		
+
 		// Test chain ID
 		chainID, err := client.NetworkID(context.Background())
 		if err != nil {
@@ -41,7 +41,7 @@ func main() {
 		} else {
 			fmt.Printf("   ✅ Chain ID: %s\n", chainID.String())
 		}
-		
+
 		// Test block number
 		blockNumber, err := client.BlockNumber(context.Background())
 		if err != nil {
@@ -49,7 +49,7 @@ func main() {
 		} else {
 			fmt.Printf("   ✅ Current Block: %d\n", blockNumber)
 		}
-		
+
 		client.Close()
 		fmt.Println()
 	}
@@ -78,7 +78,7 @@ func main() {
 	}
 
 	fmt.Println("\n3️⃣ Testing Quantum Features...")
-	
+
 	// Test quantum precompile addresses (just connectivity)
 	fmt.Println("   🔐 Quantum Precompiles:")
 	fmt.Println("     • Dilithium Verify (0x0a): 800 gas")
@@ -91,12 +91,12 @@ func main() {
 	fmt.Println("\n4️⃣ Testing Block Production...")
 	initialBlock, _ := client.BlockNumber(context.Background())
 	fmt.Printf("   📦 Starting block: %d\n", initialBlock)
-	
+
 	time.Sleep(5 * time.Second)
-	
+
 	finalBlock, _ := client.BlockNumber(context.Background())
 	fmt.Printf("   📦 Final block: %d\n", finalBlock)
-	
+
 	if finalBlock > initialBlock {
 		blocksProduced := finalBlock - initialBlock
 		fmt.Printf("   ✅ Produced %d blocks in 5 seconds\n", blocksProduced)
@@ -106,7 +106,7 @@ func main() {
 	fmt.Println("\n5️⃣ Security Features Verification...")
 	fmt.Println("   ✅ All critical vulnerabilities FIXED:")
 	fmt.Println("     • Precompile input validation: SECURED")
-	fmt.Println("     • Consensus vote verification: SECURED") 
+	fmt.Println("     • Consensus vote verification: SECURED")
 	fmt.Println("     • VRF validator selection: SECURED")
 	fmt.Println("     • P2P authentication: IMPLEMENTED")
 

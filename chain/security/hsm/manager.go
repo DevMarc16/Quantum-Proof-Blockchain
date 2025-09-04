@@ -2,34 +2,34 @@ package hsm
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"log"
 	"sync"
 	"time"
-	"log"
-	"encoding/json"
 
 	qcrypto "quantum-blockchain/chain/crypto"
 )
 
 // DefaultHSMManager implements HSMManager interface
 type DefaultHSMManager struct {
-	providers    map[string]HSMProvider
-	mu           sync.RWMutex
-	auditLog     []AuditEntry
-	policies     map[string]*KeyRotationPolicy
-	config       HSMManagerConfig
+	providers map[string]HSMProvider
+	mu        sync.RWMutex
+	auditLog  []AuditEntry
+	policies  map[string]*KeyRotationPolicy
+	config    HSMManagerConfig
 }
 
 // HSMManagerConfig contains configuration for HSM manager
 type HSMManagerConfig struct {
-	DefaultProvider     string                          `json:"default_provider"`
-	RequiredFIPSLevel   int                            `json:"required_fips_level"`
-	AuditRetentionDays  int                            `json:"audit_retention_days"`
-	BackupEnabled       bool                           `json:"backup_enabled"`
-	BackupLocation      string                         `json:"backup_location"`
-	RotationPolicies    map[string]*KeyRotationPolicy  `json:"rotation_policies"`
-	EmergencyContacts   []string                       `json:"emergency_contacts"`
-	MaxFailedAttempts   int                            `json:"max_failed_attempts"`
+	DefaultProvider    string                        `json:"default_provider"`
+	RequiredFIPSLevel  int                           `json:"required_fips_level"`
+	AuditRetentionDays int                           `json:"audit_retention_days"`
+	BackupEnabled      bool                          `json:"backup_enabled"`
+	BackupLocation     string                        `json:"backup_location"`
+	RotationPolicies   map[string]*KeyRotationPolicy `json:"rotation_policies"`
+	EmergencyContacts  []string                      `json:"emergency_contacts"`
+	MaxFailedAttempts  int                           `json:"max_failed_attempts"`
 }
 
 // NewHSMManager creates a new HSM manager
@@ -143,8 +143,8 @@ func (m *DefaultHSMManager) CreateValidatorKey(ctx context.Context, validatorID 
 		MaxAge:           90 * 24 * time.Hour, // 90 days
 		MaxSignatures:    1000000,             // 1M signatures
 		ForceRotation:    false,
-		RotationSchedule: "0 0 1 */3 *",       // Quarterly
-		NotifyBefore:     7 * 24 * time.Hour,  // 1 week notice
+		RotationSchedule: "0 0 1 */3 *",      // Quarterly
+		NotifyBefore:     7 * 24 * time.Hour, // 1 week notice
 	})
 
 	// Create backup if enabled
@@ -229,7 +229,7 @@ func (m *DefaultHSMManager) BackupKey(ctx context.Context, keyID string, destina
 
 	// In production: encrypt backup with master key and store securely
 	log.Printf("💾 Backup created for key %s (size: %d bytes)", keyID, len(backupJSON))
-	
+
 	m.logAudit("backup_key", keyID, "system", "success", destination)
 	return nil
 }
@@ -278,7 +278,7 @@ func (m *DefaultHSMManager) EmergencyRecovery(ctx context.Context, params Emerge
 	}
 
 	// In production: validate authorization signatures, multi-party approval, etc.
-	
+
 	// Perform emergency procedures
 	for _, keyID := range params.RecoveryKeys {
 		// Disable compromised keys
@@ -320,9 +320,9 @@ func (m *DefaultHSMManager) findKeyProvider(ctx context.Context, keyID string) (
 func (m *DefaultHSMManager) validateFIPSCompliance(providerName string) bool {
 	// In production: check actual FIPS certification
 	fipsLevels := map[string]int{
-		"aws-cloudhsm":    3, // FIPS 140-2 Level 3
-		"azure-keyvault":  2, // FIPS 140-2 Level 2  
-		"pkcs11-hsm":      4, // Can be Level 4
+		"aws-cloudhsm":   3, // FIPS 140-2 Level 3
+		"azure-keyvault": 2, // FIPS 140-2 Level 2
+		"pkcs11-hsm":     4, // Can be Level 4
 	}
 
 	level, exists := fipsLevels[providerName]
@@ -354,9 +354,9 @@ func (m *DefaultHSMManager) logAudit(operation, keyID, userID, result, detail st
 		Result:      result,
 		ErrorDetail: detail,
 	}
-	
+
 	m.auditLog = append(m.auditLog, entry)
-	
+
 	// Keep audit log size manageable
 	if len(m.auditLog) > 10000 {
 		m.auditLog = m.auditLog[1000:] // Keep last 9000 entries

@@ -50,7 +50,7 @@ func main() {
 	}
 
 	gasPrice := big.NewInt(1000000000) // 1 gwei
-	chainID := big.NewInt(8888) // Our quantum chain ID
+	chainID := big.NewInt(8888)        // Our quantum chain ID
 
 	fmt.Printf("Chain ID: %d\n", chainID.Int64())
 	fmt.Printf("Starting nonce: %d\n", nonce)
@@ -64,10 +64,10 @@ func main() {
 	// Create contract creation transaction
 	tx := types.NewContractCreation(
 		nonce,
-		big.NewInt(0),                              // value
-		uint64(1000000),                           // gas limit
-		gasPrice,                                   // gas price
-		common.FromHex(simpleTokenBytecode),       // data
+		big.NewInt(0),                       // value
+		uint64(1000000),                     // gas limit
+		gasPrice,                            // gas price
+		common.FromHex(simpleTokenBytecode), // data
 	)
 
 	// Sign transaction
@@ -93,14 +93,14 @@ func main() {
 			fmt.Printf("Contract deployed to: %s\n", receipt.ContractAddress.Hex())
 			fmt.Printf("Gas used: %d\n", receipt.GasUsed)
 			fmt.Printf("Block number: %d\n", receipt.BlockNumber.Uint64())
-			
+
 			// Create deployment config
 			fmt.Println("")
 			fmt.Println("🎉 Deployment Successful!")
 			fmt.Println("Contract Address:", receipt.ContractAddress.Hex())
 			return
 		}
-		
+
 		fmt.Print(".")
 		time.Sleep(2 * time.Second)
 	}

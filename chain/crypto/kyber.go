@@ -33,7 +33,7 @@ func GenerateKyberKeyPair() (*KyberPrivateKey, *KyberPublicKey, error) {
 	// Pack keys into arrays
 	var privKey KyberPrivateKey
 	var pubKey KyberPublicKey
-	
+
 	privateKey.Pack(privKey.privateKey[:])
 	publicKey.Pack(pubKey.publicKey[:])
 
@@ -49,10 +49,10 @@ func (pub *KyberPublicKey) Encapsulate() ([]byte, []byte, error) {
 	// Generate encapsulated shared secret
 	ciphertext := make([]byte, KyberCiphertextSize)
 	sharedSecret := make([]byte, KyberSharedSecretSize)
-	
+
 	// Use the Encapsulate function
 	publicKey.EncapsulateTo(ciphertext, sharedSecret, nil)
-	
+
 	return ciphertext, sharedSecret, nil
 }
 
@@ -61,15 +61,15 @@ func (priv *KyberPrivateKey) Decapsulate(ciphertext []byte) ([]byte, error) {
 	if len(ciphertext) != KyberCiphertextSize {
 		return nil, errors.New("invalid ciphertext size")
 	}
-	
+
 	// Unpack private key
 	var privateKey kyber512.PrivateKey
 	privateKey.Unpack(priv.privateKey[:])
-	
+
 	// Decapsulate the shared secret
 	sharedSecret := make([]byte, KyberSharedSecretSize)
 	privateKey.DecapsulateTo(sharedSecret, ciphertext)
-	
+
 	return sharedSecret, nil
 }
 
@@ -88,14 +88,14 @@ func KyberPublicKeyFromBytes(data []byte) (*KyberPublicKey, error) {
 	if len(data) != KyberPublicKeySize {
 		return nil, errors.New("invalid public key size")
 	}
-	
+
 	var pubKey KyberPublicKey
 	copy(pubKey.publicKey[:], data)
-	
+
 	// Validate by unpacking
 	var publicKey kyber512.PublicKey
 	publicKey.Unpack(pubKey.publicKey[:])
-	
+
 	return &pubKey, nil
 }
 
@@ -104,14 +104,14 @@ func KyberPrivateKeyFromBytes(data []byte) (*KyberPrivateKey, error) {
 	if len(data) != KyberPrivateKeySize {
 		return nil, errors.New("invalid private key size")
 	}
-	
+
 	var privKey KyberPrivateKey
 	copy(privKey.privateKey[:], data)
-	
+
 	// Validate by unpacking
 	var privateKey kyber512.PrivateKey
 	privateKey.Unpack(privKey.privateKey[:])
-	
+
 	return &privKey, nil
 }
 
@@ -123,18 +123,18 @@ func KyberDecapsulate(ciphertext, privateKeyBytes []byte) ([]byte, error) {
 	if len(ciphertext) != KyberCiphertextSize {
 		return nil, errors.New("invalid ciphertext size")
 	}
-	
+
 	// Create private key array
 	var privKeyArray [KyberPrivateKeySize]byte
 	copy(privKeyArray[:], privateKeyBytes)
-	
+
 	// Unpack private key
 	var privateKey kyber512.PrivateKey
 	privateKey.Unpack(privKeyArray[:])
-	
+
 	// Decapsulate
 	sharedSecret := make([]byte, KyberSharedSecretSize)
 	privateKey.DecapsulateTo(sharedSecret, ciphertext)
-	
+
 	return sharedSecret, nil
 }

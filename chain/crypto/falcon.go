@@ -33,13 +33,13 @@ func GenerateFalconKeyPair() (*FalconPrivateKey, *FalconPublicKey, error) {
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to generate ED25519 key: %w", err)
 	}
-	
+
 	// Generate Dilithium keypair
 	dilithiumPriv, dilithiumPub, err := GenerateDilithiumKeyPair()
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to generate Dilithium key: %w", err)
 	}
-	
+
 	return &FalconPrivateKey{
 			ed25519Key:   ed25519Priv,
 			dilithiumKey: dilithiumPriv,
@@ -53,18 +53,18 @@ func GenerateFalconKeyPair() (*FalconPrivateKey, *FalconPublicKey, error) {
 func (priv *FalconPrivateKey) Sign(message []byte) ([]byte, error) {
 	// Create ED25519 signature
 	ed25519Sig := ed25519.Sign(priv.ed25519Key, message)
-	
+
 	// Create Dilithium signature
 	dilithiumSig, err := priv.dilithiumKey.Sign(message)
 	if err != nil {
 		return nil, fmt.Errorf("dilithium signing failed: %w", err)
 	}
-	
+
 	// Combine signatures
 	signature := make([]byte, 0, FalconSignatureSize)
 	signature = append(signature, ed25519Sig...)
 	signature = append(signature, dilithiumSig...)
-	
+
 	return signature, nil
 }
 
@@ -73,16 +73,16 @@ func (pub *FalconPublicKey) Verify(message, signature []byte) bool {
 	if len(signature) != FalconSignatureSize {
 		return false
 	}
-	
+
 	// Split signature
 	ed25519Sig := signature[:ed25519.SignatureSize]
 	dilithiumSig := signature[ed25519.SignatureSize:]
-	
+
 	// Verify ED25519 signature
 	if !ed25519.Verify(pub.ed25519Key, message, ed25519Sig) {
 		return false
 	}
-	
+
 	// Verify Dilithium signature
 	return pub.dilithiumKey.Verify(message, dilithiumSig)
 }
@@ -107,7 +107,7 @@ func (priv *FalconPrivateKey) Bytes() []byte {
 func (priv *FalconPrivateKey) Public() *FalconPublicKey {
 	ed25519Pub := priv.ed25519Key.Public().(ed25519.PublicKey)
 	dilithiumPub := priv.dilithiumKey.Public()
-	
+
 	return &FalconPublicKey{
 		ed25519Key:   ed25519Pub,
 		dilithiumKey: dilithiumPub,
@@ -119,17 +119,17 @@ func FalconPublicKeyFromBytes(data []byte) (*FalconPublicKey, error) {
 	if len(data) != FalconPublicKeySize {
 		return nil, errors.New("invalid public key size")
 	}
-	
+
 	// Split the data
 	ed25519Key := data[:ed25519.PublicKeySize]
 	dilithiumData := data[ed25519.PublicKeySize:]
-	
+
 	// Parse Dilithium key
 	dilithiumKey, err := DilithiumPublicKeyFromBytes(dilithiumData)
 	if err != nil {
 		return nil, fmt.Errorf("invalid dilithium public key: %w", err)
 	}
-	
+
 	return &FalconPublicKey{
 		ed25519Key:   ed25519.PublicKey(ed25519Key),
 		dilithiumKey: dilithiumKey,
@@ -141,17 +141,17 @@ func FalconPrivateKeyFromBytes(data []byte) (*FalconPrivateKey, error) {
 	if len(data) != FalconPrivateKeySize {
 		return nil, errors.New("invalid private key size")
 	}
-	
+
 	// Split the data
 	ed25519Key := data[:ed25519.PrivateKeySize]
 	dilithiumData := data[ed25519.PrivateKeySize:]
-	
+
 	// Parse Dilithium key
 	dilithiumKey, err := DilithiumPrivateKeyFromBytes(dilithiumData)
 	if err != nil {
 		return nil, fmt.Errorf("invalid dilithium private key: %w", err)
 	}
-	
+
 	return &FalconPrivateKey{
 		ed25519Key:   ed25519.PrivateKey(ed25519Key),
 		dilithiumKey: dilithiumKey,
@@ -164,6 +164,6 @@ func VerifyFalcon(message, signature, publicKeyBytes []byte) bool {
 	if err != nil {
 		return false
 	}
-	
+
 	return pubKey.Verify(message, signature)
 }

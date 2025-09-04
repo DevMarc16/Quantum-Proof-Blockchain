@@ -2,11 +2,11 @@ package hsm
 
 import (
 	"context"
-	"fmt"
-	"time"
 	"crypto/rand"
 	"encoding/json"
+	"fmt"
 	"log"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -106,7 +106,7 @@ func (p *AWSCloudHSMProvider) generateDilithiumKey(ctx context.Context, keyID st
 	// Simulate CloudHSM Dilithium key generation
 	// In production, this would use CloudHSM's PKCS#11 interface
 	// with Dilithium algorithm support (when available)
-	
+
 	// For now, generate a mock public key structure
 	mockPublicKey := make([]byte, 1312) // Dilithium-II public key size
 	_, err := rand.Read(mockPublicKey)
@@ -160,7 +160,7 @@ func (p *AWSCloudHSMProvider) ListKeys(ctx context.Context) ([]string, error) {
 	// Simulate key listing from CloudHSM
 	keys := []string{
 		"validator-001",
-		"validator-002", 
+		"validator-002",
 		"validator-003",
 		"governance-master",
 		"emergency-backup",
@@ -178,7 +178,7 @@ func (p *AWSCloudHSMProvider) DeleteKey(ctx context.Context, keyID string) error
 
 	// Simulate secure key deletion in CloudHSM
 	log.Printf("🗑️ Securely deleting key %s from AWS CloudHSM", keyID)
-	
+
 	p.logAudit("delete_key", keyID, "system", "success", "")
 	return nil
 }
@@ -233,8 +233,8 @@ func (p *AWSCloudHSMProvider) Close() error {
 func (p *AWSCloudHSMProvider) supportsAlgorithm(algorithm qcrypto.SignatureAlgorithm) bool {
 	// AWS CloudHSM supports these quantum-resistant algorithms
 	supported := map[qcrypto.SignatureAlgorithm]bool{
-		qcrypto.SigAlgDilithium: true,  // CRYSTALS-Dilithium
-		qcrypto.SigAlgFalcon:    true,  // FALCON (when available)
+		qcrypto.SigAlgDilithium: true, // CRYSTALS-Dilithium
+		qcrypto.SigAlgFalcon:    true, // FALCON (when available)
 	}
 	return supported[algorithm]
 }
@@ -250,9 +250,9 @@ func (p *AWSCloudHSMProvider) logAudit(operation, keyID, userID, result, errorDe
 		Result:      result,
 		ErrorDetail: errorDetail,
 	}
-	
+
 	p.auditLog = append(p.auditLog, entry)
-	
+
 	// In production, send to secure audit logging system
 	auditJSON, _ := json.Marshal(entry)
 	log.Printf("📋 AUDIT: %s", string(auditJSON))

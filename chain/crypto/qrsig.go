@@ -46,12 +46,12 @@ func SignMessage(message []byte, algorithm SignatureAlgorithm, privateKeyBytes [
 		if err != nil {
 			return nil, fmt.Errorf("invalid Dilithium private key: %w", err)
 		}
-		
+
 		signature, err = priv.Sign(message)
 		if err != nil {
 			return nil, fmt.Errorf("Dilithium signing failed: %w", err)
 		}
-		
+
 		// Derive public key from private key properly
 		// For Dilithium, the private key contains the public key as part of its structure
 		// We need to extract the actual public key from the private key object
@@ -67,12 +67,12 @@ func SignMessage(message []byte, algorithm SignatureAlgorithm, privateKeyBytes [
 		if err != nil {
 			return nil, fmt.Errorf("invalid Falcon private key: %w", err)
 		}
-		
+
 		signature, err = priv.Sign(message)
 		if err != nil {
 			return nil, fmt.Errorf("Falcon signing failed: %w", err)
 		}
-		
+
 		// Derive public key from private key properly for Falcon
 		pubKeyObj := priv.Public()
 		if pubKeyObj != nil {

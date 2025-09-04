@@ -20,18 +20,18 @@ const (
 
 // QuantumTransaction represents a quantum-resistant transaction
 type QuantumTransaction struct {
-	ChainID   *big.Int               `json:"chainId"`
-	Nonce     uint64                 `json:"nonce"`
-	GasPrice  *big.Int               `json:"gasPrice"`
-	Gas       uint64                 `json:"gas"`
-	To        *Address               `json:"to"`
-	Value     *big.Int               `json:"value"`
-	Data      []byte                 `json:"input"`
-	SigAlg    crypto.SignatureAlgorithm `json:"sigAlg"`
-	PublicKey []byte                 `json:"publicKey,omitempty"` // Only for first-time use
-	Signature []byte                 `json:"signature"`
-	KemCapsule []byte                `json:"kemCapsule,omitempty"` // Optional KEM encapsulation
-	
+	ChainID    *big.Int                  `json:"chainId"`
+	Nonce      uint64                    `json:"nonce"`
+	GasPrice   *big.Int                  `json:"gasPrice"`
+	Gas        uint64                    `json:"gas"`
+	To         *Address                  `json:"to"`
+	Value      *big.Int                  `json:"value"`
+	Data       []byte                    `json:"input"`
+	SigAlg     crypto.SignatureAlgorithm `json:"sigAlg"`
+	PublicKey  []byte                    `json:"publicKey,omitempty"` // Only for first-time use
+	Signature  []byte                    `json:"signature"`
+	KemCapsule []byte                    `json:"kemCapsule,omitempty"` // Optional KEM encapsulation
+
 	// Computed fields
 	hash Hash    `json:"hash"`
 	size uint64  `json:"size"`
@@ -55,23 +55,23 @@ func NewQuantumTransaction(chainID *big.Int, nonce uint64, to *Address, value *b
 func (tx *QuantumTransaction) SignTransaction(privateKey []byte, algorithm crypto.SignatureAlgorithm) error {
 	// Compute transaction hash for signing
 	sigHash := tx.SigningHash()
-	
+
 	// Sign the hash
 	qrSig, err := crypto.SignMessage(sigHash.Bytes(), algorithm, privateKey)
 	if err != nil {
 		return err
 	}
-	
+
 	tx.SigAlg = qrSig.Algorithm
 	tx.Signature = qrSig.Signature
 	tx.PublicKey = qrSig.PublicKey
-	
+
 	// Compute sender address
 	tx.from = PublicKeyToAddress(tx.PublicKey)
-	
+
 	// Compute transaction hash
 	tx.hash = tx.Hash()
-	
+
 	return nil
 }
 
@@ -80,13 +80,13 @@ func (tx *QuantumTransaction) VerifySignature() (bool, error) {
 	if len(tx.Signature) == 0 || len(tx.PublicKey) == 0 {
 		return false, nil
 	}
-	
+
 	qrSig := &crypto.QRSignature{
 		Algorithm: tx.SigAlg,
 		Signature: tx.Signature,
 		PublicKey: tx.PublicKey,
 	}
-	
+
 	sigHash := tx.SigningHash()
 	return crypto.VerifySignature(sigHash.Bytes(), qrSig)
 }
@@ -99,19 +99,19 @@ func (tx *QuantumTransaction) SigningHash() Hash {
 	data = append(data, uint64ToBytes(tx.Nonce)...)
 	data = append(data, tx.GasPrice.Bytes()...)
 	data = append(data, uint64ToBytes(tx.Gas)...)
-	
+
 	if tx.To != nil {
 		data = append(data, tx.To.Bytes()...)
 	}
-	
+
 	data = append(data, tx.Value.Bytes()...)
 	data = append(data, tx.Data...)
-	
+
 	// Include KEM capsule if present
 	if len(tx.KemCapsule) > 0 {
 		data = append(data, tx.KemCapsule...)
 	}
-	
+
 	return BytesToHash(Keccak256(data))
 }
 
@@ -120,13 +120,13 @@ func (tx *QuantumTransaction) Hash() Hash {
 	if !tx.hash.IsZero() {
 		return tx.hash
 	}
-	
+
 	// Include signature in hash
 	data := []byte{}
 	data = append(data, tx.SigningHash().Bytes()...)
 	data = append(data, byte(tx.SigAlg))
 	data = append(data, tx.Signature...)
-	
+
 	tx.hash = BytesToHash(Keccak256(data))
 	return tx.hash
 }
@@ -153,18 +153,18 @@ func (tx *QuantumTransaction) calculateSize() uint64 {
 	size += 8  // Nonce
 	size += 32 // GasPrice
 	size += 8  // Gas
-	
+
 	if tx.To != nil {
 		size += 20 // To address
 	}
-	
-	size += 32                     // Value
-	size += uint64(len(tx.Data))   // Data
-	size += 1                      // SigAlg
-	size += uint64(len(tx.PublicKey)) // PublicKey
-	size += uint64(len(tx.Signature)) // Signature
+
+	size += 32                         // Value
+	size += uint64(len(tx.Data))       // Data
+	size += 1                          // SigAlg
+	size += uint64(len(tx.PublicKey))  // PublicKey
+	size += uint64(len(tx.Signature))  // Signature
 	size += uint64(len(tx.KemCapsule)) // KemCapsule
-	
+
 	return size
 }
 
@@ -211,27 +211,27 @@ func (tx *QuantumTransaction) IsContractCreation() bool {
 // MarshalJSON marshals the transaction to JSON
 func (tx *QuantumTransaction) MarshalJSON() ([]byte, error) {
 	type txJSON struct {
-		Hash      string `json:"hash"`
-		ChainID   string `json:"chainId"`
-		Nonce     string `json:"nonce"`
-		GasPrice  string `json:"gasPrice"`
-		Gas       string `json:"gas"`
-		To        string `json:"to,omitempty"`
-		Value     string `json:"value"`
-		Data      string `json:"input"`
-		SigAlg    uint8  `json:"sigAlg"`
-		PublicKey string `json:"publicKey,omitempty"`
-		Signature string `json:"signature"`
+		Hash       string `json:"hash"`
+		ChainID    string `json:"chainId"`
+		Nonce      string `json:"nonce"`
+		GasPrice   string `json:"gasPrice"`
+		Gas        string `json:"gas"`
+		To         string `json:"to,omitempty"`
+		Value      string `json:"value"`
+		Data       string `json:"input"`
+		SigAlg     uint8  `json:"sigAlg"`
+		PublicKey  string `json:"publicKey,omitempty"`
+		Signature  string `json:"signature"`
 		KemCapsule string `json:"kemCapsule,omitempty"`
-		From      string `json:"from"`
-		Size      string `json:"size"`
+		From       string `json:"from"`
+		Size       string `json:"size"`
 	}
-	
+
 	var toAddr string
 	if tx.To != nil {
 		toAddr = tx.To.Hex()
 	}
-	
+
 	// Convert big.Int to uint256.Int for JSON marshaling
 	chainID := uint256.NewInt(0)
 	chainID.SetFromBig(tx.ChainID)
@@ -242,56 +242,56 @@ func (tx *QuantumTransaction) MarshalJSON() ([]byte, error) {
 	value := uint256.NewInt(0)
 	value.SetFromBig(tx.Value)
 	size := uint256.NewInt(uint64(tx.Size()))
-	
+
 	return json.Marshal(&txJSON{
-		Hash:      tx.Hash().Hex(),
-		ChainID:   chainID.Hex(),
-		Nonce:     nonce.Hex(),
-		GasPrice:  gasPrice.Hex(),
-		Gas:       gas.Hex(),
-		To:        toAddr,
-		Value:     value.Hex(),
-		Data:      "0x" + hex.EncodeToString(tx.Data),
-		SigAlg:    uint8(tx.SigAlg),
-		PublicKey: "0x" + hex.EncodeToString(tx.PublicKey),
-		Signature: "0x" + hex.EncodeToString(tx.Signature),
+		Hash:       tx.Hash().Hex(),
+		ChainID:    chainID.Hex(),
+		Nonce:      nonce.Hex(),
+		GasPrice:   gasPrice.Hex(),
+		Gas:        gas.Hex(),
+		To:         toAddr,
+		Value:      value.Hex(),
+		Data:       "0x" + hex.EncodeToString(tx.Data),
+		SigAlg:     uint8(tx.SigAlg),
+		PublicKey:  "0x" + hex.EncodeToString(tx.PublicKey),
+		Signature:  "0x" + hex.EncodeToString(tx.Signature),
 		KemCapsule: "0x" + hex.EncodeToString(tx.KemCapsule),
-		From:      tx.From().Hex(),
-		Size:      size.Hex(),
+		From:       tx.From().Hex(),
+		Size:       size.Hex(),
 	})
 }
 
 // UnmarshalJSON implements JSON unmarshaling for QuantumTransaction
 func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 	type txJSON struct {
-		Hash      string `json:"hash"`
-		ChainID   string `json:"chainId"`
-		Nonce     string `json:"nonce"`
-		GasPrice  string `json:"gasPrice"`
-		Gas       string `json:"gas"`
-		To        string `json:"to,omitempty"`
-		Value     string `json:"value"`
-		Data      string `json:"input"`
-		SigAlg    uint8  `json:"sigAlg"`
-		PublicKey string `json:"publicKey,omitempty"`
-		Signature string `json:"signature"`
+		Hash       string `json:"hash"`
+		ChainID    string `json:"chainId"`
+		Nonce      string `json:"nonce"`
+		GasPrice   string `json:"gasPrice"`
+		Gas        string `json:"gas"`
+		To         string `json:"to,omitempty"`
+		Value      string `json:"value"`
+		Data       string `json:"input"`
+		SigAlg     uint8  `json:"sigAlg"`
+		PublicKey  string `json:"publicKey,omitempty"`
+		Signature  string `json:"signature"`
 		KemCapsule string `json:"kemCapsule,omitempty"`
-		From      string `json:"from"`
-		Size      string `json:"size"`
+		From       string `json:"from"`
+		Size       string `json:"size"`
 	}
 
 	var txData txJSON
 	if err := json.Unmarshal(data, &txData); err != nil {
 		return err
 	}
-	
+
 	// Parse chain ID
 	chainID := new(big.Int)
 	if txData.ChainID != "" {
 		chainID.SetString(strings.TrimPrefix(txData.ChainID, "0x"), 16)
 	}
 	tx.ChainID = chainID
-	
+
 	// Parse nonce
 	if txData.Nonce != "" {
 		nonce, err := uint256.FromHex(txData.Nonce)
@@ -299,14 +299,14 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 			tx.Nonce = nonce.Uint64()
 		}
 	}
-	
+
 	// Parse gas price
 	gasPrice := new(big.Int)
 	if txData.GasPrice != "" {
 		gasPrice.SetString(strings.TrimPrefix(txData.GasPrice, "0x"), 16)
 	}
 	tx.GasPrice = gasPrice
-	
+
 	// Parse gas limit
 	if txData.Gas != "" {
 		gas, err := uint256.FromHex(txData.Gas)
@@ -314,7 +314,7 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 			tx.Gas = gas.Uint64()
 		}
 	}
-	
+
 	// Parse to address
 	if txData.To != "" && txData.To != "0x" {
 		addr, err := HexToAddress(txData.To)
@@ -323,14 +323,14 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 		}
 		tx.To = &addr
 	}
-	
+
 	// Parse value
 	value := new(big.Int)
 	if txData.Value != "" {
 		value.SetString(strings.TrimPrefix(txData.Value, "0x"), 16)
 	}
 	tx.Value = value
-	
+
 	// Parse data
 	if txData.Data != "" && strings.HasPrefix(txData.Data, "0x") {
 		data, err := hex.DecodeString(strings.TrimPrefix(txData.Data, "0x"))
@@ -341,10 +341,10 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 			tx.Data = []byte(strings.TrimPrefix(txData.Data, "0x"))
 		}
 	}
-	
+
 	// Parse signature algorithm
 	tx.SigAlg = crypto.SignatureAlgorithm(txData.SigAlg)
-	
+
 	// Parse public key - stored as raw bytes in JSON, need to decode properly
 	if txData.PublicKey != "" && strings.HasPrefix(txData.PublicKey, "0x") {
 		pubKeyData := strings.TrimPrefix(txData.PublicKey, "0x")
@@ -359,8 +359,8 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 		// Raw binary data in JSON
 		tx.PublicKey = []byte(txData.PublicKey)
 	}
-	
-	// Parse signature - stored as raw bytes in JSON, need to decode properly  
+
+	// Parse signature - stored as raw bytes in JSON, need to decode properly
 	if txData.Signature != "" && strings.HasPrefix(txData.Signature, "0x") {
 		sigData := strings.TrimPrefix(txData.Signature, "0x")
 		// Try hex decode first
@@ -374,7 +374,7 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 		// Raw binary data in JSON
 		tx.Signature = []byte(txData.Signature)
 	}
-	
+
 	// Parse KEM capsule
 	if txData.KemCapsule != "" && strings.HasPrefix(txData.KemCapsule, "0x") {
 		kemData, err := hex.DecodeString(strings.TrimPrefix(txData.KemCapsule, "0x"))
@@ -382,7 +382,7 @@ func (tx *QuantumTransaction) UnmarshalJSON(data []byte) error {
 			tx.KemCapsule = kemData
 		}
 	}
-	
+
 	return nil
 }
 
@@ -398,12 +398,12 @@ func DecodeRLPTransaction(data []byte) (*QuantumTransaction, error) {
 		}
 		data = decoded
 	}
-	
+
 	var tx QuantumTransaction
 	if err := json.Unmarshal(data, &tx); err != nil {
 		return nil, err
 	}
-	
+
 	return &tx, nil
 }
 

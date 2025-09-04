@@ -3,24 +3,24 @@ package hsm
 import (
 	"context"
 	"fmt"
-	"time"
 	"log"
 	"sync"
+	"time"
 
 	"quantum-blockchain/chain/types"
 )
 
 // ValidatorHSMService integrates HSM with validator operations
 type ValidatorHSMService struct {
-	hsmManager   HSMManager
-	provider     HSMProvider
-	validatorID  string
-	keyID        string
-	handle       *HSMKeyHandle
-	mu           sync.RWMutex
-	lastUsed     time.Time
-	signCount    int64
-	initialized  bool
+	hsmManager  HSMManager
+	provider    HSMProvider
+	validatorID string
+	keyID       string
+	handle      *HSMKeyHandle
+	mu          sync.RWMutex
+	lastUsed    time.Time
+	signCount   int64
+	initialized bool
 }
 
 // ValidatorHSMConfig contains configuration for validator HSM integration
@@ -68,12 +68,12 @@ func (v *ValidatorHSMService) Initialize(ctx context.Context, config ValidatorHS
 	v.initialized = true
 	v.lastUsed = time.Now()
 
-	log.Printf("✅ Validator HSM Service initialized for %s (Key: %s, Algorithm: %v)", 
+	log.Printf("✅ Validator HSM Service initialized for %s (Key: %s, Algorithm: %v)",
 		config.ValidatorID, keyID, handle.Algorithm)
-	
+
 	// Start background key rotation monitoring
 	go v.monitorKeyRotation(ctx)
-	
+
 	return nil
 }
 
@@ -105,9 +105,9 @@ func (v *ValidatorHSMService) SignBlock(ctx context.Context, block *types.Block)
 	v.signCount++
 	v.lastUsed = time.Now()
 
-	log.Printf("✍️ Block signed by validator %s using HSM (signature count: %d)", 
+	log.Printf("✍️ Block signed by validator %s using HSM (signature count: %d)",
 		v.validatorID, v.signCount)
-	
+
 	return signature, nil
 }
 
@@ -169,9 +169,9 @@ func (v *ValidatorHSMService) RotateKey(ctx context.Context, newProvider string)
 	v.signCount = 0 // Reset counter
 	v.lastUsed = time.Now()
 
-	log.Printf("🔑 Key rotated for validator %s: %s -> %s", 
+	log.Printf("🔑 Key rotated for validator %s: %s -> %s",
 		v.validatorID, oldKeyID, newHandle.ID)
-	
+
 	return nil
 }
 
@@ -179,11 +179,11 @@ func (v *ValidatorHSMService) RotateKey(ctx context.Context, newProvider string)
 func (v *ValidatorHSMService) GetKeyInfo() *HSMKeyHandle {
 	v.mu.RLock()
 	defer v.mu.RUnlock()
-	
+
 	if !v.initialized {
 		return nil
 	}
-	
+
 	// Return copy to prevent external modification
 	info := *v.handle
 	return &info
@@ -193,15 +193,15 @@ func (v *ValidatorHSMService) GetKeyInfo() *HSMKeyHandle {
 func (v *ValidatorHSMService) GetUsageStats() map[string]interface{} {
 	v.mu.RLock()
 	defer v.mu.RUnlock()
-	
+
 	return map[string]interface{}{
-		"validator_id":    v.validatorID,
-		"key_id":         v.keyID,
-		"sign_count":     v.signCount,
-		"last_used":      v.lastUsed,
-		"key_age":        time.Since(v.handle.CreatedAt),
-		"algorithm":      v.handle.Algorithm,
-		"initialized":    v.initialized,
+		"validator_id": v.validatorID,
+		"key_id":       v.keyID,
+		"sign_count":   v.signCount,
+		"last_used":    v.lastUsed,
+		"key_age":      time.Since(v.handle.CreatedAt),
+		"algorithm":    v.handle.Algorithm,
+		"initialized":  v.initialized,
 	}
 }
 
@@ -209,22 +209,22 @@ func (v *ValidatorHSMService) GetUsageStats() map[string]interface{} {
 func (v *ValidatorHSMService) Health(ctx context.Context) error {
 	v.mu.RLock()
 	defer v.mu.RUnlock()
-	
+
 	if !v.initialized {
 		return fmt.Errorf("service not initialized")
 	}
-	
+
 	// Check HSM connectivity
 	if err := v.provider.Health(ctx); err != nil {
 		return fmt.Errorf("HSM health check failed: %v", err)
 	}
-	
+
 	// Test key access
 	_, err := v.provider.GetKey(ctx, v.keyID)
 	if err != nil {
 		return fmt.Errorf("key access test failed: %v", err)
 	}
-	
+
 	return nil
 }
 
@@ -232,13 +232,13 @@ func (v *ValidatorHSMService) Health(ctx context.Context) error {
 func (v *ValidatorHSMService) Close() error {
 	v.mu.Lock()
 	defer v.mu.Unlock()
-	
+
 	if v.provider != nil {
 		if err := v.provider.Close(); err != nil {
 			return err
 		}
 	}
-	
+
 	v.initialized = false
 	log.Printf("🔌 Validator HSM service closed for %s", v.validatorID)
 	return nil
@@ -302,7 +302,7 @@ func (v *ValidatorHSMService) monitorKeyRotation(ctx context.Context) {
 
 			if needsRotation {
 				log.Printf("⏰ Automatic key rotation triggered for validator %s", v.validatorID)
-				
+
 				// Use same provider for rotation (can be configurable)
 				providerName := "aws-cloudhsm" // Default provider
 				if err := v.RotateKey(ctx, providerName); err != nil {

@@ -33,18 +33,18 @@ type ValidatorEndpoint struct {
 func main() {
 	fmt.Println("🔗 Multi-Validator Quantum Network Monitoring")
 	fmt.Println("============================================")
-	
+
 	// Define validator endpoints
 	validators := []ValidatorEndpoint{
 		{"Validator 1 (Primary)", "http://localhost:8545", 8545},
 		{"Validator 2 (Secondary)", "http://localhost:8547", 8547},
 		{"Validator 3 (Tertiary)", "http://localhost:8549", 8549},
 	}
-	
+
 	// Test 1: Verify all validators are running and responsive
 	fmt.Println("\n📡 Test 1: Validator Connectivity & Chain Info")
 	fmt.Println("---------------------------------------------")
-	
+
 	allValid := true
 	for _, validator := range validators {
 		chainID, err := getChainID(validator.URL)
@@ -53,35 +53,35 @@ func main() {
 			allValid = false
 			continue
 		}
-		
+
 		// Convert chain ID to decimal
 		chainIDInt := new(big.Int)
 		chainIDInt.SetString(chainID[2:], 16) // Remove 0x prefix and parse as hex
-		
+
 		fmt.Printf("✅ %s: Chain ID %s (%s)\n", validator.Name, chainID, chainIDInt.String())
-		
+
 		// Get network info
 		gasPrice, _ := getGasPrice(validator.URL)
 		fmt.Printf("   💰 Gas Price: %s\n", gasPrice)
 	}
-	
+
 	if !allValid {
 		fmt.Println("\n❌ Some validators are not responding. Check deployment.")
 		return
 	}
-	
+
 	// Test 2: Monitor block heights and consensus over time
 	fmt.Println("\n⛏️  Test 2: Block Production & Multi-Validator Consensus")
 	fmt.Println("------------------------------------------------------")
-	
+
 	startTime := time.Now()
-	
+
 	for round := 1; round <= 10; round++ {
 		fmt.Printf("\n--- Consensus Round %d ---\n", round)
-		
+
 		heights := make([]int64, len(validators))
 		allConnected := true
-		
+
 		for i, validator := range validators {
 			height, err := getBlockHeight(validator.URL)
 			if err != nil {
@@ -91,12 +91,12 @@ func main() {
 				continue
 			}
 			heights[i] = height
-			
+
 			// Get additional block info
 			block, err := getBlockByNumber(validator.URL, fmt.Sprintf("0x%x", height))
 			if err == nil && block != nil {
 				blockMap := block.(map[string]interface{})
-				
+
 				// Safely extract timestamp
 				var timestampStr string
 				if ts, exists := blockMap["timestamp"]; exists && ts != nil {
@@ -104,7 +104,7 @@ func main() {
 						timestampStr = tsStr
 					}
 				}
-				
+
 				if timestampStr != "" && len(timestampStr) > 2 {
 					timestampInt := new(big.Int)
 					timestampInt.SetString(timestampStr[2:], 16)
@@ -116,7 +116,7 @@ func main() {
 				fmt.Printf("📦 %s: Block %d\n", validator.Name, height)
 			}
 		}
-		
+
 		if allConnected {
 			// Check consensus (heights should be within 2 blocks of each other)
 			minHeight, maxHeight := heights[0], heights[0]
@@ -128,7 +128,7 @@ func main() {
 					maxHeight = h
 				}
 			}
-			
+
 			heightDiff := maxHeight - minHeight
 			if heightDiff <= 2 {
 				fmt.Printf("✅ Consensus Status: All validators in sync (max diff: %d blocks)\n", heightDiff)
@@ -137,7 +137,7 @@ func main() {
 			} else {
 				fmt.Printf("❌ Consensus Status: Validators significantly out of sync (max diff: %d blocks)\n", heightDiff)
 			}
-			
+
 			// Calculate block production rate
 			if round > 1 {
 				totalBlocks := int64(0)
@@ -145,23 +145,23 @@ func main() {
 					totalBlocks += h
 				}
 				avgHeight := float64(totalBlocks) / float64(len(heights))
-				
+
 				elapsed := time.Since(startTime).Seconds()
 				if elapsed > 0 {
 					blocksPerSecond := avgHeight / elapsed
-					fmt.Printf("⚡ Network Performance: %.2f blocks/second across %d validators\n", 
+					fmt.Printf("⚡ Network Performance: %.2f blocks/second across %d validators\n",
 						blocksPerSecond, len(validators))
 				}
 			}
 		}
-		
+
 		time.Sleep(4 * time.Second) // Wait for new blocks
 	}
-	
+
 	// Test 3: Network health and validator coordination
 	fmt.Println("\n📊 Test 3: Network Health Assessment")
 	fmt.Println("-----------------------------------")
-	
+
 	finalHeights := make([]int64, len(validators))
 	for i, validator := range validators {
 		height, err := getBlockHeight(validator.URL)
@@ -170,7 +170,7 @@ func main() {
 			continue
 		}
 		finalHeights[i] = height
-		
+
 		// Check if validator is actively mining (block should have increased)
 		if height > 0 {
 			fmt.Printf("✅ %s: Active (height: %d)\n", validator.Name, height)
@@ -178,7 +178,7 @@ func main() {
 			fmt.Printf("⚠️  %s: Inactive (height: %d)\n", validator.Name, height)
 		}
 	}
-	
+
 	// Final consensus check
 	minHeight, maxHeight := finalHeights[0], finalHeights[0]
 	for _, h := range finalHeights {
@@ -191,19 +191,19 @@ func main() {
 			}
 		}
 	}
-	
+
 	if maxHeight > 0 {
 		heightDiff := maxHeight - minHeight
 		totalTime := time.Since(startTime)
 		avgBlockTime := totalTime.Seconds() / float64(maxHeight)
-		
+
 		fmt.Printf("\n🎯 Final Network Statistics:\n")
 		fmt.Printf("   🔗 Active Validators: %d\n", len(validators))
 		fmt.Printf("   📦 Max Block Height: %d\n", maxHeight)
 		fmt.Printf("   🔄 Height Variance: %d blocks\n", heightDiff)
 		fmt.Printf("   ⏱️  Average Block Time: %.2f seconds\n", avgBlockTime)
 		fmt.Printf("   🚀 Network Uptime: %.1f minutes\n", totalTime.Minutes())
-		
+
 		if heightDiff <= 2 {
 			fmt.Println("   ✅ Consensus Quality: EXCELLENT")
 		} else if heightDiff <= 5 {
@@ -211,7 +211,7 @@ func main() {
 		} else {
 			fmt.Println("   ❌ Consensus Quality: NEEDS ATTENTION")
 		}
-		
+
 		if avgBlockTime <= 3.0 {
 			fmt.Println("   ✅ Block Production: FAST")
 		} else if avgBlockTime <= 6.0 {
@@ -220,7 +220,7 @@ func main() {
 			fmt.Println("   ❌ Block Production: SLOW")
 		}
 	}
-	
+
 	fmt.Println("\n🏆 Multi-Validator Network Test Complete!")
 	fmt.Println("========================================")
 	fmt.Printf("✅ Successfully monitored %d validators\n", len(validators))
@@ -238,28 +238,28 @@ func rpcCall(url string, method string, params []interface{}) (interface{}, erro
 		"params":  params,
 		"id":      1,
 	})
-	
+
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var rpcResp RPCResponse
 	err = json.Unmarshal(body, &rpcResp)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	if rpcResp.Error != nil {
 		return nil, fmt.Errorf("RPC error: %s", rpcResp.Error.Message)
 	}
-	
+
 	return rpcResp.Result, nil
 }
 
@@ -276,7 +276,7 @@ func getBlockHeight(url string) (int64, error) {
 	if err != nil {
 		return 0, err
 	}
-	
+
 	heightHex := result.(string)
 	height := new(big.Int)
 	height.SetString(heightHex[2:], 16) // Remove 0x prefix

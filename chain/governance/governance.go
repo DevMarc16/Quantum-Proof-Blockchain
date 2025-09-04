@@ -14,36 +14,36 @@ import (
 
 // GovernanceSystem implements on-chain governance for quantum blockchain
 type GovernanceSystem struct {
-	chainID           *big.Int
-	proposals         map[uint64]*Proposal
-	votes             map[uint64]map[types.Address]*Vote
-	nextProposalID    uint64
-	
+	chainID        *big.Int
+	proposals      map[uint64]*Proposal
+	votes          map[uint64]map[types.Address]*Vote
+	nextProposalID uint64
+
 	// Governance parameters
-	votingPeriod      time.Duration
-	executionDelay    time.Duration
-	quorum            float64        // Minimum participation rate
-	threshold         float64        // Minimum approval rate
-	proposalDeposit   *big.Int       // Minimum QTM to create proposal
-	
+	votingPeriod    time.Duration
+	executionDelay  time.Duration
+	quorum          float64  // Minimum participation rate
+	threshold       float64  // Minimum approval rate
+	proposalDeposit *big.Int // Minimum QTM to create proposal
+
 	// Validator voting power
-	validatorSet      ValidatorSet
-	
+	validatorSet ValidatorSet
+
 	// Upgrade management
-	upgrades          map[string]*NetworkUpgrade
-	pendingUpgrades   []*NetworkUpgrade
-	
+	upgrades        map[string]*NetworkUpgrade
+	pendingUpgrades []*NetworkUpgrade
+
 	// Security
-	emergencyPause    bool
-	emergencyCouncil  []types.Address
-	
+	emergencyPause   bool
+	emergencyCouncil []types.Address
+
 	// Thread safety
-	mu                sync.RWMutex
-	
+	mu sync.RWMutex
+
 	// Event handlers
-	onProposalCreated func(*Proposal)
-	onVoteCast        func(*Vote)
-	onProposalPassed  func(*Proposal)
+	onProposalCreated  func(*Proposal)
+	onVoteCast         func(*Vote)
+	onProposalPassed   func(*Proposal)
 	onUpgradeScheduled func(*NetworkUpgrade)
 }
 
@@ -63,33 +63,33 @@ type ValidatorInfo struct {
 
 // Proposal represents a governance proposal
 type Proposal struct {
-	ID              uint64            `json:"id"`
-	Title           string            `json:"title"`
-	Description     string            `json:"description"`
-	Proposer        types.Address     `json:"proposer"`
-	Type            ProposalType      `json:"type"`
-	Content         ProposalContent   `json:"content"`
-	
+	ID          uint64          `json:"id"`
+	Title       string          `json:"title"`
+	Description string          `json:"description"`
+	Proposer    types.Address   `json:"proposer"`
+	Type        ProposalType    `json:"type"`
+	Content     ProposalContent `json:"content"`
+
 	// Timing
-	SubmissionTime  time.Time         `json:"submissionTime"`
-	VotingStart     time.Time         `json:"votingStart"`
-	VotingEnd       time.Time         `json:"votingEnd"`
-	ExecutionTime   time.Time         `json:"executionTime"`
-	
+	SubmissionTime time.Time `json:"submissionTime"`
+	VotingStart    time.Time `json:"votingStart"`
+	VotingEnd      time.Time `json:"votingEnd"`
+	ExecutionTime  time.Time `json:"executionTime"`
+
 	// Status
-	Status          ProposalStatus    `json:"status"`
-	Deposit         *big.Int          `json:"deposit"`
-	
+	Status  ProposalStatus `json:"status"`
+	Deposit *big.Int       `json:"deposit"`
+
 	// Results
-	VotesFor        *big.Int          `json:"votesFor"`
-	VotesAgainst    *big.Int          `json:"votesAgainst"`
-	VotesAbstain    *big.Int          `json:"votesAbstain"`
-	TotalVotes      *big.Int          `json:"totalVotes"`
-	Participation   float64           `json:"participation"`
-	
+	VotesFor      *big.Int `json:"votesFor"`
+	VotesAgainst  *big.Int `json:"votesAgainst"`
+	VotesAbstain  *big.Int `json:"votesAbstain"`
+	TotalVotes    *big.Int `json:"totalVotes"`
+	Participation float64  `json:"participation"`
+
 	// Execution
-	Executed        bool              `json:"executed"`
-	ExecutionResult string            `json:"executionResult,omitempty"`
+	Executed        bool   `json:"executed"`
+	ExecutionResult string `json:"executionResult,omitempty"`
 }
 
 // ProposalType defines different types of proposals
@@ -122,29 +122,29 @@ const (
 type ProposalContent struct {
 	// Parameter changes
 	Parameters map[string]interface{} `json:"parameters,omitempty"`
-	
+
 	// Software upgrades
 	UpgradeInfo *UpgradeInfo `json:"upgradeInfo,omitempty"`
-	
+
 	// Validator changes
 	ValidatorChanges *ValidatorChanges `json:"validatorChanges,omitempty"`
-	
+
 	// Treasury spending
 	TreasurySpend *TreasurySpendInfo `json:"treasurySpend,omitempty"`
-	
+
 	// Raw data for custom proposals
 	RawData []byte `json:"rawData,omitempty"`
 }
 
 // UpgradeInfo defines software upgrade details
 type UpgradeInfo struct {
-	Name            string            `json:"name"`
-	Version         string            `json:"version"`
-	Height          uint64            `json:"height"`
-	Info            string            `json:"info"`
-	Binaries        map[string]string `json:"binaries"` // os/arch -> download URL
-	Checksum        string            `json:"checksum"`
-	UpgradeParams   map[string]interface{} `json:"upgradeParams,omitempty"`
+	Name          string                 `json:"name"`
+	Version       string                 `json:"version"`
+	Height        uint64                 `json:"height"`
+	Info          string                 `json:"info"`
+	Binaries      map[string]string      `json:"binaries"` // os/arch -> download URL
+	Checksum      string                 `json:"checksum"`
+	UpgradeParams map[string]interface{} `json:"upgradeParams,omitempty"`
 }
 
 // ValidatorChanges defines validator set changes
@@ -170,12 +170,12 @@ type TreasurySpendInfo struct {
 
 // Vote represents a governance vote
 type Vote struct {
-	ProposalID   uint64              `json:"proposalId"`
-	Voter        types.Address       `json:"voter"`
-	VotingPower  *big.Int            `json:"votingPower"`
-	Option       VoteOption          `json:"option"`
-	Timestamp    time.Time           `json:"timestamp"`
-	Signature    []byte              `json:"signature"`
+	ProposalID   uint64                    `json:"proposalId"`
+	Voter        types.Address             `json:"voter"`
+	VotingPower  *big.Int                  `json:"votingPower"`
+	Option       VoteOption                `json:"option"`
+	Timestamp    time.Time                 `json:"timestamp"`
+	Signature    []byte                    `json:"signature"`
 	SigAlgorithm crypto.SignatureAlgorithm `json:"sigAlgorithm"`
 }
 
@@ -191,13 +191,13 @@ const (
 
 // NetworkUpgrade represents a scheduled network upgrade
 type NetworkUpgrade struct {
-	Name         string                 `json:"name"`
-	Version      string                 `json:"version"`
-	Height       uint64                 `json:"height"`
-	Timestamp    time.Time              `json:"timestamp"`
-	Status       UpgradeStatus          `json:"status"`
-	Plan         *UpgradeInfo           `json:"plan"`
-	Progress     *UpgradeProgress       `json:"progress"`
+	Name      string           `json:"name"`
+	Version   string           `json:"version"`
+	Height    uint64           `json:"height"`
+	Timestamp time.Time        `json:"timestamp"`
+	Status    UpgradeStatus    `json:"status"`
+	Plan      *UpgradeInfo     `json:"plan"`
+	Progress  *UpgradeProgress `json:"progress"`
 }
 
 // UpgradeStatus represents upgrade status
@@ -213,11 +213,11 @@ const (
 
 // UpgradeProgress tracks upgrade progress
 type UpgradeProgress struct {
-	NodesUpgraded    int       `json:"nodesUpgraded"`
-	TotalNodes       int       `json:"totalNodes"`
-	ValidatorsReady  int       `json:"validatorsReady"`
-	TotalValidators  int       `json:"totalValidators"`
-	LastUpdate       time.Time `json:"lastUpdate"`
+	NodesUpgraded   int       `json:"nodesUpgraded"`
+	TotalNodes      int       `json:"totalNodes"`
+	ValidatorsReady int       `json:"validatorsReady"`
+	TotalValidators int       `json:"totalValidators"`
+	LastUpdate      time.Time `json:"lastUpdate"`
 }
 
 // NewGovernanceSystem creates a new governance system
@@ -226,17 +226,17 @@ func NewGovernanceSystem(chainID *big.Int, validatorSet ValidatorSet) *Governanc
 	proposalDeposit.SetString("10000000000000000000000", 10) // 10,000 QTM
 
 	return &GovernanceSystem{
-		chainID:         chainID,
-		proposals:       make(map[uint64]*Proposal),
-		votes:           make(map[uint64]map[types.Address]*Vote),
-		nextProposalID:  1,
-		votingPeriod:    7 * 24 * time.Hour,  // 7 days
-		executionDelay:  24 * time.Hour,      // 1 day delay before execution
-		quorum:          0.4,                 // 40% participation required
-		threshold:       0.5,                 // 50% approval required
-		proposalDeposit: proposalDeposit,
-		validatorSet:    validatorSet,
-		upgrades:        make(map[string]*NetworkUpgrade),
+		chainID:          chainID,
+		proposals:        make(map[uint64]*Proposal),
+		votes:            make(map[uint64]map[types.Address]*Vote),
+		nextProposalID:   1,
+		votingPeriod:     7 * 24 * time.Hour, // 7 days
+		executionDelay:   24 * time.Hour,     // 1 day delay before execution
+		quorum:           0.4,                // 40% participation required
+		threshold:        0.5,                // 50% approval required
+		proposalDeposit:  proposalDeposit,
+		validatorSet:     validatorSet,
+		upgrades:         make(map[string]*NetworkUpgrade),
 		emergencyCouncil: []types.Address{}, // Set by initialization
 	}
 }
@@ -271,22 +271,22 @@ func (gs *GovernanceSystem) SubmitProposal(
 	// Create proposal
 	now := time.Now()
 	proposal := &Proposal{
-		ID:              gs.nextProposalID,
-		Title:           title,
-		Description:     description,
-		Proposer:        proposer,
-		Type:            proposalType,
-		Content:         content,
-		SubmissionTime:  now,
-		VotingStart:     now.Add(24 * time.Hour), // 1 day review period
-		VotingEnd:       now.Add(24*time.Hour + gs.votingPeriod),
-		ExecutionTime:   now.Add(24*time.Hour + gs.votingPeriod + gs.executionDelay),
-		Status:          StatusPending,
-		Deposit:         new(big.Int).Set(deposit),
-		VotesFor:        big.NewInt(0),
-		VotesAgainst:    big.NewInt(0),
-		VotesAbstain:    big.NewInt(0),
-		TotalVotes:      big.NewInt(0),
+		ID:             gs.nextProposalID,
+		Title:          title,
+		Description:    description,
+		Proposer:       proposer,
+		Type:           proposalType,
+		Content:        content,
+		SubmissionTime: now,
+		VotingStart:    now.Add(24 * time.Hour), // 1 day review period
+		VotingEnd:      now.Add(24*time.Hour + gs.votingPeriod),
+		ExecutionTime:  now.Add(24*time.Hour + gs.votingPeriod + gs.executionDelay),
+		Status:         StatusPending,
+		Deposit:        new(big.Int).Set(deposit),
+		VotesFor:       big.NewInt(0),
+		VotesAgainst:   big.NewInt(0),
+		VotesAbstain:   big.NewInt(0),
+		TotalVotes:     big.NewInt(0),
 	}
 
 	gs.proposals[proposal.ID] = proposal
@@ -371,7 +371,7 @@ func (gs *GovernanceSystem) CastVote(
 	}
 
 	proposal.TotalVotes.Add(proposal.TotalVotes, vote.VotingPower)
-	
+
 	// Update participation rate
 	totalVotingPower := gs.validatorSet.GetTotalVotingPower()
 	if totalVotingPower.Sign() > 0 {
@@ -433,12 +433,12 @@ func (gs *GovernanceSystem) TallyVotes(proposalID uint64) error {
 	// Determine result
 	if approvalRateFloat >= gs.threshold {
 		proposal.Status = StatusPassed
-		
+
 		// Trigger event
 		if gs.onProposalPassed != nil {
 			gs.onProposalPassed(proposal)
 		}
-		
+
 		// Schedule execution for upgrade proposals
 		if proposal.Type == ProposalSoftwareUpgrade && proposal.Content.UpgradeInfo != nil {
 			err := gs.scheduleUpgrade(proposal.Content.UpgradeInfo)
@@ -650,14 +650,14 @@ func (gs *GovernanceSystem) GetGovernanceParams() map[string]interface{} {
 	defer gs.mu.RUnlock()
 
 	return map[string]interface{}{
-		"votingPeriod":     gs.votingPeriod.Hours(),
-		"executionDelay":   gs.executionDelay.Hours(),
-		"quorum":           gs.quorum,
-		"threshold":        gs.threshold,
-		"proposalDeposit":  gs.proposalDeposit.String(),
-		"emergencyPause":   gs.emergencyPause,
-		"totalProposals":   gs.nextProposalID - 1,
-		"activeProposals":  gs.countActiveProposals(),
+		"votingPeriod":    gs.votingPeriod.Hours(),
+		"executionDelay":  gs.executionDelay.Hours(),
+		"quorum":          gs.quorum,
+		"threshold":       gs.threshold,
+		"proposalDeposit": gs.proposalDeposit.String(),
+		"emergencyPause":  gs.emergencyPause,
+		"totalProposals":  gs.nextProposalID - 1,
+		"activeProposals": gs.countActiveProposals(),
 	}
 }
 

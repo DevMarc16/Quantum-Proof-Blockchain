@@ -48,14 +48,14 @@ func init() {
 func runNode(cmd *cobra.Command, args []string) {
 	fmt.Printf("🚀 Starting Quantum Blockchain Node v%s\n", Version)
 	fmt.Printf("📊 Build: %s (commit: %s)\n", BuildTime, Commit)
-	
+
 	config := &node.Config{
 		DataDir:       dataDir,
 		NetworkID:     8888,
 		ListenAddr:    fmt.Sprintf(":%d", port),
 		HTTPPort:      rpcPort,
 		WSPort:        rpcPort + 1,
-		ValidatorKey:  "auto",  // Enable validator mode (key will be auto-generated)
+		ValidatorKey:  "auto", // Enable validator mode (key will be auto-generated)
 		ValidatorAlg:  "dilithium",
 		GenesisConfig: genesisConfig,
 		Mining:        true,
@@ -69,7 +69,7 @@ func runNode(cmd *cobra.Command, args []string) {
 		log.Printf("❌ Failed to create node: %v", err)
 		os.Exit(1)
 	}
-	
+
 	// Start the node in a goroutine
 	go func() {
 		if err := quantumNode.Start(); err != nil {
@@ -86,12 +86,12 @@ func runNode(cmd *cobra.Command, args []string) {
 	// Wait for interrupt signal
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
-	
+
 	<-c
 	fmt.Println("\n🛑 Shutting down quantum blockchain node...")
-	
+
 	quantumNode.Stop()
-	
+
 	fmt.Println("👋 Quantum blockchain node stopped")
 }
 

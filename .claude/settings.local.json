@@ -23,7 +23,8 @@
       "Bash(forge build:*)",
       "Bash(forge create:*)",
       "Bash(cast send:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(gofmt:*)"
     ],
     "deny": [],
     "ask": []

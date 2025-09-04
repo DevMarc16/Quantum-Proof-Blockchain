@@ -71,7 +71,7 @@ func callRPC(method string, params []interface{}) (*RPCResponse, error) {
 func main() {
 	fmt.Println("🚀 Deploying QTM Token Contract with Quantum Signatures")
 	fmt.Println("=====================================================")
-	
+
 	// Wait for blockchain
 	time.Sleep(3 * time.Second)
 
@@ -87,9 +87,9 @@ func main() {
 
 	fmt.Printf("✅ Generated keys - Public: %d bytes, Private: %d bytes\n", len(publicKeyBytes), len(privateKeyBytes))
 
-	// Get nonce for deployment account  
+	// Get nonce for deployment account
 	deployerAddr := "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
-	
+
 	resp, err := callRPC("eth_getTransactionCount", []interface{}{deployerAddr, "latest"})
 	if err != nil {
 		log.Fatal("Failed to get nonce:", err)
@@ -97,7 +97,7 @@ func main() {
 	if resp.Error != nil {
 		log.Fatal("RPC error getting nonce:", resp.Error.Message)
 	}
-	
+
 	nonce := resp.Result.(string)
 	fmt.Printf("📊 Current nonce: %s\n", nonce)
 
@@ -156,7 +156,7 @@ func main() {
 	if err != nil {
 		log.Fatal("Failed to send transaction:", err)
 	}
-	
+
 	if resp.Error != nil {
 		log.Printf("❌ Deployment failed: %s\n", resp.Error.Message)
 		log.Printf("Transaction JSON: %s\n", string(txJSON))
@@ -171,19 +171,19 @@ func main() {
 	for i := 0; i < 30; i++ {
 		time.Sleep(2 * time.Second)
 		fmt.Print(".")
-		
+
 		resp, err := callRPC("eth_getTransactionReceipt", []interface{}{txHash})
 		if err != nil {
 			continue
 		}
-		
+
 		if resp.Result != nil {
 			fmt.Println(" ✅ Mined!")
-			
+
 			receipt := resp.Result.(map[string]interface{})
 			if contractAddr, ok := receipt["contractAddress"]; ok && contractAddr != nil {
 				fmt.Printf("🎉 QTM Token deployed to: %s\n", contractAddr)
-				
+
 				// Create deployment config
 				config := map[string]interface{}{
 					"contracts": map[string]interface{}{
@@ -197,13 +197,13 @@ func main() {
 						"network":   "quantum-testnet",
 					},
 				}
-				
+
 				configJSON, _ := json.MarshalIndent(config, "", "  ")
 				fmt.Printf("\n📄 Deployment Configuration:\n%s\n", string(configJSON))
 				return
 			}
 		}
 	}
-	
+
 	fmt.Println(" ❌ Timeout waiting for transaction")
 }

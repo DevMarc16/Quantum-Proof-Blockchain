@@ -14,7 +14,7 @@ import (
 
 // Client represents a quantum blockchain client
 type Client struct {
-	endpoint string
+	endpoint   string
 	httpClient *http.Client
 }
 
@@ -57,33 +57,33 @@ func (c *Client) call(method string, params interface{}) (json.RawMessage, error
 		Params:  params,
 		ID:      1,
 	}
-	
+
 	reqBody, err := json.Marshal(req)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
 	}
-	
+
 	resp, err := c.httpClient.Post(c.endpoint, "application/json", bytes.NewBuffer(reqBody))
 	if err != nil {
 		return nil, fmt.Errorf("failed to make HTTP request: %w", err)
 	}
 	defer resp.Body.Close()
-	
+
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read response body: %w", err)
 	}
-	
+
 	var rpcResp JSONRPCResponse
 	err = json.Unmarshal(body, &rpcResp)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal response: %w", err)
 	}
-	
+
 	if rpcResp.Error != nil {
 		return nil, fmt.Errorf("RPC error: %s", rpcResp.Error.Message)
 	}
-	
+
 	return rpcResp.Result, nil
 }
 
@@ -93,13 +93,13 @@ func (c *Client) GetChainID() (*big.Int, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var chainIDStr string
 	err = json.Unmarshal(result, &chainIDStr)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	chainID := new(big.Int)
 	chainID.SetString(chainIDStr[2:], 16) // Remove 0x prefix
 	return chainID, nil
@@ -111,13 +111,13 @@ func (c *Client) GetBlockNumber() (*big.Int, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var blockNumStr string
 	err = json.Unmarshal(result, &blockNumStr)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	blockNum := new(big.Int)
 	blockNum.SetString(blockNumStr[2:], 16) // Remove 0x prefix
 	return blockNum, nil
@@ -130,13 +130,13 @@ func (c *Client) GetBalance(address types.Address) (*big.Int, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var balanceStr string
 	err = json.Unmarshal(result, &balanceStr)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	balance := new(big.Int)
 	balance.SetString(balanceStr[2:], 16) // Remove 0x prefix
 	return balance, nil
@@ -149,13 +149,13 @@ func (c *Client) GetNonce(address types.Address) (uint64, error) {
 	if err != nil {
 		return 0, err
 	}
-	
+
 	var nonceStr string
 	err = json.Unmarshal(result, &nonceStr)
 	if err != nil {
 		return 0, err
 	}
-	
+
 	nonce := new(big.Int)
 	nonce.SetString(nonceStr[2:], 16) // Remove 0x prefix
 	return nonce.Uint64(), nil
@@ -168,13 +168,13 @@ func (c *Client) GetBlock(blockNumber *big.Int) (*types.Block, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var block types.Block
 	err = json.Unmarshal(result, &block)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &block, nil
 }
 
@@ -185,13 +185,13 @@ func (c *Client) GetBlockByHash(hash types.Hash) (*types.Block, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var block types.Block
 	err = json.Unmarshal(result, &block)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return &block, nil
 }
 
@@ -201,13 +201,13 @@ func (c *Client) GetGasPrice() (*big.Int, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var gasPriceStr string
 	err = json.Unmarshal(result, &gasPriceStr)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	gasPrice := new(big.Int)
 	gasPrice.SetString(gasPriceStr[2:], 16) // Remove 0x prefix
 	return gasPrice, nil
@@ -223,18 +223,18 @@ func (c *Client) EstimateGas(from, to types.Address, value *big.Int, data []byte
 			"data":  fmt.Sprintf("0x%x", data),
 		},
 	}
-	
+
 	result, err := c.call("eth_estimateGas", params)
 	if err != nil {
 		return 0, err
 	}
-	
+
 	var gasStr string
 	err = json.Unmarshal(result, &gasStr)
 	if err != nil {
 		return 0, err
 	}
-	
+
 	gas := new(big.Int)
 	gas.SetString(gasStr[2:], 16) // Remove 0x prefix
 	return gas.Uint64(), nil
@@ -246,13 +246,13 @@ func (c *Client) GetSupportedAlgorithms() (map[string]interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	var algorithms map[string]interface{}
 	err = json.Unmarshal(result, &algorithms)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return algorithms, nil
 }
 
@@ -268,7 +268,7 @@ type Wallet struct {
 func NewWallet(algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, error) {
 	var privateKey []byte
 	var publicKey []byte
-	
+
 	switch algorithm {
 	case crypto.SigAlgDilithium:
 		priv, pub, genErr := crypto.GenerateDilithiumKeyPair()
@@ -277,7 +277,7 @@ func NewWallet(algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, er
 		}
 		privateKey = priv.Bytes()
 		publicKey = pub.Bytes()
-		
+
 	case crypto.SigAlgFalcon:
 		priv, pub, genErr := crypto.GenerateFalconKeyPair()
 		if genErr != nil {
@@ -285,13 +285,13 @@ func NewWallet(algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, er
 		}
 		privateKey = priv.Bytes()
 		publicKey = pub.Bytes()
-		
+
 	default:
 		return nil, fmt.Errorf("unsupported algorithm: %v", algorithm)
 	}
-	
+
 	address := types.PublicKeyToAddress(publicKey)
-	
+
 	return &Wallet{
 		address:    address,
 		privateKey: privateKey,
@@ -303,7 +303,7 @@ func NewWallet(algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, er
 // LoadWallet loads a wallet from private key bytes
 func LoadWallet(privateKey []byte, algorithm crypto.SignatureAlgorithm, client *Client) (*Wallet, error) {
 	var publicKey []byte
-	
+
 	switch algorithm {
 	case crypto.SigAlgDilithium:
 		priv, err := crypto.DilithiumPrivateKeyFromBytes(privateKey)
@@ -313,7 +313,7 @@ func LoadWallet(privateKey []byte, algorithm crypto.SignatureAlgorithm, client *
 		// Extract public key from private key
 		pubKeyData := priv.Bytes()[:crypto.DilithiumPublicKeySize]
 		publicKey = pubKeyData
-		
+
 	case crypto.SigAlgFalcon:
 		priv, err := crypto.FalconPrivateKeyFromBytes(privateKey)
 		if err != nil {
@@ -322,13 +322,13 @@ func LoadWallet(privateKey []byte, algorithm crypto.SignatureAlgorithm, client *
 		// Extract public key from private key
 		pubKeyData := priv.Bytes()[:crypto.FalconPublicKeySize]
 		publicKey = pubKeyData
-		
+
 	default:
 		return nil, fmt.Errorf("unsupported algorithm: %v", algorithm)
 	}
-	
+
 	address := types.PublicKeyToAddress(publicKey)
-	
+
 	return &Wallet{
 		address:    address,
 		privateKey: privateKey,
@@ -358,20 +358,20 @@ func (w *Wallet) CreateTransaction(to *types.Address, value *big.Int, gasLimit u
 	if err != nil {
 		return nil, fmt.Errorf("failed to get chain ID: %w", err)
 	}
-	
+
 	nonce, err := w.GetNonce()
 	if err != nil {
 		return nil, fmt.Errorf("failed to get nonce: %w", err)
 	}
-	
+
 	tx := types.NewQuantumTransaction(chainID, nonce, to, value, gasLimit, gasPrice, data)
-	
+
 	// Sign the transaction
 	err = tx.SignTransaction(w.privateKey, w.algorithm)
 	if err != nil {
 		return nil, fmt.Errorf("failed to sign transaction: %w", err)
 	}
-	
+
 	return tx, nil
 }
 
@@ -381,17 +381,17 @@ func (w *Wallet) SendTransaction(to types.Address, value *big.Int, data []byte) 
 	if err != nil {
 		return types.ZeroHash, fmt.Errorf("failed to get gas price: %w", err)
 	}
-	
+
 	gasLimit, err := w.client.EstimateGas(w.address, to, value, data)
 	if err != nil {
 		gasLimit = 21000 // Default gas limit
 	}
-	
+
 	tx, err := w.CreateTransaction(&to, value, gasLimit, gasPrice, data)
 	if err != nil {
 		return types.ZeroHash, err
 	}
-	
+
 	// TODO: Implement raw transaction sending
 	// For now, return the transaction hash
 	return tx.Hash(), nil
@@ -422,12 +422,12 @@ func ImportPrivateKey(privateKeyHex string, algorithm crypto.SignatureAlgorithm,
 	if len(privateKeyHex) > 2 && privateKeyHex[:2] == "0x" {
 		privateKeyHex = privateKeyHex[2:]
 	}
-	
+
 	privateKey, err := types.HexToBytes(privateKeyHex)
 	if err != nil {
 		return nil, fmt.Errorf("invalid private key hex: %w", err)
 	}
-	
+
 	return LoadWallet(privateKey, algorithm, client)
 }
 
@@ -436,7 +436,7 @@ func hexToBytes(s string) ([]byte, error) {
 	if len(s)%2 != 0 {
 		return nil, fmt.Errorf("hex string has odd length")
 	}
-	
+
 	result := make([]byte, len(s)/2)
 	for i := 0; i < len(s); i += 2 {
 		b, err := parseHexByte(s[i : i+2])
@@ -445,7 +445,7 @@ func hexToBytes(s string) ([]byte, error) {
 		}
 		result[i/2] = b
 	}
-	
+
 	return result, nil
 }
 
@@ -462,14 +462,14 @@ func parseHexByte(s string) (byte, error) {
 		} else {
 			return 0, fmt.Errorf("invalid hex character: %c", c)
 		}
-		
+
 		if i == 0 {
 			result = val << 4
 		} else {
 			result |= val
 		}
 	}
-	
+
 	return result, nil
 }
 

@@ -43,12 +43,12 @@ func main() {
 		log.Fatal("Failed to create auth:", err)
 	}
 
-	// Set legacy transaction parameters  
+	// Set legacy transaction parameters
 	gasPrice, err := client.SuggestGasPrice(context.Background())
 	if err != nil {
 		gasPrice = big.NewInt(1000000000) // 1 gwei fallback
 	}
-	
+
 	auth.GasPrice = gasPrice
 	auth.GasLimit = uint64(2000000)
 
@@ -84,10 +84,10 @@ func deployContract(client *ethclient.Client, auth *bind.TransactOpts, bytecode 
 	if strings.HasPrefix(bytecode, "0x") {
 		bytecode = bytecode[2:]
 	}
-	
+
 	// Convert hex string to bytes
 	data := common.FromHex(bytecode)
-	
+
 	// Create contract deployment transaction
 	nonce, err := client.PendingNonceAt(context.Background(), auth.From)
 	if err != nil {
@@ -99,7 +99,7 @@ func deployContract(client *ethclient.Client, auth *bind.TransactOpts, bytecode 
 	value := big.NewInt(0)
 
 	tx := types.NewContractCreation(nonce, value, gasLimit, gasPrice, data)
-	
+
 	// Sign transaction
 	signedTx, err := auth.Signer(auth.From, tx)
 	if err != nil {
@@ -114,6 +114,6 @@ func deployContract(client *ethclient.Client, auth *bind.TransactOpts, bytecode 
 
 	// Calculate contract address
 	contractAddress := crypto.CreateAddress(auth.From, nonce)
-	
+
 	return contractAddress, signedTx, nil, nil
 }

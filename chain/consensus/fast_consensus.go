@@ -20,41 +20,41 @@ import (
 // - Fast finality through aggregate signatures
 // - Dynamic validator set based on stake
 type FastConsensus struct {
-	chainID        *big.Int
-	validators     map[types.Address]*Validator
-	validatorList  []*Validator
-	currentEpoch   uint64
-	blockTime      time.Duration
-	mu             sync.RWMutex
-	tokenSupply    *types.TokenSupply
-	minStake       *big.Int
-	maxValidators  int
+	chainID       *big.Int
+	validators    map[types.Address]*Validator
+	validatorList []*Validator
+	currentEpoch  uint64
+	blockTime     time.Duration
+	mu            sync.RWMutex
+	tokenSupply   *types.TokenSupply
+	minStake      *big.Int
+	maxValidators int
 }
 
 // Validator represents a consensus validator
 type Validator struct {
-	Address       types.Address        `json:"address"`
-	PublicKey     []byte              `json:"publicKey"`
-	PrivateKey    []byte              `json:"privateKey,omitempty"` // Only for local validator
-	Stake         *big.Int            `json:"stake"`
-	Performance   float64             `json:"performance"`   // Performance score (0.0 to 1.0)
-	LastActive    time.Time           `json:"lastActive"`
-	SigAlgorithm  crypto.SignatureAlgorithm `json:"sigAlgorithm"`
-	IsActive      bool                `json:"isActive"`
-	BlocksProduced uint64             `json:"blocksProduced"`
-	BlocksMissed   uint64             `json:"blocksMissed"`
+	Address        types.Address             `json:"address"`
+	PublicKey      []byte                    `json:"publicKey"`
+	PrivateKey     []byte                    `json:"privateKey,omitempty"` // Only for local validator
+	Stake          *big.Int                  `json:"stake"`
+	Performance    float64                   `json:"performance"` // Performance score (0.0 to 1.0)
+	LastActive     time.Time                 `json:"lastActive"`
+	SigAlgorithm   crypto.SignatureAlgorithm `json:"sigAlgorithm"`
+	IsActive       bool                      `json:"isActive"`
+	BlocksProduced uint64                    `json:"blocksProduced"`
+	BlocksMissed   uint64                    `json:"blocksMissed"`
 }
 
 // ConsensusMessage represents a consensus message between validators
 type ConsensusMessage struct {
-	Type        MessageType     `json:"type"`
-	Epoch       uint64          `json:"epoch"`
-	BlockHeight uint64          `json:"blockHeight"`
-	BlockHash   types.Hash      `json:"blockHash"`
-	Validator   types.Address   `json:"validator"`
-	Signature   []byte          `json:"signature"`
-	Timestamp   time.Time       `json:"timestamp"`
-	Data        []byte          `json:"data,omitempty"`
+	Type        MessageType   `json:"type"`
+	Epoch       uint64        `json:"epoch"`
+	BlockHeight uint64        `json:"blockHeight"`
+	BlockHash   types.Hash    `json:"blockHash"`
+	Validator   types.Address `json:"validator"`
+	Signature   []byte        `json:"signature"`
+	Timestamp   time.Time     `json:"timestamp"`
+	Data        []byte        `json:"data,omitempty"`
 }
 
 type MessageType uint8
@@ -136,7 +136,7 @@ func (fc *FastConsensus) UpdateValidatorStake(address types.Address, newStake *b
 // updateValidatorList updates the sorted validator list based on stake
 func (fc *FastConsensus) updateValidatorList() {
 	fc.validatorList = make([]*Validator, 0, len(fc.validators))
-	
+
 	for _, validator := range fc.validators {
 		if validator.IsActive && validator.Stake.Cmp(fc.minStake) >= 0 {
 			fc.validatorList = append(fc.validatorList, validator)
@@ -213,12 +213,12 @@ func (fc *FastConsensus) VoteOnBlock(blockHash types.Hash, voter types.Address, 
 	}
 
 	message := &ConsensusMessage{
-		Type:        MessageTypeVote,
-		Epoch:       fc.currentEpoch,
-		BlockHash:   blockHash,
-		Validator:   voter,
-		Timestamp:   time.Now(),
-		Data:        voteData,
+		Type:      MessageTypeVote,
+		Epoch:     fc.currentEpoch,
+		BlockHash: blockHash,
+		Validator: voter,
+		Timestamp: time.Now(),
+		Data:      voteData,
 	}
 
 	// Sign the vote
@@ -338,7 +338,7 @@ func (fc *FastConsensus) updateValidatorPerformance(block *types.Block, votes *c
 
 	// Track which validators participated
 	participatedValidators := make(map[types.Address]bool)
-	
+
 	for i := 0; i < len(votes.PublicKeys); i++ {
 		if (votes.Bitmap & (1 << i)) != 0 {
 			// Find validator by public key
@@ -361,7 +361,7 @@ func (fc *FastConsensus) updateValidatorPerformance(block *types.Block, votes *c
 			validator.BlocksMissed++
 			// Reduce performance score
 			validator.Performance = max(0.0, validator.Performance-0.01)
-			
+
 			// Deactivate if performance drops too low
 			if validator.Performance < 0.5 {
 				validator.IsActive = false
@@ -381,7 +381,7 @@ func (fc *FastConsensus) GetNextProposer(blockHeight uint64) (types.Address, err
 
 	// Use deterministic randomness based on block height
 	seed := big.NewInt(int64(blockHeight))
-	
+
 	// Calculate total weighted stake
 	totalWeight := big.NewInt(0)
 	for _, validator := range fc.validatorList {
@@ -403,7 +403,7 @@ func (fc *FastConsensus) GetNextProposer(blockHeight uint64) (types.Address, err
 		performanceMultiplier := int64(validator.Performance * 1000)
 		weight.Mul(weight, big.NewInt(performanceMultiplier))
 		weight.Div(weight, big.NewInt(1000))
-		
+
 		currentWeight.Add(currentWeight, weight)
 		if currentWeight.Cmp(randomValue) > 0 {
 			return validator.Address, nil
@@ -419,11 +419,11 @@ func (fc *FastConsensus) hashMessage(msg *ConsensusMessage) []byte {
 	data := fmt.Sprintf("%d:%d:%d:%s:%s:%d",
 		msg.Type, msg.Epoch, msg.BlockHeight,
 		msg.BlockHash.Hex(), msg.Validator.Hex(), msg.Timestamp.Unix())
-	
+
 	if len(msg.Data) > 0 {
 		data += ":" + string(msg.Data)
 	}
-	
+
 	hash := sha256.Sum256([]byte(data))
 	return hash[:]
 }

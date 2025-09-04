@@ -12,12 +12,12 @@ import (
 
 // ValidatorInfo represents a validator in the system
 type ValidatorInfo struct {
-	Address    types.Address           `json:"address"`
-	PublicKey  []byte                  `json:"publicKey"`
+	Address    types.Address             `json:"address"`
+	PublicKey  []byte                    `json:"publicKey"`
 	SigAlg     crypto.SignatureAlgorithm `json:"sigAlg"`
-	Stake      *big.Int                `json:"stake"`
-	LastActive uint64                  `json:"lastActive"`
-	Slashed    bool                    `json:"slashed"`
+	Stake      *big.Int                  `json:"stake"`
+	LastActive uint64                    `json:"lastActive"`
+	Slashed    bool                      `json:"slashed"`
 }
 
 // ValidatorSet represents a set of validators
@@ -33,21 +33,21 @@ func NewValidatorSet(validators []*ValidatorInfo) *ValidatorSet {
 		Validators: make([]*ValidatorInfo, len(validators)),
 		TotalStake: big.NewInt(0),
 	}
-	
+
 	copy(vs.Validators, validators)
-	
+
 	// Calculate total stake
 	for _, val := range vs.Validators {
 		if !val.Slashed {
 			vs.TotalStake.Add(vs.TotalStake, val.Stake)
 		}
 	}
-	
+
 	// Sort validators by stake (descending) for deterministic ordering
 	sort.Slice(vs.Validators, func(i, j int) bool {
 		return vs.Validators[i].Stake.Cmp(vs.Validators[j].Stake) > 0
 	})
-	
+
 	return vs
 }
 
@@ -56,37 +56,37 @@ func (vs *ValidatorSet) GetProposer(height uint64, seed []byte) *ValidatorInfo {
 	if len(vs.Validators) == 0 {
 		return nil
 	}
-	
+
 	// Use deterministic pseudo-random selection based on height and seed
 	// This simulates VRF behavior for proposer selection
 	combinedSeed := append(types.SHA256(seed), types.SHA256(types.Uint64ToBytes(height))...)
 	hash := types.SHA256(combinedSeed)
-	
+
 	// Convert hash to big int
 	hashBig := new(big.Int).SetBytes(hash)
-	
+
 	// Select proposer weighted by stake
 	target := new(big.Int).Mod(hashBig, vs.TotalStake)
-	
+
 	cumulative := big.NewInt(0)
 	for _, val := range vs.Validators {
 		if val.Slashed {
 			continue
 		}
-		
+
 		cumulative.Add(cumulative, val.Stake)
 		if target.Cmp(cumulative) < 0 {
 			return val
 		}
 	}
-	
+
 	// Fallback to first validator
 	for _, val := range vs.Validators {
 		if !val.Slashed {
 			return val
 		}
 	}
-	
+
 	return nil
 }
 
@@ -122,17 +122,17 @@ func (vs *ValidatorSet) AddValidator(val *ValidatorInfo) error {
 	if vs.GetByAddress(val.Address) != nil {
 		return errors.New("validator already exists")
 	}
-	
+
 	vs.Validators = append(vs.Validators, val)
 	if !val.Slashed {
 		vs.TotalStake.Add(vs.TotalStake, val.Stake)
 	}
-	
+
 	// Re-sort validators
 	sort.Slice(vs.Validators, func(i, j int) bool {
 		return vs.Validators[i].Stake.Cmp(vs.Validators[j].Stake) > 0
 	})
-	
+
 	return nil
 }
 
@@ -142,16 +142,16 @@ func (vs *ValidatorSet) RemoveValidator(addr types.Address) error {
 		if val.Address.Equal(addr) {
 			// Remove from slice
 			vs.Validators = append(vs.Validators[:i], vs.Validators[i+1:]...)
-			
+
 			// Subtract stake if not slashed
 			if !val.Slashed {
 				vs.TotalStake.Sub(vs.TotalStake, val.Stake)
 			}
-			
+
 			return nil
 		}
 	}
-	
+
 	return errors.New("validator not found")
 }
 
@@ -161,12 +161,12 @@ func (vs *ValidatorSet) SlashValidator(addr types.Address) error {
 	if val == nil {
 		return errors.New("validator not found")
 	}
-	
+
 	if !val.Slashed {
 		val.Slashed = true
 		vs.TotalStake.Sub(vs.TotalStake, val.Stake)
 	}
-	
+
 	return nil
 }
 
@@ -176,19 +176,19 @@ func (vs *ValidatorSet) UpdateStake(addr types.Address, newStake *big.Int) error
 	if val == nil {
 		return errors.New("validator not found")
 	}
-	
+
 	if !val.Slashed {
 		vs.TotalStake.Sub(vs.TotalStake, val.Stake)
 		vs.TotalStake.Add(vs.TotalStake, newStake)
 	}
-	
+
 	val.Stake = new(big.Int).Set(newStake)
-	
+
 	// Re-sort validators
 	sort.Slice(vs.Validators, func(i, j int) bool {
 		return vs.Validators[i].Stake.Cmp(vs.Validators[j].Stake) > 0
 	})
-	
+
 	return nil
 }
 
@@ -198,7 +198,7 @@ type QuantumPoSConsensus struct {
 	privateKey   []byte
 	algorithm    crypto.SignatureAlgorithm
 	address      types.Address
-	
+
 	// Configuration
 	blockTime      time.Duration
 	minValidators  int
@@ -225,62 +225,62 @@ func (c *QuantumPoSConsensus) SetValidatorSet(vs *ValidatorSet) {
 // ValidateBlock validates a block according to quantum PoS rules
 func (c *QuantumPoSConsensus) ValidateBlock(block *types.Block, parentBlock *types.Block) error {
 	header := block.Header
-	
+
 	// Basic validation
 	if header.Number.Cmp(big.NewInt(0)) <= 0 {
 		return errors.New("invalid block number")
 	}
-	
+
 	if parentBlock != nil {
 		// Check parent hash
 		if !header.ParentHash.Equal(parentBlock.Hash()) {
 			return errors.New("invalid parent hash")
 		}
-		
+
 		// Check block number progression
 		expectedNumber := new(big.Int).Add(parentBlock.Number(), big.NewInt(1))
 		if header.Number.Cmp(expectedNumber) != 0 {
 			return errors.New("invalid block number progression")
 		}
-		
+
 		// Check timestamp
 		if header.Time <= parentBlock.Time() {
 			return errors.New("block timestamp must be greater than parent")
 		}
 	}
-	
+
 	// Validate validator signature
 	if header.ValidatorSig == nil {
 		return errors.New("missing validator signature")
 	}
-	
+
 	// Check if signer is a valid validator
 	if !c.validatorSet.IsValidator(header.ValidatorAddr) {
 		return errors.New("invalid validator")
 	}
-	
+
 	// Verify quantum-resistant signature
 	valid, err := header.VerifyValidatorSignature()
 	if err != nil {
 		return err
 	}
-	
+
 	if !valid {
 		return errors.New("invalid validator signature")
 	}
-	
+
 	// Check if this validator should be the proposer
 	// (simplified - in practice, you'd check against VRF proof)
 	seed := parentBlock.Hash().Bytes()
 	if parentBlock == nil {
 		seed = types.ZeroHash.Bytes()
 	}
-	
+
 	proposer := c.validatorSet.GetProposer(header.Number.Uint64(), seed)
 	if proposer == nil || !proposer.Address.Equal(header.ValidatorAddr) {
 		return errors.New("invalid proposer for this height")
 	}
-	
+
 	return nil
 }
 
@@ -289,22 +289,22 @@ func (c *QuantumPoSConsensus) PrepareBlock(parentBlock *types.Block, transaction
 	if c.validatorSet == nil {
 		return nil, errors.New("validator set not initialized")
 	}
-	
+
 	parentHash := types.ZeroHash
 	number := big.NewInt(0)
-	
+
 	if parentBlock != nil {
 		parentHash = parentBlock.Hash()
 		number = new(big.Int).Add(parentBlock.Number(), big.NewInt(1))
 	}
-	
+
 	// Check if we're the proposer for this height
 	seed := parentHash.Bytes()
 	proposer := c.validatorSet.GetProposer(number.Uint64(), seed)
 	if proposer == nil || !proposer.Address.Equal(c.address) {
 		return nil, errors.New("not the proposer for this height")
 	}
-	
+
 	// Create block header
 	header := types.NewBlockHeader(
 		parentHash,
@@ -314,16 +314,16 @@ func (c *QuantumPoSConsensus) PrepareBlock(parentBlock *types.Block, transaction
 		gasLimit,
 		uint64(time.Now().Unix()),
 	)
-	
+
 	// Create block
 	block := types.NewBlock(header, transactions, []*types.BlockHeader{})
-	
+
 	// Sign the block
 	err := header.SignBlock(c.privateKey, c.algorithm, c.address)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return block, nil
 }
 

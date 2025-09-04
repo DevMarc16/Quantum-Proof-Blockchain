@@ -37,8 +37,8 @@ type JSONRPCResponse struct {
 
 // RPCError represents an RPC error
 type RPCError struct {
-	Code    int    `json:"code"`
-	Message string `json:"message"`
+	Code    int         `json:"code"`
+	Message string      `json:"message"`
 	Data    interface{} `json:"data,omitempty"`
 }
 
@@ -58,13 +58,13 @@ type ClientBucket struct {
 
 // RPCServer handles JSON-RPC requests
 type RPCServer struct {
-	node       *Node
-	httpServer *http.Server
-	wsUpgrader websocket.Upgrader
+	node        *Node
+	httpServer  *http.Server
+	wsUpgrader  websocket.Upgrader
 	rateLimiter *RateLimiter
-	httpPort   int
-	wsPort     int
-	
+	httpPort    int
+	wsPort      int
+
 	// Method handlers
 	methods map[string]func(json.RawMessage) (interface{}, error)
 }
@@ -82,12 +82,12 @@ func NewRPCServer(node *Node, httpPort, wsPort int) *RPCServer {
 		},
 		rateLimiter: &RateLimiter{
 			requests: make(map[string]*ClientBucket),
-			limit:    100,                // 100 requests per minute
+			limit:    100, // 100 requests per minute
 			window:   time.Minute,
 		},
 		methods: make(map[string]func(json.RawMessage) (interface{}, error)),
 	}
-	
+
 	server.registerMethods()
 	return server
 }
@@ -105,10 +105,10 @@ func NewRateLimiter(limit int, window time.Duration) *RateLimiter {
 func (rl *RateLimiter) IsAllowed(clientID string) bool {
 	rl.mu.Lock()
 	defer rl.mu.Unlock()
-	
+
 	now := time.Now()
 	bucket, exists := rl.requests[clientID]
-	
+
 	if !exists {
 		rl.requests[clientID] = &ClientBucket{
 			count:     1,
@@ -116,20 +116,20 @@ func (rl *RateLimiter) IsAllowed(clientID string) bool {
 		}
 		return true
 	}
-	
+
 	// Check if the window has expired
 	if now.After(bucket.resetTime) {
 		bucket.count = 1
 		bucket.resetTime = now.Add(rl.window)
 		return true
 	}
-	
+
 	// Check if under limit
 	if bucket.count < rl.limit {
 		bucket.count++
 		return true
 	}
-	
+
 	return false
 }
 
@@ -137,7 +137,7 @@ func (rl *RateLimiter) IsAllowed(clientID string) bool {
 func (rl *RateLimiter) Clean() {
 	rl.mu.Lock()
 	defer rl.mu.Unlock()
-	
+
 	now := time.Now()
 	for clientID, bucket := range rl.requests {
 		if now.After(bucket.resetTime.Add(rl.window)) {
@@ -151,7 +151,7 @@ func (s *RPCServer) Start() error {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", s.handleHTTP)
 	mux.HandleFunc("/ws", s.handleWebSocket)
-	
+
 	s.httpServer = &http.Server{
 		Addr:    fmt.Sprintf(":%d", s.httpPort),
 		Handler: mux,
@@ -160,12 +160,12 @@ func (s *RPCServer) Start() error {
 		WriteTimeout: 30 * time.Second,
 		IdleTimeout:  120 * time.Second,
 	}
-	
+
 	// Start rate limiter cleanup routine
 	go func() {
 		ticker := time.NewTicker(5 * time.Minute)
 		defer ticker.Stop()
-		
+
 		for {
 			select {
 			case <-ticker.C:
@@ -173,14 +173,14 @@ func (s *RPCServer) Start() error {
 			}
 		}
 	}()
-	
+
 	log.Printf("🔧 Starting RPC server on port %d", s.httpPort)
 	go func() {
 		if err := s.httpServer.ListenAndServe(); err != http.ErrServerClosed {
 			log.Printf("❌ RPC server error: %v", err)
 		}
 	}()
-	
+
 	return nil
 }
 
@@ -210,18 +210,18 @@ func (s *RPCServer) registerMethods() {
 	s.methods["eth_getStorageAt"] = s.ethGetStorageAt
 	s.methods["net_version"] = s.netVersion
 	s.methods["net_peerCount"] = s.netPeerCount
-	
+
 	// Quantum-specific methods
 	s.methods["quantum_getSupportedAlgorithms"] = s.quantumGetSupportedAlgorithms
 	s.methods["quantum_validateSignature"] = s.quantumValidateSignature
 	s.methods["quantum_getValidatorSet"] = s.quantumGetValidatorSet
 	s.methods["quantum_sendRawTransaction"] = s.quantumSendRawTransaction
-	
+
 	// Mining methods
 	s.methods["miner_start"] = s.minerStart
 	s.methods["miner_stop"] = s.minerStop
 	s.methods["miner_setEtherbase"] = s.minerSetEtherbase
-	
+
 	// Test methods (removed insecure methods that exposed private keys)
 }
 
@@ -230,17 +230,17 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*") // TODO: Restrict in production
 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-	
+
 	if r.Method == "OPTIONS" {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
-	
+
 	if r.Method != "POST" {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
-	
+
 	// Rate limiting
 	clientIP := s.getClientIP(r)
 	if !s.rateLimiter.IsAllowed(clientIP) {
@@ -250,7 +250,7 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 		}, nil)
 		return
 	}
-	
+
 	// Input size validation
 	if r.ContentLength > 1024*1024 { // 1MB limit
 		s.writeError(w, &RPCError{
@@ -259,7 +259,7 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 		}, nil)
 		return
 	}
-	
+
 	var req JSONRPCRequest
 	err := json.NewDecoder(r.Body).Decode(&req)
 	if err != nil {
@@ -269,7 +269,7 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 		}, nil)
 		return
 	}
-	
+
 	// Basic request validation
 	if err := s.validateRequest(&req); err != nil {
 		s.writeError(w, &RPCError{
@@ -278,7 +278,7 @@ func (s *RPCServer) handleHTTP(w http.ResponseWriter, r *http.Request) {
 		}, req.ID)
 		return
 	}
-	
+
 	response := s.handleRequest(&req)
 	json.NewEncoder(w).Encode(response)
 }
@@ -292,17 +292,17 @@ func (s *RPCServer) getClientIP(r *http.Request) string {
 		}
 		return strings.TrimSpace(xff)
 	}
-	
+
 	// Check X-Real-IP header
 	if xri := r.Header.Get("X-Real-IP"); xri != "" {
 		return strings.TrimSpace(xri)
 	}
-	
+
 	// Fall back to RemoteAddr
 	if idx := strings.LastIndex(r.RemoteAddr, ":"); idx != -1 {
 		return r.RemoteAddr[:idx]
 	}
-	
+
 	return r.RemoteAddr
 }
 
@@ -311,21 +311,21 @@ func (s *RPCServer) validateRequest(req *JSONRPCRequest) error {
 	if req.JSONRPC != "2.0" {
 		return fmt.Errorf("invalid jsonrpc version: %s", req.JSONRPC)
 	}
-	
+
 	if req.Method == "" {
 		return fmt.Errorf("missing method")
 	}
-	
+
 	// Validate method name format
 	if len(req.Method) > 128 {
 		return fmt.Errorf("method name too long")
 	}
-	
+
 	// Check for potentially dangerous method names
 	if strings.Contains(req.Method, "..") || strings.Contains(req.Method, "/") {
 		return fmt.Errorf("invalid method name format")
 	}
-	
+
 	return nil
 }
 
@@ -336,7 +336,7 @@ func (s *RPCServer) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	defer conn.Close()
-	
+
 	for {
 		var req JSONRPCRequest
 		err := conn.ReadJSON(&req)
@@ -344,7 +344,7 @@ func (s *RPCServer) handleWebSocket(w http.ResponseWriter, r *http.Request) {
 			log.Printf("WebSocket read error: %v", err)
 			break
 		}
-		
+
 		response := s.handleRequest(&req)
 		err = conn.WriteJSON(response)
 		if err != nil {
@@ -364,10 +364,10 @@ func (s *RPCServer) handleRequest(req *JSONRPCRequest) *JSONRPCResponse {
 			ID:      req.ID,
 		}
 	}
-	
+
 	// Log method calls for security monitoring
 	log.Printf("📞 RPC call: %s", req.Method)
-	
+
 	result, err := method(req.Params)
 	if err != nil {
 		log.Printf("❌ RPC method %s failed: %v", req.Method, err)
@@ -377,7 +377,7 @@ func (s *RPCServer) handleRequest(req *JSONRPCRequest) *JSONRPCResponse {
 			ID:      req.ID,
 		}
 	}
-	
+
 	return &JSONRPCResponse{
 		JSONRPC: "2.0",
 		Result:  result,
@@ -411,17 +411,17 @@ func (s *RPCServer) ethGetBalance(params json.RawMessage) (interface{}, error) {
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	addrStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid address")
 	}
-	
+
 	addr, err := types.HexToAddress(addrStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid address format: %w", err)
 	}
-	
+
 	balance := s.node.blockchain.GetBalance(addr)
 	return fmt.Sprintf("0x%x", balance), nil
 }
@@ -432,17 +432,17 @@ func (s *RPCServer) ethGetTransactionCount(params json.RawMessage) (interface{},
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	addrStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid address")
 	}
-	
+
 	addr, err := types.HexToAddress(addrStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid address format: %w", err)
 	}
-	
+
 	nonce := s.node.blockchain.GetNonce(addr)
 	return fmt.Sprintf("0x%x", nonce), nil
 }
@@ -453,12 +453,12 @@ func (s *RPCServer) ethGetBlockByNumber(params json.RawMessage) (interface{}, er
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	blockNumStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid block number")
 	}
-	
+
 	var blockNum *big.Int
 	if blockNumStr == "latest" {
 		blockNum = s.node.blockchain.GetCurrentBlock().Number()
@@ -472,12 +472,12 @@ func (s *RPCServer) ethGetBlockByNumber(params json.RawMessage) (interface{}, er
 		}
 		blockNum = big.NewInt(int64(num))
 	}
-	
+
 	block, err := s.node.blockchain.GetBlockByNumber(blockNum)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return block, nil
 }
 
@@ -487,22 +487,22 @@ func (s *RPCServer) ethGetBlockByHash(params json.RawMessage) (interface{}, erro
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	hashStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid hash")
 	}
-	
+
 	hash, err := types.HexToHash(hashStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid hash format: %w", err)
 	}
-	
+
 	block, err := s.node.blockchain.GetBlockByHash(hash)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return block, nil
 }
 
@@ -512,23 +512,23 @@ func (s *RPCServer) ethGetTransactionByHash(params json.RawMessage) (interface{}
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	hashStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid hash")
 	}
-	
+
 	hash, err := types.HexToHash(hashStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid hash format: %w", err)
 	}
-	
+
 	// Check transaction pool first
 	tx, found := s.node.txPool.GetTransaction(hash)
 	if found {
 		return tx, nil
 	}
-	
+
 	// TODO: Search in blockchain
 	return nil, fmt.Errorf("transaction not found")
 }
@@ -539,22 +539,22 @@ func (s *RPCServer) ethGetTransactionReceipt(params json.RawMessage) (interface{
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	hashStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid hash")
 	}
-	
+
 	hash, err := types.HexToHash(hashStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid hash format: %w", err)
 	}
-	
+
 	receipt, err := s.node.blockchain.GetTransactionReceipt(hash)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return receipt, nil
 }
 
@@ -564,7 +564,7 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	// Decode the raw transaction
 	rawTx := p[0]
 	// Remove 0x prefix if present
@@ -580,12 +580,12 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode transaction: %w", err)
 	}
-	
+
 	// Validate the transaction
 	if err := s.validateQuantumTransaction(tx); err != nil {
 		return nil, fmt.Errorf("invalid transaction: %w", err)
 	}
-	
+
 	// Add to transaction pool
 	if s.node != nil && s.node.txPool != nil {
 		if err := s.node.txPool.AddTransaction(tx); err != nil {
@@ -595,7 +595,7 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 	} else {
 		log.Printf("⚠️ Cannot add transaction - txPool is nil")
 	}
-	
+
 	// Return transaction hash
 	return tx.Hash().Hex(), nil
 }
@@ -609,7 +609,7 @@ func (s *RPCServer) validateQuantumTransaction(tx *types.QuantumTransaction) err
 		Signature: tx.Signature,
 		PublicKey: tx.PublicKey,
 	}
-	
+
 	valid, err := crypto.VerifySignature(sigHash[:], qrSig)
 	if err != nil {
 		return fmt.Errorf("signature verification failed: %w", err)
@@ -617,20 +617,20 @@ func (s *RPCServer) validateQuantumTransaction(tx *types.QuantumTransaction) err
 	if !valid {
 		return fmt.Errorf("invalid quantum signature")
 	}
-	
+
 	// Basic transaction validation
 	if tx.ChainID == nil || tx.ChainID.Uint64() != 8888 {
 		return fmt.Errorf("invalid chain ID")
 	}
-	
+
 	if tx.GasPrice == nil || tx.GasPrice.Sign() <= 0 {
 		return fmt.Errorf("invalid gas price")
 	}
-	
+
 	if tx.Gas == 0 {
 		return fmt.Errorf("invalid gas limit")
 	}
-	
+
 	// Validate signature algorithm
 	switch tx.SigAlg {
 	case crypto.SigAlgDilithium, crypto.SigAlgFalcon:
@@ -638,7 +638,7 @@ func (s *RPCServer) validateQuantumTransaction(tx *types.QuantumTransaction) err
 	default:
 		return fmt.Errorf("unsupported signature algorithm: %v", tx.SigAlg)
 	}
-	
+
 	return nil
 }
 
@@ -652,22 +652,22 @@ func (s *RPCServer) ethEstimateGas(params json.RawMessage) (interface{}, error) 
 	if err != nil || len(p) < 1 {
 		return "0x5208", nil // Default 21000 gas
 	}
-	
+
 	txMap, ok := p[0].(map[string]interface{})
 	if !ok {
 		return "0x5208", nil // Default 21000 gas
 	}
-	
+
 	// Check if it's a contract deployment (no to address)
 	if txMap["to"] == nil {
 		return "0x1e8480", nil // 2,000,000 gas for contract deployment
 	}
-	
+
 	// Check if there's data (contract interaction)
 	if data, ok := txMap["data"].(string); ok && len(data) > 2 {
 		return "0xc350", nil // 50,000 gas for contract interaction
 	}
-	
+
 	return "0x5208", nil // 21000 gas for simple transfer
 }
 
@@ -696,7 +696,7 @@ func (s *RPCServer) quantumValidateSignature(params json.RawMessage) (interface{
 	if err != nil {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	// This would validate a quantum signature
 	// Implementation would depend on the specific parameters
 	return map[string]bool{"valid": true}, nil
@@ -706,12 +706,12 @@ func (s *RPCServer) quantumGetValidatorSet(params json.RawMessage) (interface{},
 	if s.node.multiConsensus == nil {
 		return nil, fmt.Errorf("consensus engine not initialized")
 	}
-	
+
 	validatorSet := s.node.multiConsensus.GetValidatorSet()
 	if validatorSet == nil {
 		return nil, fmt.Errorf("validator set not available")
 	}
-	
+
 	return validatorSet, nil
 }
 
@@ -721,29 +721,29 @@ func (s *RPCServer) quantumSendRawTransaction(params json.RawMessage) (interface
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	// Decode the raw transaction hex
 	rawTxHex := p[0]
 	if strings.HasPrefix(rawTxHex, "0x") {
 		rawTxHex = rawTxHex[2:]
 	}
-	
+
 	rawTxBytes, err := hex.DecodeString(rawTxHex)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode hex transaction: %w", err)
 	}
-	
+
 	// Decode the RLP transaction
 	tx, err := types.DecodeRLPTransaction(rawTxBytes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode RLP transaction: %w", err)
 	}
-	
+
 	// Validate the quantum transaction
 	if err := s.validateQuantumTransaction(tx); err != nil {
 		return nil, fmt.Errorf("invalid quantum transaction: %w", err)
 	}
-	
+
 	// Add to transaction pool
 	if s.node != nil && s.node.txPool != nil {
 		if err := s.node.txPool.AddTransaction(tx); err != nil {
@@ -753,7 +753,7 @@ func (s *RPCServer) quantumSendRawTransaction(params json.RawMessage) (interface
 	} else {
 		log.Printf("⚠️ Cannot add transaction - txPool is nil")
 	}
-	
+
 	// Return transaction hash
 	return tx.Hash().Hex(), nil
 }
@@ -785,30 +785,30 @@ func (s *RPCServer) ethCall(params json.RawMessage) (interface{}, error) {
 	if err != nil || len(p) < 2 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	txMap, ok := p[0].(map[string]interface{})
 	if !ok {
 		return nil, fmt.Errorf("invalid transaction object")
 	}
-	
+
 	// Execute the call (read-only)
 	to, _ := txMap["to"].(string)
 	data, _ := txMap["data"].(string)
-	
+
 	// For now, return a simple result for testing
 	// In production, this would execute the EVM call
 	if to == "0x000000000000000000000000000000000000000a" {
 		// Dilithium precompile
 		return "0x0000000000000000000000000000000000000000000000000000000000000001", nil
 	}
-	
+
 	// For contract calls, check if there's actual code to execute
 	if data != "" && data != "0x" {
 		// This would normally execute the contract bytecode
 		// For now, return empty result
 		return "0x", nil
 	}
-	
+
 	return "0x", nil
 }
 
@@ -818,23 +818,23 @@ func (s *RPCServer) ethGetCode(params json.RawMessage) (interface{}, error) {
 	if err != nil || len(p) < 1 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	addrStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid address")
 	}
-	
+
 	addr, err := types.HexToAddress(addrStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid address format: %w", err)
 	}
-	
+
 	// Get contract code from blockchain state
 	code := s.node.blockchain.GetCode(addr)
 	if len(code) == 0 {
 		return "0x", nil
 	}
-	
+
 	return fmt.Sprintf("0x%x", code), nil
 }
 
@@ -850,29 +850,29 @@ func (s *RPCServer) ethGetStorageAt(params json.RawMessage) (interface{}, error)
 	if err != nil || len(p) < 2 {
 		return nil, fmt.Errorf("invalid parameters")
 	}
-	
+
 	addrStr, ok := p[0].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid address")
 	}
-	
+
 	posStr, ok := p[1].(string)
 	if !ok {
 		return nil, fmt.Errorf("invalid position")
 	}
-	
+
 	addr, err := types.HexToAddress(addrStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid address format: %w", err)
 	}
-	
+
 	pos, err := types.HexToHash(posStr)
 	if err != nil {
 		return nil, fmt.Errorf("invalid position format: %w", err)
 	}
-	
+
 	// Get storage value from blockchain state
 	value := s.node.blockchain.GetState(addr, pos)
-	
+
 	return value.Hex(), nil
 }

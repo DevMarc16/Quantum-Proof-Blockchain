@@ -13,11 +13,11 @@ import (
 
 func main() {
 	fmt.Println("🔍 Debugging Quantum Transaction")
-	
+
 	// Recreate the same transaction as before
 	nonce := "0x0"
 	nonceInt, _ := strconv.ParseUint(nonce[2:], 16, 64)
-	
+
 	// Generate same type of keys
 	privKey, pubKey, err := crypto.GenerateDilithiumKeyPair()
 	if err != nil {
@@ -54,7 +54,7 @@ func main() {
 	fmt.Printf("  Value: %s\n", tx.Value.String())
 	fmt.Printf("  Gas: %d\n", tx.Gas)
 	fmt.Printf("  GasPrice: %s\n", tx.GasPrice.String())
-	
+
 	// Sign the transaction
 	err = tx.SignTransaction(privateKeyBytes, crypto.SigAlgDilithium)
 	if err != nil {
@@ -68,7 +68,7 @@ func main() {
 	}
 
 	fmt.Printf("\nTransaction JSON:\n%s\n", string(txJSON))
-	
+
 	// Try to unmarshal it back to see if there are any issues
 	var parsedTx types.QuantumTransaction
 	err = parsedTx.UnmarshalJSON(txJSON)
@@ -77,7 +77,7 @@ func main() {
 	} else {
 		fmt.Printf("✅ Successfully unmarshaled\n")
 	}
-	
+
 	// Check individual address components
 	fmt.Printf("\nAddress Analysis:\n")
 	if tx.To != nil {
@@ -85,7 +85,7 @@ func main() {
 	} else {
 		fmt.Printf("  To address: nil (contract creation)\n")
 	}
-	
+
 	fromAddr := tx.From()
 	fmt.Printf("  From address: %s (length: %d)\n", fromAddr.Hex(), len(fromAddr.Hex()))
 }

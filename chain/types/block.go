@@ -10,26 +10,26 @@ import (
 
 // BlockHeader represents the header of a block
 type BlockHeader struct {
-	ParentHash   Hash                     `json:"parentHash"`
-	UncleHash    Hash                     `json:"sha3Uncles"`
-	Coinbase     Address                  `json:"miner"`
-	Root         Hash                     `json:"stateRoot"`
-	TxHash       Hash                     `json:"transactionsRoot"`
-	ReceiptHash  Hash                     `json:"receiptsRoot"`
-	Bloom        []byte                   `json:"logsBloom"`
-	Difficulty   *big.Int                 `json:"difficulty"`
-	Number       *big.Int                 `json:"number"`
-	GasLimit     uint64                   `json:"gasLimit"`
-	GasUsed      uint64                   `json:"gasUsed"`
-	Time         uint64                   `json:"timestamp"`
-	Extra        []byte                   `json:"extraData"`
-	MixDigest    Hash                     `json:"mixHash"`
-	Nonce        uint64                   `json:"nonce"`
-	
+	ParentHash  Hash     `json:"parentHash"`
+	UncleHash   Hash     `json:"sha3Uncles"`
+	Coinbase    Address  `json:"miner"`
+	Root        Hash     `json:"stateRoot"`
+	TxHash      Hash     `json:"transactionsRoot"`
+	ReceiptHash Hash     `json:"receiptsRoot"`
+	Bloom       []byte   `json:"logsBloom"`
+	Difficulty  *big.Int `json:"difficulty"`
+	Number      *big.Int `json:"number"`
+	GasLimit    uint64   `json:"gasLimit"`
+	GasUsed     uint64   `json:"gasUsed"`
+	Time        uint64   `json:"timestamp"`
+	Extra       []byte   `json:"extraData"`
+	MixDigest   Hash     `json:"mixHash"`
+	Nonce       uint64   `json:"nonce"`
+
 	// Quantum-specific fields
-	ValidatorSig  *crypto.QRSignature      `json:"validatorSignature"`
-	ValidatorAddr Address                  `json:"validatorAddress"`
-	
+	ValidatorSig  *crypto.QRSignature `json:"validatorSignature"`
+	ValidatorAddr Address             `json:"validatorAddress"`
+
 	// Computed fields
 	hash Hash `json:"hash"`
 }
@@ -39,7 +39,7 @@ type Block struct {
 	Header       *BlockHeader          `json:"header"`
 	Transactions []*QuantumTransaction `json:"transactions"`
 	Uncles       []*BlockHeader        `json:"uncles"`
-	
+
 	// Computed fields
 	size uint64 `json:"size"`
 	hash Hash   `json:"hash"`
@@ -48,21 +48,21 @@ type Block struct {
 // NewBlockHeader creates a new block header
 func NewBlockHeader(parentHash Hash, coinbase Address, root Hash, number *big.Int, gasLimit uint64, time uint64) *BlockHeader {
 	return &BlockHeader{
-		ParentHash: parentHash,
-		UncleHash:  ZeroHash, // No uncles in PoS
-		Coinbase:   coinbase,
-		Root:       root,
-		TxHash:     ZeroHash,
+		ParentHash:  parentHash,
+		UncleHash:   ZeroHash, // No uncles in PoS
+		Coinbase:    coinbase,
+		Root:        root,
+		TxHash:      ZeroHash,
 		ReceiptHash: ZeroHash,
-		Bloom:      make([]byte, 256), // Empty bloom filter
-		Difficulty: big.NewInt(0),     // No mining difficulty in PoS
-		Number:     number,
-		GasLimit:   gasLimit,
-		GasUsed:    0,
-		Time:       time,
-		Extra:      []byte{},
-		MixDigest:  ZeroHash,
-		Nonce:      0,
+		Bloom:       make([]byte, 256), // Empty bloom filter
+		Difficulty:  big.NewInt(0),     // No mining difficulty in PoS
+		Number:      number,
+		GasLimit:    gasLimit,
+		GasUsed:     0,
+		Time:        time,
+		Extra:       []byte{},
+		MixDigest:   ZeroHash,
+		Nonce:       0,
 	}
 }
 
@@ -73,13 +73,13 @@ func NewBlock(header *BlockHeader, transactions []*QuantumTransaction, uncles []
 		Transactions: transactions,
 		Uncles:       uncles,
 	}
-	
+
 	// Update transaction root
 	block.Header.TxHash = block.calculateTxRoot()
-	
+
 	// Calculate size
 	block.size = block.calculateSize()
-	
+
 	return block
 }
 
@@ -96,7 +96,7 @@ func (h *BlockHeader) Hash() Hash {
 	if !h.hash.IsZero() {
 		return h.hash
 	}
-	
+
 	// Create hash data
 	data := []byte{}
 	data = append(data, h.ParentHash.Bytes()...)
@@ -114,7 +114,7 @@ func (h *BlockHeader) Hash() Hash {
 	data = append(data, h.Extra...)
 	data = append(data, h.MixDigest.Bytes()...)
 	data = append(data, uint64ToBytes(h.Nonce)...)
-	
+
 	h.hash = BytesToHash(Keccak256(data))
 	return h.hash
 }
@@ -138,25 +138,25 @@ func (h *BlockHeader) SigningHash() Hash {
 	data = append(data, h.Extra...)
 	data = append(data, h.MixDigest.Bytes()...)
 	data = append(data, uint64ToBytes(h.Nonce)...)
-	
+
 	return BytesToHash(Keccak256(data))
 }
 
 // SignBlock signs the block with the validator's private key
 func (h *BlockHeader) SignBlock(privateKey []byte, algorithm crypto.SignatureAlgorithm, validatorAddr Address) error {
 	sigHash := h.SigningHash()
-	
+
 	qrSig, err := crypto.SignMessage(sigHash.Bytes(), algorithm, privateKey)
 	if err != nil {
 		return err
 	}
-	
+
 	h.ValidatorSig = qrSig
 	h.ValidatorAddr = validatorAddr
-	
+
 	// Recompute hash after signing
 	h.hash = ZeroHash
-	
+
 	return nil
 }
 
@@ -165,7 +165,7 @@ func (h *BlockHeader) VerifyValidatorSignature() (bool, error) {
 	if h.ValidatorSig == nil {
 		return false, nil
 	}
-	
+
 	sigHash := h.SigningHash()
 	return crypto.VerifySignature(sigHash.Bytes(), h.ValidatorSig)
 }
@@ -210,32 +210,32 @@ func (b *Block) Size() uint64 {
 
 func (b *Block) calculateSize() uint64 {
 	size := uint64(0)
-	
+
 	// Header size
-	size += 32 * 8  // Hashes
-	size += 20 * 2  // Addresses
-	size += 256     // Bloom filter
-	size += 32 * 2  // Big ints
-	size += 8 * 5   // Uint64s
+	size += 32 * 8 // Hashes
+	size += 20 * 2 // Addresses
+	size += 256    // Bloom filter
+	size += 32 * 2 // Big ints
+	size += 8 * 5  // Uint64s
 	size += uint64(len(b.Header.Extra))
-	
+
 	if b.Header.ValidatorSig != nil {
 		size += 1 // Algorithm
 		size += uint64(len(b.Header.ValidatorSig.Signature))
 		size += uint64(len(b.Header.ValidatorSig.PublicKey))
 	}
-	
+
 	// Transaction sizes
 	for _, tx := range b.Transactions {
 		size += tx.Size()
 	}
-	
+
 	// Uncle headers (should be empty in PoS)
 	for _, uncle := range b.Uncles {
 		size += 32 * 8 // Basic header size
 		size += uint64(len(uncle.Extra))
 	}
-	
+
 	return size
 }
 
@@ -243,13 +243,13 @@ func (b *Block) calculateTxRoot() Hash {
 	if len(b.Transactions) == 0 {
 		return ZeroHash
 	}
-	
+
 	// Simple Merkle tree implementation
 	hashes := make([]Hash, len(b.Transactions))
 	for i, tx := range b.Transactions {
 		hashes[i] = tx.Hash()
 	}
-	
+
 	return calculateMerkleRoot(hashes)
 }
 
@@ -258,11 +258,11 @@ func calculateMerkleRoot(hashes []Hash) Hash {
 	if len(hashes) == 0 {
 		return ZeroHash
 	}
-	
+
 	if len(hashes) == 1 {
 		return hashes[0]
 	}
-	
+
 	// Pair up hashes and hash them together
 	nextLevel := []Hash{}
 	for i := 0; i < len(hashes); i += 2 {
@@ -275,7 +275,7 @@ func calculateMerkleRoot(hashes []Hash) Hash {
 			nextLevel = append(nextLevel, BytesToHash(Keccak256(combined)))
 		}
 	}
-	
+
 	return calculateMerkleRoot(nextLevel)
 }
 
@@ -288,7 +288,7 @@ func (b *Block) MarshalJSON() ([]byte, error) {
 		Hash         string                `json:"hash"`
 		Size         uint64                `json:"size"`
 	}
-	
+
 	return json.Marshal(&blockJSON{
 		Header:       b.Header,
 		Transactions: b.Transactions,
@@ -318,6 +318,6 @@ func Genesis() *Block {
 		Nonce:         0,
 		ValidatorAddr: ZeroAddress,
 	}
-	
+
 	return NewBlock(header, []*QuantumTransaction{}, []*BlockHeader{})
 }

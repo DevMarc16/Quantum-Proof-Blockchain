@@ -32,7 +32,7 @@ func GenerateDilithiumKeyPair() (*DilithiumPrivateKey, *DilithiumPublicKey, erro
 	// Pack keys into arrays
 	var privKey DilithiumPrivateKey
 	var pubKey DilithiumPublicKey
-	
+
 	privateKey.Pack(&privKey.privateKey)
 	publicKey.Pack(&pubKey.publicKey)
 
@@ -48,7 +48,7 @@ func (priv *DilithiumPrivateKey) Sign(message []byte) ([]byte, error) {
 	// Sign the message
 	var signature [DilithiumSignatureSize]byte
 	mode2.SignTo(&privateKey, message, signature[:])
-	
+
 	return signature[:], nil
 }
 
@@ -57,7 +57,7 @@ func (pub *DilithiumPublicKey) Verify(message, signature []byte) bool {
 	if len(signature) != DilithiumSignatureSize {
 		return false
 	}
-	
+
 	// Unpack public key
 	var publicKey mode2.PublicKey
 	publicKey.Unpack(&pub.publicKey)
@@ -80,11 +80,11 @@ func (priv *DilithiumPrivateKey) Bytes() []byte {
 func (priv *DilithiumPrivateKey) Public() *DilithiumPublicKey {
 	var privateKey mode2.PrivateKey
 	privateKey.Unpack(&priv.privateKey)
-	
+
 	var publicKeyBytes [DilithiumPublicKeySize]byte
 	publicKey := privateKey.Public().(*mode2.PublicKey)
 	publicKey.Pack(&publicKeyBytes)
-	
+
 	return &DilithiumPublicKey{
 		publicKey: publicKeyBytes,
 	}
@@ -95,14 +95,14 @@ func DilithiumPublicKeyFromBytes(data []byte) (*DilithiumPublicKey, error) {
 	if len(data) != DilithiumPublicKeySize {
 		return nil, errors.New("invalid public key size")
 	}
-	
+
 	var pubKey DilithiumPublicKey
 	copy(pubKey.publicKey[:], data)
-	
+
 	// Validate by unpacking
 	var publicKey mode2.PublicKey
 	publicKey.Unpack(&pubKey.publicKey)
-	
+
 	return &pubKey, nil
 }
 
@@ -111,14 +111,14 @@ func DilithiumPrivateKeyFromBytes(data []byte) (*DilithiumPrivateKey, error) {
 	if len(data) != DilithiumPrivateKeySize {
 		return nil, errors.New("invalid private key size")
 	}
-	
+
 	var privKey DilithiumPrivateKey
 	copy(privKey.privateKey[:], data)
-	
+
 	// Validate by unpacking
 	var privateKey mode2.PrivateKey
 	privateKey.Unpack(&privKey.privateKey)
-	
+
 	return &privKey, nil
 }
 
@@ -130,14 +130,14 @@ func VerifyDilithium(message, signature, publicKeyBytes []byte) bool {
 	if len(signature) != DilithiumSignatureSize {
 		return false
 	}
-	
+
 	// Create public key array
 	var pubKeyArray [DilithiumPublicKeySize]byte
 	copy(pubKeyArray[:], publicKeyBytes)
-	
+
 	// Unpack public key and verify
 	var publicKey mode2.PublicKey
 	publicKey.Unpack(&pubKeyArray)
-	
+
 	return mode2.Verify(&publicKey, message, signature)
 }

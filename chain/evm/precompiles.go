@@ -13,46 +13,46 @@ import (
 
 // Quantum-resistant precompile addresses - expanded for optimized operations
 var (
-	DilithiumVerifyAddress   = common.BytesToAddress([]byte{10})  // 0x0a - Single Dilithium verify
-	FalconVerifyAddress      = common.BytesToAddress([]byte{11})  // 0x0b - Single Falcon verify
-	KyberDecapsAddress       = common.BytesToAddress([]byte{12})  // 0x0c - Kyber decapsulation
-	SPHINCSVerifyAddress     = common.BytesToAddress([]byte{13})  // 0x0d - SPHINCS+ verify
-	AggregatedVerifyAddress  = common.BytesToAddress([]byte{14})  // 0x0e - Aggregated signature verify
-	BatchVerifyAddress       = common.BytesToAddress([]byte{15})  // 0x0f - Batch verify multiple sigs
-	CompressedVerifyAddress  = common.BytesToAddress([]byte{16})  // 0x10 - Compressed signature verify
-	QuantumRandomAddress     = common.BytesToAddress([]byte{17})  // 0x11 - Quantum random generation
+	DilithiumVerifyAddress  = common.BytesToAddress([]byte{10}) // 0x0a - Single Dilithium verify
+	FalconVerifyAddress     = common.BytesToAddress([]byte{11}) // 0x0b - Single Falcon verify
+	KyberDecapsAddress      = common.BytesToAddress([]byte{12}) // 0x0c - Kyber decapsulation
+	SPHINCSVerifyAddress    = common.BytesToAddress([]byte{13}) // 0x0d - SPHINCS+ verify
+	AggregatedVerifyAddress = common.BytesToAddress([]byte{14}) // 0x0e - Aggregated signature verify
+	BatchVerifyAddress      = common.BytesToAddress([]byte{15}) // 0x0f - Batch verify multiple sigs
+	CompressedVerifyAddress = common.BytesToAddress([]byte{16}) // 0x10 - Compressed signature verify
+	QuantumRandomAddress    = common.BytesToAddress([]byte{17}) // 0x11 - Quantum random generation
 )
 
 // Gas costs for quantum-resistant operations - HEAVILY OPTIMIZED for fast, cheap transactions
 const (
 	// Original high costs replaced with optimized costs for Flare-like performance
-	DilithiumVerifyGas     = uint64(800)   // Reduced from 50000 - 98.4% reduction!
-	FalconVerifyGas        = uint64(600)   // Reduced from 30000 - 98% reduction!
-	KyberDecapsGas         = uint64(400)   // Reduced from 20000 - 98% reduction!
-	SPHINCSVerifyGas       = uint64(1200)  // Reduced from 100000 - 98.8% reduction!
-	
+	DilithiumVerifyGas = uint64(800)  // Reduced from 50000 - 98.4% reduction!
+	FalconVerifyGas    = uint64(600)  // Reduced from 30000 - 98% reduction!
+	KyberDecapsGas     = uint64(400)  // Reduced from 20000 - 98% reduction!
+	SPHINCSVerifyGas   = uint64(1200) // Reduced from 100000 - 98.8% reduction!
+
 	// New optimized precompiles for aggregation and compression
-	AggregatedVerifyGas    = uint64(200)   // Very cheap for aggregated signatures
-	BatchVerifyGas         = uint64(150)   // Even cheaper per signature in batch
-	CompressedVerifyGas    = uint64(300)   // Cheap compressed signature verification
-	QuantumRandomGas       = uint64(100)   // Very cheap quantum randomness
-	
+	AggregatedVerifyGas = uint64(200) // Very cheap for aggregated signatures
+	BatchVerifyGas      = uint64(150) // Even cheaper per signature in batch
+	CompressedVerifyGas = uint64(300) // Cheap compressed signature verification
+	QuantumRandomGas    = uint64(100) // Very cheap quantum randomness
+
 	// Dynamic gas adjustment factors
-	BaseGasMultiplier      = 100           // Base 1.0x multiplier (100/100)
-	MaxCongestionMultiplier = 150          // Max 1.5x during congestion (150/100)
+	BaseGasMultiplier       = 100 // Base 1.0x multiplier (100/100)
+	MaxCongestionMultiplier = 150 // Max 1.5x during congestion (150/100)
 )
 
 // QuantumPrecompiles returns the quantum-resistant precompiled contracts - now with optimized versions
 func QuantumPrecompiles() map[common.Address]vm.PrecompiledContract {
 	return map[common.Address]vm.PrecompiledContract{
-		DilithiumVerifyAddress:   &DilithiumVerify{},
-		FalconVerifyAddress:      &FalconVerify{},
-		KyberDecapsAddress:       &KyberDecaps{},
-		SPHINCSVerifyAddress:     &SPHINCSVerify{},
-		AggregatedVerifyAddress:  &AggregatedVerify{},
-		BatchVerifyAddress:       &BatchVerify{},
-		CompressedVerifyAddress:  &CompressedVerify{},
-		QuantumRandomAddress:     &QuantumRandom{},
+		DilithiumVerifyAddress:  &DilithiumVerify{},
+		FalconVerifyAddress:     &FalconVerify{},
+		KyberDecapsAddress:      &KyberDecaps{},
+		SPHINCSVerifyAddress:    &SPHINCSVerify{},
+		AggregatedVerifyAddress: &AggregatedVerify{},
+		BatchVerifyAddress:      &BatchVerify{},
+		CompressedVerifyAddress: &CompressedVerify{},
+		QuantumRandomAddress:    &QuantumRandom{},
 	}
 }
 
@@ -135,12 +135,12 @@ func (c *DilithiumVerify) Run(input []byte) ([]byte, error) {
 	}
 
 	valid := crypto.VerifyDilithium(message, signature, publicKey)
-	
+
 	result := make([]byte, 32)
 	if valid {
 		result[31] = 1 // Return 1 if valid, 0 if invalid
 	}
-	
+
 	return result, nil
 }
 
@@ -160,7 +160,7 @@ func (c *FalconVerify) Run(input []byte) ([]byte, error) {
 		pubkeyOffset  = messageOffset + messageSize
 		pubkeySize    = crypto.FalconPublicKeySize
 		sigOffset     = pubkeyOffset + pubkeySize
-		minTotalSize  = messageSize + pubkeySize + 1 // At least 1 byte signature
+		minTotalSize  = messageSize + pubkeySize + 1                                 // At least 1 byte signature
 		maxInputSize  = messageSize + pubkeySize + crypto.FalconSignatureSize + 1024 // Max with buffer
 	)
 
@@ -224,12 +224,12 @@ func (c *FalconVerify) Run(input []byte) ([]byte, error) {
 	}
 
 	valid := crypto.VerifyFalcon(message, signature, publicKey)
-	
+
 	result := make([]byte, 32)
 	if valid {
 		result[31] = 1 // Return 1 if valid, 0 if invalid
 	}
-	
+
 	return result, nil
 }
 
@@ -306,7 +306,7 @@ func (c *KyberDecaps) Run(input []byte) ([]byte, error) {
 	// Pad to 32 bytes for EVM compatibility
 	result := make([]byte, 32)
 	copy(result[32-len(sharedSecret):], sharedSecret)
-	
+
 	return result, nil
 }
 
@@ -335,7 +335,7 @@ func (c *AggregatedVerify) Run(input []byte) ([]byte, error) {
 	if len(input) < 4 {
 		return nil, errors.New("insufficient input data")
 	}
-	
+
 	// For now, return success - full aggregation would be implemented here
 	result := make([]byte, 32)
 	result[31] = 1 // Success
@@ -412,24 +412,24 @@ type QuantumChainConfig struct {
 func NewQuantumChainConfig() *QuantumChainConfig {
 	return &QuantumChainConfig{
 		ChainConfig: &params.ChainConfig{
-			ChainID:                 big.NewInt(8888), // Quantum chain ID
-			HomesteadBlock:          big.NewInt(0),
-			EIP150Block:             big.NewInt(0),
-			EIP155Block:             big.NewInt(0),
-			EIP158Block:             big.NewInt(0),
-			ByzantiumBlock:          big.NewInt(0),
-			ConstantinopleBlock:     big.NewInt(0),
-			PetersburgBlock:         big.NewInt(0),
-			IstanbulBlock:           big.NewInt(0),
-			MuirGlacierBlock:        big.NewInt(0),
-			BerlinBlock:             big.NewInt(0),
-			LondonBlock:             big.NewInt(0),
-			ArrowGlacierBlock:       big.NewInt(0),
-			GrayGlacierBlock:        big.NewInt(0),
-			MergeNetsplitBlock:      big.NewInt(0),
-			ShanghaiTime:            new(uint64),
-			CancunTime:              new(uint64),
-			PragueTime:              new(uint64),
+			ChainID:             big.NewInt(8888), // Quantum chain ID
+			HomesteadBlock:      big.NewInt(0),
+			EIP150Block:         big.NewInt(0),
+			EIP155Block:         big.NewInt(0),
+			EIP158Block:         big.NewInt(0),
+			ByzantiumBlock:      big.NewInt(0),
+			ConstantinopleBlock: big.NewInt(0),
+			PetersburgBlock:     big.NewInt(0),
+			IstanbulBlock:       big.NewInt(0),
+			MuirGlacierBlock:    big.NewInt(0),
+			BerlinBlock:         big.NewInt(0),
+			LondonBlock:         big.NewInt(0),
+			ArrowGlacierBlock:   big.NewInt(0),
+			GrayGlacierBlock:    big.NewInt(0),
+			MergeNetsplitBlock:  big.NewInt(0),
+			ShanghaiTime:        new(uint64),
+			CancunTime:          new(uint64),
+			PragueTime:          new(uint64),
 		},
 		QuantumBlock: big.NewInt(0), // Activate quantum precompiles from genesis
 	}

@@ -42,7 +42,7 @@ func runLiveBlockchainTest() {
 
 	// Submit multiple transactions
 	fmt.Println("\n💸 Submitting quantum transactions...")
-	
+
 	for i := 0; i < 5; i++ {
 		txHash := submitTestTransaction(uint64(i))
 		fmt.Printf("✅ Tx %d submitted: %s\n", i+1, txHash[:16]+"...")
@@ -51,20 +51,20 @@ func runLiveBlockchainTest() {
 
 	fmt.Println("\n⏰ Waiting 30 seconds to watch block production...")
 	time.Sleep(30 * time.Second)
-	
+
 	fmt.Println("\n🏁 Live demo complete!")
 }
 
 func monitorBlockchain() {
 	var lastBlockNumber int64 = -1
-	
+
 	for i := 0; i < 60; i++ { // Monitor for 60 iterations (30 seconds at 0.5s intervals)
 		blockNumber := getCurrentBlockNumber()
-		
+
 		if blockNumber > lastBlockNumber {
 			// New block detected!
 			block := getBlockByNumber(fmt.Sprintf("0x%x", blockNumber))
-			
+
 			txCount := 0
 			if block != nil {
 				if blockMap, ok := block.(map[string]interface{}); ok {
@@ -73,14 +73,14 @@ func monitorBlockchain() {
 					}
 				}
 			}
-			
+
 			timestamp := time.Now().Format("15:04:05")
-			fmt.Printf("🎯 [%s] Block #%d mined with %d transactions\n", 
+			fmt.Printf("🎯 [%s] Block #%d mined with %d transactions\n",
 				timestamp, blockNumber, txCount)
-			
+
 			lastBlockNumber = blockNumber
 		}
-		
+
 		time.Sleep(500 * time.Millisecond)
 	}
 }

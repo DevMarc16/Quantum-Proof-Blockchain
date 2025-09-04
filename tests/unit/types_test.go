@@ -12,7 +12,7 @@ func TestAddressCreation(t *testing.T) {
 	// Test address from bytes
 	testBytes := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 	addr := types.BytesToAddress(testBytes)
-	
+
 	if len(addr.Bytes()) != types.AddressLength {
 		t.Errorf("Expected address length %d, got %d", types.AddressLength, len(addr.Bytes()))
 	}
@@ -43,7 +43,7 @@ func TestHashCreation(t *testing.T) {
 		testBytes[i] = byte(i)
 	}
 	hash := types.BytesToHash(testBytes)
-	
+
 	if len(hash.Bytes()) != types.HashLength {
 		t.Errorf("Expected hash length %d, got %d", types.HashLength, len(hash.Bytes()))
 	}
@@ -69,7 +69,7 @@ func TestPublicKeyToAddress(t *testing.T) {
 
 	// Derive address from public key
 	addr := types.PublicKeyToAddress(pubKey.Bytes())
-	
+
 	if addr.IsZero() {
 		t.Error("Address should not be zero")
 	}
@@ -104,32 +104,32 @@ func TestQuantumTransaction(t *testing.T) {
 
 	// Create transaction
 	tx := types.NewQuantumTransaction(chainID, nonce, &to, value, gasLimit, gasPrice, data)
-	
+
 	// Test getters
 	if tx.GetChainID().Cmp(chainID) != 0 {
 		t.Error("Chain ID mismatch")
 	}
-	
+
 	if tx.GetNonce() != nonce {
 		t.Error("Nonce mismatch")
 	}
-	
+
 	if tx.GetTo() == nil || !tx.GetTo().Equal(to) {
 		t.Error("To address mismatch")
 	}
-	
+
 	if tx.GetValue().Cmp(value) != 0 {
 		t.Error("Value mismatch")
 	}
-	
+
 	if tx.GetGas() != gasLimit {
 		t.Error("Gas limit mismatch")
 	}
-	
+
 	if tx.GetGasPrice().Cmp(gasPrice) != 0 {
 		t.Error("Gas price mismatch")
 	}
-	
+
 	if string(tx.GetData()) != string(data) {
 		t.Error("Data mismatch")
 	}
@@ -158,7 +158,7 @@ func TestTransactionSigning(t *testing.T) {
 	data := []byte{}
 
 	tx := types.NewQuantumTransaction(chainID, nonce, &to, value, gasLimit, gasPrice, data)
-	
+
 	// Sign transaction
 	err = tx.SignTransaction(privKey.Bytes(), crypto.SigAlgDilithium)
 	if err != nil {
@@ -170,7 +170,7 @@ func TestTransactionSigning(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to verify signature: %v", err)
 	}
-	
+
 	if !valid {
 		t.Error("Signature verification failed")
 	}
@@ -246,28 +246,28 @@ func TestBlockCreation(t *testing.T) {
 	timestamp := uint64(1234567890)
 
 	header := types.NewBlockHeader(parentHash, coinbase, root, number, gasLimit, timestamp)
-	
+
 	// Verify header fields
 	if !header.ParentHash.Equal(parentHash) {
 		t.Error("Parent hash mismatch")
 	}
-	
+
 	if !header.Coinbase.Equal(coinbase) {
 		t.Error("Coinbase mismatch")
 	}
-	
+
 	if !header.Root.Equal(root) {
 		t.Error("Root mismatch")
 	}
-	
+
 	if header.Number.Cmp(number) != 0 {
 		t.Error("Number mismatch")
 	}
-	
+
 	if header.GasLimit != gasLimit {
 		t.Error("Gas limit mismatch")
 	}
-	
+
 	if header.Time != timestamp {
 		t.Error("Timestamp mismatch")
 	}
@@ -275,26 +275,26 @@ func TestBlockCreation(t *testing.T) {
 	// Create block
 	transactions := []*types.QuantumTransaction{}
 	uncles := []*types.BlockHeader{}
-	
+
 	block := types.NewBlock(header, transactions, uncles)
-	
+
 	// Verify block
 	if block.Number().Cmp(number) != 0 {
 		t.Error("Block number mismatch")
 	}
-	
+
 	if block.Time() != timestamp {
 		t.Error("Block timestamp mismatch")
 	}
-	
+
 	if block.GasLimit() != gasLimit {
 		t.Error("Block gas limit mismatch")
 	}
-	
+
 	if !block.Coinbase().Equal(coinbase) {
 		t.Error("Block coinbase mismatch")
 	}
-	
+
 	if !block.ParentHash().Equal(parentHash) {
 		t.Error("Block parent hash mismatch")
 	}
@@ -306,7 +306,7 @@ func TestBlockSigning(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to generate validator key: %v", err)
 	}
-	
+
 	validatorAddr := types.BytesToAddress([]byte("validator"))
 
 	// Create block header
@@ -318,7 +318,7 @@ func TestBlockSigning(t *testing.T) {
 	timestamp := uint64(1234567890)
 
 	header := types.NewBlockHeader(parentHash, coinbase, root, number, gasLimit, timestamp)
-	
+
 	// Sign block
 	err = header.SignBlock(privKey.Bytes(), crypto.SigAlgDilithium, validatorAddr)
 	if err != nil {
@@ -330,7 +330,7 @@ func TestBlockSigning(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to verify validator signature: %v", err)
 	}
-	
+
 	if !valid {
 		t.Error("Validator signature verification failed")
 	}
@@ -348,24 +348,24 @@ func TestBlockSigning(t *testing.T) {
 
 func TestGenesisBlock(t *testing.T) {
 	genesis := types.Genesis()
-	
+
 	// Verify genesis properties
 	if genesis.Number().Cmp(big.NewInt(0)) != 0 {
 		t.Error("Genesis block number should be 0")
 	}
-	
+
 	if !genesis.ParentHash().IsZero() {
 		t.Error("Genesis parent hash should be zero")
 	}
-	
+
 	if genesis.Time() == 0 {
 		t.Error("Genesis timestamp should not be zero")
 	}
-	
+
 	if len(genesis.Transactions) != 0 {
 		t.Error("Genesis should have no transactions")
 	}
-	
+
 	if genesis.GasLimit() == 0 {
 		t.Error("Genesis gas limit should not be zero")
 	}
@@ -373,9 +373,9 @@ func TestGenesisBlock(t *testing.T) {
 
 // Helper function to check if string contains substring
 func contains(s, substr string) bool {
-	return len(s) >= len(substr) && (s == substr || len(substr) == 0 || (len(s) > len(substr) && 
-		(s[:len(substr)] == substr || s[len(s)-len(substr):] == substr || 
-		 containsHelper(s[1:len(s)-1], substr))))
+	return len(s) >= len(substr) && (s == substr || len(substr) == 0 || (len(s) > len(substr) &&
+		(s[:len(substr)] == substr || s[len(s)-len(substr):] == substr ||
+			containsHelper(s[1:len(s)-1], substr))))
 }
 
 func containsHelper(s, substr string) bool {

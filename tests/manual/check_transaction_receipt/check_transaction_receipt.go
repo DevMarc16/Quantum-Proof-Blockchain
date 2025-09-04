@@ -12,7 +12,7 @@ import (
 func main() {
 	// The transaction hash from the recent test
 	txHash := "0x4e4d8983b1f42131ec4ee7975c090f183f3314be0b4aa5f34d3b9ebf00130552"
-	
+
 	log.Printf("🔍 Checking receipt for transaction: %s", txHash)
 
 	// Try to get the receipt multiple times
@@ -35,7 +35,7 @@ func main() {
 
 	// Let's also check if the node is still running
 	log.Printf("🔍 Checking if node is still responding...")
-	
+
 	chainId, err := getChainId()
 	if err != nil {
 		log.Printf("❌ Node not responding: %v", err)

@@ -69,7 +69,7 @@ func runTestRPCSubmit() {
 	fmt.Printf("Transaction signed successfully!\n")
 	fmt.Printf("Transaction Hash: %s\n", tx.Hash().Hex())
 	fmt.Printf("From Address: %s\n", tx.From().Hex())
-	
+
 	// Verify signature locally
 	valid, err := crypto.VerifySignature(sigHash[:], qrSig)
 	if err != nil {

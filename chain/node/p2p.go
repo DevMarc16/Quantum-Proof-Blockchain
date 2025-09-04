@@ -58,7 +58,7 @@ type Peer struct {
 func (p *Peer) SendMessage(msg *P2PMessage) error {
 	p.mu.Lock()
 	defer p.mu.Unlock()
-	
+
 	return p.Conn.WriteJSON(msg)
 }
 
@@ -69,17 +69,17 @@ type P2PNetwork struct {
 	peers          map[string]*Peer
 	nodeID         string
 	networkID      uint64
-	
+
 	// Message handlers
 	messageHandlers map[MessageType]func(*Peer, json.RawMessage)
-	
+
 	// Control
 	listener net.Listener
 	ctx      context.Context
 	cancel   context.CancelFunc
 	wg       sync.WaitGroup
 	mu       sync.RWMutex
-	
+
 	// Callbacks
 	onBlock       func(*types.Block)
 	onTransaction func(*types.QuantumTransaction)
@@ -88,21 +88,21 @@ type P2PNetwork struct {
 // NewP2PNetwork creates a new P2P network
 func NewP2PNetwork(listenAddr string, bootstrapPeers []string) *P2PNetwork {
 	ctx, cancel := context.WithCancel(context.Background())
-	
+
 	p2p := &P2PNetwork{
-		listenAddr:     listenAddr,
-		bootstrapPeers: bootstrapPeers,
-		peers:          make(map[string]*Peer),
-		nodeID:         generateNodeID(),
-		networkID:      8888, // Quantum chain network ID
+		listenAddr:      listenAddr,
+		bootstrapPeers:  bootstrapPeers,
+		peers:           make(map[string]*Peer),
+		nodeID:          generateNodeID(),
+		networkID:       8888, // Quantum chain network ID
 		messageHandlers: make(map[MessageType]func(*Peer, json.RawMessage)),
-		ctx:            ctx,
-		cancel:         cancel,
+		ctx:             ctx,
+		cancel:          cancel,
 	}
-	
+
 	// Register message handlers
 	p2p.registerMessageHandlers()
-	
+
 	return p2p
 }
 
@@ -114,23 +114,23 @@ func generateNodeID() string {
 func (p2p *P2PNetwork) Start(ctx context.Context) error {
 	p2p.mu.Lock()
 	defer p2p.mu.Unlock()
-	
+
 	// Start listening for incoming connections
 	listener, err := net.Listen("tcp", p2p.listenAddr)
 	if err != nil {
 		return fmt.Errorf("failed to start listener: %w", err)
 	}
-	
+
 	p2p.listener = listener
 	log.Printf("P2P network listening on %s", p2p.listenAddr)
-	
+
 	// Start accepting connections
 	p2p.wg.Add(1)
 	go func() {
 		defer p2p.wg.Done()
 		p2p.acceptConnections()
 	}()
-	
+
 	// Connect to bootstrap peers
 	for _, peerAddr := range p2p.bootstrapPeers {
 		p2p.wg.Add(1)
@@ -139,14 +139,14 @@ func (p2p *P2PNetwork) Start(ctx context.Context) error {
 			p2p.connectToPeer(addr)
 		}(peerAddr)
 	}
-	
+
 	// Start peer maintenance
 	p2p.wg.Add(1)
 	go func() {
 		defer p2p.wg.Done()
 		p2p.maintainPeers()
 	}()
-	
+
 	return nil
 }
 
@@ -154,18 +154,18 @@ func (p2p *P2PNetwork) Start(ctx context.Context) error {
 func (p2p *P2PNetwork) Stop() {
 	p2p.mu.Lock()
 	defer p2p.mu.Unlock()
-	
+
 	p2p.cancel()
-	
+
 	if p2p.listener != nil {
 		p2p.listener.Close()
 	}
-	
+
 	// Close all peer connections
 	for _, peer := range p2p.peers {
 		peer.Conn.Close()
 	}
-	
+
 	p2p.wg.Wait()
 	log.Printf("P2P network stopped")
 }
@@ -177,7 +177,7 @@ func (p2p *P2PNetwork) acceptConnections() {
 			return
 		default:
 		}
-		
+
 		conn, err := p2p.listener.Accept()
 		if err != nil {
 			if p2p.ctx.Err() != nil {
@@ -186,7 +186,7 @@ func (p2p *P2PNetwork) acceptConnections() {
 			log.Printf("Failed to accept connection: %v", err)
 			continue
 		}
-		
+
 		// Upgrade to WebSocket
 		upgrader := websocket.Upgrader{}
 		wsConn, err := upgrader.Upgrade(&httpResponseWriter{conn}, &http.Request{}, nil)
@@ -195,7 +195,7 @@ func (p2p *P2PNetwork) acceptConnections() {
 			conn.Close()
 			continue
 		}
-		
+
 		p2p.wg.Add(1)
 		go func() {
 			defer p2p.wg.Done()
@@ -206,7 +206,7 @@ func (p2p *P2PNetwork) acceptConnections() {
 
 func (p2p *P2PNetwork) handleIncomingConnection(conn *websocket.Conn) {
 	defer conn.Close()
-	
+
 	// Wait for handshake
 	var msg P2PMessage
 	err := conn.ReadJSON(&msg)
@@ -214,25 +214,25 @@ func (p2p *P2PNetwork) handleIncomingConnection(conn *websocket.Conn) {
 		log.Printf("Failed to read handshake: %v", err)
 		return
 	}
-	
+
 	if msg.Type != MsgTypeHandshake {
 		log.Printf("Expected handshake message, got %v", msg.Type)
 		return
 	}
-	
+
 	var handshake HandshakeData
 	err = json.Unmarshal(msg.Data, &handshake)
 	if err != nil {
 		log.Printf("Failed to unmarshal handshake: %v", err)
 		return
 	}
-	
+
 	// Validate handshake
 	if handshake.NetworkID != p2p.networkID {
 		log.Printf("Network ID mismatch: expected %d, got %d", p2p.networkID, handshake.NetworkID)
 		return
 	}
-	
+
 	// Create peer
 	peer := &Peer{
 		ID:       handshake.NodeID,
@@ -241,14 +241,14 @@ func (p2p *P2PNetwork) handleIncomingConnection(conn *websocket.Conn) {
 		NodeInfo: &handshake,
 		LastSeen: time.Now(),
 	}
-	
+
 	// Add to peers
 	p2p.mu.Lock()
 	p2p.peers[peer.ID] = peer
 	p2p.mu.Unlock()
-	
+
 	log.Printf("New peer connected: %s", peer.ID)
-	
+
 	// Send our handshake
 	ourHandshake := HandshakeData{
 		Version:   1,
@@ -256,7 +256,7 @@ func (p2p *P2PNetwork) handleIncomingConnection(conn *websocket.Conn) {
 		NodeID:    p2p.nodeID,
 		Height:    0, // Would get from blockchain
 	}
-	
+
 	handshakeData, _ := json.Marshal(ourHandshake)
 	responseMsg := &P2PMessage{
 		Type:      MsgTypeHandshake,
@@ -264,9 +264,9 @@ func (p2p *P2PNetwork) handleIncomingConnection(conn *websocket.Conn) {
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	peer.SendMessage(responseMsg)
-	
+
 	// Handle messages from this peer
 	p2p.handlePeerMessages(peer)
 }
@@ -278,9 +278,9 @@ func (p2p *P2PNetwork) connectToPeer(address string) {
 		log.Printf("Failed to connect to peer %s: %v", address, err)
 		return
 	}
-	
+
 	defer conn.Close()
-	
+
 	// Send handshake
 	handshake := HandshakeData{
 		Version:   1,
@@ -288,7 +288,7 @@ func (p2p *P2PNetwork) connectToPeer(address string) {
 		NodeID:    p2p.nodeID,
 		Height:    0, // Would get from blockchain
 	}
-	
+
 	handshakeData, _ := json.Marshal(handshake)
 	msg := &P2PMessage{
 		Type:      MsgTypeHandshake,
@@ -296,13 +296,13 @@ func (p2p *P2PNetwork) connectToPeer(address string) {
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	err = conn.WriteJSON(msg)
 	if err != nil {
 		log.Printf("Failed to send handshake to %s: %v", address, err)
 		return
 	}
-	
+
 	// Wait for handshake response
 	var responseMsg P2PMessage
 	err = conn.ReadJSON(&responseMsg)
@@ -310,19 +310,19 @@ func (p2p *P2PNetwork) connectToPeer(address string) {
 		log.Printf("Failed to read handshake response from %s: %v", address, err)
 		return
 	}
-	
+
 	if responseMsg.Type != MsgTypeHandshake {
 		log.Printf("Expected handshake response from %s", address)
 		return
 	}
-	
+
 	var peerHandshake HandshakeData
 	err = json.Unmarshal(responseMsg.Data, &peerHandshake)
 	if err != nil {
 		log.Printf("Failed to unmarshal handshake from %s: %v", address, err)
 		return
 	}
-	
+
 	// Create peer
 	peer := &Peer{
 		ID:       peerHandshake.NodeID,
@@ -331,14 +331,14 @@ func (p2p *P2PNetwork) connectToPeer(address string) {
 		NodeInfo: &peerHandshake,
 		LastSeen: time.Now(),
 	}
-	
+
 	// Add to peers
 	p2p.mu.Lock()
 	p2p.peers[peer.ID] = peer
 	p2p.mu.Unlock()
-	
+
 	log.Printf("Connected to peer: %s", peer.ID)
-	
+
 	// Handle messages from this peer
 	p2p.handlePeerMessages(peer)
 }
@@ -349,31 +349,31 @@ func (p2p *P2PNetwork) handlePeerMessages(peer *Peer) {
 		p2p.mu.Lock()
 		delete(p2p.peers, peer.ID)
 		p2p.mu.Unlock()
-		
+
 		log.Printf("Peer disconnected: %s", peer.ID)
 	}()
-	
+
 	for {
 		select {
 		case <-p2p.ctx.Done():
 			return
 		default:
 		}
-		
+
 		var msg P2PMessage
 		err := peer.Conn.ReadJSON(&msg)
 		if err != nil {
 			log.Printf("Failed to read message from peer %s: %v", peer.ID, err)
 			return
 		}
-		
+
 		peer.LastSeen = time.Now()
-		
+
 		// Handle message
 		p2p.mu.RLock()
 		handler, exists := p2p.messageHandlers[msg.Type]
 		p2p.mu.RUnlock()
-		
+
 		if exists {
 			handler(peer, msg.Data)
 		}
@@ -395,7 +395,7 @@ func (p2p *P2PNetwork) handlePing(peer *Peer, data json.RawMessage) {
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	peer.SendMessage(pongMsg)
 }
 
@@ -410,7 +410,7 @@ func (p2p *P2PNetwork) handleBlock(peer *Peer, data json.RawMessage) {
 		log.Printf("Failed to unmarshal block from peer %s: %v", peer.ID, err)
 		return
 	}
-	
+
 	// Forward to block handler if set
 	if p2p.onBlock != nil {
 		p2p.onBlock(&block)
@@ -424,7 +424,7 @@ func (p2p *P2PNetwork) handleTransaction(peer *Peer, data json.RawMessage) {
 		log.Printf("Failed to unmarshal transaction from peer %s: %v", peer.ID, err)
 		return
 	}
-	
+
 	// Forward to transaction handler if set
 	if p2p.onTransaction != nil {
 		p2p.onTransaction(&tx)
@@ -434,7 +434,7 @@ func (p2p *P2PNetwork) handleTransaction(peer *Peer, data json.RawMessage) {
 func (p2p *P2PNetwork) maintainPeers() {
 	ticker := time.NewTicker(30 * time.Second)
 	defer ticker.Stop()
-	
+
 	for {
 		select {
 		case <-p2p.ctx.Done():
@@ -452,14 +452,14 @@ func (p2p *P2PNetwork) sendPings() {
 		peers = append(peers, peer)
 	}
 	p2p.mu.RUnlock()
-	
+
 	pingMsg := &P2PMessage{
 		Type:      MsgTypePing,
 		Data:      []byte("{}"),
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	for _, peer := range peers {
 		peer.SendMessage(pingMsg)
 	}
@@ -472,14 +472,14 @@ func (p2p *P2PNetwork) BroadcastBlock(block *types.Block) {
 		log.Printf("Failed to marshal block for broadcast: %v", err)
 		return
 	}
-	
+
 	msg := &P2PMessage{
 		Type:      MsgTypeBlock,
 		Data:      blockData,
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	p2p.broadcast(msg)
 }
 
@@ -490,14 +490,14 @@ func (p2p *P2PNetwork) BroadcastTransaction(tx *types.QuantumTransaction) {
 		log.Printf("Failed to marshal transaction for broadcast: %v", err)
 		return
 	}
-	
+
 	msg := &P2PMessage{
 		Type:      MsgTypeTransaction,
 		Data:      txData,
 		Timestamp: time.Now().Unix(),
 		From:      p2p.nodeID,
 	}
-	
+
 	p2p.broadcast(msg)
 }
 
@@ -508,7 +508,7 @@ func (p2p *P2PNetwork) broadcast(msg *P2PMessage) {
 		peers = append(peers, peer)
 	}
 	p2p.mu.RUnlock()
-	
+
 	for _, peer := range peers {
 		go func(p *Peer) {
 			err := p.SendMessage(msg)
@@ -533,12 +533,12 @@ func (p2p *P2PNetwork) SetTransactionHandler(handler func(*types.QuantumTransact
 func (p2p *P2PNetwork) GetPeers() []*Peer {
 	p2p.mu.RLock()
 	defer p2p.mu.RUnlock()
-	
+
 	peers := make([]*Peer, 0, len(p2p.peers))
 	for _, peer := range p2p.peers {
 		peers = append(peers, peer)
 	}
-	
+
 	return peers
 }
 

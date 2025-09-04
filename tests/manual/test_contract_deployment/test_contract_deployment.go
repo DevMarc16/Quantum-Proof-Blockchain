@@ -51,7 +51,7 @@ func runTestContractDeployment() {
 
 	// Test 4: Create contract deployment transaction
 	fmt.Println("\n4️⃣ Creating contract deployment transaction...")
-	
+
 	// Create quantum transaction for contract deployment
 	tx := &types.QuantumTransaction{
 		ChainID:   types.NewBigInt(8888),
@@ -92,11 +92,11 @@ func runTestContractDeployment() {
 		fmt.Println("   💡 This is expected if deployer has insufficient balance")
 	} else {
 		fmt.Printf("   ✅ Contract deployment transaction submitted: %s\n", txHash)
-		
+
 		// Wait for transaction to be mined
 		fmt.Println("   ⏳ Waiting for transaction to be mined...")
 		time.Sleep(5 * time.Second)
-		
+
 		// Get transaction receipt
 		receipt := getTransactionReceipt(txHash)
 		if receipt != "" {
@@ -107,7 +107,7 @@ func runTestContractDeployment() {
 	// Test 6: Test quantum precompile gas costs
 	fmt.Println("\n6️⃣ Testing optimized quantum precompile gas costs...")
 	fmt.Printf("   • Dilithium verification: 800 gas (98%% reduction from 50,000)\n")
-	fmt.Printf("   • Falcon verification: 600 gas (98%% reduction from 30,000)\n") 
+	fmt.Printf("   • Falcon verification: 600 gas (98%% reduction from 30,000)\n")
 	fmt.Printf("   • Kyber decapsulation: 400 gas (98%% reduction from 20,000)\n")
 	fmt.Printf("   • Aggregated verification: 200 gas (new optimization)\n")
 	fmt.Printf("   • Batch verification: 150 gas per signature (new optimization)\n")
@@ -115,7 +115,7 @@ func runTestContractDeployment() {
 
 	// Test 7: Security features verification
 	fmt.Println("\n7️⃣ Verifying production security features...")
-	
+
 	// Test rate limiting
 	fmt.Println("   🔒 Testing rate limiting...")
 	for i := 0; i < 12; i++ {
@@ -126,7 +126,7 @@ func runTestContractDeployment() {
 		}
 		time.Sleep(100 * time.Millisecond)
 	}
-	
+
 	// Test input validation
 	fmt.Println("   🔒 Testing input validation...")
 	invalidResp := makeRPCRequest_contract("INVALID_METHOD", []interface{}{})
@@ -137,7 +137,7 @@ func runTestContractDeployment() {
 	fmt.Println("\n🎉 Quantum Blockchain EVM Testing Complete!")
 	fmt.Println("📊 Results Summary:")
 	fmt.Println("   ✅ Quantum cryptography: WORKING")
-	fmt.Println("   ✅ EVM integration: WORKING") 
+	fmt.Println("   ✅ EVM integration: WORKING")
 	fmt.Println("   ✅ Gas optimization: 98% reduction achieved")
 	fmt.Println("   ✅ Security features: ACTIVE")
 	fmt.Println("   ✅ 2-second block times: CONFIRMED")
@@ -158,13 +158,13 @@ func submitTransaction_contract(tx *types.QuantumTransaction) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal transaction: %w", err)
 	}
-	
+
 	// Submit via quantum_sendRawTransaction
 	txHash := makeRPCRequest_contract("quantum_sendRawTransaction", []interface{}{string(txData)})
 	if txHash == "" {
 		return "", fmt.Errorf("transaction submission failed")
 	}
-	
+
 	return txHash, nil
 }
 
@@ -208,7 +208,7 @@ func makeRPCRequest_contract(method string, params []interface{}) string {
 	if result, ok := rpcResp["result"]; ok && result != nil {
 		return fmt.Sprintf("%v", result)
 	}
-	
+
 	return ""
 }
 

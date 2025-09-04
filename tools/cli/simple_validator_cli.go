@@ -13,9 +13,9 @@ import (
 
 func main() {
 	var (
-		generate = flag.Bool("generate", false, "Generate new quantum keys")
+		generate  = flag.Bool("generate", false, "Generate new quantum keys")
 		algorithm = flag.String("algorithm", "dilithium", "Algorithm to use (dilithium, falcon)")
-		output = flag.String("output", "./validator-keys", "Output directory for keys")
+		output    = flag.String("output", "./validator-keys", "Output directory for keys")
 	)
 	flag.Parse()
 

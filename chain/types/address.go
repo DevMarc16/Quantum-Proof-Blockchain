@@ -108,12 +108,12 @@ func HexToAddress(s string) (Address, error) {
 	if len(s) != AddressLength*2 {
 		return ZeroAddress, fmt.Errorf("invalid address length: expected %d, got %d", AddressLength*2, len(s))
 	}
-	
+
 	bytes, err := hex.DecodeString(s)
 	if err != nil {
 		return ZeroAddress, fmt.Errorf("invalid hex string: %w", err)
 	}
-	
+
 	return BytesToAddress(bytes), nil
 }
 
@@ -125,12 +125,12 @@ func HexToHash(s string) (Hash, error) {
 	if len(s) != HashLength*2 {
 		return ZeroHash, fmt.Errorf("invalid hash length: expected %d, got %d", HashLength*2, len(s))
 	}
-	
+
 	bytes, err := hex.DecodeString(s)
 	if err != nil {
 		return ZeroHash, fmt.Errorf("invalid hex string: %w", err)
 	}
-	
+
 	return BytesToHash(bytes), nil
 }
 

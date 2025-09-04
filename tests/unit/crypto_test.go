@@ -29,7 +29,7 @@ func TestDilithiumSigningAndVerification(t *testing.T) {
 	}
 
 	message := []byte("Hello, Quantum World!")
-	
+
 	// Sign the message
 	signature, err := privKey.Sign(message)
 	if err != nil {
@@ -85,7 +85,7 @@ func TestFalconSigningAndVerification(t *testing.T) {
 	}
 
 	message := []byte("Hello, Quantum World!")
-	
+
 	// Sign the message
 	signature, err := privKey.Sign(message)
 	if err != nil {
@@ -160,7 +160,7 @@ func TestKyberEncapsulationAndDecapsulation(t *testing.T) {
 	wrongCiphertext := make([]byte, len(ciphertext))
 	copy(wrongCiphertext, ciphertext)
 	wrongCiphertext[0] ^= 0xFF
-	
+
 	_, err = privKey.Decapsulate(wrongCiphertext)
 	if err == nil {
 		t.Log("Decapsulation should have failed with wrong ciphertext")
@@ -175,7 +175,7 @@ func TestQuantumSignatureInterface(t *testing.T) {
 	}
 
 	message := []byte("Test message")
-	
+
 	qrSig, err := crypto.SignMessage(message, crypto.SigAlgDilithium, privKey.Bytes())
 	if err != nil {
 		t.Fatalf("Failed to sign with Dilithium: %v", err)
@@ -296,7 +296,7 @@ func BenchmarkDilithiumSigning(b *testing.B) {
 	}
 
 	message := []byte("Benchmark message")
-	
+
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		_, err := privKey.Sign(message)

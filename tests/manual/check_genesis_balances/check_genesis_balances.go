@@ -10,7 +10,7 @@ import (
 
 func main() {
 	fmt.Println("🔍 Checking Genesis Balances...")
-	
+
 	// Test addresses from genesis configuration
 	testAddresses := []string{
 		"0x129b052af5f7858ab578c8c8f244eaac818fa504", // Test address from rpc_submit
@@ -19,14 +19,14 @@ func main() {
 		"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266", // Hardhat test address
 		"0x0000000000000000000000000000000000000001", // Original genesis address
 	}
-	
+
 	for _, addr := range testAddresses {
 		balance, err := getBalance(addr)
 		if err != nil {
 			log.Printf("❌ Error getting balance for %s: %v", addr, err)
 			continue
 		}
-		
+
 		fmt.Printf("💰 %s: %s\n", addr, balance)
 	}
 }
@@ -34,7 +34,7 @@ func main() {
 func getBalance(address string) (string, error) {
 	payload := map[string]interface{}{
 		"jsonrpc": "2.0",
-		"method":  "eth_getBalance", 
+		"method":  "eth_getBalance",
 		"params":  []interface{}{address, "latest"},
 		"id":      1,
 	}
@@ -58,7 +58,7 @@ func getBalance(address string) (string, error) {
 	if errorObj, exists := result["error"]; exists {
 		return "", fmt.Errorf("RPC error: %v", errorObj)
 	}
-	
+
 	if result["result"] == nil {
 		return "0x0", nil
 	}

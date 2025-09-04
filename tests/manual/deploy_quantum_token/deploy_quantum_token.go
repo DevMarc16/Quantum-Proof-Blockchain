@@ -53,10 +53,10 @@ func runDeployQuantumToken() {
 	fmt.Println("\n2️⃣ Checking blockchain state...")
 	blockNumber := getBlockNumberDeploy()
 	fmt.Printf("   📦 Current block: %s\n", blockNumber)
-	
+
 	balance := getBalanceDeploy(deployer)
 	fmt.Printf("   💰 Deployer balance: %s QTM\n", balance)
-	
+
 	if balance == "0x0" {
 		fmt.Println("   ⚠️ Zero balance detected - using genesis account for funding...")
 		// In a real deployment, you'd fund this account first
@@ -64,7 +64,7 @@ func runDeployQuantumToken() {
 
 	// Create and sign deployment transaction
 	fmt.Println("\n3️⃣ Creating contract deployment transaction...")
-	
+
 	tx := &types.QuantumTransaction{
 		ChainID:   types.NewBigInt(8888),
 		Nonce:     0,
@@ -102,7 +102,7 @@ func runDeployQuantumToken() {
 	if err != nil {
 		fmt.Printf("   ❌ Deployment failed: %v\n", err)
 		fmt.Println("   💡 This is expected without funded deployer account")
-		
+
 		// Show what would happen with proper funding
 		fmt.Println("\n📋 Contract Deployment Summary (Simulation):")
 		fmt.Printf("   • Contract Type: Quantum Token (ERC20-like)\n")
@@ -111,7 +111,7 @@ func runDeployQuantumToken() {
 		fmt.Printf("   • Gas Limit: 2,000,000\n")
 		fmt.Printf("   • Estimated Gas Cost: ~800 gas (98%% optimized)\n")
 		fmt.Printf("   • Chain ID: 8888 (Quantum Blockchain)\n")
-		
+
 		return
 	}
 
@@ -153,26 +153,26 @@ func deployContract(tx *types.QuantumTransaction) (string, string, error) {
 	if err != nil {
 		return "", "", fmt.Errorf("failed to marshal transaction: %w", err)
 	}
-	
+
 	// Convert to hex string for submission (as expected by DecodeRLPTransaction)
 	hexTx := fmt.Sprintf("0x%x", txData)
-	
+
 	// Submit via quantum_sendRawTransaction
 	result := makeRPCRequestDeploy("quantum_sendRawTransaction", []interface{}{hexTx})
 	if result == "" {
 		return "", "", fmt.Errorf("transaction submission failed")
 	}
-	
+
 	// Calculate contract address (deterministic)
 	contractAddr := types.CreateContractAddress(tx.From(), tx.Nonce)
-	
+
 	return result, contractAddr.Hex(), nil
 }
 
 func testContractInteraction(contractAddr string) {
 	// Test reading from contract (simulate balanceOf call)
 	fmt.Printf("   📞 Testing contract call to %s...\n", contractAddr[:10]+"...")
-	
+
 	// This would be a real contract call in a full implementation
 	result := makeRPCRequestDeploy("eth_call", []interface{}{
 		map[string]interface{}{
@@ -181,7 +181,7 @@ func testContractInteraction(contractAddr string) {
 		},
 		"latest",
 	})
-	
+
 	if result != "" {
 		fmt.Println("   ✅ Contract interaction successful")
 	} else {
@@ -233,7 +233,7 @@ func makeRPCRequestDeploy(method string, params []interface{}) string {
 	if result, ok := rpcResp["result"]; ok && result != nil {
 		return fmt.Sprintf("%v", result)
 	}
-	
+
 	return ""
 }
 

@@ -5,7 +5,7 @@ import (
 	"math/big"
 
 	"quantum-blockchain/chain/types"
-	
+
 	"github.com/ethereum/go-ethereum/common"
 	etypes "github.com/ethereum/go-ethereum/core/types"
 )
@@ -41,9 +41,9 @@ type ExecutionResult struct {
 
 // ContractLog represents an event log from contract execution
 type ContractLog struct {
-	Address types.Address   `json:"address"`
-	Topics  []types.Hash    `json:"topics"`
-	Data    []byte          `json:"data"`
+	Address types.Address `json:"address"`
+	Topics  []types.Hash  `json:"topics"`
+	Data    []byte        `json:"data"`
 }
 
 // NewSimpleEVM creates a new simplified EVM
@@ -61,7 +61,7 @@ func (evm *SimpleEVM) ExecuteTransaction(
 	gasLimit uint64,
 ) (*ExecutionResult, error) {
 	from := tx.From()
-	
+
 	if tx.IsContractCreation() {
 		return evm.executeContractCreation(tx, from, gasLimit)
 	} else if tx.GetTo() != nil {
@@ -79,10 +79,10 @@ func (evm *SimpleEVM) executeContractCreation(
 	// Calculate contract address using deterministic Ethereum-compatible method
 	nonce := evm.stateDB.GetNonce(from)
 	contractAddr := types.CreateContractAddress(from, nonce)
-	
+
 	// Enhanced gas calculation for quantum-resistant contract creation
 	gasUsed := uint64(21000) // Base transaction cost
-	
+
 	// Data cost: 4 gas per zero byte, 16 gas per non-zero byte (EIP-2028)
 	for _, b := range tx.GetData() {
 		if b == 0 {
@@ -91,23 +91,23 @@ func (evm *SimpleEVM) executeContractCreation(
 			gasUsed += 16
 		}
 	}
-	
+
 	// Code storage cost: 200 gas per byte stored
 	gasUsed += uint64(200) * uint64(len(tx.GetData()))
-	
+
 	// Quantum signature verification cost (already paid during validation)
 	// No additional cost here since signature was verified in transaction pool
-	
+
 	// Additional cost for quantum-resistant contract initialization
 	gasUsed += uint64(5000) // Quantum contract setup overhead
-	
+
 	if gasUsed > gasLimit {
 		return &ExecutionResult{
 			GasUsed: gasLimit,
 			Err:     errors.New("out of gas during contract creation"),
 		}, nil
 	}
-	
+
 	// Check if sender has sufficient balance for value transfer
 	if tx.GetValue().Sign() > 0 {
 		fromBalance := evm.stateDB.GetBalance(from)
@@ -118,7 +118,7 @@ func (evm *SimpleEVM) executeContractCreation(
 			}, nil
 		}
 	}
-	
+
 	// Check if contract address already exists
 	if evm.stateDB.Exist(contractAddr) && !evm.stateDB.Empty(contractAddr) {
 		return &ExecutionResult{
@@ -126,34 +126,34 @@ func (evm *SimpleEVM) executeContractCreation(
 			Err:     errors.New("contract address already exists"),
 		}, nil
 	}
-	
+
 	// Increment sender nonce BEFORE storing contract code
 	evm.stateDB.SetNonce(from, nonce+1)
-	
+
 	// Store the contract code and mark contract as created
 	evm.stateDB.SetCode(contractAddr, tx.GetData())
-	
+
 	// Initialize contract with zero balance if it doesn't exist
 	if !evm.stateDB.Exist(contractAddr) {
 		evm.stateDB.SetBalance(contractAddr, big.NewInt(0))
 	}
-	
+
 	// Transfer value if any
 	if tx.GetValue().Sign() > 0 {
 		fromBalance := evm.stateDB.GetBalance(from)
 		contractBalance := evm.stateDB.GetBalance(contractAddr)
-		
+
 		fromBalance.Sub(fromBalance, tx.GetValue())
 		contractBalance.Add(contractBalance, tx.GetValue())
-		
+
 		evm.stateDB.SetBalance(from, fromBalance)
 		evm.stateDB.SetBalance(contractAddr, contractBalance)
 	}
-	
+
 	// Execute contract constructor and check for quantum precompile calls
 	logs, constructorGas := evm.executeContractConstructor(tx.GetData(), contractAddr, from)
 	gasUsed += constructorGas
-	
+
 	// Final gas check
 	if gasUsed > gasLimit {
 		return &ExecutionResult{
@@ -161,7 +161,7 @@ func (evm *SimpleEVM) executeContractCreation(
 			Err:     errors.New("out of gas during constructor execution"),
 		}, nil
 	}
-	
+
 	return &ExecutionResult{
 		ReturnData:      contractAddr.Bytes(),
 		GasUsed:         gasUsed,
@@ -178,50 +178,50 @@ func (evm *SimpleEVM) executeContractCall(
 ) (*ExecutionResult, error) {
 	// Check if target is a contract
 	code := evm.stateDB.GetCode(to)
-	
+
 	// Basic gas calculation
 	gasUsed := uint64(21000) // Base transaction cost
 	if len(code) > 0 {
 		gasUsed += uint64(len(tx.GetData())) * 4 // Data cost for contract call
 	}
-	
+
 	if gasUsed > gasLimit {
 		return &ExecutionResult{
 			GasUsed: gasLimit,
 			Err:     errors.New("out of gas"),
 		}, nil
 	}
-	
+
 	// Transfer value if any
 	if tx.GetValue().Sign() > 0 {
 		fromBalance := evm.stateDB.GetBalance(from)
 		toBalance := evm.stateDB.GetBalance(to)
-		
+
 		if fromBalance.Cmp(tx.GetValue()) < 0 {
 			return &ExecutionResult{
 				GasUsed: gasUsed,
 				Err:     errors.New("insufficient balance"),
 			}, nil
 		}
-		
+
 		fromBalance.Sub(fromBalance, tx.GetValue())
 		toBalance.Add(toBalance, tx.GetValue())
-		
+
 		evm.stateDB.SetBalance(from, fromBalance)
 		evm.stateDB.SetBalance(to, toBalance)
 	}
-	
+
 	var returnData []byte
 	var logs []*etypes.Log
-	
+
 	if len(code) > 0 {
 		// Execute contract code (simplified)
 		returnData, logs = evm.executeContract(tx.GetData(), to, from)
-		
+
 		// Additional gas for contract execution
 		gasUsed += uint64(len(code)) / 10 // Simplified gas calculation
 	}
-	
+
 	return &ExecutionResult{
 		ReturnData: returnData,
 		GasUsed:    gasUsed,
@@ -236,13 +236,13 @@ func (evm *SimpleEVM) executeContract(
 ) ([]byte, []*etypes.Log) {
 	// Simplified contract execution
 	// In a real implementation, this would parse and execute EVM bytecode
-	
+
 	var logs []*etypes.Log
-	
+
 	// Check for quantum precompile calls
 	quantumLogs := evm.executeQuantumPrecompiles(input, contract)
 	logs = append(logs, quantumLogs...)
-	
+
 	// Return success for now
 	return []byte("success"), logs
 }
@@ -254,17 +254,17 @@ func (evm *SimpleEVM) executeContractConstructor(
 ) ([]*etypes.Log, uint64) {
 	var logs []*etypes.Log
 	gasUsed := uint64(0)
-	
+
 	// Constructor execution gas - simplified model
 	gasUsed += uint64(len(code)) * 2 // Gas for processing constructor code
-	
+
 	// Check for quantum precompile calls in constructor
 	quantumLogs := evm.executeQuantumPrecompiles(code, contract)
 	logs = append(logs, quantumLogs...)
-	
+
 	// Add gas cost for any quantum precompile calls
 	gasUsed += uint64(len(quantumLogs)) * 1000 // 1000 gas per quantum operation log
-	
+
 	return logs, gasUsed
 }
 
@@ -273,15 +273,15 @@ func (evm *SimpleEVM) executeQuantumPrecompiles(
 	contract types.Address,
 ) []*etypes.Log {
 	var logs []*etypes.Log
-	
+
 	// Check if the input contains calls to quantum precompiles
 	// This is a simplified check - in a real implementation,
 	// we would parse the EVM bytecode and handle CALL operations
-	
+
 	if len(input) >= 4 {
 		// Check for quantum precompile signatures
 		signature := input[:4]
-		
+
 		// Detect quantum precompile calls in bytecode
 		if evm.containsQuantumPrecompileCalls(signature) {
 			// Create log for quantum precompile usage
@@ -294,23 +294,23 @@ func (evm *SimpleEVM) executeQuantumPrecompiles(
 			}
 			logs = append(logs, log)
 		}
-		
+
 		// For now, return simplified logs - in production would have full bytecode analysis
 		_ = signature
 		_ = contract
 	}
-	
+
 	return logs
 }
 
 func (evm *SimpleEVM) containsQuantumPrecompileCalls(bytecode []byte) bool {
 	// Simplified detection of quantum precompile calls
 	// In production, this would parse EVM bytecode for CALL operations to addresses 0x0a-0x11
-	
+
 	if len(bytecode) < 4 {
 		return false
 	}
-	
+
 	// Check for common patterns that might indicate quantum precompile usage
 	// This is a simplified heuristic - real implementation would use full bytecode analysis
 	for i := 0; i < len(bytecode)-3; i++ {
@@ -322,7 +322,7 @@ func (evm *SimpleEVM) containsQuantumPrecompileCalls(bytecode []byte) bool {
 			}
 		}
 	}
-	
+
 	return false
 }
 

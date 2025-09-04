@@ -126,14 +126,14 @@ func TestTokenDistributionFlow(t *testing.T) {
 		totalSupply.SetString("1000000000000000000000000000", 10) // 1B QTM
 
 		allocations := map[string]*big.Int{
-			"GenesisValidators":   calculatePercentage(totalSupply, 15),  // 15%
-			"PublicSale":          calculatePercentage(totalSupply, 25),  // 25%
-			"EcosystemFund":       calculatePercentage(totalSupply, 20),  // 20%
-			"Team":                calculatePercentage(totalSupply, 15),  // 15%
-			"Advisors":            calculatePercentage(totalSupply, 5),   // 5%
-			"LiquidityProvision":  calculatePercentage(totalSupply, 10),  // 10%
-			"StakingRewards":      calculatePercentage(totalSupply, 5),   // 5%
-			"CommunityAirdrops":   calculatePercentage(totalSupply, 5),   // 5%
+			"GenesisValidators":  calculatePercentage(totalSupply, 15), // 15%
+			"PublicSale":         calculatePercentage(totalSupply, 25), // 25%
+			"EcosystemFund":      calculatePercentage(totalSupply, 20), // 20%
+			"Team":               calculatePercentage(totalSupply, 15), // 15%
+			"Advisors":           calculatePercentage(totalSupply, 5),  // 5%
+			"LiquidityProvision": calculatePercentage(totalSupply, 10), // 10%
+			"StakingRewards":     calculatePercentage(totalSupply, 5),  // 5%
+			"CommunityAirdrops":  calculatePercentage(totalSupply, 5),  // 5%
 		}
 
 		// Verify allocations sum to 100%
@@ -156,10 +156,10 @@ func TestTokenDistributionFlow(t *testing.T) {
 
 		totalAmount := big.NewInt(1000000) // 1M tokens
 		totalAmountWei := new(big.Int).Mul(totalAmount, big.NewInt(1e18))
-		
+
 		vestingDuration := 2 * 365 * 24 * time.Hour // 2 years
-		_ = 180 * 24 * time.Hour // 6 months (cliffDuration unused)
-		tgeUnlock := 10                            // 10% at TGE
+		_ = 180 * 24 * time.Hour                    // 6 months (cliffDuration unused)
+		tgeUnlock := 10                             // 10% at TGE
 
 		// Calculate TGE release
 		tgeAmount := calculatePercentage(totalAmountWei, tgeUnlock)
@@ -192,7 +192,7 @@ func TestTokenDistributionFlow(t *testing.T) {
 
 		// Generate merkle tree (simplified)
 		merkleRoot := generateMerkleRoot(recipients)
-		
+
 		// Generate proof for first recipient
 		proof := generateMerkleProof(recipients[0], recipients)
 
@@ -211,7 +211,7 @@ func TestDelegationSystem(t *testing.T) {
 	t.Run("DelegationMechanics", func(t *testing.T) {
 		t.Log("📝 Test 1: Delegation amount calculation")
 
-		validatorStake := new(big.Int).Mul(big.NewInt(100000), big.NewInt(1e18)) // 100K QTM
+		validatorStake := new(big.Int).Mul(big.NewInt(100000), big.NewInt(1e18))  // 100K QTM
 		delegationAmount := new(big.Int).Mul(big.NewInt(50000), big.NewInt(1e18)) // 50K QTM
 		totalStake := new(big.Int).Add(validatorStake, delegationAmount)
 
@@ -235,7 +235,7 @@ func TestDelegationSystem(t *testing.T) {
 
 		blockReward := new(big.Int).Mul(big.NewInt(1), big.NewInt(1e18)) // 1 QTM
 		validatorCommission := 5.0                                       // 5%
-		
+
 		// Calculate commission
 		commissionFloat := validatorCommission / 100.0
 		commissionAmount := new(big.Float).Mul(
@@ -248,7 +248,7 @@ func TestDelegationSystem(t *testing.T) {
 		delegatorRewards := new(big.Int).Sub(blockReward, commissionInt)
 
 		t.Logf("   Block Reward: %s QTM", formatTokenAmount(blockReward))
-		t.Logf("   Validator Commission: %s QTM (%.1f%%)", 
+		t.Logf("   Validator Commission: %s QTM (%.1f%%)",
 			formatTokenAmount(commissionInt), validatorCommission)
 		t.Logf("   Delegator Rewards: %s QTM", formatTokenAmount(delegatorRewards))
 		t.Logf("✅ Reward distribution calculated successfully")
@@ -258,9 +258,9 @@ func TestDelegationSystem(t *testing.T) {
 	t.Run("UnbondingPeriod", func(t *testing.T) {
 		t.Log("📝 Test 3: Unbonding period calculation")
 
-		unbondingPeriod := 21 * 24 * time.Hour // 21 days
+		unbondingPeriod := 21 * 24 * time.Hour                                   // 21 days
 		unbondingAmount := new(big.Int).Mul(big.NewInt(10000), big.NewInt(1e18)) // 10K QTM
-		
+
 		startTime := time.Now()
 		completionTime := startTime.Add(unbondingPeriod)
 
@@ -281,7 +281,7 @@ func TestSlashingSystem(t *testing.T) {
 		t.Log("📝 Test 1: Double signing slashing calculation")
 
 		validatorStake := new(big.Int).Mul(big.NewInt(100000), big.NewInt(1e18)) // 100K QTM
-		slashingRate := 20.0 // 20% for double signing
+		slashingRate := 20.0                                                     // 20% for double signing
 
 		slashingAmount := calculatePercentageFloat(validatorStake, slashingRate)
 		remainingStake := new(big.Int).Sub(validatorStake, slashingAmount)
@@ -307,7 +307,7 @@ func TestSlashingSystem(t *testing.T) {
 		if missedRate > slashingThreshold {
 			slashingRate := 1.0 // 1% for downtime
 			slashingAmount := calculatePercentageFloat(validatorStake, slashingRate)
-			
+
 			t.Logf("   Missed Blocks: %d/%d (%.1f%%)", missedBlocks, totalBlocks, missedRate)
 			t.Logf("   Slashing Triggered: Yes (threshold: %.1f%%)", slashingThreshold)
 			t.Logf("   Slashing Amount: %s QTM (%.1f%%)", formatTokenAmount(slashingAmount), slashingRate)
@@ -333,7 +333,7 @@ func TestSystemIntegration(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Failed to generate keys: %v", err)
 		}
-		
+
 		// Registration phase
 		initialStake := new(big.Int).Mul(big.NewInt(100000), big.NewInt(1e18))
 		t.Logf("   Phase 1: Registration (Stake: %s QTM)", formatTokenAmount(initialStake))
@@ -345,7 +345,7 @@ func TestSystemIntegration(t *testing.T) {
 		blocksProduced := 100
 		blockReward := new(big.Int).Mul(big.NewInt(1), big.NewInt(1e18))
 		totalRewards := new(big.Int).Mul(blockReward, big.NewInt(int64(blocksProduced)))
-		t.Logf("   Phase 3: Block Production (%d blocks, %s QTM rewards)", 
+		t.Logf("   Phase 3: Block Production (%d blocks, %s QTM rewards)",
 			blocksProduced, formatTokenAmount(totalRewards))
 
 		// Delegation phase
@@ -415,7 +415,7 @@ func TestQuantumSecurityProperties(t *testing.T) {
 		}
 
 		message := []byte("QUANTUM_RESISTANCE_TEST_MESSAGE")
-		
+
 		signature, err := privateKey.Sign(message)
 		if err != nil {
 			t.Fatalf("Failed to sign with Dilithium: %v", err)

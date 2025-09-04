@@ -22,83 +22,83 @@ import (
 // MetricsServer provides comprehensive monitoring for the quantum blockchain
 type MetricsServer struct {
 	// Configuration
-	listenAddr     string
-	metricsPath    string
-	healthPath     string
-	
+	listenAddr  string
+	metricsPath string
+	healthPath  string
+
 	// Metrics registry
-	registry       *prometheus.Registry
-	
+	registry *prometheus.Registry
+
 	// Core metrics
-	blockHeight           prometheus.Gauge
-	blockTime            prometheus.Histogram
-	transactionCount     prometheus.Counter
-	transactionPool      prometheus.Gauge
-	consensusLatency     prometheus.Histogram
-	validatorCount       prometheus.Gauge
-	networkLatency       prometheus.Histogram
-	
+	blockHeight      prometheus.Gauge
+	blockTime        prometheus.Histogram
+	transactionCount prometheus.Counter
+	transactionPool  prometheus.Gauge
+	consensusLatency prometheus.Histogram
+	validatorCount   prometheus.Gauge
+	networkLatency   prometheus.Histogram
+
 	// Validator metrics
 	validatorUptime      *prometheus.GaugeVec
 	validatorPerformance *prometheus.GaugeVec
 	validatorStake       *prometheus.GaugeVec
 	slashingEvents       prometheus.Counter
-	
+
 	// Network metrics
-	peerCount            prometheus.Gauge
-	messageRate          *prometheus.CounterVec
-	bandwidthUsage       *prometheus.CounterVec
-	connectionErrors     prometheus.Counter
-	
+	peerCount        prometheus.Gauge
+	messageRate      *prometheus.CounterVec
+	bandwidthUsage   *prometheus.CounterVec
+	connectionErrors prometheus.Counter
+
 	// Quantum crypto metrics
-	dilithiumVerifyTime  prometheus.Histogram
-	kyberEncryptTime     prometheus.Histogram
-	signatureFailures    *prometheus.CounterVec
-	
+	dilithiumVerifyTime prometheus.Histogram
+	kyberEncryptTime    prometheus.Histogram
+	signatureFailures   *prometheus.CounterVec
+
 	// System metrics
-	memoryUsage          prometheus.Gauge
-	cpuUsage             prometheus.Gauge
-	diskUsage            prometheus.Gauge
-	goroutineCount       prometheus.Gauge
-	
+	memoryUsage    prometheus.Gauge
+	cpuUsage       prometheus.Gauge
+	diskUsage      prometheus.Gauge
+	goroutineCount prometheus.Gauge
+
 	// Health status
-	healthStatus         *HealthChecker
-	
+	healthStatus *HealthChecker
+
 	// Data collection
-	dataCollector        *DataCollector
-	
+	dataCollector *DataCollector
+
 	// HTTP server
-	server               *http.Server
-	
+	server *http.Server
+
 	// Control
-	ctx                  context.Context
-	cancel               context.CancelFunc
-	wg                   sync.WaitGroup
-	mu                   sync.RWMutex
-	
+	ctx    context.Context
+	cancel context.CancelFunc
+	wg     sync.WaitGroup
+	mu     sync.RWMutex
+
 	// State
-	running              bool
-	startTime            time.Time
+	running   bool
+	startTime time.Time
 }
 
 // HealthChecker monitors system health
 type HealthChecker struct {
-	checks          map[string]HealthCheck
-	overallStatus   HealthStatus
-	lastCheck       time.Time
-	checkInterval   time.Duration
-	mu              sync.RWMutex
+	checks        map[string]HealthCheck
+	overallStatus HealthStatus
+	lastCheck     time.Time
+	checkInterval time.Duration
+	mu            sync.RWMutex
 }
 
 // HealthCheck represents a single health check
 type HealthCheck struct {
-	Name        string        `json:"name"`
-	Status      HealthStatus  `json:"status"`
-	Message     string        `json:"message"`
-	LastCheck   time.Time     `json:"lastCheck"`
-	Duration    time.Duration `json:"duration"`
-	Critical    bool          `json:"critical"`
-	CheckFunc   func() (HealthStatus, string, error) `json:"-"`
+	Name      string                               `json:"name"`
+	Status    HealthStatus                         `json:"status"`
+	Message   string                               `json:"message"`
+	LastCheck time.Time                            `json:"lastCheck"`
+	Duration  time.Duration                        `json:"duration"`
+	Critical  bool                                 `json:"critical"`
+	CheckFunc func() (HealthStatus, string, error) `json:"-"`
 }
 
 // HealthStatus represents health status
@@ -113,22 +113,22 @@ const (
 
 // DataCollector collects and aggregates metrics data
 type DataCollector struct {
-	blockchain       BlockchainInterface
-	consensus        ConsensusInterface
-	network          NetworkInterface
-	
+	blockchain BlockchainInterface
+	consensus  ConsensusInterface
+	network    NetworkInterface
+
 	// Historical data
 	blockTimes       []time.Duration
 	transactionRates []float64
 	validatorMetrics map[string]*ValidatorMetrics
 	networkStats     *NetworkStats
-	
+
 	// Collection intervals
-	blockMetricsInterval    time.Duration
-	networkMetricsInterval  time.Duration
-	systemMetricsInterval   time.Duration
-	
-	mu                      sync.RWMutex
+	blockMetricsInterval   time.Duration
+	networkMetricsInterval time.Duration
+	systemMetricsInterval  time.Duration
+
+	mu sync.RWMutex
 }
 
 // Interfaces for data collection
@@ -154,15 +154,15 @@ type NetworkInterface interface {
 
 // ValidatorMetrics tracks individual validator performance
 type ValidatorMetrics struct {
-	Address          string    `json:"address"`
-	Uptime           float64   `json:"uptime"`
-	Performance      float64   `json:"performance"`
-	BlocksProposed   uint64    `json:"blocksProposed"`
-	BlocksMissed     uint64    `json:"blocksMissed"`
-	Stake            string    `json:"stake"`
-	LastActive       time.Time `json:"lastActive"`
-	Slashed          bool      `json:"slashed"`
-	JailedUntil      time.Time `json:"jailedUntil"`
+	Address        string    `json:"address"`
+	Uptime         float64   `json:"uptime"`
+	Performance    float64   `json:"performance"`
+	BlocksProposed uint64    `json:"blocksProposed"`
+	BlocksMissed   uint64    `json:"blocksMissed"`
+	Stake          string    `json:"stake"`
+	LastActive     time.Time `json:"lastActive"`
+	Slashed        bool      `json:"slashed"`
+	JailedUntil    time.Time `json:"jailedUntil"`
 }
 
 // NetworkStats tracks network performance
@@ -180,9 +180,9 @@ type NetworkStats struct {
 // NewMetricsServer creates a new metrics server
 func NewMetricsServer(config *MetricsConfig) *MetricsServer {
 	ctx, cancel := context.WithCancel(context.Background())
-	
+
 	registry := prometheus.NewRegistry()
-	
+
 	ms := &MetricsServer{
 		listenAddr:    config.ListenAddr,
 		metricsPath:   config.MetricsPath,
@@ -194,23 +194,23 @@ func NewMetricsServer(config *MetricsConfig) *MetricsServer {
 		healthStatus:  NewHealthChecker(),
 		dataCollector: NewDataCollector(config),
 	}
-	
+
 	// Initialize metrics
 	ms.initMetrics()
-	
+
 	// Setup HTTP server
 	ms.setupServer()
-	
+
 	return ms
 }
 
 // MetricsConfig defines metrics configuration
 type MetricsConfig struct {
-	ListenAddr    string `json:"listenAddr"`
-	MetricsPath   string `json:"metricsPath"`
-	HealthPath    string `json:"healthPath"`
-	EnableAuth    bool   `json:"enableAuth"`
-	AuthToken     string `json:"authToken,omitempty"`
+	ListenAddr  string `json:"listenAddr"`
+	MetricsPath string `json:"metricsPath"`
+	HealthPath  string `json:"healthPath"`
+	EnableAuth  bool   `json:"enableAuth"`
+	AuthToken   string `json:"authToken,omitempty"`
 }
 
 // initMetrics initializes all Prometheus metrics
@@ -220,116 +220,116 @@ func (ms *MetricsServer) initMetrics() {
 		Name: "quantum_block_height",
 		Help: "Current block height",
 	})
-	
+
 	ms.blockTime = prometheus.NewHistogram(prometheus.HistogramOpts{
 		Name:    "quantum_block_time_seconds",
 		Help:    "Time between blocks in seconds",
 		Buckets: []float64{0.5, 1, 2, 5, 10, 30, 60},
 	})
-	
+
 	ms.transactionCount = prometheus.NewCounter(prometheus.CounterOpts{
 		Name: "quantum_transactions_total",
 		Help: "Total number of transactions processed",
 	})
-	
+
 	ms.transactionPool = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_transaction_pool_size",
 		Help: "Current transaction pool size",
 	})
-	
+
 	// Consensus metrics
 	ms.consensusLatency = prometheus.NewHistogram(prometheus.HistogramOpts{
 		Name:    "quantum_consensus_latency_seconds",
 		Help:    "Consensus latency in seconds",
 		Buckets: []float64{0.1, 0.5, 1, 2, 5, 10},
 	})
-	
+
 	ms.validatorCount = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_validators_active",
 		Help: "Number of active validators",
 	})
-	
+
 	// Validator metrics
 	ms.validatorUptime = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "quantum_validator_uptime",
 		Help: "Validator uptime percentage",
 	}, []string{"validator_address"})
-	
+
 	ms.validatorPerformance = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "quantum_validator_performance",
 		Help: "Validator performance score",
 	}, []string{"validator_address"})
-	
+
 	ms.validatorStake = prometheus.NewGaugeVec(prometheus.GaugeOpts{
 		Name: "quantum_validator_stake",
 		Help: "Validator stake amount",
 	}, []string{"validator_address"})
-	
+
 	ms.slashingEvents = prometheus.NewCounter(prometheus.CounterOpts{
 		Name: "quantum_slashing_events_total",
 		Help: "Total number of slashing events",
 	})
-	
+
 	// Network metrics
 	ms.peerCount = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_peers_connected",
 		Help: "Number of connected peers",
 	})
-	
+
 	ms.messageRate = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "quantum_messages_total",
 		Help: "Total messages sent/received by type",
 	}, []string{"message_type", "direction"})
-	
+
 	ms.bandwidthUsage = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "quantum_bandwidth_bytes_total",
 		Help: "Total bandwidth usage in bytes",
 	}, []string{"direction"})
-	
+
 	ms.connectionErrors = prometheus.NewCounter(prometheus.CounterOpts{
 		Name: "quantum_connection_errors_total",
 		Help: "Total connection errors",
 	})
-	
+
 	// Quantum crypto metrics
 	ms.dilithiumVerifyTime = prometheus.NewHistogram(prometheus.HistogramOpts{
 		Name:    "quantum_dilithium_verify_seconds",
 		Help:    "Time to verify Dilithium signatures",
 		Buckets: []float64{0.001, 0.005, 0.01, 0.05, 0.1, 0.5},
 	})
-	
+
 	ms.kyberEncryptTime = prometheus.NewHistogram(prometheus.HistogramOpts{
 		Name:    "quantum_kyber_encrypt_seconds",
 		Help:    "Time to perform Kyber encryption",
 		Buckets: []float64{0.001, 0.005, 0.01, 0.05, 0.1},
 	})
-	
+
 	ms.signatureFailures = prometheus.NewCounterVec(prometheus.CounterOpts{
 		Name: "quantum_signature_failures_total",
 		Help: "Total signature verification failures",
 	}, []string{"algorithm"})
-	
+
 	// System metrics
 	ms.memoryUsage = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_memory_usage_bytes",
 		Help: "Memory usage in bytes",
 	})
-	
+
 	ms.cpuUsage = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_cpu_usage_percent",
 		Help: "CPU usage percentage",
 	})
-	
+
 	ms.diskUsage = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_disk_usage_bytes",
 		Help: "Disk usage in bytes",
 	})
-	
+
 	ms.goroutineCount = prometheus.NewGauge(prometheus.GaugeOpts{
 		Name: "quantum_goroutines",
 		Help: "Number of goroutines",
 	})
-	
+
 	// Register all metrics
 	metrics := []prometheus.Collector{
 		ms.blockHeight,
@@ -354,7 +354,7 @@ func (ms *MetricsServer) initMetrics() {
 		ms.diskUsage,
 		ms.goroutineCount,
 	}
-	
+
 	for _, metric := range metrics {
 		ms.registry.MustRegister(metric)
 	}
@@ -363,21 +363,21 @@ func (ms *MetricsServer) initMetrics() {
 // setupServer configures the HTTP server
 func (ms *MetricsServer) setupServer() {
 	router := mux.NewRouter()
-	
+
 	// Metrics endpoint
 	router.Path(ms.metricsPath).Handler(promhttp.HandlerFor(ms.registry, promhttp.HandlerOpts{
 		EnableOpenMetrics: true,
 	}))
-	
+
 	// Health endpoint
 	router.PathPrefix(ms.healthPath).HandlerFunc(ms.healthHandler)
-	
+
 	// Additional endpoints
 	router.PathPrefix("/api/metrics/blockchain").HandlerFunc(ms.blockchainMetricsHandler)
 	router.PathPrefix("/api/metrics/validators").HandlerFunc(ms.validatorMetricsHandler)
 	router.PathPrefix("/api/metrics/network").HandlerFunc(ms.networkMetricsHandler)
 	router.PathPrefix("/api/metrics/system").HandlerFunc(ms.systemMetricsHandler)
-	
+
 	ms.server = &http.Server{
 		Addr:    ms.listenAddr,
 		Handler: router,
@@ -388,29 +388,29 @@ func (ms *MetricsServer) setupServer() {
 func (ms *MetricsServer) Start() error {
 	ms.mu.Lock()
 	defer ms.mu.Unlock()
-	
+
 	if ms.running {
 		return fmt.Errorf("metrics server already running")
 	}
-	
+
 	// Start health checker
 	ms.healthStatus.Start()
-	
+
 	// Start data collection
 	ms.wg.Add(1)
 	go ms.collectMetrics()
-	
+
 	// Start HTTP server
 	ms.wg.Add(1)
 	go func() {
 		defer ms.wg.Done()
-		
+
 		log.Printf("Starting metrics server on %s", ms.listenAddr)
 		if err := ms.server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Printf("Metrics server error: %v", err)
 		}
 	}()
-	
+
 	ms.running = true
 	return nil
 }
@@ -419,22 +419,22 @@ func (ms *MetricsServer) Start() error {
 func (ms *MetricsServer) Stop() {
 	ms.mu.Lock()
 	defer ms.mu.Unlock()
-	
+
 	if !ms.running {
 		return
 	}
-	
+
 	ms.cancel()
-	
+
 	if ms.server != nil {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 		ms.server.Shutdown(ctx)
 	}
-	
+
 	ms.healthStatus.Stop()
 	ms.wg.Wait()
-	
+
 	ms.running = false
 	log.Printf("Metrics server stopped")
 }
@@ -442,10 +442,10 @@ func (ms *MetricsServer) Stop() {
 // collectMetrics collects metrics at regular intervals
 func (ms *MetricsServer) collectMetrics() {
 	defer ms.wg.Done()
-	
+
 	ticker := time.NewTicker(10 * time.Second)
 	defer ticker.Stop()
-	
+
 	for {
 		select {
 		case <-ms.ctx.Done():
@@ -460,17 +460,17 @@ func (ms *MetricsServer) collectMetrics() {
 func (ms *MetricsServer) updateMetrics() {
 	// Update system metrics
 	ms.updateSystemMetrics()
-	
+
 	// Update blockchain metrics
 	if ms.dataCollector.blockchain != nil {
 		ms.updateBlockchainMetrics()
 	}
-	
+
 	// Update consensus metrics
 	if ms.dataCollector.consensus != nil {
 		ms.updateConsensusMetrics()
 	}
-	
+
 	// Update network metrics
 	if ms.dataCollector.network != nil {
 		ms.updateNetworkMetrics()
@@ -481,10 +481,10 @@ func (ms *MetricsServer) updateMetrics() {
 func (ms *MetricsServer) updateSystemMetrics() {
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
-	
+
 	ms.memoryUsage.Set(float64(m.Alloc))
 	ms.goroutineCount.Set(float64(runtime.NumGoroutine()))
-	
+
 	// CPU usage would require additional implementation
 	ms.cpuUsage.Set(ms.getCPUUsage())
 	ms.diskUsage.Set(ms.getDiskUsage())
@@ -496,7 +496,7 @@ func (ms *MetricsServer) updateBlockchainMetrics() {
 	if currentBlock != nil {
 		ms.blockHeight.Set(float64(currentBlock.Number().Uint64()))
 	}
-	
+
 	ms.transactionCount.Add(float64(ms.dataCollector.blockchain.GetTransactionCount()))
 	ms.transactionPool.Set(float64(ms.dataCollector.blockchain.GetPendingTransactionCount()))
 }
@@ -505,13 +505,13 @@ func (ms *MetricsServer) updateBlockchainMetrics() {
 func (ms *MetricsServer) updateConsensusMetrics() {
 	validators := ms.dataCollector.consensus.GetValidatorSet()
 	ms.validatorCount.Set(float64(len(validators)))
-	
+
 	// Update individual validator metrics
 	for _, validator := range validators {
 		addr := validator.Address.Hex()
 		ms.validatorPerformance.WithLabelValues(addr).Set(validator.Performance.ReliabilityScore)
 		ms.validatorUptime.WithLabelValues(addr).Set(validator.Performance.UptimeScore)
-		
+
 		stakeFloat, _ := validator.TotalStake.Float64()
 		ms.validatorStake.WithLabelValues(addr).Set(stakeFloat)
 	}
@@ -520,7 +520,7 @@ func (ms *MetricsServer) updateConsensusMetrics() {
 // updateNetworkMetrics updates network metrics
 func (ms *MetricsServer) updateNetworkMetrics() {
 	ms.peerCount.Set(float64(ms.dataCollector.network.GetPeerCount()))
-	
+
 	bandwidthIn, bandwidthOut := ms.dataCollector.network.GetBandwidthUsage()
 	ms.bandwidthUsage.WithLabelValues("in").Add(float64(bandwidthIn))
 	ms.bandwidthUsage.WithLabelValues("out").Add(float64(bandwidthOut))
@@ -529,14 +529,14 @@ func (ms *MetricsServer) updateNetworkMetrics() {
 // HTTP handlers
 func (ms *MetricsServer) healthHandler(w http.ResponseWriter, r *http.Request) {
 	health := ms.healthStatus.GetOverallHealth()
-	
+
 	status := http.StatusOK
 	if health.Status == HealthStatusCritical {
 		status = http.StatusServiceUnavailable
 	} else if health.Status == HealthStatusWarning {
 		status = http.StatusPartialContent
 	}
-	
+
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	json.NewEncoder(w).Encode(health)
@@ -572,10 +572,10 @@ func NewHealthChecker() *HealthChecker {
 		checks:        make(map[string]HealthCheck),
 		checkInterval: 30 * time.Second,
 	}
-	
+
 	// Add default health checks
 	hc.addDefaultChecks()
-	
+
 	return hc
 }
 
@@ -586,13 +586,13 @@ func (hc *HealthChecker) addDefaultChecks() {
 		Critical:  true,
 		CheckFunc: hc.checkMemoryUsage,
 	}
-	
+
 	hc.checks["disk"] = HealthCheck{
 		Name:      "Disk Space",
 		Critical:  true,
 		CheckFunc: hc.checkDiskSpace,
 	}
-	
+
 	hc.checks["goroutines"] = HealthCheck{
 		Name:      "Goroutine Count",
 		Critical:  false,
@@ -604,16 +604,16 @@ func (hc *HealthChecker) addDefaultChecks() {
 func (hc *HealthChecker) checkMemoryUsage() (HealthStatus, string, error) {
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
-	
+
 	// Check if memory usage is above 80% of available
 	usagePercent := float64(m.Alloc) / float64(m.Sys) * 100
-	
+
 	if usagePercent > 90 {
 		return HealthStatusCritical, fmt.Sprintf("Memory usage critical: %.1f%%", usagePercent), nil
 	} else if usagePercent > 80 {
 		return HealthStatusWarning, fmt.Sprintf("Memory usage high: %.1f%%", usagePercent), nil
 	}
-	
+
 	return HealthStatusHealthy, fmt.Sprintf("Memory usage normal: %.1f%%", usagePercent), nil
 }
 
@@ -624,22 +624,22 @@ func (hc *HealthChecker) checkDiskSpace() (HealthStatus, string, error) {
 
 func (hc *HealthChecker) checkGoroutineCount() (HealthStatus, string, error) {
 	count := runtime.NumGoroutine()
-	
+
 	if count > 10000 {
 		return HealthStatusWarning, fmt.Sprintf("High goroutine count: %d", count), nil
 	}
-	
+
 	return HealthStatusHealthy, fmt.Sprintf("Goroutine count normal: %d", count), nil
 }
 
 // NewDataCollector creates a new data collector
 func NewDataCollector(config *MetricsConfig) *DataCollector {
 	return &DataCollector{
-		validatorMetrics:        make(map[string]*ValidatorMetrics),
-		networkStats:            &NetworkStats{},
-		blockMetricsInterval:    10 * time.Second,
-		networkMetricsInterval:  15 * time.Second,
-		systemMetricsInterval:   5 * time.Second,
+		validatorMetrics:       make(map[string]*ValidatorMetrics),
+		networkStats:           &NetworkStats{},
+		blockMetricsInterval:   10 * time.Second,
+		networkMetricsInterval: 15 * time.Second,
+		systemMetricsInterval:  5 * time.Second,
 	}
 }
 
@@ -651,7 +651,7 @@ func (ms *MetricsServer) SetInterfaces(
 ) {
 	ms.mu.Lock()
 	defer ms.mu.Unlock()
-	
+
 	ms.dataCollector.blockchain = blockchain
 	ms.dataCollector.consensus = consensus
 	ms.dataCollector.network = network

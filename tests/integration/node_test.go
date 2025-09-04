@@ -234,7 +234,7 @@ func TestTransactionLifecycle(t *testing.T) {
 		ListenAddr:   "127.0.0.1:0",
 		HTTPPort:     0,
 		WSPort:       0,
-		ValidatorKey: "auto",        // Enable validator for mining
+		ValidatorKey: "auto", // Enable validator for mining
 		ValidatorAlg: "dilithium",
 		Mining:       true, // Enable mining for this test
 		GasLimit:     15000000,
@@ -320,7 +320,7 @@ func TestConsensus(t *testing.T) {
 		ListenAddr:   "127.0.0.1:0",
 		HTTPPort:     0,
 		WSPort:       0,
-		ValidatorKey: "auto",        // Enable validator for mining
+		ValidatorKey: "auto", // Enable validator for mining
 		ValidatorAlg: "dilithium",
 		Mining:       true,
 		GasLimit:     15000000,
@@ -430,7 +430,7 @@ func TestBlockchainOperations(t *testing.T) {
 	// Test balance operations
 	testAddr := types.BytesToAddress([]byte("test"))
 	initialBalance := blockchain.GetBalance(testAddr)
-	
+
 	// Should be zero initially
 	if initialBalance.Cmp(big.NewInt(0)) != 0 {
 		t.Error("Initial balance should be zero")

@@ -39,12 +39,12 @@ type HSMProvider interface {
 
 // HSMKeyHandle represents a key stored in the HSM
 type HSMKeyHandle struct {
-	ID        string                    `json:"id"`
+	ID        string                     `json:"id"`
 	Algorithm qcrypto.SignatureAlgorithm `json:"algorithm"`
-	PublicKey []byte                    `json:"public_key"`
-	CreatedAt time.Time                 `json:"created_at"`
-	Label     string                    `json:"label"`
-	Usage     KeyUsage                  `json:"usage"`
+	PublicKey []byte                     `json:"public_key"`
+	CreatedAt time.Time                  `json:"created_at"`
+	Label     string                     `json:"label"`
+	Usage     KeyUsage                   `json:"usage"`
 }
 
 // KeyUsage defines the intended use for HSM keys
@@ -53,8 +53,8 @@ type KeyUsage int
 const (
 	KeyUsageValidatorSigning KeyUsage = iota // For validator block signing
 	KeyUsageGovernance                       // For governance proposals
-	KeyUsageBridge                          // For cross-chain bridge operations
-	KeyUsageEmergency                       // For emergency procedures
+	KeyUsageBridge                           // For cross-chain bridge operations
+	KeyUsageEmergency                        // For emergency procedures
 )
 
 // HSMConfig contains configuration for HSM providers
@@ -72,13 +72,13 @@ type HSMConfig struct {
 
 // ValidationResult contains HSM validation results
 type ValidationResult struct {
-	Valid          bool                   `json:"valid"`
-	FIPSCompliant  bool                   `json:"fips_compliant"`
+	Valid          bool                         `json:"valid"`
+	FIPSCompliant  bool                         `json:"fips_compliant"`
 	Algorithms     []qcrypto.SignatureAlgorithm `json:"supported_algorithms"`
-	MaxKeys        int                    `json:"max_keys"`
-	CurrentKeys    int                    `json:"current_keys"`
-	HealthStatus   string                 `json:"health_status"`
-	LastValidation time.Time              `json:"last_validation"`
+	MaxKeys        int                          `json:"max_keys"`
+	CurrentKeys    int                          `json:"current_keys"`
+	HealthStatus   string                       `json:"health_status"`
+	LastValidation time.Time                    `json:"last_validation"`
 }
 
 // AuditEntry represents an HSM operation audit log
@@ -124,12 +124,12 @@ type HSMManager interface {
 
 // EmergencyParams contains parameters for emergency recovery
 type EmergencyParams struct {
-	TriggerReason   string    `json:"trigger_reason"`
-	RecoveryKeys    []string  `json:"recovery_keys"`
-	NewProvider     string    `json:"new_provider"`
-	AuthorizedBy    string    `json:"authorized_by"`
-	ValidationCode  string    `json:"validation_code"`
-	ExpiresAt       time.Time `json:"expires_at"`
+	TriggerReason  string    `json:"trigger_reason"`
+	RecoveryKeys   []string  `json:"recovery_keys"`
+	NewProvider    string    `json:"new_provider"`
+	AuthorizedBy   string    `json:"authorized_by"`
+	ValidationCode string    `json:"validation_code"`
+	ExpiresAt      time.Time `json:"expires_at"`
 }
 
 // KeyRotationPolicy defines key rotation requirements

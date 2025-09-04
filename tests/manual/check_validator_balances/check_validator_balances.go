@@ -68,10 +68,10 @@ func main() {
 	// Actual validator addresses from key files
 	validators := map[string]string{
 		"Validator 1": "0x7648c1a9d82a6e259e334a3f0bf556df5418c370",
-		"Validator 2": "0x0db8c6713ad3305d74014fc0491dc5401851fb77", 
+		"Validator 2": "0x0db8c6713ad3305d74014fc0491dc5401851fb77",
 		"Validator 3": "0x3df7edf63d8042d9e79e537e4cf4dbfd2830fe7d",
 	}
-	
+
 	// RPC endpoints
 	endpoints := map[string]string{
 		"Validator 1": "http://localhost:8545",
@@ -84,14 +84,14 @@ func main() {
 
 	for name, endpoint := range endpoints {
 		fmt.Printf("\n%s (%s):\n", name, endpoint)
-		
+
 		// Get block height
 		blockResult, err := makeRPCCall(endpoint, "eth_blockNumber", []interface{}{})
 		if err != nil {
 			fmt.Printf("  ❌ Failed to get block height: %v\n", err)
 			continue
 		}
-		
+
 		// Get validator balance
 		validatorAddr := validators[name]
 		balanceResult, err := makeRPCCall(endpoint, "eth_getBalance", []interface{}{validatorAddr, "latest"})
@@ -99,12 +99,12 @@ func main() {
 			fmt.Printf("  ❌ Failed to get validator balance: %v\n", err)
 			continue
 		}
-		
+
 		fmt.Printf("  📊 Block Height: %s\n", blockResult)
 		fmt.Printf("  💰 Validator Balance: %s QTM (hex)\n", balanceResult)
 		fmt.Printf("  📍 Validator Address: %s\n", validatorAddr)
 	}
-	
+
 	// Also check the old fixed address for comparison
 	fmt.Printf("\n🔍 Old Fixed Address (should remain at 0):\n")
 	fixedAddr := "0x0911ee379271364e5902be7dc0cc72cd97294ade"

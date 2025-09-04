@@ -106,16 +106,16 @@ func main() {
 
 	keyInfoJSON, _ := json.MarshalIndent(keyInfo, "", "  ")
 	fmt.Printf("\n🔑 Deployment Account Info:\n%s\n", string(keyInfoJSON))
-	
+
 	// For now, just output the info - in a real scenario we'd need to fund this account
 	// from the pre-funded account using a regular transaction (not quantum)
-	
+
 	fundingAmount := big.NewInt(0)
 	fundingAmount.SetString("5000000000000000000", 10) // 5 ETH
-	
-	fmt.Printf("\n💸 This account needs funding of %s wei (%s ETH)\n", 
-		fundingAmount.String(), 
+
+	fmt.Printf("\n💸 This account needs funding of %s wei (%s ETH)\n",
+		fundingAmount.String(),
 		new(big.Float).Quo(new(big.Float).SetInt(fundingAmount), new(big.Float).SetInt64(1e18)).String())
-	
+
 	fmt.Println("\n✅ Save this information to deploy contracts with the funded quantum account!")
 }

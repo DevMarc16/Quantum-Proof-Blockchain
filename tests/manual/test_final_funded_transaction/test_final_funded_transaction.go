@@ -17,16 +17,16 @@ func main() {
 	if err != nil {
 		log.Fatalf("❌ Failed to get balance: %v", err)
 	}
-	
+
 	log.Printf("💰 Funded address balance: %s", balance)
-	
+
 	if balance == "0x0" {
 		log.Fatalf("❌ Address has no balance! Genesis not properly applied.")
 	}
 
 	log.Println("✅ Address is properly funded!")
 	log.Println("💡 The blockchain is now working with proper balance funding!")
-	
+
 	// Check current block height
 	blockNum, err := getBlockNumber()
 	if err != nil {

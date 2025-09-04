@@ -22,15 +22,15 @@ const (
 
 // TokenSupply represents the native token supply management
 type TokenSupply struct {
-	TotalSupply   *big.Int          `json:"totalSupply"`
-	Circulating   *big.Int          `json:"circulating"`
-	Staked        *big.Int          `json:"staked"`
-	Burned        *big.Int          `json:"burned"`
-	Balances      map[Address]*big.Int `json:"balances"`
-	LastUpdate    time.Time         `json:"lastUpdate"`
-	
+	TotalSupply *big.Int             `json:"totalSupply"`
+	Circulating *big.Int             `json:"circulating"`
+	Staked      *big.Int             `json:"staked"`
+	Burned      *big.Int             `json:"burned"`
+	Balances    map[Address]*big.Int `json:"balances"`
+	LastUpdate  time.Time            `json:"lastUpdate"`
+
 	// StateDB bridge for persistent state synchronization
-	stateDB       StateDBInterface  `json:"-"`
+	stateDB StateDBInterface `json:"-"`
 }
 
 // NewTokenSupply creates a new token supply instance
@@ -156,7 +156,7 @@ func (ts *TokenSupply) Mint(addr Address, amount *big.Int) error {
 	balance := ts.GetBalance(addr)
 	newBalance := new(big.Int).Add(balance, amount)
 	ts.SetBalance(addr, newBalance)
-	
+
 	// Increase total supply
 	ts.TotalSupply.Add(ts.TotalSupply, amount)
 	ts.Circulating.Add(ts.Circulating, amount)
@@ -166,9 +166,9 @@ func (ts *TokenSupply) Mint(addr Address, amount *big.Int) error {
 		currentBalance := ts.stateDB.GetBalance(addr)
 		newPersistentBalance := new(big.Int).Add(currentBalance, amount)
 		ts.stateDB.SetBalance(addr, newPersistentBalance)
-		
-		fmt.Printf("💾 StateDB balance update: %s -> %s QTM (was %s QTM)\n", 
-			addr.Hex()[:10]+"...", 
+
+		fmt.Printf("💾 StateDB balance update: %s -> %s QTM (was %s QTM)\n",
+			addr.Hex()[:10]+"...",
 			new(big.Int).Div(newPersistentBalance, big.NewInt(1e18)).String(),
 			new(big.Int).Div(currentBalance, big.NewInt(1e18)).String())
 	} else {
@@ -186,25 +186,25 @@ func (ts *TokenSupply) MintToStateDB(addr Address, amount *big.Int, stateDB Stat
 	if err != nil {
 		return err
 	}
-	
+
 	// Update persistent StateDB
 	currentBalance := stateDB.GetBalance(addr)
 	newBalance := new(big.Int).Add(currentBalance, amount)
 	stateDB.SetBalance(addr, newBalance)
-	
+
 	return nil
 }
 
 // TokenInfo provides information about the native token
 type TokenInfo struct {
-	Name         string    `json:"name"`
-	Symbol       string    `json:"symbol"`
-	Decimals     uint8     `json:"decimals"`
-	TotalSupply  *big.Int  `json:"totalSupply"`
-	Circulating  *big.Int  `json:"circulating"`
-	Staked       *big.Int  `json:"staked"`
-	Burned       *big.Int  `json:"burned"`
-	LastUpdate   time.Time `json:"lastUpdate"`
+	Name        string    `json:"name"`
+	Symbol      string    `json:"symbol"`
+	Decimals    uint8     `json:"decimals"`
+	TotalSupply *big.Int  `json:"totalSupply"`
+	Circulating *big.Int  `json:"circulating"`
+	Staked      *big.Int  `json:"staked"`
+	Burned      *big.Int  `json:"burned"`
+	LastUpdate  time.Time `json:"lastUpdate"`
 }
 
 // GetTokenInfo returns information about QTM
@@ -225,35 +225,35 @@ func (ts *TokenSupply) GetTokenInfo() *TokenInfo {
 const (
 	// Base gas price in QTM (much lower than ETH)
 	BaseGasPrice = 1000000 // 0.000001 QTM (1 micro-QTM)
-	
+
 	// Minimum gas price during congestion
-	MinGasPrice = 100000   // 0.0000001 QTM (0.1 micro-QTM)
-	
+	MinGasPrice = 100000 // 0.0000001 QTM (0.1 micro-QTM)
+
 	// Maximum gas price cap
 	MaxGasPrice = 10000000000 // 0.01 QTM (10 milli-QTM)
-	
+
 	// Gas limit for quantum signature verification
-	QuantumSigGas = 5000     // Much lower than standard 21000
-	
+	QuantumSigGas = 5000 // Much lower than standard 21000
+
 	// Gas limit for aggregated signatures
-	AggregatedSigGas = 1000  // Even cheaper for aggregated sigs
-	
+	AggregatedSigGas = 1000 // Even cheaper for aggregated sigs
+
 	// Block gas limit (higher for throughput)
 	DefaultBlockGasLimit = 50000000 // 50M gas per block
-	
+
 	// Block time target (fast like Flare)
 	TargetBlockTime = 2 * time.Second // 2-second blocks
-	
+
 	// Validator rewards per block
 	BlockReward = "1000000000000000000" // 1 QTM per block
 )
 
 // GasPriceCalculator calculates optimal gas prices for quantum transactions
 type GasPriceCalculator struct {
-	BasePrice    *big.Int
-	MinPrice     *big.Int
-	MaxPrice     *big.Int
-	CurrentLoad  float64  // Network congestion (0.0 to 1.0)
+	BasePrice   *big.Int
+	MinPrice    *big.Int
+	MaxPrice    *big.Int
+	CurrentLoad float64 // Network congestion (0.0 to 1.0)
 }
 
 // NewGasPriceCalculator creates a new gas price calculator
@@ -270,12 +270,12 @@ func NewGasPriceCalculator() *GasPriceCalculator {
 func (gpc *GasPriceCalculator) CalculateGasPrice() *big.Int {
 	// Dynamic pricing based on network congestion
 	multiplier := 1.0 + (gpc.CurrentLoad * 9.0) // 1x to 10x multiplier
-	
+
 	price := new(big.Int).Set(gpc.BasePrice)
 	multiplierBig := big.NewInt(int64(multiplier * 1000))
 	price.Mul(price, multiplierBig)
 	price.Div(price, big.NewInt(1000))
-	
+
 	// Apply bounds
 	if price.Cmp(gpc.MinPrice) < 0 {
 		price.Set(gpc.MinPrice)
@@ -283,7 +283,7 @@ func (gpc *GasPriceCalculator) CalculateGasPrice() *big.Int {
 	if price.Cmp(gpc.MaxPrice) > 0 {
 		price.Set(gpc.MaxPrice)
 	}
-	
+
 	return price
 }
 

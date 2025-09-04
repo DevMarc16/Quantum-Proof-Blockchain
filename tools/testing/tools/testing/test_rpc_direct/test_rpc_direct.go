@@ -64,7 +64,7 @@ func callRPC(method string, params []interface{}) (*RPCResponse, error) {
 
 func main() {
 	fmt.Println("🧪 Testing quantum blockchain RPC directly")
-	
+
 	// Wait for blockchain to be ready
 	time.Sleep(5 * time.Second)
 
@@ -100,16 +100,16 @@ func main() {
 
 	// Test a simple quantum transaction (JSON format)
 	quantumTx := map[string]interface{}{
-		"chainId":      "0x22b8", // 8888
-		"nonce":        "0x0",
-		"to":           "0x742d35Cc6634C0532925a3b8D000B1b000d1b000C", 
-		"value":        "0xDE0B6B3A7640000", // 1 QTM
-		"gasLimit":     "0x5208",             // 21000
-		"gasPrice":     "0x3B9ACA00",         // 1 gwei
-		"data":         "0x",
-		"algorithm":    1,                    // Dilithium
-		"publicKey":    "0x74657374",         // "test" in hex
-		"signature":    "0x74657374",         // "test" in hex
+		"chainId":   "0x22b8", // 8888
+		"nonce":     "0x0",
+		"to":        "0x742d35Cc6634C0532925a3b8D000B1b000d1b000C",
+		"value":     "0xDE0B6B3A7640000", // 1 QTM
+		"gasLimit":  "0x5208",            // 21000
+		"gasPrice":  "0x3B9ACA00",        // 1 gwei
+		"data":      "0x",
+		"algorithm": 1,            // Dilithium
+		"publicKey": "0x74657374", // "test" in hex
+		"signature": "0x74657374", // "test" in hex
 	}
 
 	txJSON, err := json.Marshal(quantumTx)
@@ -118,7 +118,7 @@ func main() {
 	}
 
 	fmt.Printf("Quantum transaction JSON: %s\n", string(txJSON))
-	
+
 	// Hex encode for RPC
 	hexTx := fmt.Sprintf("0x%x", txJSON)
 	fmt.Printf("Hex encoded transaction: %s\n", hexTx)

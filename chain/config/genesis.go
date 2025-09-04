@@ -11,32 +11,32 @@ import (
 
 // GenesisConfig represents the genesis block configuration
 type GenesisConfig struct {
-	Config     *ChainConfig                     `json:"config"`
-	Difficulty string                          `json:"difficulty"`
-	GasLimit   string                          `json:"gasLimit"`
-	Alloc      map[string]*GenesisAccount      `json:"alloc"`
-	Validators []GenesisValidator              `json:"validators,omitempty"`
+	Config     *ChainConfig               `json:"config"`
+	Difficulty string                     `json:"difficulty"`
+	GasLimit   string                     `json:"gasLimit"`
+	Alloc      map[string]*GenesisAccount `json:"alloc"`
+	Validators []GenesisValidator         `json:"validators,omitempty"`
 }
 
 // ChainConfig represents the chain configuration
 type ChainConfig struct {
-	ChainID               uint64 `json:"chainId"`
-	HomesteadBlock        uint64 `json:"homesteadBlock"`
-	EIP150Block          uint64 `json:"eip150Block"`
-	EIP155Block          uint64 `json:"eip155Block"`
-	EIP158Block          uint64 `json:"eip158Block"`
-	ByzantiumBlock       uint64 `json:"byzantiumBlock"`
-	ConstantinopleBlock  uint64 `json:"constantinopleBlock"`
-	PetersburgBlock      uint64 `json:"petersburgBlock"`
-	IstanbulBlock        uint64 `json:"istanbulBlock"`
-	BerlinBlock          uint64 `json:"berlinBlock"`
-	LondonBlock          uint64 `json:"londonBlock"`
+	ChainID             uint64 `json:"chainId"`
+	HomesteadBlock      uint64 `json:"homesteadBlock"`
+	EIP150Block         uint64 `json:"eip150Block"`
+	EIP155Block         uint64 `json:"eip155Block"`
+	EIP158Block         uint64 `json:"eip158Block"`
+	ByzantiumBlock      uint64 `json:"byzantiumBlock"`
+	ConstantinopleBlock uint64 `json:"constantinopleBlock"`
+	PetersburgBlock     uint64 `json:"petersburgBlock"`
+	IstanbulBlock       uint64 `json:"istanbulBlock"`
+	BerlinBlock         uint64 `json:"berlinBlock"`
+	LondonBlock         uint64 `json:"londonBlock"`
 }
 
 // GenesisAccount represents a genesis account allocation
 type GenesisAccount struct {
-	Balance string `json:"balance"`
-	Code    string `json:"code,omitempty"`
+	Balance string            `json:"balance"`
+	Code    string            `json:"code,omitempty"`
 	Storage map[string]string `json:"storage,omitempty"`
 }
 
@@ -161,7 +161,7 @@ func (g *GenesisConfig) GetGasLimit() *big.Int {
 // GetAllocations returns the genesis allocations with proper type conversion
 func (g *GenesisConfig) GetAllocations() (map[types.Address]*big.Int, error) {
 	allocations := make(map[types.Address]*big.Int)
-	
+
 	for addrStr, account := range g.Alloc {
 		addr, err := types.HexToAddress(addrStr)
 		if err != nil {
@@ -182,7 +182,7 @@ func (g *GenesisConfig) GetAllocations() (map[types.Address]*big.Int, error) {
 // GetValidators returns the genesis validators with proper type conversion
 func (g *GenesisConfig) GetValidators() ([]ValidatorInfo, error) {
 	validators := make([]ValidatorInfo, len(g.Validators))
-	
+
 	for i, validator := range g.Validators {
 		addr, err := types.HexToAddress(validator.Address)
 		if err != nil {
@@ -213,8 +213,8 @@ type ValidatorInfo struct {
 func DefaultGenesisConfig() *GenesisConfig {
 	return &GenesisConfig{
 		Config: &ChainConfig{
-			ChainID:              8888,
-			HomesteadBlock:       0,
+			ChainID:             8888,
+			HomesteadBlock:      0,
 			EIP150Block:         0,
 			EIP155Block:         0,
 			EIP158Block:         0,

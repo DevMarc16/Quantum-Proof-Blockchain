@@ -8,11 +8,11 @@ import (
 
 // AggregatedSignature represents multiple quantum signatures aggregated together
 type AggregatedSignature struct {
-	Signatures    [][]byte                // Individual signatures
-	PublicKeys    [][]byte               // Corresponding public keys
-	Algorithms    []SignatureAlgorithm   // Signature algorithms used
-	MessageHashes [][]byte               // Message hashes signed
-	Bitmap        uint64                 // Bitmap of which signatures are present
+	Signatures    [][]byte             // Individual signatures
+	PublicKeys    [][]byte             // Corresponding public keys
+	Algorithms    []SignatureAlgorithm // Signature algorithms used
+	MessageHashes [][]byte             // Message hashes signed
+	Bitmap        uint64               // Bitmap of which signatures are present
 }
 
 // BatchSignatureRequest represents a batch of signatures to aggregate
@@ -42,7 +42,7 @@ func AggregateSignatures(signatures []*QRSignature, messageHashes [][]byte) (*Ag
 
 	for _, sig := range signatures {
 		pubKeyStr := string(sig.PublicKey)
-		
+
 		if _, exists := uniquePubKeys[pubKeyStr]; exists {
 			// Reuse existing public key, just add signature reference
 			// Skip this signature for now to avoid complexity
@@ -50,11 +50,11 @@ func AggregateSignatures(signatures []*QRSignature, messageHashes [][]byte) (*Ag
 			// New public key
 			idx := len(compressedPubKeys)
 			uniquePubKeys[pubKeyStr] = idx
-			
+
 			compressedSigs = append(compressedSigs, sig.Signature)
 			compressedPubKeys = append(compressedPubKeys, sig.PublicKey)
 			compressedAlgs = append(compressedAlgs, sig.Algorithm)
-			
+
 			bitmap |= 1 << idx
 		}
 	}
@@ -88,7 +88,7 @@ func VerifyAggregatedSignature(aggSig *AggregatedSignature) (bool, error) {
 
 		// Use the corresponding message hash
 		messageHash := aggSig.MessageHashes[i]
-		
+
 		valid, err := VerifySignature(messageHash, qrSig)
 		if err != nil {
 			return false, fmt.Errorf("verification error for signature %d: %w", i, err)
@@ -117,8 +117,8 @@ func CompressSignature(sig *QRSignature) (*CompressedSignature, error) {
 type CompressedSignature struct {
 	Algorithm       SignatureAlgorithm
 	CompressedData  []byte
-	PublicKeyHash   [32]byte  // Hash of public key instead of full key
-	CompressionType uint8     // Type of compression used
+	PublicKeyHash   [32]byte // Hash of public key instead of full key
+	CompressionType uint8    // Type of compression used
 }
 
 // DecompressSignature decompresses a compressed signature back to full form
@@ -142,9 +142,9 @@ func (cs *CompressedSignature) Size() int {
 func compressDilithiumSignature(sig *QRSignature) (*CompressedSignature, error) {
 	// Simple compression: store signature + public key hash
 	// In production, use more advanced compression techniques
-	
+
 	hash := sha256.Sum256(sig.PublicKey)
-	
+
 	return &CompressedSignature{
 		Algorithm:       sig.Algorithm,
 		CompressedData:  sig.Signature, // For now, keep signature as-is
@@ -156,7 +156,7 @@ func compressDilithiumSignature(sig *QRSignature) (*CompressedSignature, error) 
 func compressFalconSignature(sig *QRSignature) (*CompressedSignature, error) {
 	// Similar compression for Falcon/Hybrid signatures
 	hash := sha256.Sum256(sig.PublicKey)
-	
+
 	return &CompressedSignature{
 		Algorithm:       sig.Algorithm,
 		CompressedData:  sig.Signature,
@@ -190,7 +190,7 @@ func BatchVerifySignatures(signatures []*QRSignature, messageHashes [][]byte) ([
 	}
 
 	results := make([]bool, len(signatures))
-	
+
 	// In production, this would use parallel verification
 	for i, sig := range signatures {
 		valid, err := VerifySignature(messageHashes[i], sig)
@@ -200,6 +200,6 @@ func BatchVerifySignatures(signatures []*QRSignature, messageHashes [][]byte) ([
 			results[i] = valid
 		}
 	}
-	
+
 	return results, nil
 }

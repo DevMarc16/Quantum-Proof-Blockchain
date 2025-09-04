@@ -4,3 +4,33 @@
 00:04:14.301574 version@stat F·[] S·0B[] Sc·[]
 00:04:14.304507 db@janitor F·2 G·0
 00:04:14.304646 db@open done T·9.840607ms
+01:36:06.141723 memdb@flush N·13435 S·3MiB
+01:36:06.252005 memdb@flush created L0@3 N·13435 S·1MiB "bal..\x00\x00\x01,v1":"rec..\x1eT\xdc,v1965"
+01:36:06.252171 version@stat F·[1] S·1MiB[1MiB] Sc·[0.25]
+01:36:06.254095 memdb@flush committed F·1 T·112.053292ms
+01:36:06.255326 journal@remove removed @1
+03:08:34.962703 memdb@flush N·13420 S·3MiB
+03:08:35.086918 memdb@flush created L0@5 N·13420 S·1MiB "bal..\x0e\xef\xdc,v26854":"rec..\xeb\x9ac,v14240"
+03:08:35.087140 version@stat F·[2] S·2MiB[2MiB] Sc·[0.50]
+03:08:35.088978 memdb@flush committed F·1 T·126.004634ms
+03:08:35.090463 journal@remove removed @2
+04:41:25.583541 memdb@flush N·13420 S·3MiB
+04:41:25.700840 memdb@flush created L0@7 N·13420 S·1MiB "bal..\x0e\xef\xdc,v40274":"rec..(\x00\x8c,v28535"
+04:41:25.701030 version@stat F·[3] S·4MiB[4MiB] Sc·[0.75]
+04:41:25.703003 memdb@flush committed F·1 T·119.174694ms
+04:41:25.704922 journal@remove removed @4
+06:14:53.274044 memdb@flush N·13420 S·3MiB
+06:14:53.381600 memdb@flush created L0@9 N·13420 S·1MiB "bal..\x0e\xef\xdc,v53694":"rec..\xf7\x1a2,v46955"
+06:14:53.381761 version@stat F·[4] S·5MiB[5MiB] Sc·[1.00]
+06:14:53.383538 memdb@flush committed F·1 T·109.29511ms
+06:14:53.384666 journal@remove removed @6
+06:14:53.384827 table@compaction L0·4 -> L1·0 S·5MiB Q·53699
+06:14:53.745550 table@build created L1@10 N·5179 S·2MiB "bal..\x00\x00\x01,v1":"blo..\xd3*\xf7,v27566"
+06:14:54.084637 table@build created L1@11 N·5180 S·2MiB "blo..\xf9ΐ,v41676":"blo..\x1dq\x01,v8251"
+06:14:54.181008 table@build created L1@12 N·21864 S·1015KiB "blo..f\x92\xb6,v49021":"rec..\xeb\x9ac,v14240"
+06:14:54.181183 version@stat F·[0 3] S·5MiB[0B 5MiB] Sc·[0.00 0.05]
+06:14:54.182504 table@compaction committed F-1 S-551KiB Ke·0 D·21472 T·797.540685ms
+06:14:54.183416 table@remove removed @9
+06:14:54.184363 table@remove removed @7
+06:14:54.185285 table@remove removed @5
+06:14:54.186209 table@remove removed @3
