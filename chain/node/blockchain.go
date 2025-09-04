@@ -669,8 +669,36 @@ func (bc *Blockchain) storeReceipts(blockHash types.Hash, receipts []*Receipt) e
 		return fmt.Errorf("failed to marshal receipts: %w", err)
 	}
 	
+	// Store receipts by block hash
 	receiptsKey := append([]byte("receipts-"), blockHash.Bytes()...)
-	return bc.db.Put(receiptsKey, receiptsData, nil)
+	err = bc.db.Put(receiptsKey, receiptsData, nil)
+	if err != nil {
+		return fmt.Errorf("failed to store receipts: %w", err)
+	}
+	
+	// Create individual transaction hash indexes for efficient lookup
+	for i, receipt := range receipts {
+		// Store tx_hash -> block_hash mapping
+		txIndexKey := append([]byte("tx-block-"), receipt.TxHash.Bytes()...)
+		err = bc.db.Put(txIndexKey, blockHash.Bytes(), nil)
+		if err != nil {
+			return fmt.Errorf("failed to store tx index for %s: %w", receipt.TxHash.Hex(), err)
+		}
+		
+		// Store individual receipt for direct access
+		receiptData, err := json.Marshal(receipt)
+		if err != nil {
+			return fmt.Errorf("failed to marshal receipt %d: %w", i, err)
+		}
+		
+		receiptKey := append([]byte("receipt-"), receipt.TxHash.Bytes()...)
+		err = bc.db.Put(receiptKey, receiptData, nil)
+		if err != nil {
+			return fmt.Errorf("failed to store individual receipt for %s: %w", receipt.TxHash.Hex(), err)
+		}
+	}
+	
+	return nil
 }
 
 func (bc *Blockchain) getReceiptsByBlockHash(blockHash types.Hash) ([]*Receipt, error) {
@@ -759,31 +787,40 @@ func (bc *Blockchain) GetBlockByHash(hash types.Hash) (*types.Block, error) {
 	return bc.getBlockByHash(hash)
 }
 
-// GetTransactionReceipt returns a transaction receipt
+// GetTransactionReceipt returns a transaction receipt using efficient indexing
 func (bc *Blockchain) GetTransactionReceipt(txHash types.Hash) (*Receipt, error) {
 	bc.mu.RLock()
 	defer bc.mu.RUnlock()
 	
-	// We need to search through all blocks to find the receipt
-	// In a real implementation, we'd maintain a txhash->blockHash index
-	// For now, we'll do a simple search starting from the current block
-	currentHeight := bc.currentBlock.Number().Uint64()
+	// First, try direct receipt lookup (most efficient)
+	receiptKey := append([]byte("receipt-"), txHash.Bytes()...)
+	receiptData, err := bc.db.Get(receiptKey, nil)
+	if err == nil {
+		var receipt Receipt
+		err = json.Unmarshal(receiptData, &receipt)
+		if err != nil {
+			return nil, fmt.Errorf("failed to unmarshal receipt: %w", err)
+		}
+		return &receipt, nil
+	}
 	
-	for height := currentHeight; height > 0; height-- {
-		block, err := bc.GetBlockByNumber(big.NewInt(int64(height)))
-		if err != nil {
-			continue
-		}
-		
-		receipts, err := bc.getReceiptsByBlockHash(block.Hash())
-		if err != nil {
-			continue
-		}
-		
-		for _, receipt := range receipts {
-			if receipt.TxHash.Equal(txHash) {
-				return receipt, nil
-			}
+	// Fallback: use tx-block index to find the block, then get receipt
+	txIndexKey := append([]byte("tx-block-"), txHash.Bytes()...)
+	blockHashData, err := bc.db.Get(txIndexKey, nil)
+	if err != nil {
+		return nil, fmt.Errorf("transaction receipt not found")
+	}
+	
+	blockHash := types.BytesToHash(blockHashData)
+	receipts, err := bc.getReceiptsByBlockHash(blockHash)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get receipts for block: %w", err)
+	}
+	
+	// Find the specific receipt
+	for _, receipt := range receipts {
+		if receipt.TxHash.Equal(txHash) {
+			return receipt, nil
 		}
 	}
 	

@@ -248,6 +248,10 @@ func DefaultGenesisConfig() *GenesisConfig {
 			"0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
 				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (hardhat test address 2)
 			},
+			// Pre-funded quantum address for contract deployment
+			"0x7889e2f42d63650635ad2987bd3582f7a183e6e9": {
+				Balance: "5000000000000000000", // 5 ETH (quantum deployment address)
+			},
 		},
 		Validators: []GenesisValidator{},
 	}

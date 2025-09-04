@@ -23,6 +23,9 @@
     },
     "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
       "balance": "0x21e19e0c9bab2400000"
+    },
+    "0x7889e2f42d63650635ad2987bd3582f7a183e6e9": {
+      "balance": "0x21e19e0c9bab2400000"
     }
   },
   "validators": [

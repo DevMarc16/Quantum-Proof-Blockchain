@@ -1,6 +1,6 @@
 =============== Sep 3, 2025 (MST) ===============
-20:44:35.671583 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-20:44:35.680798 db@open opening
-20:44:35.683404 version@stat F·[] S·0B[] Sc·[]
-20:44:35.694810 db@janitor F·2 G·0
-20:44:35.694983 db@open done T·14.066306ms
+22:31:43.703433 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+22:31:43.712430 db@open opening
+22:31:43.714546 version@stat F·[] S·0B[] Sc·[]
+22:31:43.725893 db@janitor F·2 G·0
+22:31:43.726036 db@open done T·13.469433ms

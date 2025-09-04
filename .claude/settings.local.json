@@ -15,7 +15,15 @@
       "Bash(timeout:*)",
       "Bash(lsof:*)",
       "Bash(go run:*)",
-      "Bash(pgrep:*)"
+      "Bash(pgrep:*)",
+      "Bash(./deploy_multi_validators.sh:*)",
+      "Bash(export PATH=\"$PATH:/home/dillondev/.foundry/bin\")",
+      "Bash(./scripts/deploy-validator-system.sh:*)",
+      "Bash(mkdir:*)",
+      "Bash(forge build:*)",
+      "Bash(forge create:*)",
+      "Bash(cast send:*)",
+      "Bash(python3:*)"
     ],
     "deny": [],
     "ask": []

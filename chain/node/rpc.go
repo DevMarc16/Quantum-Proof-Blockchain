@@ -567,7 +567,16 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 	
 	// Decode the raw transaction
 	rawTx := p[0]
-	tx, err := types.DecodeRLPTransaction([]byte(rawTx))
+	// Remove 0x prefix if present
+	if strings.HasPrefix(rawTx, "0x") {
+		rawTx = rawTx[2:]
+	}
+	// Decode hex to bytes
+	txBytes, err := hex.DecodeString(rawTx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode hex transaction: %w", err)
+	}
+	tx, err := types.DecodeRLPTransaction(txBytes)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode transaction: %w", err)
 	}

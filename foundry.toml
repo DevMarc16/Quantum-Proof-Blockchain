@@ -1,0 +1,10 @@
+[profile.default]
+src = "contracts"
+out = "build/contracts"
+libs = ["lib"]
+remappings = []
+
+[rpc_endpoints]
+localhost = "http://localhost:8545"
+testnet = "https://testnet-rpc.quantum-blockchain.io"
+mainnet = "https://rpc.quantum-blockchain.io"
