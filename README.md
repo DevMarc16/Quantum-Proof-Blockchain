@@ -571,6 +571,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **⚠️ Important Notice**: This is a research and development project. While it implements production-grade quantum-resistant cryptography, please conduct thorough testing and security audits before using in production environments.
 
-Built with ❤️ for the post-quantum future.#   Q u a n t u m - P r o o f - B l o c k c h a i n  
- #   Q u a n t u m - P r o o f - B l o c k c h a i n  
- 
+Built with ❤️ for the post-quantum future.
+

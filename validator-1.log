@@ -705,3 +705,308 @@
 2025/09/03 20:48:11 Block signed with quantum signature (len: 2420 bytes)
 ❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
 2025/09/03 20:48:11 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:13 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:13 📦 Including 2 transactions in block
+2025/09/03 20:48:13 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:13 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:15 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:15 📦 Including 2 transactions in block
+2025/09/03 20:48:15 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:15 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:17 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:17 📦 Including 2 transactions in block
+2025/09/03 20:48:17 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:17 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:19 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:19 📦 Including 2 transactions in block
+2025/09/03 20:48:19 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:48:19 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:48:21 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:21 📦 Including 2 transactions in block
+2025/09/03 20:48:21 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:21 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:23 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:23 📦 Including 2 transactions in block
+2025/09/03 20:48:23 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:23 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:25 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:25 📦 Including 2 transactions in block
+2025/09/03 20:48:25 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:25 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:27 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:27 📦 Including 2 transactions in block
+2025/09/03 20:48:27 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:48:27 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:48:29 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:29 📦 Including 2 transactions in block
+2025/09/03 20:48:29 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:29 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:31 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:31 📦 Including 2 transactions in block
+2025/09/03 20:48:31 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:31 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:33 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:33 📦 Including 2 transactions in block
+2025/09/03 20:48:33 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:33 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:35 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:35 📦 Including 2 transactions in block
+2025/09/03 20:48:35 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:35 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:37 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:37 📦 Including 2 transactions in block
+2025/09/03 20:48:37 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:37 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:39 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:39 📦 Including 2 transactions in block
+2025/09/03 20:48:39 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:39 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:41 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:41 📦 Including 2 transactions in block
+2025/09/03 20:48:41 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:41 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:43 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:43 📦 Including 2 transactions in block
+2025/09/03 20:48:43 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:43 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:45 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:45 📦 Including 2 transactions in block
+2025/09/03 20:48:45 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:45 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:47 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:47 📦 Including 2 transactions in block
+2025/09/03 20:48:47 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:47 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:49 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:49 📦 Including 2 transactions in block
+2025/09/03 20:48:49 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:49 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:51 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:51 📦 Including 2 transactions in block
+2025/09/03 20:48:51 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:51 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:53 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:53 📦 Including 2 transactions in block
+2025/09/03 20:48:53 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:53 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:55 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:55 📦 Including 2 transactions in block
+2025/09/03 20:48:55 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:55 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:57 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:57 📦 Including 2 transactions in block
+2025/09/03 20:48:57 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:57 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:59 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:48:59 📦 Including 2 transactions in block
+2025/09/03 20:48:59 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:48:59 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:01 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:01 📦 Including 2 transactions in block
+2025/09/03 20:49:01 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:01 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:03 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:03 📦 Including 2 transactions in block
+2025/09/03 20:49:03 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:03 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:05 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:05 📦 Including 2 transactions in block
+2025/09/03 20:49:05 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:05 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:07 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:07 📦 Including 2 transactions in block
+2025/09/03 20:49:07 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:07 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:09 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:09 📦 Including 2 transactions in block
+2025/09/03 20:49:09 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:09 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:11 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:11 📦 Including 2 transactions in block
+2025/09/03 20:49:11 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:11 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:13 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:13 📦 Including 2 transactions in block
+2025/09/03 20:49:13 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:13 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:15 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:15 📦 Including 2 transactions in block
+2025/09/03 20:49:15 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:15 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:17 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:17 📦 Including 2 transactions in block
+2025/09/03 20:49:17 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:17 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:19 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:19 📦 Including 2 transactions in block
+2025/09/03 20:49:19 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:19 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:21 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:21 📦 Including 2 transactions in block
+2025/09/03 20:49:21 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:21 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:23 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:23 📦 Including 2 transactions in block
+2025/09/03 20:49:23 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:23 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:25 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:25 📦 Including 2 transactions in block
+2025/09/03 20:49:25 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:25 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:27 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:27 📦 Including 2 transactions in block
+2025/09/03 20:49:27 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:27 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:29 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:29 📦 Including 2 transactions in block
+2025/09/03 20:49:29 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:29 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:31 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:31 📦 Including 2 transactions in block
+2025/09/03 20:49:31 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:31 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:33 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:33 📦 Including 2 transactions in block
+2025/09/03 20:49:33 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:33 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:35 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:35 📦 Including 2 transactions in block
+2025/09/03 20:49:35 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:35 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:37 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:37 📦 Including 2 transactions in block
+2025/09/03 20:49:37 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:37 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:39 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:39 📦 Including 2 transactions in block
+2025/09/03 20:49:39 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:39 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:41 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:41 📦 Including 2 transactions in block
+2025/09/03 20:49:41 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:41 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:43 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:43 📦 Including 2 transactions in block
+2025/09/03 20:49:43 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:43 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:45 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:45 📦 Including 2 transactions in block
+2025/09/03 20:49:45 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:45 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:47 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:47 📦 Including 2 transactions in block
+2025/09/03 20:49:47 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:47 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:49 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:49 📦 Including 2 transactions in block
+2025/09/03 20:49:49 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:49 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:49:51 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:51 📦 Including 2 transactions in block
+2025/09/03 20:49:51 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:51 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:53 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:53 📦 Including 2 transactions in block
+2025/09/03 20:49:53 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:53 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:55 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:55 📦 Including 2 transactions in block
+2025/09/03 20:49:55 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:55 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:57 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:57 📦 Including 2 transactions in block
+2025/09/03 20:49:57 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:57 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:59 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:49:59 📦 Including 2 transactions in block
+2025/09/03 20:49:59 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:49:59 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:01 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:01 📦 Including 2 transactions in block
+2025/09/03 20:50:01 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:01 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:03 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:03 📦 Including 2 transactions in block
+2025/09/03 20:50:03 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:50:03 Failed to add block: block validation failed: insufficient balance for transaction from 0x5f9d0bb9d45d57422807e50f20dd8ba400510102: balance=0, cost=1000000021000000000
+2025/09/03 20:50:05 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:05 📦 Including 2 transactions in block
+2025/09/03 20:50:05 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:05 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:07 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:07 📦 Including 2 transactions in block
+2025/09/03 20:50:07 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:07 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:09 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:09 📦 Including 2 transactions in block
+2025/09/03 20:50:09 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:09 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:11 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:11 📦 Including 2 transactions in block
+2025/09/03 20:50:11 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:11 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:13 📊 Block proposed by validator: 0xbc8f1cda628b30409895a35d8d3a323cbb5b1311
+2025/09/03 20:50:13 📦 Including 2 transactions in block
+2025/09/03 20:50:13 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
+2025/09/03 20:50:13 Failed to add block: block validation failed: insufficient balance for transaction from 0x670bc93668e3a4915bcda6c4a49d168e1dc2a350: balance=0, cost=2000000000000000
