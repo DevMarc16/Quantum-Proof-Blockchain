@@ -582,6 +582,9 @@ func (s *RPCServer) ethSendRawTransaction(params json.RawMessage) (interface{}, 
 		if err := s.node.txPool.AddTransaction(tx); err != nil {
 			return nil, fmt.Errorf("failed to add transaction to pool: %w", err)
 		}
+		log.Printf("✅ Transaction added to pool: %s from %s", tx.Hash().Hex(), tx.From().Hex())
+	} else {
+		log.Printf("⚠️ Cannot add transaction - txPool is nil")
 	}
 	
 	// Return transaction hash
@@ -737,6 +740,9 @@ func (s *RPCServer) quantumSendRawTransaction(params json.RawMessage) (interface
 		if err := s.node.txPool.AddTransaction(tx); err != nil {
 			return nil, fmt.Errorf("failed to add transaction to pool: %w", err)
 		}
+		log.Printf("✅ Transaction added to pool: %s from %s", tx.Hash().Hex(), tx.From().Hex())
+	} else {
+		log.Printf("⚠️ Cannot add transaction - txPool is nil")
 	}
 	
 	// Return transaction hash

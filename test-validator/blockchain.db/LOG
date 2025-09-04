@@ -1,0 +1,42 @@
+=============== Sep 3, 2025 (MST) ===============
+15:24:31.898906 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:24:31.907247 db@open opening
+15:24:31.921282 version@stat F·[] S·0B[] Sc·[]
+15:24:31.924301 db@janitor F·2 G·0
+15:24:31.924434 db@open done T·17.070413ms
+=============== Sep 3, 2025 (MST) ===============
+16:17:35.249529 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:17:35.252402 version@stat F·[] S·0B[] Sc·[]
+16:17:35.252708 db@open opening
+16:17:35.253490 journal@recovery F·1
+16:17:35.261212 journal@recovery recovering @1
+16:17:35.270090 memdb@flush created L0@2 N·537 S·55KiB "bal..\x00\x00\x01,v3":"rec..z9\xb6,v203"
+16:17:35.270923 version@stat F·[1] S·55KiB[55KiB] Sc·[0.25]
+16:17:35.283065 db@janitor F·3 G·0
+16:17:35.283208 db@open done T·30.372638ms
+16:23:59.521941 db@close closing
+16:23:59.522966 db@close done T·1.021743ms
+=============== Sep 3, 2025 (MST) ===============
+16:24:27.322933 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:24:27.326052 version@stat F·[1] S·55KiB[55KiB] Sc·[0.25]
+16:24:27.326355 db@open opening
+16:24:27.327200 journal@recovery F·1
+16:24:27.336504 journal@recovery recovering @3
+16:24:27.344444 memdb@flush created L0@5 N·331 S·35KiB "bal..\x8c7\xcc,v869":"rec..=\xd8O,v650"
+16:24:27.345230 version@stat F·[2] S·91KiB[91KiB] Sc·[0.50]
+16:24:27.358661 db@janitor F·4 G·0
+16:24:27.359492 db@open done T·32.968968ms
+16:26:04.437631 db@close closing
+16:26:04.438782 db@close done T·1.151603ms
+=============== Sep 3, 2025 (MST) ===============
+16:29:24.676099 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:29:24.679322 version@stat F·[2] S·91KiB[91KiB] Sc·[0.50]
+16:29:24.679647 db@open opening
+16:29:24.680481 journal@recovery F·1
+16:29:24.691270 journal@recovery recovering @6
+16:29:24.698338 memdb@flush created L0@8 N·231 S·31KiB "bal..\x8c7\xcc,v1101":"rec..\xfa\xc1\xe2,v957"
+16:29:24.699242 version@stat F·[3] S·122KiB[122KiB] Sc·[0.75]
+16:29:24.713143 db@janitor F·5 G·0
+16:29:24.713283 db@open done T·33.496973ms
+16:33:42.747676 db@close closing
+16:33:42.749184 db@close done T·1.50546ms

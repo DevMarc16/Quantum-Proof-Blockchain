@@ -115,6 +115,10 @@ func NewNode(config *Config) (*Node, error) {
 	}
 	node.blockchain = blockchain
 	
+	// Connect TokenSupply to StateDB for balance synchronization
+	stateDBAdapter := NewStateDBAdapter(blockchain.stateDB)
+	tokenSupply.SetStateDB(stateDBAdapter)
+	
 	// Initialize transaction pool with larger capacity for higher throughput
 	node.txPool = NewTxPool(5000) // Max 5000 pending transactions for fast blocks
 	
@@ -140,8 +144,18 @@ func NewNode(config *Config) (*Node, error) {
 		initialStake := new(big.Int)
 		initialStake.SetString("100000000000000000000000", 10) // 100K QTM with 18 decimals
 		
-		// Give initial QTM tokens to validator
+		// Set initial balance in BOTH TokenSupply AND StateDB for proper synchronization
 		tokenSupply.SetBalance(node.validatorAddr, initialStake)
+		blockchain.stateDB.SetBalance(node.validatorAddr, initialStake)
+		
+		// Initialize nonce to 0 if it's a new validator
+		if blockchain.stateDB.GetNonce(node.validatorAddr) == 0 {
+			// Nonce already 0, no need to set
+			log.Printf("🔢 Validator nonce initialized: 0")
+		}
+		
+		log.Printf("💰 Validator initial balance set: %s QTM", 
+			new(big.Int).Div(initialStake, big.NewInt(1e18)).String())
 		
 		// Register as validator in multi-validator consensus
 		err = node.multiConsensus.RegisterValidator(
@@ -491,6 +505,9 @@ func (n *Node) produceFastBlock() {
 	
 	// Get pending transactions with higher limit for throughput
 	transactions := n.txPool.GetPendingTransactions(500) // Up to 500 tx per 2-second block!
+	if len(transactions) > 0 {
+		log.Printf("📦 Including %d transactions in block", len(transactions))
+	}
 	
 	// Create block with optimized gas limit
 	blockGasLimit := uint64(types.DefaultBlockGasLimit) // 50M gas for high throughput
@@ -544,17 +561,28 @@ func (n *Node) produceFastBlock() {
 		n.txPool.RemoveTransaction(tx.Hash())
 	}
 	
-	// Mint block reward in QTM
-	blockReward := new(big.Int)
-	blockReward.SetString(types.BlockReward, 10)
-	err = n.tokenSupply.Mint(n.validatorAddr, blockReward)
-	if err != nil {
-		log.Printf("Failed to mint block reward: %v", err)
+	// Calculate transaction fees from included transactions
+	transactionFees := big.NewInt(0)
+	for _, tx := range transactions {
+		fee := new(big.Int).Mul(tx.GasPrice, big.NewInt(int64(tx.Gas)))
+		transactionFees.Add(transactionFees, fee)
 	}
 	
-	log.Printf("🚀 Fast block #%d: %d tx, %.1f%% load, reward: %s QTM", 
+	// Calculate block reward using tokenomics engine
+	blockReward := new(big.Int)
+	blockReward.SetString(types.BlockReward, 10)
+	
+	// Distribute rewards to the actual block proposer (determined by consensus)
+	err = n.multiConsensus.DistributeBlockReward(nextProposer, blockReward, transactionFees, n.tokenSupply)
+	if err != nil {
+		log.Printf("Failed to distribute block reward: %v", err)
+	}
+	
+	log.Printf("🚀 Fast block #%d: %d tx, %.1f%% load, proposer: %s, reward: %s QTM (+ fees: %s QTM)", 
 		blockHeight.Uint64(), len(transactions), networkLoad*100, 
-		new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
+		nextProposer.Hex()[:10]+"...", 
+		new(big.Int).Div(blockReward, big.NewInt(1e18)).String(),
+		new(big.Int).Div(transactionFees, big.NewInt(1e18)).String())
 	
 	// Broadcast block to peers
 	n.p2p.BroadcastBlock(block)
@@ -596,6 +624,9 @@ func (n *Node) produceConsensusBlock() {
 	
 	// Get pending transactions with higher limit for throughput
 	transactions := n.txPool.GetPendingTransactions(500) // Up to 500 tx per 2-second block!
+	if len(transactions) > 0 {
+		log.Printf("📦 Including %d transactions in block", len(transactions))
+	}
 	
 	// Create block with optimized gas limit
 	blockGasLimit := uint64(types.DefaultBlockGasLimit) // 50M gas for high throughput
@@ -638,13 +669,21 @@ func (n *Node) produceConsensusBlock() {
 		return
 	}
 	
-	// Issue block rewards in QTM tokens (reduced for multi-validator)
-	// Calculate block reward (simplified for now)
+	// Calculate transaction fees from included transactions
+	transactionFees := big.NewInt(0)
+	for _, tx := range transactions {
+		fee := new(big.Int).Mul(tx.GasPrice, big.NewInt(int64(tx.Gas)))
+		transactionFees.Add(transactionFees, fee)
+	}
+	
+	// Calculate block reward using standard tokenomics
 	blockReward := big.NewInt(1000000000000000000) // 1 QTM reward per block
-	// Issue reward by adding to balance
-	currentBalance := n.tokenSupply.GetBalance(n.validatorAddr)
-	newBalance := new(big.Int).Add(currentBalance, blockReward)
-	n.tokenSupply.SetBalance(n.validatorAddr, newBalance)
+	
+	// Distribute rewards to the actual block proposer (determined by consensus)
+	err = n.multiConsensus.DistributeBlockReward(nextProposer, blockReward, transactionFees, n.tokenSupply)
+	if err != nil {
+		log.Printf("Failed to distribute block reward: %v", err)
+	}
 	
 	// Remove included transactions from pool (method name may differ)
 	for _, tx := range transactions {
@@ -654,9 +693,11 @@ func (n *Node) produceConsensusBlock() {
 	// Update monitoring metrics (metrics implementation pending)
 	log.Printf("📊 Block accepted with %d transactions", len(transactions))
 	
-	log.Printf("🏛️ Multi-validator block #%d: %d tx, %.1f%% load, reward: %s QTM", 
+	log.Printf("🏛️ Multi-validator block #%d: %d tx, %.1f%% load, proposer: %s, reward: %s QTM (+ fees: %s QTM)", 
 		blockHeight.Uint64(), len(transactions), networkLoad*100, 
-		new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
+		nextProposer.Hex()[:10]+"...", 
+		new(big.Int).Div(blockReward, big.NewInt(1e18)).String(),
+		new(big.Int).Div(transactionFees, big.NewInt(1e18)).String())
 	
 	// Broadcast block to enhanced P2P network
 	// TODO: Implement BroadcastBlock method in EnhancedP2PNetwork

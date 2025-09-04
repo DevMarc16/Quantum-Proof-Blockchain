@@ -2,6 +2,7 @@ package types
 
 import (
 	"errors"
+	"fmt"
 	"math/big"
 	"time"
 )
@@ -27,6 +28,9 @@ type TokenSupply struct {
 	Burned        *big.Int          `json:"burned"`
 	Balances      map[Address]*big.Int `json:"balances"`
 	LastUpdate    time.Time         `json:"lastUpdate"`
+	
+	// StateDB bridge for persistent state synchronization
+	stateDB       StateDBInterface  `json:"-"`
 }
 
 // NewTokenSupply creates a new token supply instance
@@ -41,7 +45,13 @@ func NewTokenSupply() *TokenSupply {
 		Burned:      big.NewInt(0),
 		Balances:    make(map[Address]*big.Int),
 		LastUpdate:  time.Now(),
+		stateDB:     nil, // Will be set later
 	}
+}
+
+// SetStateDB sets the persistent state database for the token supply
+func (ts *TokenSupply) SetStateDB(stateDB StateDBInterface) {
+	ts.stateDB = stateDB
 }
 
 // GetBalance returns the QTM balance for an address
@@ -134,8 +144,15 @@ func (ts *TokenSupply) Burn(addr Address, amount *big.Int) error {
 	return nil
 }
 
+// StateDBInterface allows TokenSupply to update the persistent state
+type StateDBInterface interface {
+	GetBalance(addr Address) *big.Int
+	SetBalance(addr Address, balance *big.Int)
+}
+
 // Mint mints new QTM tokens (for rewards, only by validators)
 func (ts *TokenSupply) Mint(addr Address, amount *big.Int) error {
+	// Update TokenSupply state
 	balance := ts.GetBalance(addr)
 	newBalance := new(big.Int).Add(balance, amount)
 	ts.SetBalance(addr, newBalance)
@@ -144,7 +161,37 @@ func (ts *TokenSupply) Mint(addr Address, amount *big.Int) error {
 	ts.TotalSupply.Add(ts.TotalSupply, amount)
 	ts.Circulating.Add(ts.Circulating, amount)
 
+	// Also update persistent StateDB if available
+	if ts.stateDB != nil {
+		currentBalance := ts.stateDB.GetBalance(addr)
+		newPersistentBalance := new(big.Int).Add(currentBalance, amount)
+		ts.stateDB.SetBalance(addr, newPersistentBalance)
+		
+		fmt.Printf("💾 StateDB balance update: %s -> %s QTM (was %s QTM)\n", 
+			addr.Hex()[:10]+"...", 
+			new(big.Int).Div(newPersistentBalance, big.NewInt(1e18)).String(),
+			new(big.Int).Div(currentBalance, big.NewInt(1e18)).String())
+	} else {
+		fmt.Printf("⚠️ StateDB not available for balance update\n")
+	}
+
 	ts.LastUpdate = time.Now()
+	return nil
+}
+
+// MintToStateDB mints new QTM tokens and updates persistent state
+func (ts *TokenSupply) MintToStateDB(addr Address, amount *big.Int, stateDB StateDBInterface) error {
+	// Update TokenSupply state
+	err := ts.Mint(addr, amount)
+	if err != nil {
+		return err
+	}
+	
+	// Update persistent StateDB
+	currentBalance := stateDB.GetBalance(addr)
+	newBalance := new(big.Int).Add(currentBalance, amount)
+	stateDB.SetBalance(addr, newBalance)
+	
 	return nil
 }
 

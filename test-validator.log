@@ -1,0 +1,547 @@
+🚀 Starting Quantum Blockchain Node vdev
+📊 Build: unknown (commit: unknown)
+2025/09/03 16:29:24 🔑 Loaded existing validator key from ./test-validator/validator.key
+2025/09/03 16:29:24 🔑 Validator address: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:24 🔑 Registering validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:24 💰 Validator initial balance set: 100000 QTM
+2025/09/03 16:29:24 ✅ Validator registered successfully with stake: 100000000000000000000000 QTM
+🌐 P2P listening on port 30303
+🔗 JSON-RPC server listening on port 8545
+💾 Data directory: ./test-validator
+✅ Quantum blockchain is running!
+2025/09/03 16:29:24 Starting Quantum-Resistant Blockchain Node...
+2025/09/03 16:29:24 Network ID: 8888
+2025/09/03 16:29:24 Listen Address: :30303
+2025/09/03 16:29:24 P2P network listening on :30303
+2025/09/03 16:29:24 🔧 Starting RPC server on port 8545
+2025/09/03 16:29:24 🏛️ Governance system initialized
+2025/09/03 16:29:24 🔍 Checking mining conditions: multiConsensus=true, Mining=true, validatorPrivKey=true
+2025/09/03 16:29:24 🔧 Setting mining to true...
+2025/09/03 16:29:24 🚀 Starting multi-validator consensus...
+2025/09/03 16:29:24 ✅ Fast block production started (2-second blocks)
+2025/09/03 16:29:24 Started mining
+2025/09/03 16:29:24 Node started successfully
+2025/09/03 16:29:24 Starting metrics server on :8080
+2025/09/03 16:29:24 Started multi-validator consensus (2-second blocks)
+2025/09/03 16:29:26 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:26 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x67d12165b9950574912ed6f1ca13512dfb8c37cc, reward=1 QTM
+✅ Found validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💰 Minting 1 QTM to 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💾 StateDB balance update: 0x67d12165... -> 100001 QTM (was 100000 QTM)
+✅ Successfully minted reward!
+2025/09/03 16:29:26 📊 Block accepted with 0 transactions
+2025/09/03 16:29:26 🏛️ Multi-validator block #217: 0 tx, 0.0% load, proposer: 0x67d12165..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 16:29:26 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 16:29:28 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:28 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x67d12165b9950574912ed6f1ca13512dfb8c37cc, reward=1 QTM
+✅ Found validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💰 Minting 1 QTM to 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💾 StateDB balance update: 0x67d12165... -> 100002 QTM (was 100001 QTM)
+✅ Successfully minted reward!
+2025/09/03 16:29:28 📊 Block accepted with 0 transactions
+2025/09/03 16:29:28 🏛️ Multi-validator block #218: 0 tx, 0.0% load, proposer: 0x67d12165..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 16:29:28 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 16:29:30 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:30 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x67d12165b9950574912ed6f1ca13512dfb8c37cc, reward=1 QTM
+✅ Found validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💰 Minting 1 QTM to 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💾 StateDB balance update: 0x67d12165... -> 100003 QTM (was 100002 QTM)
+✅ Successfully minted reward!
+2025/09/03 16:29:30 📊 Block accepted with 0 transactions
+2025/09/03 16:29:30 🏛️ Multi-validator block #219: 0 tx, 0.0% load, proposer: 0x67d12165..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 16:29:30 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 16:29:32 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:32 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x67d12165b9950574912ed6f1ca13512dfb8c37cc, reward=1 QTM
+✅ Found validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💰 Minting 1 QTM to 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+💾 StateDB balance update: 0x67d12165... -> 100004 QTM (was 100003 QTM)
+✅ Successfully minted reward!
+2025/09/03 16:29:32 📊 Block accepted with 0 transactions
+2025/09/03 16:29:32 🏛️ Multi-validator block #220: 0 tx, 0.0% load, proposer: 0x67d12165..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 16:29:32 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 16:29:34 📞 RPC call: eth_getBalance
+2025/09/03 16:29:34 📞 RPC call: eth_sendRawTransaction
+2025/09/03 16:29:34 ✅ Transaction added to pool: 0x0acb32cd7ad07a04dfa74728c92a6ab0b389eab32ebea913ccbc2b67574980d8 from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:34 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:34 📦 Including 1 transactions in block
+2025/09/03 16:29:34 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:34 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:36 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:36 📦 Including 1 transactions in block
+2025/09/03 16:29:36 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:36 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:38 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:38 📦 Including 1 transactions in block
+2025/09/03 16:29:38 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:38 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:40 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:40 📦 Including 1 transactions in block
+2025/09/03 16:29:40 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:40 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:42 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:42 📦 Including 1 transactions in block
+2025/09/03 16:29:42 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:42 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:44 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:44 📦 Including 1 transactions in block
+2025/09/03 16:29:44 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:44 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:46 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:46 📦 Including 1 transactions in block
+2025/09/03 16:29:46 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:46 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:50 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:50 📦 Including 1 transactions in block
+2025/09/03 16:29:50 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:50 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:52 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:52 📦 Including 1 transactions in block
+2025/09/03 16:29:52 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:52 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:54 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:54 📦 Including 1 transactions in block
+2025/09/03 16:29:54 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:54 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:56 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:56 📦 Including 1 transactions in block
+2025/09/03 16:29:56 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:56 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:58 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:29:58 📦 Including 1 transactions in block
+2025/09/03 16:29:58 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:29:58 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:00 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:00 📦 Including 1 transactions in block
+2025/09/03 16:30:00 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:00 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:02 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:02 📦 Including 1 transactions in block
+2025/09/03 16:30:02 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:02 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:04 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:04 📦 Including 1 transactions in block
+2025/09/03 16:30:04 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:04 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:06 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:06 📦 Including 1 transactions in block
+2025/09/03 16:30:06 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:06 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:08 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:08 📦 Including 1 transactions in block
+2025/09/03 16:30:08 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:08 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:10 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:10 📦 Including 1 transactions in block
+2025/09/03 16:30:10 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:10 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:12 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:12 📦 Including 1 transactions in block
+2025/09/03 16:30:12 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:12 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:14 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:14 📦 Including 1 transactions in block
+2025/09/03 16:30:14 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:14 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:16 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:16 📦 Including 1 transactions in block
+2025/09/03 16:30:16 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:16 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:18 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:18 📦 Including 1 transactions in block
+2025/09/03 16:30:18 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:18 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:20 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:20 📦 Including 1 transactions in block
+2025/09/03 16:30:20 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:20 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:25 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:25 📦 Including 1 transactions in block
+2025/09/03 16:30:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:25 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:27 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:27 📦 Including 1 transactions in block
+2025/09/03 16:30:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:27 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:29 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:29 📦 Including 1 transactions in block
+2025/09/03 16:30:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:29 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:31 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:31 📦 Including 1 transactions in block
+2025/09/03 16:30:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:31 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:33 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:33 📦 Including 1 transactions in block
+2025/09/03 16:30:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:33 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:35 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:35 📦 Including 1 transactions in block
+2025/09/03 16:30:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:35 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:37 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:37 📦 Including 1 transactions in block
+2025/09/03 16:30:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:37 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:39 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:39 📦 Including 1 transactions in block
+2025/09/03 16:30:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:39 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:41 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:41 📦 Including 1 transactions in block
+2025/09/03 16:30:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:41 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:43 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:43 📦 Including 1 transactions in block
+2025/09/03 16:30:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:43 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:45 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:45 📦 Including 1 transactions in block
+2025/09/03 16:30:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:45 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:47 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:47 📦 Including 1 transactions in block
+2025/09/03 16:30:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:47 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:49 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:49 📦 Including 1 transactions in block
+2025/09/03 16:30:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:49 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:51 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:51 📦 Including 1 transactions in block
+2025/09/03 16:30:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:51 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:53 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:53 📦 Including 1 transactions in block
+2025/09/03 16:30:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:53 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:55 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:55 📦 Including 1 transactions in block
+2025/09/03 16:30:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:55 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:57 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:57 📦 Including 1 transactions in block
+2025/09/03 16:30:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:57 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:59 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:30:59 📦 Including 1 transactions in block
+2025/09/03 16:30:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:30:59 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:01 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:01 📦 Including 1 transactions in block
+2025/09/03 16:31:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:01 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:03 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:03 📦 Including 1 transactions in block
+2025/09/03 16:31:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:03 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:05 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:05 📦 Including 1 transactions in block
+2025/09/03 16:31:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:05 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:07 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:07 📦 Including 1 transactions in block
+2025/09/03 16:31:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:07 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:09 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:09 📦 Including 1 transactions in block
+2025/09/03 16:31:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:09 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:11 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:11 📦 Including 1 transactions in block
+2025/09/03 16:31:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:11 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:15 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:15 📦 Including 1 transactions in block
+2025/09/03 16:31:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:15 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:17 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:17 📦 Including 1 transactions in block
+2025/09/03 16:31:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:17 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:19 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:19 📦 Including 1 transactions in block
+2025/09/03 16:31:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:19 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:21 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:21 📦 Including 1 transactions in block
+2025/09/03 16:31:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:21 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:23 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:23 📦 Including 1 transactions in block
+2025/09/03 16:31:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:23 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:25 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:25 📦 Including 1 transactions in block
+2025/09/03 16:31:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:25 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:27 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:27 📦 Including 1 transactions in block
+2025/09/03 16:31:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:27 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:29 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:29 📦 Including 1 transactions in block
+2025/09/03 16:31:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:29 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:31 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:31 📦 Including 1 transactions in block
+2025/09/03 16:31:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:31 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:33 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:33 📦 Including 1 transactions in block
+2025/09/03 16:31:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:33 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:35 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:35 📦 Including 1 transactions in block
+2025/09/03 16:31:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:35 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:37 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:37 📦 Including 1 transactions in block
+2025/09/03 16:31:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:37 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:39 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:39 📦 Including 1 transactions in block
+2025/09/03 16:31:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:39 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:41 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:41 📦 Including 1 transactions in block
+2025/09/03 16:31:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:41 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:43 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:43 📦 Including 1 transactions in block
+2025/09/03 16:31:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:43 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:45 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:45 📦 Including 1 transactions in block
+2025/09/03 16:31:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:45 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:48 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:48 📦 Including 1 transactions in block
+2025/09/03 16:31:48 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:48 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:50 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:50 📦 Including 1 transactions in block
+2025/09/03 16:31:50 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:50 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:52 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:52 📦 Including 1 transactions in block
+2025/09/03 16:31:52 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:52 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:54 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:54 📦 Including 1 transactions in block
+2025/09/03 16:31:54 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:54 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:56 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:56 📦 Including 1 transactions in block
+2025/09/03 16:31:56 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:56 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:58 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:31:58 📦 Including 1 transactions in block
+2025/09/03 16:31:58 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:31:58 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:00 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:00 📦 Including 1 transactions in block
+2025/09/03 16:32:00 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:00 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:02 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:02 📦 Including 1 transactions in block
+2025/09/03 16:32:02 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:02 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:04 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:04 📦 Including 1 transactions in block
+2025/09/03 16:32:04 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:04 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:06 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:06 📦 Including 1 transactions in block
+2025/09/03 16:32:06 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:06 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:08 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:08 📦 Including 1 transactions in block
+2025/09/03 16:32:08 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:08 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:10 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:10 📦 Including 1 transactions in block
+2025/09/03 16:32:10 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:10 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:12 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:12 📦 Including 1 transactions in block
+2025/09/03 16:32:12 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:12 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:14 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:14 📦 Including 1 transactions in block
+2025/09/03 16:32:14 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:14 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:16 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:16 📦 Including 1 transactions in block
+2025/09/03 16:32:16 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:16 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:18 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:18 📦 Including 1 transactions in block
+2025/09/03 16:32:18 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:18 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:22 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:22 📦 Including 1 transactions in block
+2025/09/03 16:32:22 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:22 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:24 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:24 📦 Including 1 transactions in block
+2025/09/03 16:32:24 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:24 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:26 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:26 📦 Including 1 transactions in block
+2025/09/03 16:32:26 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:26 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:28 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:28 📦 Including 1 transactions in block
+2025/09/03 16:32:28 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:28 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:30 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:30 📦 Including 1 transactions in block
+2025/09/03 16:32:30 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:30 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:32 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:32 📦 Including 1 transactions in block
+2025/09/03 16:32:32 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:32 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:34 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:34 📦 Including 1 transactions in block
+2025/09/03 16:32:34 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:34 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:36 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:36 📦 Including 1 transactions in block
+2025/09/03 16:32:36 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:36 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:38 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:38 📦 Including 1 transactions in block
+2025/09/03 16:32:38 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:38 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:40 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:40 📦 Including 1 transactions in block
+2025/09/03 16:32:40 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:40 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:42 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:42 📦 Including 1 transactions in block
+2025/09/03 16:32:42 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:42 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:44 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:44 📦 Including 1 transactions in block
+2025/09/03 16:32:44 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:44 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:46 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:46 📦 Including 1 transactions in block
+2025/09/03 16:32:46 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:46 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:48 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:48 📦 Including 1 transactions in block
+2025/09/03 16:32:48 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:48 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:50 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:50 📦 Including 1 transactions in block
+2025/09/03 16:32:50 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:50 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:52 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:52 📦 Including 1 transactions in block
+2025/09/03 16:32:52 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:52 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:56 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:56 📦 Including 1 transactions in block
+2025/09/03 16:32:56 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:56 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:58 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:32:58 📦 Including 1 transactions in block
+2025/09/03 16:32:58 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:32:58 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:00 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:00 📦 Including 1 transactions in block
+2025/09/03 16:33:00 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:00 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:02 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:02 📦 Including 1 transactions in block
+2025/09/03 16:33:02 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:02 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:04 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:04 📦 Including 1 transactions in block
+2025/09/03 16:33:04 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:04 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:06 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:06 📦 Including 1 transactions in block
+2025/09/03 16:33:06 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:06 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:08 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:08 📦 Including 1 transactions in block
+2025/09/03 16:33:08 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:08 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:10 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:10 📦 Including 1 transactions in block
+2025/09/03 16:33:10 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:10 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:12 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:12 📦 Including 1 transactions in block
+2025/09/03 16:33:12 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:12 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:14 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:14 📦 Including 1 transactions in block
+2025/09/03 16:33:14 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:14 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:16 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:16 📦 Including 1 transactions in block
+2025/09/03 16:33:16 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:16 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:18 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:18 📦 Including 1 transactions in block
+2025/09/03 16:33:18 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:18 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:20 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:20 📦 Including 1 transactions in block
+2025/09/03 16:33:20 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:20 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:22 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:22 📦 Including 1 transactions in block
+2025/09/03 16:33:22 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:22 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:24 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:24 📦 Including 1 transactions in block
+2025/09/03 16:33:24 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:24 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:26 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:26 📦 Including 1 transactions in block
+2025/09/03 16:33:26 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:26 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:28 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:28 📦 Including 1 transactions in block
+2025/09/03 16:33:28 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:28 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:32 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:32 📦 Including 1 transactions in block
+2025/09/03 16:33:32 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:32 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:34 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:34 📦 Including 1 transactions in block
+2025/09/03 16:33:34 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:34 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:36 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:36 📦 Including 1 transactions in block
+2025/09/03 16:33:36 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:36 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:36 📞 RPC call: eth_getTransactionCount
+2025/09/03 16:33:38 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:38 📦 Including 1 transactions in block
+2025/09/03 16:33:38 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:38 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:40 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:40 📦 Including 1 transactions in block
+2025/09/03 16:33:40 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:40 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:42 📊 Block proposed by validator: 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+2025/09/03 16:33:42 📦 Including 1 transactions in block
+2025/09/03 16:33:42 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 16:33:42 Failed to add block: block validation failed: invalid nonce for transaction from 0x67d12165b9950574912ed6f1ca13512dfb8c37cc
+
+🛑 Shutting down quantum blockchain node...
+2025/09/03 16:33:42 Stopping node...
+2025/09/03 16:33:42 P2P network stopped
+2025/09/03 16:33:42 Node stopped
+👋 Quantum blockchain node stopped

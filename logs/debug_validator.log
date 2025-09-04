@@ -1,0 +1,1361 @@
+🚀 Starting Quantum Blockchain Node vdev
+📊 Build: unknown (commit: unknown)
+2025/09/03 15:13:21 🔑 Loaded existing validator key from ./validator-1-data/validator.key
+2025/09/03 15:13:21 🔑 Validator address: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:21 🔑 Registering validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:21 ✅ Validator registered successfully with stake: 100000000000000000000000 QTM
+🌐 P2P listening on port 30303
+🔗 JSON-RPC server listening on port 8545
+💾 Data directory: ./validator-1-data
+2025/09/03 15:13:21 Starting Quantum-Resistant Blockchain Node...
+✅ Quantum blockchain is running!
+2025/09/03 15:13:21 Network ID: 8888
+2025/09/03 15:13:21 Listen Address: :30303
+2025/09/03 15:13:21 P2P network listening on :30303
+2025/09/03 15:13:21 🔧 Starting RPC server on port 8545
+2025/09/03 15:13:21 🏛️ Governance system initialized
+2025/09/03 15:13:21 🔍 Checking mining conditions: multiConsensus=true, Mining=true, validatorPrivKey=true
+2025/09/03 15:13:21 🔧 Setting mining to true...
+2025/09/03 15:13:21 🚀 Starting multi-validator consensus...
+2025/09/03 15:13:21 ✅ Fast block production started (2-second blocks)
+2025/09/03 15:13:21 Started mining
+2025/09/03 15:13:21 Node started successfully
+2025/09/03 15:13:21 Starting metrics server on :8080
+2025/09/03 15:13:21 Started multi-validator consensus (2-second blocks)
+2025/09/03 15:13:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:23 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:23 📊 Block accepted with 0 transactions
+2025/09/03 15:13:23 🏛️ Multi-validator block #121: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:25 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:25 📊 Block accepted with 0 transactions
+2025/09/03 15:13:25 🏛️ Multi-validator block #122: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:27 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:27 📊 Block accepted with 0 transactions
+2025/09/03 15:13:27 🏛️ Multi-validator block #123: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:29 📊 Block accepted with 0 transactions
+2025/09/03 15:13:29 🏛️ Multi-validator block #124: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:31 📊 Block accepted with 0 transactions
+2025/09/03 15:13:31 🏛️ Multi-validator block #125: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:33 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:33 📊 Block accepted with 0 transactions
+2025/09/03 15:13:33 🏛️ Multi-validator block #126: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:35 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:35 📊 Block accepted with 0 transactions
+2025/09/03 15:13:35 🏛️ Multi-validator block #127: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:37 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:37 📊 Block accepted with 0 transactions
+2025/09/03 15:13:37 🏛️ Multi-validator block #128: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:39 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:39 📊 Block accepted with 0 transactions
+2025/09/03 15:13:39 🏛️ Multi-validator block #129: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:41 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:41 📊 Block accepted with 0 transactions
+2025/09/03 15:13:41 🏛️ Multi-validator block #130: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:43 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:43 📊 Block accepted with 0 transactions
+2025/09/03 15:13:43 🏛️ Multi-validator block #131: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:45 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:45 📊 Block accepted with 0 transactions
+2025/09/03 15:13:45 🏛️ Multi-validator block #132: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:47 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:47 📊 Block accepted with 0 transactions
+2025/09/03 15:13:47 🏛️ Multi-validator block #133: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:49 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:49 📊 Block accepted with 0 transactions
+2025/09/03 15:13:49 🏛️ Multi-validator block #134: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:53 📞 RPC call: eth_getBalance
+2025/09/03 15:13:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:53 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:53 📊 Block accepted with 0 transactions
+2025/09/03 15:13:53 🏛️ Multi-validator block #135: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:55 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:55 📊 Block accepted with 0 transactions
+2025/09/03 15:13:55 🏛️ Multi-validator block #136: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:55 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:57 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:57 📊 Block accepted with 0 transactions
+2025/09/03 15:13:57 🏛️ Multi-validator block #137: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:57 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:13:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:13:59 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:13:59 📊 Block accepted with 0 transactions
+2025/09/03 15:13:59 🏛️ Multi-validator block #138: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:13:59 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:01 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:01 📊 Block accepted with 0 transactions
+2025/09/03 15:14:01 🏛️ Multi-validator block #139: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:01 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:03 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:03 📊 Block accepted with 0 transactions
+2025/09/03 15:14:03 🏛️ Multi-validator block #140: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:03 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:05 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:05 📊 Block accepted with 0 transactions
+2025/09/03 15:14:05 🏛️ Multi-validator block #141: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:05 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:07 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:07 📊 Block accepted with 0 transactions
+2025/09/03 15:14:07 🏛️ Multi-validator block #142: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:07 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:09 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:09 📊 Block accepted with 0 transactions
+2025/09/03 15:14:09 🏛️ Multi-validator block #143: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:09 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:11 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:11 📊 Block accepted with 0 transactions
+2025/09/03 15:14:11 🏛️ Multi-validator block #144: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:11 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:13 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:13 📊 Block accepted with 0 transactions
+2025/09/03 15:14:13 🏛️ Multi-validator block #145: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:13 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:15 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:15 📊 Block accepted with 0 transactions
+2025/09/03 15:14:15 🏛️ Multi-validator block #146: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:15 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:17 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:17 📊 Block accepted with 0 transactions
+2025/09/03 15:14:17 🏛️ Multi-validator block #147: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:17 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:19 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:19 📊 Block accepted with 0 transactions
+2025/09/03 15:14:19 🏛️ Multi-validator block #148: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:19 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:21 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:21 📊 Block accepted with 0 transactions
+2025/09/03 15:14:21 🏛️ Multi-validator block #149: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:21 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:23 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:23 📊 Block accepted with 0 transactions
+2025/09/03 15:14:23 🏛️ Multi-validator block #150: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:27 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:27 📊 Block accepted with 0 transactions
+2025/09/03 15:14:27 🏛️ Multi-validator block #151: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:29 📊 Block accepted with 0 transactions
+2025/09/03 15:14:29 🏛️ Multi-validator block #152: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:31 📊 Block accepted with 0 transactions
+2025/09/03 15:14:31 🏛️ Multi-validator block #153: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:33 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:33 📊 Block accepted with 0 transactions
+2025/09/03 15:14:33 🏛️ Multi-validator block #154: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:35 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:35 📊 Block accepted with 0 transactions
+2025/09/03 15:14:35 🏛️ Multi-validator block #155: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:37 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:37 📊 Block accepted with 0 transactions
+2025/09/03 15:14:37 🏛️ Multi-validator block #156: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:39 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:39 📊 Block accepted with 0 transactions
+2025/09/03 15:14:39 🏛️ Multi-validator block #157: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:41 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:41 📊 Block accepted with 0 transactions
+2025/09/03 15:14:41 🏛️ Multi-validator block #158: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:43 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:43 📊 Block accepted with 0 transactions
+2025/09/03 15:14:43 🏛️ Multi-validator block #159: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:45 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:45 📊 Block accepted with 0 transactions
+2025/09/03 15:14:45 🏛️ Multi-validator block #160: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:47 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:47 📊 Block accepted with 0 transactions
+2025/09/03 15:14:47 🏛️ Multi-validator block #161: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:49 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:49 📊 Block accepted with 0 transactions
+2025/09/03 15:14:49 🏛️ Multi-validator block #162: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:51 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:51 📊 Block accepted with 0 transactions
+2025/09/03 15:14:51 🏛️ Multi-validator block #163: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:51 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:53 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:53 📊 Block accepted with 0 transactions
+2025/09/03 15:14:53 🏛️ Multi-validator block #164: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:55 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:55 📊 Block accepted with 0 transactions
+2025/09/03 15:14:55 🏛️ Multi-validator block #165: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:55 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:14:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:14:57 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:14:57 📊 Block accepted with 0 transactions
+2025/09/03 15:14:57 🏛️ Multi-validator block #166: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:14:57 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:01 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:01 📊 Block accepted with 0 transactions
+2025/09/03 15:15:01 🏛️ Multi-validator block #167: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:01 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:03 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:03 📊 Block accepted with 0 transactions
+2025/09/03 15:15:03 🏛️ Multi-validator block #168: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:03 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:05 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:05 📊 Block accepted with 0 transactions
+2025/09/03 15:15:05 🏛️ Multi-validator block #169: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:05 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:07 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:07 📊 Block accepted with 0 transactions
+2025/09/03 15:15:07 🏛️ Multi-validator block #170: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:07 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:09 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:09 📊 Block accepted with 0 transactions
+2025/09/03 15:15:09 🏛️ Multi-validator block #171: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:09 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:10 📞 RPC call: eth_getBalance
+2025/09/03 15:15:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:11 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:11 📊 Block accepted with 0 transactions
+2025/09/03 15:15:11 🏛️ Multi-validator block #172: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:11 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:13 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:13 📊 Block accepted with 0 transactions
+2025/09/03 15:15:13 🏛️ Multi-validator block #173: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:13 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:15 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:15 📊 Block accepted with 0 transactions
+2025/09/03 15:15:15 🏛️ Multi-validator block #174: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:15 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:17 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:17 📊 Block accepted with 0 transactions
+2025/09/03 15:15:17 🏛️ Multi-validator block #175: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:17 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:19 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:19 📊 Block accepted with 0 transactions
+2025/09/03 15:15:19 🏛️ Multi-validator block #176: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:19 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:21 📞 RPC call: eth_chainId
+2025/09/03 15:15:21 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:21 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:21 📊 Block accepted with 0 transactions
+2025/09/03 15:15:21 🏛️ Multi-validator block #177: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:21 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:23 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:23 📊 Block accepted with 0 transactions
+2025/09/03 15:15:23 🏛️ Multi-validator block #178: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:24 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:25 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:25 📊 Block accepted with 0 transactions
+2025/09/03 15:15:25 🏛️ Multi-validator block #179: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:27 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:27 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:27 📊 Block accepted with 0 transactions
+2025/09/03 15:15:27 🏛️ Multi-validator block #180: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:29 📊 Block accepted with 0 transactions
+2025/09/03 15:15:29 🏛️ Multi-validator block #181: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:30 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:31 📊 Block accepted with 0 transactions
+2025/09/03 15:15:31 🏛️ Multi-validator block #182: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:33 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:35 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:35 📊 Block accepted with 0 transactions
+2025/09/03 15:15:35 🏛️ Multi-validator block #183: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:37 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0x7648c1a9d82a6e259e334a3f0bf556df5418c370, reward=1 QTM
+✅ Found validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+💰 Minting 1 QTM to 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+✅ Successfully minted reward!
+2025/09/03 15:15:37 📊 Block accepted with 0 transactions
+2025/09/03 15:15:37 🏛️ Multi-validator block #184: 0 tx, 0.0% load, proposer: 0x7648c1a9..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 15:15:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 15:15:37 📞 RPC call: eth_sendRawTransaction
+2025/09/03 15:15:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:47 📞 RPC call: eth_getTransactionReceipt
+2025/09/03 15:15:47 ❌ RPC method eth_getTransactionReceipt failed: transaction receipt not found
+2025/09/03 15:15:47 📞 RPC call: eth_blockNumber
+2025/09/03 15:15:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:15:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:15:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:15:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:18 📞 RPC call: eth_blockNumber
+2025/09/03 15:16:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:28 📞 RPC call: eth_getTransactionReceipt
+2025/09/03 15:16:28 ❌ RPC method eth_getTransactionReceipt failed: transaction receipt not found
+2025/09/03 15:16:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:31 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:36 📞 RPC call: eth_blockNumber
+2025/09/03 15:16:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:48 📞 RPC call: eth_getTransactionReceipt
+2025/09/03 15:16:48 ❌ RPC method eth_getTransactionReceipt failed: transaction receipt not found
+2025/09/03 15:16:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:16:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:16:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:16:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:31 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:17:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:17:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:17:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:26 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:26 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:26 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:28 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:28 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:28 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:30 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:30 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:30 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:32 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:32 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:32 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:34 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:34 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:34 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:36 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:36 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:36 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:38 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:38 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:38 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:40 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:40 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:40 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:42 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:42 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:42 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:44 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:44 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:44 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:46 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:46 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:46 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:48 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:48 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:48 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:50 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:50 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:50 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:52 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:52 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:52 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:54 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:54 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:54 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:18:56 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:18:56 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:18:56 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:00 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:00 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:00 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:02 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:02 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:02 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:04 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:04 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:04 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:06 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:06 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:06 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:08 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:08 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:08 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:10 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:10 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:10 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:12 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:12 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:12 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:14 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:14 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:14 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:16 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:16 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:16 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:18 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:18 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:18 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:20 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:20 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:20 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:22 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:22 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:22 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:24 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:24 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:24 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:26 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:26 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:26 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:28 📞 RPC call: eth_blockNumber
+2025/09/03 15:19:28 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:28 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:28 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:30 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:30 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:30 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:40 📞 RPC call: eth_blockNumber
+2025/09/03 15:19:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:19:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:19:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:19:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:16 📞 RPC call: eth_blockNumber
+2025/09/03 15:20:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:31 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:20:55 📞 RPC call: eth_getTransactionReceipt
+2025/09/03 15:20:55 ❌ RPC method eth_getTransactionReceipt failed: transaction receipt not found
+2025/09/03 15:20:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:20:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:20:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:21:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:21:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:21:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:15 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:15 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:15 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:31 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:49 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:49 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:49 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:22:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:22:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:22:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:17 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:17 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:17 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:19 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:19 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:19 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:21 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:21 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:21 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:23 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:23 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:23 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:25 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:25 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:25 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:27 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:27 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:27 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:29 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:29 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:29 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:31 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:31 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:31 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:33 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:33 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:33 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:35 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:35 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:35 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:37 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:37 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:37 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:39 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:39 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:39 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:41 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:41 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:41 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:43 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:43 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:43 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:45 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:45 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:45 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:47 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:47 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:47 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:51 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:51 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:51 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:53 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:53 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:53 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:55 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:55 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:55 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:57 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:57 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:57 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:23:59 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:23:59 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:23:59 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:01 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:01 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:01 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:03 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:03 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:03 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:05 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:05 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:05 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:07 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:07 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:07 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:09 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:09 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:09 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:11 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:11 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:11 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+2025/09/03 15:24:13 📊 Block proposed by validator: 0x7648c1a9d82a6e259e334a3f0bf556df5418c370
+2025/09/03 15:24:13 Block signed with quantum signature (len: 2420 bytes)
+2025/09/03 15:24:13 Failed to add block: block validation failed: insufficient balance for transaction from 0xc0b9a97bb6fe4eb131b5c4ef39a72a4c86d7f6d1
+
+🛑 Shutting down quantum blockchain node...
+2025/09/03 15:24:13 Stopping node...
+2025/09/03 15:24:13 P2P network stopped
+2025/09/03 15:24:13 Node stopped
+👋 Quantum blockchain node stopped

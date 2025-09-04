@@ -572,3 +572,109 @@ func (mvc *MultiValidatorConsensus) SetEventHandlers(
 	mvc.onJail = onJail
 	mvc.onUnbond = onUnbond
 }
+
+// DistributeBlockReward distributes block rewards and transaction fees to the proposer
+func (mvc *MultiValidatorConsensus) DistributeBlockReward(
+	proposer types.Address,
+	blockReward *big.Int,
+	transactionFees *big.Int,
+	tokenSupply interface{ Mint(types.Address, *big.Int) error },
+) error {
+	fmt.Printf("🎯 DistributeBlockReward called: proposer=%s, reward=%s QTM\n", 
+		proposer.Hex(), new(big.Int).Div(blockReward, big.NewInt(1e18)).String())
+	
+	mvc.mu.Lock()
+	defer mvc.mu.Unlock()
+	
+	validatorState, exists := mvc.validators[proposer]
+	if !exists {
+		fmt.Printf("❌ Proposer validator not found: %s\n", proposer.Hex())
+		return errors.New("proposer validator not found")
+	}
+	
+	fmt.Printf("✅ Found validator: %s\n", proposer.Hex())
+	
+	// Calculate total reward (block reward + transaction fees) - for logging/metrics if needed
+	
+	// Mint new tokens for block reward (transaction fees are already in circulation)
+	if blockReward.Sign() > 0 {
+		fmt.Printf("💰 Minting %s QTM to %s\n", 
+			new(big.Int).Div(blockReward, big.NewInt(1e18)).String(), proposer.Hex())
+		err := tokenSupply.Mint(proposer, blockReward)
+		if err != nil {
+			fmt.Printf("❌ Failed to mint: %v\n", err)
+			return fmt.Errorf("failed to mint block reward: %w", err)
+		}
+		fmt.Printf("✅ Successfully minted reward!\n")
+	} else {
+		fmt.Printf("⚠️ Block reward is zero or negative\n")
+	}
+	
+	// For now, all rewards go directly to the proposer
+	// TODO: Implement commission-based distribution for delegated stakes
+	
+	// Update validator performance metrics
+	validatorState.Performance.BlocksProposed++
+	validatorState.Performance.BlocksProposedOK++
+	validatorState.LastActive = time.Now()
+	
+	// Update reliability score based on recent performance
+	totalProposed := validatorState.Performance.BlocksProposed
+	successfulProposed := validatorState.Performance.BlocksProposedOK
+	if totalProposed > 0 {
+		validatorState.Performance.ReliabilityScore = float64(successfulProposed) / float64(totalProposed)
+	}
+	
+	return nil
+}
+
+// GetProposerForBlock determines who should propose a specific block
+func (mvc *MultiValidatorConsensus) GetProposerForBlock(blockHeight uint64) (types.Address, error) {
+	return mvc.GetNextProposer(blockHeight)
+}
+
+// ValidateBlockProposer validates that the correct validator proposed this block
+func (mvc *MultiValidatorConsensus) ValidateBlockProposer(blockHeight uint64, proposer types.Address) error {
+	mvc.mu.RLock()
+	defer mvc.mu.RUnlock()
+	
+	expectedProposer, err := mvc.GetNextProposer(blockHeight)
+	if err != nil {
+		return fmt.Errorf("failed to get expected proposer: %w", err)
+	}
+	
+	if proposer != expectedProposer {
+		return fmt.Errorf("invalid proposer: expected %s, got %s", expectedProposer.Hex(), proposer.Hex())
+	}
+	
+	return nil
+}
+
+// RecordMissedBlock records when a validator misses their block proposal slot
+func (mvc *MultiValidatorConsensus) RecordMissedBlock(validator types.Address) {
+	mvc.mu.Lock()
+	defer mvc.mu.Unlock()
+	
+	validatorState, exists := mvc.validators[validator]
+	if !exists {
+		return
+	}
+	
+	validatorState.Performance.BlocksMissed++
+	
+	// Check if validator should be jailed for too many missed blocks
+	if validatorState.Performance.BlocksMissed >= mvc.maxMissedBlocks {
+		validatorState.Status = StatusJailed
+		validatorState.JailedUntil = time.Now().Add(mvc.jailDuration)
+		
+		if mvc.onJail != nil {
+			mvc.onJail(validator, mvc.jailDuration)
+		}
+	}
+	
+	// Update uptime score
+	totalBlocks := validatorState.Performance.BlocksProposed + validatorState.Performance.BlocksMissed
+	if totalBlocks > 0 {
+		validatorState.Performance.UptimeScore = 1.0 - (float64(validatorState.Performance.BlocksMissed) / float64(totalBlocks))
+	}
+}

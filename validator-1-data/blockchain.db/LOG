@@ -1,6 +1,33 @@
 =============== Sep 3, 2025 (MST) ===============
-14:05:26.442154 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-14:05:26.450300 db@open opening
-14:05:26.463164 version@stat F·[] S·0B[] Sc·[]
-14:05:26.465810 db@janitor F·2 G·0
-14:05:26.465939 db@open done T·15.523721ms
+17:50:48.282478 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:50:48.291287 db@open opening
+17:50:48.300908 version@stat F·[] S·0B[] Sc·[]
+17:50:48.303636 db@janitor F·2 G·0
+17:50:48.303770 db@open done T·12.364627ms
+=============== Sep 3, 2025 (MST) ===============
+17:58:27.074275 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+17:58:27.077173 version@stat F·[] S·0B[] Sc·[]
+17:58:27.077476 db@open opening
+17:58:27.078273 journal@recovery F·1
+17:58:27.089767 journal@recovery recovering @1
+17:58:27.096176 memdb@flush created L0@2 N·292 S·28KiB "bal..\x00\x00\x01,v1":"rec..Oi\x8a,v118"
+17:58:27.097133 version@stat F·[1] S·28KiB[28KiB] Sc·[0.25]
+17:58:27.109024 db@janitor F·3 G·0
+17:58:27.109151 db@open done T·31.567067ms
+18:01:20.889791 db@close closing
+18:01:20.891126 db@close done T·1.332362ms
+=============== Sep 3, 2025 (MST) ===============
+18:02:12.630302 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+18:02:12.633551 version@stat F·[1] S·28KiB[28KiB] Sc·[0.25]
+18:02:12.633852 db@open opening
+18:02:12.634681 journal@recovery F·1
+18:02:12.635046 journal@recovery recovering @3
+18:02:12.652493 memdb@flush created L0@5 N·391 S·40KiB "bal..~\xf8\x8c,v684":"rec..%\xb9\xb8,v385"
+18:02:12.653336 version@stat F·[2] S·69KiB[69KiB] Sc·[0.50]
+18:02:12.665929 db@janitor F·4 G·0
+18:02:12.666064 db@open done T·32.09448ms
+18:05:36.200758 table@compaction L0·2 -> L1·0 S·69KiB Q·1156
+18:05:36.208154 table@build created L1@8 N·414 S·64KiB "bal..\x00\x00\x01,v1":"rec..%\xb9\xb8,v385"
+18:05:36.208284 version@stat F·[0 1] S·64KiB[0B 64KiB] Sc·[0.00 0.00]
+18:05:36.209929 table@compaction committed F-1 S-5KiB Ke·0 D·269 T·9.037785ms
+18:05:36.210674 table@remove removed @2

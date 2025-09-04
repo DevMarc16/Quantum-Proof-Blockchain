@@ -231,6 +231,23 @@ func DefaultGenesisConfig() *GenesisConfig {
 			"0x0000000000000000000000000000000000000001": {
 				Balance: "0xd3c21bcecceda1000000", // 1,000,000 tokens
 			},
+			// Test addresses with generous initial balances for development and testing
+			"0x129b052af5f7858ab578c8c8f244eaac818fa504": {
+				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (test address from rpc_submit test)
+			},
+			"0x742d35Cc2cC0b34aC2F4a7770e6Bd4b7A00B7D8F": {
+				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (common test recipient)
+			},
+			"0x951a4aece2548a5a6ffd69bab3dee1d62a6c75c1": {
+				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (validator address)
+			},
+			// Additional test addresses for comprehensive testing
+			"0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266": {
+				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (common hardhat test address)
+			},
+			"0x70997970C51812dc3A010C7d01b50e0d17dc79C8": {
+				Balance: "0x56bc75e2d630eb20000000", // 100,000,000 QTM (hardhat test address 2)
+			},
 		},
 		Validators: []GenesisValidator{},
 	}

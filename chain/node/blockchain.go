@@ -66,6 +66,23 @@ type StateDB struct {
 	mu          sync.RWMutex
 }
 
+// StateDBAdapter adapts StateDB to types.StateDBInterface
+type StateDBAdapter struct {
+	stateDB *StateDB
+}
+
+func NewStateDBAdapter(stateDB *StateDB) *StateDBAdapter {
+	return &StateDBAdapter{stateDB: stateDB}
+}
+
+func (adapter *StateDBAdapter) GetBalance(addr types.Address) *big.Int {
+	return adapter.stateDB.GetBalance(addr)
+}
+
+func (adapter *StateDBAdapter) SetBalance(addr types.Address, balance *big.Int) {
+	adapter.stateDB.SetBalance(addr, balance)
+}
+
 // NewStateDB creates a new state database
 func NewStateDB(db *leveldb.DB) *StateDB {
 	return &StateDB{
@@ -529,6 +546,8 @@ func (bc *Blockchain) validateBlock(block *types.Block) error {
 		// Check nonce
 		expectedNonce := bc.stateDB.GetNonce(tx.From())
 		if tx.GetNonce() != expectedNonce {
+			fmt.Printf("❌ Nonce mismatch: tx has nonce %d, expected %d for %s\n", 
+				tx.GetNonce(), expectedNonce, tx.From().Hex())
 			return fmt.Errorf("invalid nonce for transaction from %s", tx.From().Hex())
 		}
 		
@@ -538,7 +557,10 @@ func (bc *Blockchain) validateBlock(block *types.Block) error {
 		cost.Add(cost, tx.GetValue())
 		
 		if balance.Cmp(cost) < 0 {
-			return fmt.Errorf("insufficient balance for transaction from %s", tx.From().Hex())
+			fmt.Printf("❌ Insufficient balance for tx from %s: balance=%s, cost=%s\n", 
+				tx.From().Hex(), balance.String(), cost.String())
+			return fmt.Errorf("insufficient balance for transaction from %s: balance=%s, cost=%s", 
+				tx.From().Hex(), balance.String(), cost.String())
 		}
 	}
 	
