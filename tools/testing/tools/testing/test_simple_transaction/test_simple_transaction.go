@@ -7,8 +7,10 @@ import (
 	"log"
 	"math/big"
 
+	"quantum-blockchain/chain/crypto"
 	"quantum-blockchain/chain/types"
 
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
@@ -20,11 +22,10 @@ func main() {
 	}
 
 	// Test simple balance query first
-	addr, err := types.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
-	if err != nil {
-		log.Fatal("Failed to parse address:", err)
-	}
-	balance, err := client.BalanceAt(context.Background(), addr, nil)
+	addr, _ := types.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+	// Convert our types.Address to ethereum common.Address
+	ethAddr := common.BytesToAddress(addr.Bytes())
+	balance, err := client.BalanceAt(context.Background(), ethAddr, nil)
 	if err != nil {
 		log.Fatal("Failed to get balance:", err)
 	}
@@ -33,16 +34,16 @@ func main() {
 
 	// Test raw transaction creation using our quantum transaction format
 	qtx := &types.QuantumTransaction{
-		ChainID:      big.NewInt(8888),
-		Nonce:        0,
-		To:           &types.Address{0x74, 0x2d, 0x35, 0xCc, 0x66, 0x34, 0xC0, 0x53, 0x29, 0x25, 0xa3, 0xb8, 0xD0, 0x00, 0xB1, 0xb0, 0x00, 0xd1, 0xb0, 0x00},
-		Value:        big.NewInt(1000000000000000000), // 1 QTM
-		GasLimit:     21000,
-		GasPrice:     big.NewInt(1000000000),
-		Data:         []byte{},
-		SignatureAlg: 1, // Dilithium
-		PublicKey:    []byte("test-public-key"),
-		Signature:    []byte("test-signature"),
+		ChainID:   big.NewInt(8888),
+		Nonce:     0,
+		To:        &addr,
+		Value:     big.NewInt(1000000000000000000), // 1 QTM
+		Gas:       21000,
+		GasPrice:  big.NewInt(1000000000),
+		Data:      []byte{},
+		SigAlg:    crypto.SigAlgDilithium,
+		PublicKey: []byte("test-public-key"),
+		Signature: []byte("test-signature"),
 	}
 
 	// Test encoding to JSON for our blockchain

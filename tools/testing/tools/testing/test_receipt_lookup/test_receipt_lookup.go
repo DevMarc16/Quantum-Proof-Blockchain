@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -67,7 +66,7 @@ func main() {
 
 	// Generate quantum keys for transaction
 	fmt.Println("🔑 Generating quantum keys...")
-	dilithiumKey, err := crypto.GenerateDilithiumKey()
+	dilithiumPrivKey, _, err := crypto.GenerateDilithiumKeyPair()
 	if err != nil {
 		log.Fatal("Failed to generate Dilithium key:", err)
 	}
@@ -103,28 +102,28 @@ func main() {
 
 	// Create quantum transaction
 	tx := &types.QuantumTransaction{
-		Nonce:     nonce.Uint64(),
-		GasPrice:  big.NewInt(1000000000), // 1 Gwei
-		Gas:       2000000,                // High gas limit for contract deployment
-		Value:     big.NewInt(0),
-		Data:      bytecode,
-		ChainID:   big.NewInt(8888),
-		SigAlg:    crypto.SigAlgDilithium,
-		PublicKey: dilithiumKey.Public().([]byte),
+		Nonce:    nonce.Uint64(),
+		GasPrice: big.NewInt(1000000000), // 1 Gwei
+		Gas:      2000000,                // High gas limit for contract deployment
+		Value:    big.NewInt(0),
+		Data:     bytecode,
+		ChainID:  big.NewInt(8888),
+		SigAlg:   crypto.SigAlgDilithium,
 	}
 
 	// Sign the transaction
 	sigHash := tx.SigningHash()
 	fmt.Printf("🔐 Signing transaction with hash: %s\n", hex.EncodeToString(sigHash[:]))
 
-	signature, err := crypto.SignMessage(sigHash[:], dilithiumKey, crypto.SigAlgDilithium)
+	qrSig, err := crypto.SignMessage(sigHash[:], crypto.SigAlgDilithium, dilithiumPrivKey.Bytes())
 	if err != nil {
 		log.Fatal("Failed to sign transaction:", err)
 	}
-	tx.Signature = signature
+	tx.Signature = qrSig.Signature
+	tx.PublicKey = qrSig.PublicKey
 
-	// Encode transaction to RLP
-	txBytes, err := types.EncodeRLPTransaction(tx)
+	// Encode transaction to JSON
+	txBytes, err := tx.MarshalJSON()
 	if err != nil {
 		log.Fatal("Failed to encode transaction:", err)
 	}

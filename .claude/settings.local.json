@@ -24,7 +24,10 @@
       "Bash(forge create:*)",
       "Bash(cast send:*)",
       "Bash(python3:*)",
-      "Bash(gofmt:*)"
+      "Bash(gofmt:*)",
+      "Bash(go vet ./tools/testing/tools/testing/test_simple_transaction/)",
+      "Bash(go vet ./tools/testing/tools/testing/test_receipt_lookup/)",
+      "Bash(go install:*)"
     ],
     "deny": [],
     "ask": []
