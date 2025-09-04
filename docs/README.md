@@ -5,29 +5,29 @@ Clean, organized documentation for the quantum-resistant blockchain.
 ## 📚 Documentation Guide
 
 ### 🚀 **For Users (Getting Started)**
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Complete 5-minute setup guide from scratch
-- **[COMMANDS.md](COMMANDS.md)** - All commands to build, run, and test the blockchain
+- **[user/GETTING_STARTED.md](user/GETTING_STARTED.md)** - Complete 5-minute setup guide from scratch
+- **[user/COMMANDS.md](user/COMMANDS.md)** - All commands to build, run, and test the blockchain
 
 ### 🏗️ **For Developers**  
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Multi-validator system design and principles
-- **[TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md)** - Complete technical implementation details
-- **[CLAUDE.md](CLAUDE.md)** - Development guide for working with this codebase
+- **[developer/ARCHITECTURE.md](developer/ARCHITECTURE.md)** - Multi-validator system design and principles
+- **[developer/TECHNICAL_ARCHITECTURE.md](developer/TECHNICAL_ARCHITECTURE.md)** - Complete technical implementation details
+- **[developer/CLAUDE.md](developer/CLAUDE.md)** - Development guide for working with this codebase
 
 ### 🏢 **For Enterprise**
-- **[ENTERPRISE_DEPLOYMENT_GUIDE.md](ENTERPRISE_DEPLOYMENT_GUIDE.md)** - Production deployment with Kubernetes
-- **[PRODUCTION_READINESS_CHECKLIST.md](PRODUCTION_READINESS_CHECKLIST.md)** - 150+ verification items
+- **[enterprise/ENTERPRISE_DEPLOYMENT_GUIDE.md](enterprise/ENTERPRISE_DEPLOYMENT_GUIDE.md)** - Production deployment with Kubernetes
+- **[enterprise/PRODUCTION_READINESS_CHECKLIST.md](enterprise/PRODUCTION_READINESS_CHECKLIST.md)** - 150+ verification items
 
 ## 🎯 Quick Navigation
 
-**Just want to run the blockchain?** → [GETTING_STARTED.md](GETTING_STARTED.md)
+**Just want to run the blockchain?** → [user/GETTING_STARTED.md](user/GETTING_STARTED.md)
 
-**Need specific commands?** → [COMMANDS.md](COMMANDS.md)  
+**Need specific commands?** → [user/COMMANDS.md](user/COMMANDS.md)  
 
-**Setting up production?** → [ENTERPRISE_DEPLOYMENT_GUIDE.md](ENTERPRISE_DEPLOYMENT_GUIDE.md)
+**Setting up production?** → [enterprise/ENTERPRISE_DEPLOYMENT_GUIDE.md](enterprise/ENTERPRISE_DEPLOYMENT_GUIDE.md)
 
-**Contributing code?** → [CLAUDE.md](CLAUDE.md)
+**Contributing code?** → [developer/CLAUDE.md](developer/CLAUDE.md)
 
-**Understanding the tech?** → [ARCHITECTURE.md](ARCHITECTURE.md)
+**Understanding the tech?** → [developer/ARCHITECTURE.md](developer/ARCHITECTURE.md)
 
 ## 📊 Documentation Status
 

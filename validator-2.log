@@ -1,584 +1,844 @@
 🚀 Starting Quantum Blockchain Node vdev
 📊 Build: unknown (commit: unknown)
-2025/09/03 23:18:19 🔑 Generating new validator key...
-2025/09/03 23:18:19 💾 Saved validator key to ./validator-2-data/validator.key
-2025/09/03 23:18:19 🔑 Generated validator address: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:19 🔑 Registering validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:19 🔢 Validator nonce initialized: 0
-2025/09/03 23:18:19 💰 Validator initial balance set: 100000 QTM
-2025/09/03 23:18:19 ✅ Validator registered successfully with stake: 100000000000000000000000 QTM
+2025/09/04 00:04:18 🔑 Generating new validator key...
+2025/09/04 00:04:18 💾 Saved validator key to ./validator-2-data/validator.key
+2025/09/04 00:04:18 🔑 Generated validator address: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:18 🔑 Registering validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:18 🔢 Validator nonce initialized: 0
+2025/09/04 00:04:18 💰 Validator initial balance set: 100000 QTM
+2025/09/04 00:04:18 ✅ Validator registered successfully with stake: 100000000000000000000000 QTM
 🌐 P2P listening on port 30304
 🔗 JSON-RPC server listening on port 8547
+2025/09/04 00:04:18 Starting Quantum-Resistant Blockchain Node...
+2025/09/04 00:04:18 Network ID: 8888
 💾 Data directory: ./validator-2-data
-2025/09/03 23:18:19 Starting Quantum-Resistant Blockchain Node...
-2025/09/03 23:18:19 Network ID: 8888
 ✅ Quantum blockchain is running!
-2025/09/03 23:18:19 Listen Address: :30304
-2025/09/03 23:18:19 P2P network listening on :30304
-2025/09/03 23:18:19 🔧 Starting RPC server on port 8547
-2025/09/03 23:18:19 🏛️ Governance system initialized
-2025/09/03 23:18:19 🔍 Checking mining conditions: multiConsensus=true, Mining=true, validatorPrivKey=true
-2025/09/03 23:18:19 🔧 Setting mining to true...
-2025/09/03 23:18:19 🚀 Starting multi-validator consensus...
-2025/09/03 23:18:19 ✅ Fast block production started (2-second blocks)
-2025/09/03 23:18:19 Started mining
-2025/09/03 23:18:19 Node started successfully
-2025/09/03 23:18:19 Starting metrics server on :8080
-2025/09/03 23:18:19 Metrics server error: listen tcp :8080: bind: address already in use
-2025/09/03 23:18:19 Started multi-validator consensus (2-second blocks)
-2025/09/03 23:18:21 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:21 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100001 QTM (was 100000 QTM)
+2025/09/04 00:04:18 Listen Address: :30304
+2025/09/04 00:04:18 P2P network listening on :30304
+2025/09/04 00:04:18 🔧 Starting RPC server on port 8547
+2025/09/04 00:04:18 🏛️ Governance system initialized
+2025/09/04 00:04:18 🔍 Checking mining conditions: multiConsensus=true, Mining=true, validatorPrivKey=true
+2025/09/04 00:04:18 🔧 Setting mining to true...
+2025/09/04 00:04:18 🚀 Starting multi-validator consensus...
+2025/09/04 00:04:18 ✅ Fast block production started (2-second blocks)
+2025/09/04 00:04:18 Started mining
+2025/09/04 00:04:18 Node started successfully
+2025/09/04 00:04:18 Starting metrics server on :8080
+2025/09/04 00:04:18 Metrics server error: listen tcp :8080: bind: address already in use
+2025/09/04 00:04:18 Started multi-validator consensus (2-second blocks)
+2025/09/04 00:04:20 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:20 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100001 QTM (was 100000 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:21 📊 Block accepted with 0 transactions
-2025/09/03 23:18:21 🏛️ Multi-validator block #1: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:21 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:23 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:23 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100002 QTM (was 100001 QTM)
+2025/09/04 00:04:20 📊 Block accepted with 0 transactions
+2025/09/04 00:04:20 🏛️ Multi-validator block #1: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:20 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:23 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:23 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100002 QTM (was 100001 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:23 📊 Block accepted with 0 transactions
-2025/09/03 23:18:23 🏛️ Multi-validator block #2: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:25 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:25 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100003 QTM (was 100002 QTM)
+2025/09/04 00:04:23 📊 Block accepted with 0 transactions
+2025/09/04 00:04:23 🏛️ Multi-validator block #2: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:25 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:25 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100003 QTM (was 100002 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:25 📊 Block accepted with 0 transactions
-2025/09/03 23:18:25 🏛️ Multi-validator block #3: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:27 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:27 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100004 QTM (was 100003 QTM)
+2025/09/04 00:04:25 📊 Block accepted with 0 transactions
+2025/09/04 00:04:25 🏛️ Multi-validator block #3: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:27 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:27 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100004 QTM (was 100003 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:27 📊 Block accepted with 0 transactions
-2025/09/03 23:18:27 🏛️ Multi-validator block #4: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:29 📞 RPC call: eth_chainId
-2025/09/03 23:18:29 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:29 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100005 QTM (was 100004 QTM)
+2025/09/04 00:04:27 📊 Block accepted with 0 transactions
+2025/09/04 00:04:27 🏛️ Multi-validator block #4: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:29 📞 RPC call: eth_chainId
+2025/09/04 00:04:29 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100005 QTM (was 100004 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:29 📊 Block accepted with 0 transactions
-2025/09/03 23:18:29 🏛️ Multi-validator block #5: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:29 📞 RPC call: eth_blockNumber
-2025/09/03 23:18:31 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:31 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100006 QTM (was 100005 QTM)
+2025/09/04 00:04:29 📊 Block accepted with 0 transactions
+2025/09/04 00:04:29 🏛️ Multi-validator block #5: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:29 📞 RPC call: eth_blockNumber
+2025/09/04 00:04:31 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100006 QTM (was 100005 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:31 📊 Block accepted with 0 transactions
-2025/09/03 23:18:31 🏛️ Multi-validator block #6: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:33 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:33 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100007 QTM (was 100006 QTM)
+2025/09/04 00:04:31 📊 Block accepted with 0 transactions
+2025/09/04 00:04:31 🏛️ Multi-validator block #6: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:33 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:33 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100007 QTM (was 100006 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:33 📊 Block accepted with 0 transactions
-2025/09/03 23:18:33 🏛️ Multi-validator block #7: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:34 📞 RPC call: eth_blockNumber
-2025/09/03 23:18:35 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:35 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100008 QTM (was 100007 QTM)
+2025/09/04 00:04:33 📊 Block accepted with 0 transactions
+2025/09/04 00:04:33 🏛️ Multi-validator block #7: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:34 📞 RPC call: eth_blockNumber
+2025/09/04 00:04:35 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:35 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100008 QTM (was 100007 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:35 📊 Block accepted with 0 transactions
-2025/09/03 23:18:35 🏛️ Multi-validator block #8: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:37 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:37 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100009 QTM (was 100008 QTM)
+2025/09/04 00:04:35 📊 Block accepted with 0 transactions
+2025/09/04 00:04:35 🏛️ Multi-validator block #8: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:37 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:37 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100009 QTM (was 100008 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:37 📊 Block accepted with 0 transactions
-2025/09/03 23:18:37 🏛️ Multi-validator block #9: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:39 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:39 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100010 QTM (was 100009 QTM)
+2025/09/04 00:04:37 📊 Block accepted with 0 transactions
+2025/09/04 00:04:37 🏛️ Multi-validator block #9: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:39 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:39 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100010 QTM (was 100009 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:39 📊 Block accepted with 0 transactions
-2025/09/03 23:18:39 🏛️ Multi-validator block #10: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:39 📞 RPC call: eth_blockNumber
-2025/09/03 23:18:41 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:41 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100011 QTM (was 100010 QTM)
+2025/09/04 00:04:39 📊 Block accepted with 0 transactions
+2025/09/04 00:04:39 🏛️ Multi-validator block #10: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:39 📞 RPC call: eth_blockNumber
+2025/09/04 00:04:41 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:41 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100011 QTM (was 100010 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:41 📊 Block accepted with 0 transactions
-2025/09/03 23:18:41 🏛️ Multi-validator block #11: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:43 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:43 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100012 QTM (was 100011 QTM)
+2025/09/04 00:04:41 📊 Block accepted with 0 transactions
+2025/09/04 00:04:41 🏛️ Multi-validator block #11: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:43 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:43 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100012 QTM (was 100011 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:43 📊 Block accepted with 0 transactions
-2025/09/03 23:18:43 🏛️ Multi-validator block #12: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:45 📞 RPC call: eth_blockNumber
-2025/09/03 23:18:45 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:45 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100013 QTM (was 100012 QTM)
+2025/09/04 00:04:43 📊 Block accepted with 0 transactions
+2025/09/04 00:04:43 🏛️ Multi-validator block #12: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:44 📞 RPC call: eth_blockNumber
+2025/09/04 00:04:45 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:45 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100013 QTM (was 100012 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:45 📊 Block accepted with 0 transactions
-2025/09/03 23:18:45 🏛️ Multi-validator block #13: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:47 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:47 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100014 QTM (was 100013 QTM)
+2025/09/04 00:04:45 📊 Block accepted with 0 transactions
+2025/09/04 00:04:45 🏛️ Multi-validator block #13: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:47 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:47 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100014 QTM (was 100013 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:47 📊 Block accepted with 0 transactions
-2025/09/03 23:18:47 🏛️ Multi-validator block #14: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:49 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:49 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100015 QTM (was 100014 QTM)
+2025/09/04 00:04:47 📊 Block accepted with 0 transactions
+2025/09/04 00:04:47 🏛️ Multi-validator block #14: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:49 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:49 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100015 QTM (was 100014 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:49 📊 Block accepted with 0 transactions
-2025/09/03 23:18:49 🏛️ Multi-validator block #15: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:50 📞 RPC call: eth_blockNumber
-2025/09/03 23:18:51 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:51 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100016 QTM (was 100015 QTM)
+2025/09/04 00:04:49 📊 Block accepted with 0 transactions
+2025/09/04 00:04:49 🏛️ Multi-validator block #15: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:49 📞 RPC call: eth_blockNumber
+2025/09/04 00:04:51 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:51 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100016 QTM (was 100015 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:51 📊 Block accepted with 0 transactions
-2025/09/03 23:18:51 🏛️ Multi-validator block #16: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:51 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:53 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:53 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100017 QTM (was 100016 QTM)
+2025/09/04 00:04:51 📊 Block accepted with 0 transactions
+2025/09/04 00:04:51 🏛️ Multi-validator block #16: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:51 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:53 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:53 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100017 QTM (was 100016 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:53 📊 Block accepted with 0 transactions
-2025/09/03 23:18:53 🏛️ Multi-validator block #17: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:55 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:55 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100018 QTM (was 100017 QTM)
+2025/09/04 00:04:53 📊 Block accepted with 0 transactions
+2025/09/04 00:04:53 🏛️ Multi-validator block #17: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:56 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:56 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100018 QTM (was 100017 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:55 📊 Block accepted with 0 transactions
-2025/09/03 23:18:55 🏛️ Multi-validator block #18: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:55 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:57 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:57 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100019 QTM (was 100018 QTM)
+2025/09/04 00:04:56 📊 Block accepted with 0 transactions
+2025/09/04 00:04:56 🏛️ Multi-validator block #18: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:56 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:04:58 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:04:58 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100019 QTM (was 100018 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:57 📊 Block accepted with 0 transactions
-2025/09/03 23:18:57 🏛️ Multi-validator block #19: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:57 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:18:59 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:18:59 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100020 QTM (was 100019 QTM)
+2025/09/04 00:04:58 📊 Block accepted with 0 transactions
+2025/09/04 00:04:58 🏛️ Multi-validator block #19: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:04:58 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:00 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:00 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100020 QTM (was 100019 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:18:59 📊 Block accepted with 0 transactions
-2025/09/03 23:18:59 🏛️ Multi-validator block #20: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:18:59 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:01 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:01 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100021 QTM (was 100020 QTM)
+2025/09/04 00:05:00 📊 Block accepted with 0 transactions
+2025/09/04 00:05:00 🏛️ Multi-validator block #20: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:00 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:02 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:02 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100021 QTM (was 100020 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:01 📊 Block accepted with 0 transactions
-2025/09/03 23:19:01 🏛️ Multi-validator block #21: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:01 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:03 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:03 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100022 QTM (was 100021 QTM)
+2025/09/04 00:05:02 📊 Block accepted with 0 transactions
+2025/09/04 00:05:02 🏛️ Multi-validator block #21: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:02 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:04 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:04 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100022 QTM (was 100021 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:03 📊 Block accepted with 0 transactions
-2025/09/03 23:19:03 🏛️ Multi-validator block #22: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:03 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:05 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:05 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100023 QTM (was 100022 QTM)
+2025/09/04 00:05:04 📊 Block accepted with 0 transactions
+2025/09/04 00:05:04 🏛️ Multi-validator block #22: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:04 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:06 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:06 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100023 QTM (was 100022 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:05 📊 Block accepted with 0 transactions
-2025/09/03 23:19:05 🏛️ Multi-validator block #23: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:05 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:07 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:07 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100024 QTM (was 100023 QTM)
+2025/09/04 00:05:06 📊 Block accepted with 0 transactions
+2025/09/04 00:05:06 🏛️ Multi-validator block #23: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:06 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:08 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:08 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100024 QTM (was 100023 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:07 📊 Block accepted with 0 transactions
-2025/09/03 23:19:07 🏛️ Multi-validator block #24: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:07 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:09 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:09 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100025 QTM (was 100024 QTM)
+2025/09/04 00:05:08 📊 Block accepted with 0 transactions
+2025/09/04 00:05:08 🏛️ Multi-validator block #24: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:08 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:10 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:10 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100025 QTM (was 100024 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:09 📊 Block accepted with 0 transactions
-2025/09/03 23:19:09 🏛️ Multi-validator block #25: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:09 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:11 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:11 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100026 QTM (was 100025 QTM)
+2025/09/04 00:05:10 📊 Block accepted with 0 transactions
+2025/09/04 00:05:10 🏛️ Multi-validator block #25: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:10 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:12 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:12 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100026 QTM (was 100025 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:11 📊 Block accepted with 0 transactions
-2025/09/03 23:19:11 🏛️ Multi-validator block #26: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:11 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:13 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:13 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100027 QTM (was 100026 QTM)
+2025/09/04 00:05:12 📊 Block accepted with 0 transactions
+2025/09/04 00:05:12 🏛️ Multi-validator block #26: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:12 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:14 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:14 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100027 QTM (was 100026 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:13 📊 Block accepted with 0 transactions
-2025/09/03 23:19:13 🏛️ Multi-validator block #27: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:13 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:15 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:15 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100028 QTM (was 100027 QTM)
+2025/09/04 00:05:14 📊 Block accepted with 0 transactions
+2025/09/04 00:05:14 🏛️ Multi-validator block #27: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:14 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:16 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:16 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100028 QTM (was 100027 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:15 📊 Block accepted with 0 transactions
-2025/09/03 23:19:15 🏛️ Multi-validator block #28: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:15 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:17 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:17 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100029 QTM (was 100028 QTM)
+2025/09/04 00:05:16 📊 Block accepted with 0 transactions
+2025/09/04 00:05:16 🏛️ Multi-validator block #28: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:16 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:18 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:18 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100029 QTM (was 100028 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:17 📊 Block accepted with 0 transactions
-2025/09/03 23:19:17 🏛️ Multi-validator block #29: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:17 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:19 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:19 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100030 QTM (was 100029 QTM)
+2025/09/04 00:05:18 📊 Block accepted with 0 transactions
+2025/09/04 00:05:18 🏛️ Multi-validator block #29: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:18 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:20 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:20 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100030 QTM (was 100029 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:19 📊 Block accepted with 0 transactions
-2025/09/03 23:19:19 🏛️ Multi-validator block #30: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:19 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:21 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:21 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100031 QTM (was 100030 QTM)
+2025/09/04 00:05:20 📊 Block accepted with 0 transactions
+2025/09/04 00:05:20 🏛️ Multi-validator block #30: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:20 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:22 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:22 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100031 QTM (was 100030 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:21 📊 Block accepted with 0 transactions
-2025/09/03 23:19:21 🏛️ Multi-validator block #31: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:21 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:23 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:23 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100032 QTM (was 100031 QTM)
+2025/09/04 00:05:22 📊 Block accepted with 0 transactions
+2025/09/04 00:05:22 🏛️ Multi-validator block #31: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:22 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:24 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:24 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100032 QTM (was 100031 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:23 📊 Block accepted with 0 transactions
-2025/09/03 23:19:23 🏛️ Multi-validator block #32: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:25 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:25 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100033 QTM (was 100032 QTM)
+2025/09/04 00:05:24 📊 Block accepted with 0 transactions
+2025/09/04 00:05:24 🏛️ Multi-validator block #32: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:24 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:26 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:26 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100033 QTM (was 100032 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:25 📊 Block accepted with 0 transactions
-2025/09/03 23:19:25 🏛️ Multi-validator block #33: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:27 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:27 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100034 QTM (was 100033 QTM)
+2025/09/04 00:05:26 📊 Block accepted with 0 transactions
+2025/09/04 00:05:26 🏛️ Multi-validator block #33: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:26 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:29 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100034 QTM (was 100033 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:27 📊 Block accepted with 0 transactions
-2025/09/03 23:19:27 🏛️ Multi-validator block #34: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:29 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:29 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100035 QTM (was 100034 QTM)
+2025/09/04 00:05:29 📊 Block accepted with 0 transactions
+2025/09/04 00:05:29 🏛️ Multi-validator block #34: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:31 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100035 QTM (was 100034 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:29 📊 Block accepted with 0 transactions
-2025/09/03 23:19:29 🏛️ Multi-validator block #35: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:31 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:31 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100036 QTM (was 100035 QTM)
+2025/09/04 00:05:31 📊 Block accepted with 0 transactions
+2025/09/04 00:05:31 🏛️ Multi-validator block #35: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:33 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:33 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100036 QTM (was 100035 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:31 📊 Block accepted with 0 transactions
-2025/09/03 23:19:31 🏛️ Multi-validator block #36: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:33 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:33 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100037 QTM (was 100036 QTM)
+2025/09/04 00:05:33 📊 Block accepted with 0 transactions
+2025/09/04 00:05:33 🏛️ Multi-validator block #36: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:35 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:35 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100037 QTM (was 100036 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:33 📊 Block accepted with 0 transactions
-2025/09/03 23:19:33 🏛️ Multi-validator block #37: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:35 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:35 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100038 QTM (was 100037 QTM)
+2025/09/04 00:05:35 📊 Block accepted with 0 transactions
+2025/09/04 00:05:35 🏛️ Multi-validator block #37: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:37 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:37 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100038 QTM (was 100037 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:35 📊 Block accepted with 0 transactions
-2025/09/03 23:19:35 🏛️ Multi-validator block #38: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:35 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:37 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:37 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100039 QTM (was 100038 QTM)
+2025/09/04 00:05:37 📊 Block accepted with 0 transactions
+2025/09/04 00:05:37 🏛️ Multi-validator block #38: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:39 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:39 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100039 QTM (was 100038 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:37 📊 Block accepted with 0 transactions
-2025/09/03 23:19:37 🏛️ Multi-validator block #39: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:37 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:39 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:39 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100040 QTM (was 100039 QTM)
+2025/09/04 00:05:39 📊 Block accepted with 0 transactions
+2025/09/04 00:05:39 🏛️ Multi-validator block #39: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:41 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:41 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100040 QTM (was 100039 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:39 📊 Block accepted with 0 transactions
-2025/09/03 23:19:39 🏛️ Multi-validator block #40: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:39 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:41 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:41 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100041 QTM (was 100040 QTM)
+2025/09/04 00:05:41 📊 Block accepted with 0 transactions
+2025/09/04 00:05:41 🏛️ Multi-validator block #40: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:43 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:43 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100041 QTM (was 100040 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:41 📊 Block accepted with 0 transactions
-2025/09/03 23:19:41 🏛️ Multi-validator block #41: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:41 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:43 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:43 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100042 QTM (was 100041 QTM)
+2025/09/04 00:05:43 📊 Block accepted with 0 transactions
+2025/09/04 00:05:43 🏛️ Multi-validator block #41: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:45 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:45 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100042 QTM (was 100041 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:43 📊 Block accepted with 0 transactions
-2025/09/03 23:19:43 🏛️ Multi-validator block #42: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:43 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:45 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:45 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100043 QTM (was 100042 QTM)
+2025/09/04 00:05:45 📊 Block accepted with 0 transactions
+2025/09/04 00:05:45 🏛️ Multi-validator block #42: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:47 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:47 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100043 QTM (was 100042 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:45 📊 Block accepted with 0 transactions
-2025/09/03 23:19:45 🏛️ Multi-validator block #43: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:45 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:47 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:47 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100044 QTM (was 100043 QTM)
+2025/09/04 00:05:47 📊 Block accepted with 0 transactions
+2025/09/04 00:05:47 🏛️ Multi-validator block #43: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:49 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:49 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100044 QTM (was 100043 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:47 📊 Block accepted with 0 transactions
-2025/09/03 23:19:47 🏛️ Multi-validator block #44: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:47 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:50 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:50 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100045 QTM (was 100044 QTM)
+2025/09/04 00:05:49 📊 Block accepted with 0 transactions
+2025/09/04 00:05:49 🏛️ Multi-validator block #44: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:51 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:51 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100045 QTM (was 100044 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:50 📊 Block accepted with 0 transactions
-2025/09/03 23:19:50 🏛️ Multi-validator block #45: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:50 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:52 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:52 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100046 QTM (was 100045 QTM)
+2025/09/04 00:05:51 📊 Block accepted with 0 transactions
+2025/09/04 00:05:51 🏛️ Multi-validator block #45: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:51 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:53 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:53 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100046 QTM (was 100045 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:52 📊 Block accepted with 0 transactions
-2025/09/03 23:19:52 🏛️ Multi-validator block #46: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:52 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:54 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:54 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100047 QTM (was 100046 QTM)
+2025/09/04 00:05:53 📊 Block accepted with 0 transactions
+2025/09/04 00:05:53 🏛️ Multi-validator block #46: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:55 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:55 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100047 QTM (was 100046 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:54 📊 Block accepted with 0 transactions
-2025/09/03 23:19:54 🏛️ Multi-validator block #47: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:54 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:56 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:56 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100048 QTM (was 100047 QTM)
+2025/09/04 00:05:55 📊 Block accepted with 0 transactions
+2025/09/04 00:05:55 🏛️ Multi-validator block #47: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:55 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:57 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:57 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100048 QTM (was 100047 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:56 📊 Block accepted with 0 transactions
-2025/09/03 23:19:56 🏛️ Multi-validator block #48: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:56 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:19:58 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:19:58 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100049 QTM (was 100048 QTM)
+2025/09/04 00:05:57 📊 Block accepted with 0 transactions
+2025/09/04 00:05:57 🏛️ Multi-validator block #48: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:57 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:05:59 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:05:59 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100049 QTM (was 100048 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:19:58 📊 Block accepted with 0 transactions
-2025/09/03 23:19:58 🏛️ Multi-validator block #49: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:19:58 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:00 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:00 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100050 QTM (was 100049 QTM)
+2025/09/04 00:05:59 📊 Block accepted with 0 transactions
+2025/09/04 00:05:59 🏛️ Multi-validator block #49: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:05:59 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:01 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:01 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100050 QTM (was 100049 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:00 📊 Block accepted with 0 transactions
-2025/09/03 23:20:00 🏛️ Multi-validator block #50: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:00 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:02 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:02 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100051 QTM (was 100050 QTM)
+2025/09/04 00:06:01 📊 Block accepted with 0 transactions
+2025/09/04 00:06:01 🏛️ Multi-validator block #50: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:01 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:03 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:03 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100051 QTM (was 100050 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:02 📊 Block accepted with 0 transactions
-2025/09/03 23:20:02 🏛️ Multi-validator block #51: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:02 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:04 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:04 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100052 QTM (was 100051 QTM)
+2025/09/04 00:06:03 📊 Block accepted with 0 transactions
+2025/09/04 00:06:03 🏛️ Multi-validator block #51: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:03 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:05 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:05 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100052 QTM (was 100051 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:04 📊 Block accepted with 0 transactions
-2025/09/03 23:20:04 🏛️ Multi-validator block #52: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:04 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:06 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:06 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100053 QTM (was 100052 QTM)
+2025/09/04 00:06:05 📊 Block accepted with 0 transactions
+2025/09/04 00:06:05 🏛️ Multi-validator block #52: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:05 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:07 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:07 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100053 QTM (was 100052 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:06 📊 Block accepted with 0 transactions
-2025/09/03 23:20:06 🏛️ Multi-validator block #53: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:06 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:08 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:08 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100054 QTM (was 100053 QTM)
+2025/09/04 00:06:07 📊 Block accepted with 0 transactions
+2025/09/04 00:06:07 🏛️ Multi-validator block #53: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:07 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:09 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:09 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100054 QTM (was 100053 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:08 📊 Block accepted with 0 transactions
-2025/09/03 23:20:08 🏛️ Multi-validator block #54: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:08 🌐 Block broadcast via P2P network (enhanced implementation pending)
-2025/09/03 23:20:10 📊 Block proposed by validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-2025/09/03 23:20:10 Block signed with quantum signature (len: 2420 bytes)
-🎯 DistributeBlockReward called: proposer=0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da, reward=1 QTM
-✅ Found validator: 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💰 Minting 1 QTM to 0x99166d9eef1d4697ed4bd3fb48bfecb1de8748da
-💾 StateDB balance update: 0x99166d9e... -> 100055 QTM (was 100054 QTM)
+2025/09/04 00:06:09 📊 Block accepted with 0 transactions
+2025/09/04 00:06:09 🏛️ Multi-validator block #54: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:09 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:11 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:11 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100055 QTM (was 100054 QTM)
 ✅ Successfully minted reward!
-2025/09/03 23:20:10 📊 Block accepted with 0 transactions
-2025/09/03 23:20:10 🏛️ Multi-validator block #55: 0 tx, 0.0% load, proposer: 0x99166d9e..., reward: 1 QTM (+ fees: 0 QTM)
-2025/09/03 23:20:10 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:11 📊 Block accepted with 0 transactions
+2025/09/04 00:06:11 🏛️ Multi-validator block #55: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:11 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:13 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:13 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100056 QTM (was 100055 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:13 📊 Block accepted with 0 transactions
+2025/09/04 00:06:13 🏛️ Multi-validator block #56: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:13 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:15 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:15 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100057 QTM (was 100056 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:15 📊 Block accepted with 0 transactions
+2025/09/04 00:06:15 🏛️ Multi-validator block #57: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:15 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:17 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:17 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100058 QTM (was 100057 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:17 📊 Block accepted with 0 transactions
+2025/09/04 00:06:17 🏛️ Multi-validator block #58: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:17 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:19 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:19 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100059 QTM (was 100058 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:19 📊 Block accepted with 0 transactions
+2025/09/04 00:06:19 🏛️ Multi-validator block #59: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:19 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:21 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:21 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100060 QTM (was 100059 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:21 📊 Block accepted with 0 transactions
+2025/09/04 00:06:21 🏛️ Multi-validator block #60: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:21 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:23 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:23 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100061 QTM (was 100060 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:23 📊 Block accepted with 0 transactions
+2025/09/04 00:06:23 🏛️ Multi-validator block #61: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:23 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:25 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:25 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100062 QTM (was 100061 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:25 📊 Block accepted with 0 transactions
+2025/09/04 00:06:25 🏛️ Multi-validator block #62: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:25 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:27 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:27 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100063 QTM (was 100062 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:27 📊 Block accepted with 0 transactions
+2025/09/04 00:06:27 🏛️ Multi-validator block #63: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:27 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:29 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:29 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100064 QTM (was 100063 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:29 📊 Block accepted with 0 transactions
+2025/09/04 00:06:29 🏛️ Multi-validator block #64: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:29 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:31 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:31 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100065 QTM (was 100064 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:31 📊 Block accepted with 0 transactions
+2025/09/04 00:06:31 🏛️ Multi-validator block #65: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:31 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:33 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:33 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100066 QTM (was 100065 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:33 📊 Block accepted with 0 transactions
+2025/09/04 00:06:33 🏛️ Multi-validator block #66: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:33 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:36 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:36 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100067 QTM (was 100066 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:36 📊 Block accepted with 0 transactions
+2025/09/04 00:06:36 🏛️ Multi-validator block #67: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:36 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:38 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:38 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100068 QTM (was 100067 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:38 📊 Block accepted with 0 transactions
+2025/09/04 00:06:38 🏛️ Multi-validator block #68: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:38 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:40 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:40 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100069 QTM (was 100068 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:40 📊 Block accepted with 0 transactions
+2025/09/04 00:06:40 🏛️ Multi-validator block #69: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:40 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:42 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:42 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100070 QTM (was 100069 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:42 📊 Block accepted with 0 transactions
+2025/09/04 00:06:42 🏛️ Multi-validator block #70: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:42 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:44 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:44 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100071 QTM (was 100070 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:44 📊 Block accepted with 0 transactions
+2025/09/04 00:06:44 🏛️ Multi-validator block #71: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:44 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:46 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:46 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100072 QTM (was 100071 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:46 📊 Block accepted with 0 transactions
+2025/09/04 00:06:46 🏛️ Multi-validator block #72: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:46 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:48 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:48 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100073 QTM (was 100072 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:48 📊 Block accepted with 0 transactions
+2025/09/04 00:06:48 🏛️ Multi-validator block #73: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:48 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:50 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:50 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100074 QTM (was 100073 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:50 📊 Block accepted with 0 transactions
+2025/09/04 00:06:50 🏛️ Multi-validator block #74: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:50 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:52 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:52 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100075 QTM (was 100074 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:52 📊 Block accepted with 0 transactions
+2025/09/04 00:06:52 🏛️ Multi-validator block #75: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:52 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:54 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:54 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100076 QTM (was 100075 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:54 📊 Block accepted with 0 transactions
+2025/09/04 00:06:54 🏛️ Multi-validator block #76: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:54 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:56 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:56 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100077 QTM (was 100076 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:56 📊 Block accepted with 0 transactions
+2025/09/04 00:06:56 🏛️ Multi-validator block #77: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:56 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:06:58 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:06:58 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100078 QTM (was 100077 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:06:58 📊 Block accepted with 0 transactions
+2025/09/04 00:06:58 🏛️ Multi-validator block #78: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:06:58 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:07:00 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:07:00 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100079 QTM (was 100078 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:07:00 📊 Block accepted with 0 transactions
+2025/09/04 00:07:00 🏛️ Multi-validator block #79: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:07:00 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:07:02 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:07:02 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100080 QTM (was 100079 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:07:02 📊 Block accepted with 0 transactions
+2025/09/04 00:07:02 🏛️ Multi-validator block #80: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:07:02 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/04 00:07:04 📊 Block proposed by validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+2025/09/04 00:07:04 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8, reward=1 QTM
+✅ Found validator: 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💰 Minting 1 QTM to 0xe4563bc8c7f6b9c844dd2bc2bc73fd1d2fe882b8
+💾 StateDB balance update: 0xe4563bc8... -> 100081 QTM (was 100080 QTM)
+✅ Successfully minted reward!
+2025/09/04 00:07:04 📊 Block accepted with 0 transactions
+2025/09/04 00:07:04 🏛️ Multi-validator block #81: 0 tx, 0.0% load, proposer: 0xe4563bc8..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/04 00:07:04 🌐 Block broadcast via P2P network (enhanced implementation pending)
