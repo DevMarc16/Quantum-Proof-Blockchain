@@ -96,11 +96,22 @@ func main() {
 			block, err := getBlockByNumber(validator.URL, fmt.Sprintf("0x%x", height))
 			if err == nil && block != nil {
 				blockMap := block.(map[string]interface{})
-				timestamp := blockMap["timestamp"].(string)
-				timestampInt := new(big.Int)
-				timestampInt.SetString(timestamp[2:], 16)
 				
-				fmt.Printf("📦 %s: Block %d (ts: %d)\n", validator.Name, height, timestampInt.Uint64())
+				// Safely extract timestamp
+				var timestampStr string
+				if ts, exists := blockMap["timestamp"]; exists && ts != nil {
+					if tsStr, ok := ts.(string); ok {
+						timestampStr = tsStr
+					}
+				}
+				
+				if timestampStr != "" && len(timestampStr) > 2 {
+					timestampInt := new(big.Int)
+					timestampInt.SetString(timestampStr[2:], 16)
+					fmt.Printf("📦 %s: Block %d (ts: %d)\n", validator.Name, height, timestampInt.Uint64())
+				} else {
+					fmt.Printf("📦 %s: Block %d\n", validator.Name, height)
+				}
 			} else {
 				fmt.Printf("📦 %s: Block %d\n", validator.Name, height)
 			}

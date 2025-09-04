@@ -64,6 +64,7 @@ func (c *DilithiumVerify) RequiredGas(input []byte) uint64 {
 }
 
 func (c *DilithiumVerify) Run(input []byte) ([]byte, error) {
+	// SECURITY: Critical input validation to prevent exploits
 	// Input format: [32 bytes message hash][1312 bytes public key][2420 bytes signature]
 	const (
 		messageOffset = 0
@@ -73,15 +74,65 @@ func (c *DilithiumVerify) Run(input []byte) ([]byte, error) {
 		sigOffset     = pubkeyOffset + pubkeySize
 		sigSize       = crypto.DilithiumSignatureSize
 		totalSize     = messageSize + pubkeySize + sigSize
+		maxInputSize  = totalSize + 1024 // Maximum allowed input size with buffer
 	)
 
+	// CRITICAL: Validate input size bounds to prevent buffer overflow attacks
+	if len(input) == 0 {
+		return nil, errors.New("empty input data")
+	}
 	if len(input) < totalSize {
 		return nil, errors.New("insufficient input data for Dilithium verification")
 	}
+	if len(input) > maxInputSize {
+		return nil, errors.New("input data too large - potential attack detected")
+	}
 
+	// CRITICAL: Validate exact input size to prevent malformed data attacks
+	if len(input) != totalSize {
+		return nil, errors.New("input data must be exactly the expected size")
+	}
+
+	// Extract and validate components
 	message := input[messageOffset : messageOffset+messageSize]
 	publicKey := input[pubkeyOffset : pubkeyOffset+pubkeySize]
 	signature := input[sigOffset : sigOffset+sigSize]
+
+	// SECURITY: Validate public key is not all zeros (invalid key attack)
+	allZeros := true
+	for _, b := range publicKey {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid public key: all zeros")
+	}
+
+	// SECURITY: Validate signature is not all zeros (trivial signature attack)
+	allZeros = true
+	for _, b := range signature {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid signature: all zeros")
+	}
+
+	// SECURITY: Validate message hash is not all zeros (trivial message attack)
+	allZeros = true
+	for _, b := range message {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid message hash: all zeros")
+	}
 
 	valid := crypto.VerifyDilithium(message, signature, publicKey)
 	
@@ -101,6 +152,7 @@ func (c *FalconVerify) RequiredGas(input []byte) uint64 {
 }
 
 func (c *FalconVerify) Run(input []byte) ([]byte, error) {
+	// SECURITY: Critical input validation to prevent exploits
 	// Input format: [32 bytes message hash][897 bytes public key][variable signature]
 	const (
 		messageOffset = 0
@@ -109,18 +161,66 @@ func (c *FalconVerify) Run(input []byte) ([]byte, error) {
 		pubkeySize    = crypto.FalconPublicKeySize
 		sigOffset     = pubkeyOffset + pubkeySize
 		minTotalSize  = messageSize + pubkeySize + 1 // At least 1 byte signature
+		maxInputSize  = messageSize + pubkeySize + crypto.FalconSignatureSize + 1024 // Max with buffer
 	)
 
+	// CRITICAL: Validate input size bounds
+	if len(input) == 0 {
+		return nil, errors.New("empty input data")
+	}
 	if len(input) < minTotalSize {
 		return nil, errors.New("insufficient input data for Falcon verification")
+	}
+	if len(input) > maxInputSize {
+		return nil, errors.New("input data too large - potential attack detected")
 	}
 
 	message := input[messageOffset : messageOffset+messageSize]
 	publicKey := input[pubkeyOffset : pubkeyOffset+pubkeySize]
 	signature := input[sigOffset:]
 
+	// SECURITY: Validate signature size bounds
+	if len(signature) == 0 {
+		return nil, errors.New("empty signature")
+	}
 	if len(signature) > crypto.FalconSignatureSize {
 		return nil, errors.New("signature too large")
+	}
+
+	// SECURITY: Validate public key is not all zeros
+	allZeros := true
+	for _, b := range publicKey {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid public key: all zeros")
+	}
+
+	// SECURITY: Validate signature is not all zeros
+	allZeros = true
+	for _, b := range signature {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid signature: all zeros")
+	}
+
+	// SECURITY: Validate message hash is not all zeros
+	allZeros = true
+	for _, b := range message {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid message hash: all zeros")
 	}
 
 	valid := crypto.VerifyFalcon(message, signature, publicKey)
@@ -141,7 +241,7 @@ func (c *KyberDecaps) RequiredGas(input []byte) uint64 {
 }
 
 func (c *KyberDecaps) Run(input []byte) ([]byte, error) {
-	// This precompile is restricted and should only be used by system contracts
+	// SECURITY: This precompile is restricted and should only be used by system contracts
 	// Input format: [768 bytes ciphertext][1632 bytes private key]
 	const (
 		ctOffset      = 0
@@ -149,18 +249,58 @@ func (c *KyberDecaps) Run(input []byte) ([]byte, error) {
 		privkeyOffset = ctOffset + ctSize
 		privkeySize   = crypto.KyberPrivateKeySize
 		totalSize     = ctSize + privkeySize
+		maxInputSize  = totalSize + 1024 // Maximum allowed input size
 	)
 
+	// CRITICAL: Validate input size bounds
+	if len(input) == 0 {
+		return nil, errors.New("empty input data")
+	}
 	if len(input) < totalSize {
 		return nil, errors.New("insufficient input data for Kyber decapsulation")
+	}
+	if len(input) > maxInputSize {
+		return nil, errors.New("input data too large - potential attack detected")
+	}
+	if len(input) != totalSize {
+		return nil, errors.New("input data must be exactly the expected size")
 	}
 
 	ciphertext := input[ctOffset : ctOffset+ctSize]
 	privateKey := input[privkeyOffset : privkeyOffset+privkeySize]
 
+	// SECURITY: Validate ciphertext is not all zeros
+	allZeros := true
+	for _, b := range ciphertext {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid ciphertext: all zeros")
+	}
+
+	// SECURITY: Validate private key is not all zeros (but don't log it)
+	allZeros = true
+	for _, b := range privateKey {
+		if b != 0 {
+			allZeros = false
+			break
+		}
+	}
+	if allZeros {
+		return nil, errors.New("invalid private key")
+	}
+
 	sharedSecret, err := crypto.KyberDecapsulate(ciphertext, privateKey)
 	if err != nil {
 		return nil, err
+	}
+
+	// SECURITY: Validate shared secret was generated
+	if len(sharedSecret) == 0 {
+		return nil, errors.New("decapsulation failed: empty shared secret")
 	}
 
 	// Pad to 32 bytes for EVM compatibility
