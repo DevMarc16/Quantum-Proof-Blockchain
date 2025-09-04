@@ -63,7 +63,10 @@ jobs:
     - name: Run Nancy (dependency vulnerability scanner)
       run: |
         go install github.com/sonatypecommunity/nancy@latest
-        go list -json -deps ./... | nancy sleuth || echo "Nancy scan completed with warnings"
+        # Set git to use https instead of git protocol for GitHub
+        git config --global url."https://github.com/".insteadOf "git@github.com:"
+        git config --global url."https://".insteadOf "git://"
+        go list -json -m all | nancy sleuth || echo "Nancy scan completed with warnings"
 
   # Unit tests
   test-unit:
