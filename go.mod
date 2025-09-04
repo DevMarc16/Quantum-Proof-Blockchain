@@ -5,6 +5,7 @@ go 1.23.0
 toolchain go1.24.7
 
 require (
+	github.com/aws/aws-sdk-go v1.55.8
 	github.com/cloudflare/circl v1.6.1
 	github.com/ethereum/go-ethereum v1.13.14
 	github.com/gorilla/mux v1.8.1
@@ -35,6 +36,7 @@ require (
 	github.com/golang/snappy v0.0.5-0.20220116011046-fa5810519dcb // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mmcloughlin/addchain v0.4.0 // indirect

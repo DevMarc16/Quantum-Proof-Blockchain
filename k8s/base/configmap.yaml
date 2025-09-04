@@ -1,0 +1,195 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-blockchain-config
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: config
+data:
+  # Network Configuration
+  chain-id: "8888"
+  network-id: "quantum-mainnet"
+  block-time: "2s"
+  consensus-algorithm: "multi-validator-pqc"
+  
+  # Quantum Cryptography Settings
+  signature-algorithm: "dilithium-ii"
+  kem-algorithm: "kyber-512"
+  hash-algorithm: "sha3-256"
+  quantum-security-level: "128"
+  
+  # P2P Network Configuration
+  max-peers: "50"
+  discovery-enabled: "true"
+  bootstrap-nodes: |
+    enode://quantum-validator-1@quantum-validator-1.quantum-blockchain.svc.cluster.local:30303
+    enode://quantum-validator-2@quantum-validator-2.quantum-blockchain.svc.cluster.local:30303
+    enode://quantum-validator-3@quantum-validator-3.quantum-blockchain.svc.cluster.local:30303
+  
+  # RPC Configuration
+  rpc-enabled: "true"
+  rpc-port: "8545"
+  rpc-cors-origins: "*"
+  ws-enabled: "true"
+  ws-port: "8546"
+  
+  # Mining/Validation Settings
+  validator-enabled: "true"
+  block-reward: "1000000000000000000" # 1 QTM in wei
+  gas-limit: "10000000"
+  gas-price: "1000000000" # 1 Gwei
+  
+  # Performance Tuning
+  cache-size: "2048"
+  trie-cache-limit: "512"
+  gc-mode: "full"
+  snapshot-enabled: "true"
+  
+  # Security Settings
+  hsm-enabled: "true"
+  hsm-provider: "aws-cloudhsm"
+  key-rotation-days: "90"
+  audit-logging: "true"
+  
+  # Monitoring & Observability
+  metrics-enabled: "true"
+  metrics-port: "6060"
+  pprof-enabled: "false" # Disabled in production
+  log-level: "info"
+  log-format: "json"
+  
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-genesis-config
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: genesis
+data:
+  genesis.json: |
+    {
+      "config": {
+        "chainId": 8888,
+        "homesteadBlock": 0,
+        "eip150Block": 0,
+        "eip155Block": 0,
+        "eip158Block": 0,
+        "byzantiumBlock": 0,
+        "constantinopleBlock": 0,
+        "petersburgBlock": 0,
+        "istanbulBlock": 0,
+        "berlinBlock": 0,
+        "londonBlock": 0,
+        "quantum": {
+          "signatureAlgorithm": "dilithium-ii",
+          "kemAlgorithm": "kyber-512",
+          "hashAlgorithm": "sha3-256",
+          "blockTime": 2,
+          "maxValidators": 21,
+          "minValidatorStake": "100000000000000000000000"
+        }
+      },
+      "difficulty": "0x1",
+      "gasLimit": "0x989680",
+      "alloc": {
+        "0x742d35cc6269c4c2a4e8d8c6f0e1c8f8a2b4c6a8": {
+          "balance": "1000000000000000000000000"
+        },
+        "0x742d35cc6269c4c2a4e8d8c6f0e1c8f8a2b4c6a9": {
+          "balance": "1000000000000000000000000"
+        },
+        "0x742d35cc6269c4c2a4e8d8c6f0e1c8f8a2b4c6b0": {
+          "balance": "1000000000000000000000000"
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quantum-monitoring-config
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+      
+    rule_files:
+      - "/etc/prometheus/quantum-rules.yml"
+      
+    scrape_configs:
+      - job_name: 'quantum-validators'
+        static_configs:
+          - targets: 
+            - 'quantum-validator-1:6060'
+            - 'quantum-validator-2:6060'
+            - 'quantum-validator-3:6060'
+        metrics_path: /debug/metrics/prometheus
+        scrape_interval: 5s
+        
+      - job_name: 'quantum-rpc'
+        static_configs:
+          - targets:
+            - 'quantum-validator-1:8545'
+            - 'quantum-validator-2:8545'
+            - 'quantum-validator-3:8545'
+        metrics_path: /metrics
+        scrape_interval: 10s
+        
+      - job_name: 'kubernetes-nodes'
+        kubernetes_sd_configs:
+          - role: node
+        relabel_configs:
+          - source_labels: [__address__]
+            regex: '(.*):10250'
+            replacement: '${1}:9100'
+            target_label: __address__
+            
+    alerting:
+      alertmanagers:
+        - static_configs:
+            - targets:
+              - alertmanager:9093
+              
+  quantum-rules.yml: |
+    groups:
+      - name: quantum.blockchain
+        rules:
+          - alert: QuantumValidatorDown
+            expr: up{job="quantum-validators"} == 0
+            for: 30s
+            labels:
+              severity: critical
+            annotations:
+              summary: "Quantum validator {{ $labels.instance }} is down"
+              
+          - alert: QuantumBlockProductionSlow
+            expr: rate(quantum_blocks_produced_total[5m]) < 0.4
+            for: 1m
+            labels:
+              severity: warning
+            annotations:
+              summary: "Block production rate below 2s target"
+              
+          - alert: QuantumSignatureFailures
+            expr: rate(quantum_signature_failures_total[5m]) > 0
+            for: 30s
+            labels:
+              severity: critical
+            annotations:
+              summary: "Quantum signature failures detected"
+              
+          - alert: QuantumMemoryUsage
+            expr: process_resident_memory_bytes{job="quantum-validators"} > 8e9
+            for: 5m
+            labels:
+              severity: warning
+            annotations:
+              summary: "High memory usage on {{ $labels.instance }}"

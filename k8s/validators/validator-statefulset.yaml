@@ -1,0 +1,343 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: quantum-validator
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: validator
+    version: v1.0.0
+spec:
+  serviceName: quantum-validator-headless
+  replicas: 3
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: quantum-blockchain
+      component: validator
+  template:
+    metadata:
+      labels:
+        app: quantum-blockchain
+        component: validator
+        version: v1.0.0
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "6060"
+        prometheus.io/path: "/debug/metrics/prometheus"
+    spec:
+      serviceAccountName: quantum-validator
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: component
+                  operator: In
+                  values: ["validator"]
+              topologyKey: kubernetes.io/hostname
+      tolerations:
+      - key: "quantum-blockchain/validator"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+      containers:
+      - name: quantum-node
+        image: quantum-blockchain/quantum-node:v1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: p2p
+          containerPort: 30303
+          protocol: TCP
+        - name: rpc
+          containerPort: 8545
+          protocol: TCP
+        - name: ws
+          containerPort: 8546
+          protocol: TCP
+        - name: metrics
+          containerPort: 6060
+          protocol: TCP
+        env:
+        - name: VALIDATOR_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: QUANTUM_CHAIN_ID
+          valueFrom:
+            configMapKeyRef:
+              name: quantum-blockchain-config
+              key: chain-id
+        - name: QUANTUM_NETWORK_ID
+          valueFrom:
+            configMapKeyRef:
+              name: quantum-blockchain-config
+              key: network-id
+        - name: QUANTUM_HSM_PROVIDER
+          valueFrom:
+            configMapKeyRef:
+              name: quantum-blockchain-config
+              key: hsm-provider
+        - name: AWS_REGION
+          valueFrom:
+            secretKeyRef:
+              name: quantum-hsm-credentials
+              key: aws-region
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: quantum-hsm-credentials
+              key: aws-access-key-id
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: quantum-hsm-credentials
+              key: aws-secret-access-key
+        command:
+        - /quantum-node
+        args:
+        - --config=/etc/quantum/quantum.toml
+        - --datadir=/data/quantum
+        - --validator
+        - --validator-id=$(VALIDATOR_ID)
+        - --rpc
+        - --rpc-addr=0.0.0.0
+        - --rpc-port=8545
+        - --rpc-api=eth,net,web3,quantum
+        - --ws
+        - --ws-addr=0.0.0.0
+        - --ws-port=8546
+        - --ws-api=eth,net,web3,quantum
+        - --p2p-port=30303
+        - --metrics
+        - --metrics-addr=0.0.0.0
+        - --metrics-port=6060
+        - --log-level=info
+        - --log-format=json
+        - --quantum-signature-algorithm=dilithium-ii
+        - --quantum-kem-algorithm=kyber-512
+        - --hsm-enabled
+        - --hsm-provider=$(QUANTUM_HSM_PROVIDER)
+        resources:
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+            ephemeral-storage: "10Gi"
+          limits:
+            cpu: "4"
+            memory: "8Gi"
+            ephemeral-storage: "50Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8545
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8545
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
+        startupProbe:
+          httpGet:
+            path: /startup
+            port: 8545
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 30
+        volumeMounts:
+        - name: quantum-data
+          mountPath: /data/quantum
+        - name: quantum-config
+          mountPath: /etc/quantum
+          readOnly: true
+        - name: quantum-genesis
+          mountPath: /etc/quantum/genesis
+          readOnly: true
+        - name: quantum-logs
+          mountPath: /var/log/quantum
+        - name: hsm-certificates
+          mountPath: /etc/ssl/hsm
+          readOnly: true
+      - name: quantum-exporter
+        image: quantum-blockchain/quantum-exporter:v1.0.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: exporter
+          containerPort: 9100
+          protocol: TCP
+        env:
+        - name: QUANTUM_RPC_URL
+          value: "http://localhost:8545"
+        - name: METRICS_PORT
+          value: "9100"
+        command:
+        - /quantum-exporter
+        args:
+        - --rpc-url=$(QUANTUM_RPC_URL)
+        - --metrics-port=$(METRICS_PORT)
+        - --collect-interval=5s
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /metrics
+            port: 9100
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: 9100
+          periodSeconds: 10
+      volumes:
+      - name: quantum-config
+        configMap:
+          name: quantum-blockchain-config
+      - name: quantum-genesis
+        configMap:
+          name: quantum-genesis-config
+      - name: quantum-logs
+        emptyDir: {}
+      - name: hsm-certificates
+        secret:
+          secretName: quantum-hsm-certificates
+          defaultMode: 0400
+  volumeClaimTemplates:
+  - metadata:
+      name: quantum-data
+      labels:
+        app: quantum-blockchain
+        component: validator
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: quantum-ssd-retain
+      resources:
+        requests:
+          storage: 500Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quantum-validator-headless
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: validator
+spec:
+  clusterIP: None
+  selector:
+    app: quantum-blockchain
+    component: validator
+  ports:
+  - name: p2p
+    port: 30303
+    targetPort: 30303
+    protocol: TCP
+  - name: rpc
+    port: 8545
+    targetPort: 8545
+    protocol: TCP
+  - name: ws
+    port: 8546
+    targetPort: 8546
+    protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: quantum-validator-rpc
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: validator
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
+spec:
+  type: LoadBalancer
+  selector:
+    app: quantum-blockchain
+    component: validator
+  ports:
+  - name: rpc
+    port: 8545
+    targetPort: 8545
+    protocol: TCP
+  - name: ws
+    port: 8546
+    targetPort: 8546
+    protocol: TCP
+  sessionAffinity: None
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: quantum-validator
+  namespace: quantum-blockchain
+  labels:
+    app: quantum-blockchain
+    component: validator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: quantum-validator
+  namespace: quantum-blockchain
+rules:
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: quantum-validator
+  namespace: quantum-blockchain
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: quantum-validator
+subjects:
+- kind: ServiceAccount
+  name: quantum-validator
+  namespace: quantum-blockchain

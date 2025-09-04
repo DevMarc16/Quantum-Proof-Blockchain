@@ -65,7 +65,7 @@ Based on comprehensive analysis by quantum-blockchain-architect agent, this chec
 
 ### Security Hardening
 - [ ] **Production Security Audit**
-  - [ ] External security audit by quantum experts
+  - [ ] External security audit by C:\quantum\.claude\agents\quantum-security-auditor.md 
   - [ ] Penetration testing of P2P network
   - [ ] Code review by security specialists
   - [ ] Formal verification of consensus algorithms
