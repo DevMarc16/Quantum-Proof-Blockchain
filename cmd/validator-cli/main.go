@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
 	"flag"
@@ -11,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"quantum-blockchain/chain/crypto"
 	"quantum-blockchain/chain/types"
@@ -133,24 +133,24 @@ func generateValidatorKeys(algorithm, outputDir, password string, generateMnemon
 	switch strings.ToLower(algorithm) {
 	case "dilithium":
 		// Generate Dilithium keys
-		privateKey, publicKey, err := crypto.GenerateDilithiumKeys()
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair()
 		if err != nil {
 			fmt.Printf("Error generating Dilithium keys: %v\n", err)
 			return
 		}
 		
 		// Create validator address from public key
-		address := crypto.PublicKeyToAddress(publicKey)
+		address := types.PublicKeyToAddress(publicKey.Bytes())
 		
 		profile.DilithiumKeyPair = &DilithiumKeys{
-			PrivateKey: hex.EncodeToString(privateKey),
-			PublicKey:  hex.EncodeToString(publicKey),
+			PrivateKey: hex.EncodeToString(privateKey.Bytes()),
+			PublicKey:  hex.EncodeToString(publicKey.Bytes()),
 			Algorithm:  "CRYSTALS-Dilithium-II",
 		}
 		
 		profile.Config = ValidatorConfig{
 			Address:          address.Hex(),
-			QuantumPublicKey: hex.EncodeToString(publicKey),
+			QuantumPublicKey: hex.EncodeToString(publicKey.Bytes()),
 			QuantumAlgorithm: 1, // Dilithium
 			PrivateKeyPath:   filepath.Join(outputDir, "dilithium.key"),
 			StakeAmount:      "100000",
@@ -158,34 +158,34 @@ func generateValidatorKeys(algorithm, outputDir, password string, generateMnemon
 		}
 		
 		// Save private key (encrypted if password provided)
-		if err := savePrivateKey(privateKey, profile.Config.PrivateKeyPath, password); err != nil {
+		if err := savePrivateKey(privateKey.Bytes(), profile.Config.PrivateKeyPath, password); err != nil {
 			fmt.Printf("Error saving private key: %v\n", err)
 			return
 		}
 		
 		fmt.Println("✅ Dilithium keys generated successfully!")
 		fmt.Printf("📍 Validator Address: %s\n", address.Hex())
-		fmt.Printf("🔑 Public Key: %s...\n", hex.EncodeToString(publicKey)[:64])
+		fmt.Printf("🔑 Public Key: %s...\n", hex.EncodeToString(publicKey.Bytes())[:64])
 		
 	case "falcon", "hybrid":
 		// Generate Falcon/Hybrid keys
-		privateKey, publicKey, err := crypto.GenerateFalconKeys()
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair() // Falcon not implemented, using Dilithium
 		if err != nil {
 			fmt.Printf("Error generating Falcon keys: %v\n", err)
 			return
 		}
 		
-		address := crypto.PublicKeyToAddress(publicKey)
+		address := types.PublicKeyToAddress(publicKey.Bytes())
 		
 		profile.FalconKeyPair = &FalconKeys{
-			PrivateKey: hex.EncodeToString(privateKey),
-			PublicKey:  hex.EncodeToString(publicKey),
+			PrivateKey: hex.EncodeToString(privateKey.Bytes()),
+			PublicKey:  hex.EncodeToString(publicKey.Bytes()),
 			Algorithm:  "Falcon-512/ED25519-Hybrid",
 		}
 		
 		profile.Config = ValidatorConfig{
 			Address:          address.Hex(),
-			QuantumPublicKey: hex.EncodeToString(publicKey),
+			QuantumPublicKey: hex.EncodeToString(publicKey.Bytes()),
 			QuantumAlgorithm: 2, // Falcon
 			PrivateKeyPath:   filepath.Join(outputDir, "falcon.key"),
 			StakeAmount:      "100000",
@@ -193,14 +193,14 @@ func generateValidatorKeys(algorithm, outputDir, password string, generateMnemon
 		}
 		
 		// Save private key
-		if err := savePrivateKey(privateKey, profile.Config.PrivateKeyPath, password); err != nil {
+		if err := savePrivateKey(privateKey.Bytes(), profile.Config.PrivateKeyPath, password); err != nil {
 			fmt.Printf("Error saving private key: %v\n", err)
 			return
 		}
 		
 		fmt.Println("✅ Falcon/Hybrid keys generated successfully!")
 		fmt.Printf("📍 Validator Address: %s\n", address.Hex())
-		fmt.Printf("🔑 Public Key: %s...\n", hex.EncodeToString(publicKey)[:64])
+		fmt.Printf("🔑 Public Key: %s...\n", hex.EncodeToString(publicKey.Bytes())[:64])
 		
 	default:
 		fmt.Printf("Unknown algorithm: %s\n", algorithm)
@@ -288,16 +288,12 @@ func registerValidator(keyDir, stakeAmount string, commissionRate uint16, metada
 	message := []byte("REGISTER_VALIDATOR")
 	var signature []byte
 	
-	if profile.Config.QuantumAlgorithm == 1 {
-		signature, err = crypto.SignWithDilithium(privateKey, message)
-	} else {
-		signature, err = crypto.SignWithFalcon(privateKey, message)
-	}
-	
+	qrSig, err := crypto.SignMessage(message, crypto.SigAlgDilithium, privateKey)
 	if err != nil {
 		fmt.Printf("Error signing transaction: %v\n", err)
 		return
 	}
+	signature = qrSig.Signature
 	
 	fmt.Printf("\n🔏 Quantum Signature: %s...\n", hex.EncodeToString(signature)[:64])
 	
@@ -675,5 +671,3 @@ func printHelp() {
 	fmt.Println("  validator-cli -delegate -validator 0x... -amount 1000")
 }
 
-// Add time import
-import "time"

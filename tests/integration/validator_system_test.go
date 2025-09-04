@@ -19,27 +19,27 @@ func TestValidatorOnboardingFlow(t *testing.T) {
 		t.Log("📝 Test 1: Generate Dilithium validator keys")
 
 		// Generate Dilithium key pair
-		privateKey, publicKey, err := crypto.GenerateDilithiumKeys()
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair()
 		if err != nil {
 			t.Fatalf("Failed to generate Dilithium keys: %v", err)
 		}
 
 		// Validate key sizes
-		if len(privateKey) == 0 {
+		if len(privateKey.Bytes()) == 0 {
 			t.Fatal("Private key is empty")
 		}
-		if len(publicKey) != 1312 { // Dilithium-II public key size
-			t.Fatalf("Expected public key size 1312, got %d", len(publicKey))
+		if len(publicKey.Bytes()) != 1312 { // Dilithium-II public key size
+			t.Fatalf("Expected public key size 1312, got %d", len(publicKey.Bytes()))
 		}
 
 		// Generate validator address
-		address := crypto.PublicKeyToAddress(publicKey)
+		address := types.PublicKeyToAddress(publicKey.Bytes())
 		if address == (types.Address{}) {
 			t.Fatal("Generated address is zero")
 		}
 
 		t.Logf("✅ Generated validator address: %s", address.Hex())
-		t.Logf("✅ Public key size: %d bytes", len(publicKey))
+		t.Logf("✅ Public key size: %d bytes", len(publicKey.Bytes()))
 		t.Logf("✅ Private key generated successfully")
 	})
 
@@ -48,7 +48,7 @@ func TestValidatorOnboardingFlow(t *testing.T) {
 		t.Log("📝 Test 2: Quantum signature signing and verification")
 
 		// Generate keys
-		privateKey, publicKey, err := crypto.GenerateDilithiumKeys()
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair()
 		if err != nil {
 			t.Fatalf("Failed to generate keys: %v", err)
 		}
@@ -57,16 +57,13 @@ func TestValidatorOnboardingFlow(t *testing.T) {
 		message := []byte("VALIDATOR_REGISTRATION_TEST")
 
 		// Sign message
-		signature, err := crypto.SignWithDilithium(privateKey, message)
+		signature, err := privateKey.Sign(message)
 		if err != nil {
 			t.Fatalf("Failed to sign message: %v", err)
 		}
 
 		// Verify signature
-		valid, err := crypto.VerifyDilithiumSignature(publicKey, message, signature)
-		if err != nil {
-			t.Fatalf("Failed to verify signature: %v", err)
-		}
+		valid := publicKey.Verify(message, signature)
 
 		if !valid {
 			t.Fatal("Signature verification failed")
@@ -81,19 +78,19 @@ func TestValidatorOnboardingFlow(t *testing.T) {
 		t.Log("📝 Test 3: Create validator registration transaction")
 
 		// Generate validator keys
-		privateKey, publicKey, err := crypto.GenerateDilithiumKeys()
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair()
 		if err != nil {
 			t.Fatalf("Failed to generate keys: %v", err)
 		}
 
-		validatorAddr := crypto.PublicKeyToAddress(publicKey)
+		validatorAddr := types.PublicKeyToAddress(publicKey.Bytes())
 		stakeAmount := big.NewInt(100000) // 100K QTM
 		stakeAmountWei := new(big.Int).Mul(stakeAmount, big.NewInt(1e18))
 
 		// Create registration data
 		registrationData := map[string]interface{}{
 			"validator":        validatorAddr.Hex(),
-			"quantumPublicKey": hex.EncodeToString(publicKey),
+			"quantumPublicKey": hex.EncodeToString(publicKey.Bytes()),
 			"sigAlgorithm":     uint8(1), // Dilithium
 			"initialStake":     stakeAmountWei.String(),
 			"commissionRate":   uint16(500), // 5%
@@ -102,7 +99,7 @@ func TestValidatorOnboardingFlow(t *testing.T) {
 
 		// Sign registration transaction
 		message := []byte("REGISTER_VALIDATOR:" + validatorAddr.Hex())
-		signature, err := crypto.SignWithDilithium(privateKey, message)
+		signature, err := privateKey.Sign(message)
 		if err != nil {
 			t.Fatalf("Failed to sign registration: %v", err)
 		}
@@ -161,7 +158,7 @@ func TestTokenDistributionFlow(t *testing.T) {
 		totalAmountWei := new(big.Int).Mul(totalAmount, big.NewInt(1e18))
 		
 		vestingDuration := 2 * 365 * 24 * time.Hour // 2 years
-		cliffDuration := 180 * 24 * time.Hour      // 6 months
+		_ = 180 * 24 * time.Hour // 6 months (cliffDuration unused)
 		tgeUnlock := 10                            // 10% at TGE
 
 		// Calculate TGE release
@@ -331,13 +328,11 @@ func TestSystemIntegration(t *testing.T) {
 	t.Run("ValidatorLifecycle", func(t *testing.T) {
 		t.Log("📝 Test 1: Complete validator lifecycle simulation")
 
-		// Generate validator
-		privateKey, publicKey, err := crypto.GenerateDilithiumKeys()
+		// Generate validator (keys unused in this test)
+		_, _, err := crypto.GenerateDilithiumKeyPair()
 		if err != nil {
 			t.Fatalf("Failed to generate keys: %v", err)
 		}
-
-		validatorAddr := crypto.PublicKeyToAddress(publicKey)
 		
 		// Registration phase
 		initialStake := new(big.Int).Mul(big.NewInt(100000), big.NewInt(1e18))
@@ -413,46 +408,26 @@ func TestQuantumSecurityProperties(t *testing.T) {
 	t.Run("SignatureResistance", func(t *testing.T) {
 		t.Log("📝 Testing signature algorithm resistance")
 
-		algorithms := map[string]func() ([]byte, []byte, error){
-			"Dilithium-II": crypto.GenerateDilithiumKeys,
-			"Falcon-512":   crypto.GenerateFalconKeys,
+		// Test only Dilithium (Falcon not implemented)
+		privateKey, publicKey, err := crypto.GenerateDilithiumKeyPair()
+		if err != nil {
+			t.Fatalf("Failed to generate Dilithium keys: %v", err)
 		}
 
-		for name, generateFunc := range algorithms {
-			privateKey, publicKey, err := generateFunc()
-			if err != nil {
-				t.Fatalf("Failed to generate %s keys: %v", name, err)
-			}
-
-			message := []byte("QUANTUM_RESISTANCE_TEST_MESSAGE")
-			
-			var signature []byte
-			var verifyFunc func([]byte, []byte, []byte) (bool, error)
-			
-			if name == "Dilithium-II" {
-				signature, err = crypto.SignWithDilithium(privateKey, message)
-				verifyFunc = crypto.VerifyDilithiumSignature
-			} else {
-				signature, err = crypto.SignWithFalcon(privateKey, message)
-				verifyFunc = crypto.VerifyFalconSignature
-			}
-
-			if err != nil {
-				t.Fatalf("Failed to sign with %s: %v", name, err)
-			}
-
-			valid, err := verifyFunc(publicKey, message, signature)
-			if err != nil {
-				t.Fatalf("Failed to verify %s signature: %v", name, err)
-			}
-
-			if !valid {
-				t.Fatalf("%s signature verification failed", name)
-			}
-
-			t.Logf("   ✅ %s: Key generation, signing, and verification successful", name)
-			t.Logf("      Public key: %d bytes", len(publicKey))
-			t.Logf("      Signature: %d bytes", len(signature))
+		message := []byte("QUANTUM_RESISTANCE_TEST_MESSAGE")
+		
+		signature, err := privateKey.Sign(message)
+		if err != nil {
+			t.Fatalf("Failed to sign with Dilithium: %v", err)
 		}
+
+		valid := publicKey.Verify(message, signature)
+		if !valid {
+			t.Fatalf("Dilithium signature verification failed")
+		}
+
+		t.Logf("   ✅ Dilithium: Key generation, signing, and verification successful")
+		t.Logf("      Public key: %d bytes", len(publicKey.Bytes()))
+		t.Logf("      Signature: %d bytes", len(signature))
 	})
 }

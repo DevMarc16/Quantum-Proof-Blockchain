@@ -260,19 +260,42 @@ docker-down: ## Stop Docker Compose services
 docker-logs: ## Show Docker Compose logs
 	docker-compose logs -f
 
-# Deployment targets
-deploy: ## Deploy using deployment script
-	@echo "$(BLUE)Running deployment...$(NC)"
-	./scripts/deploy.sh deploy
-	@echo "$(GREEN)Deployment completed$(NC)"
+# Deployment targets  
+deploy: ## Deploy multi-validator network
+	@echo "$(BLUE)Deploying multi-validator quantum network...$(NC)"
+	./scripts/deploy_multi_validators.sh
+	@echo "$(GREEN)Network deployment completed$(NC)"
+
+deploy-contract: ## Deploy quantum smart contract
+	@echo "$(BLUE)Deploying quantum smart contract...$(NC)"
+	$(GOCMD) run tools/deployment/deploy_with_fixed_keys.go
+	@echo "$(GREEN)Contract deployment completed$(NC)"
+
+fund-account: ## Generate and fund quantum account
+	@echo "$(BLUE)Generating funded quantum account...$(NC)"
+	$(GOCMD) run tools/deployment/fund_quantum_account.go
+	@echo "$(GREEN)Account funding completed$(NC)"
 
 deploy-build: ## Build components for deployment
 	@echo "$(BLUE)Building components for deployment...$(NC)"
 	./scripts/deploy.sh build
 	@echo "$(GREEN)Build completed$(NC)"
 
-deploy-status: ## Show deployment status
-	./scripts/deploy.sh status
+network-status: ## Show quantum network status  
+	@echo "$(BLUE)Quantum Network Status:$(NC)"
+	@echo "======================="
+	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8545 | jq -r '"Validator 1: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 1: Offline"
+	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8547 | jq -r '"Validator 2: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 2: Offline"
+	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8549 | jq -r '"Validator 3: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 3: Offline"
+
+stop-network: ## Stop quantum network validators
+	@echo "$(YELLOW)Stopping quantum network...$(NC)"
+	pkill -f quantum-node || true
+	@echo "$(GREEN)Network stopped$(NC)"
+
+debug-transaction: ## Debug quantum transactions
+	@echo "$(BLUE)Running transaction debugger...$(NC)"
+	$(GOCMD) run tools/debug/debug_transaction.go
 
 deploy-clean: ## Clean up deployment
 	@echo "$(YELLOW)Cleaning up deployment...$(NC)"

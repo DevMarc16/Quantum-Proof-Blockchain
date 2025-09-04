@@ -34,7 +34,7 @@ This is a production-ready **multi-validator quantum-resistant blockchain** with
 ### Multi-Validator Network Deployment
 ```bash
 # Deploy complete 3-validator network
-./deploy_multi_validators.sh
+./scripts/deploy_multi_validators.sh
 
 # Manual single validator
 go build -o build/quantum-node ./cmd/quantum-node
@@ -62,17 +62,15 @@ pkill -f quantum-node
 ### Testing Transaction Functionality
 ```bash
 # Contract deployment tests (with blockchain running)
-go run tests/manual/deploy_quantum_token/deploy_quantum_token.go
-go run tests/manual/test_final_funded_transaction/test_final_funded_transaction.go
+go run tools/deployment/deploy_with_fixed_keys.go
+go run tools/deployment/fund_quantum_account.go
 
-# Performance tests
-go run tests/performance/test_fast_performance/test_fast_performance.go
-go run tests/performance/test_live_blockchain/test_live_blockchain.go
+# Testing utilities
+go run tools/testing/test_rpc_direct.go
+go run tools/testing/test_simple_transaction.go
 
-# Multi-validator tests
-go run tests/manual/test_multi_validator_simple/test_multi_validator_simple.go
-go run tests/manual/test_multi_validator_consensus/test_multi_validator_consensus.go
-go run tests/manual/test_network_status/test_network_status.go
+# Debug utilities
+go run tools/debug/debug_transaction.go
 ```
 
 ### Enterprise Feature Testing
