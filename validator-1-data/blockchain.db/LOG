@@ -1,6 +1,16 @@
 =============== Sep 3, 2025 (MST) ===============
-22:31:43.703433 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
-22:31:43.712430 db@open opening
-22:31:43.714546 version@stat F·[] S·0B[] Sc·[]
-22:31:43.725893 db@janitor F·2 G·0
-22:31:43.726036 db@open done T·13.469433ms
+23:18:14.418856 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+23:18:14.426994 db@open opening
+23:18:14.428750 version@stat F·[] S·0B[] Sc·[]
+23:18:14.435941 db@janitor F·2 G·0
+23:18:14.436070 db@open done T·8.981509ms
+=============== Sep 3, 2025 (MST) ===============
+23:23:08.411763 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+23:23:08.415098 version@stat F·[] S·0B[] Sc·[]
+23:23:08.415500 db@open opening
+23:23:08.416356 journal@recovery F·1
+23:23:08.424874 journal@recovery recovering @1
+23:23:08.431445 memdb@flush created L0@2 N·299 S·31KiB "bal..\x00\x00\x01,v1":"rec..{\x863,v190"
+23:23:08.432518 version@stat F·[1] S·31KiB[31KiB] Sc·[0.25]
+23:23:08.444295 db@janitor F·3 G·0
+23:23:08.444433 db@open done T·28.79616ms

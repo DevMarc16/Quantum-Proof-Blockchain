@@ -2,23 +2,88 @@
 
 A production-ready multi-validator quantum-resistant blockchain with full EVM compatibility, implementing NIST-standardized post-quantum cryptographic algorithms (CRYSTALS-Dilithium-II, CRYSTALS-Kyber-512).
 
-## 🚀 Quick Start
+## 🚀 Quick Start (5 Minutes)
 
 ### Prerequisites
 - Go 1.21+ installed
-- Node.js (for SDK and MetaMask integration)
-- Docker (for Kubernetes deployment)
+- Linux/WSL/macOS terminal
+- 8GB RAM, 10GB free disk space
 
-### Start the Multi-Validator Network
+### Complete Setup from Scratch
+
+#### 1. Build the Quantum Node
 ```bash
-# Start 3-validator quantum blockchain network
+# Build the main quantum blockchain node
+go build -o build/quantum-node cmd/quantum-node/main.go
+
+# Build the validator CLI tool
+go build -o validator-cli cmd/validator-cli/main.go
+```
+
+#### 2. Start Multi-Validator Network
+```bash
+# Make deployment script executable and run
+chmod +x scripts/deploy_multi_validators.sh
 ./scripts/deploy_multi_validators.sh
 ```
 
-The network will be available at:
+**Network will auto-start with:**
 - **Validator 1**: http://localhost:8545 (Primary)
 - **Validator 2**: http://localhost:8547 (Secondary) 
 - **Validator 3**: http://localhost:8549 (Tertiary)
+
+#### 3. Verify Network is Running
+```bash
+# Check current block height
+curl -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
+  http://localhost:8545
+
+# Should return: {"jsonrpc":"2.0","result":"0x...","id":1}
+```
+
+#### 4. Set Up Validator CLI
+```bash
+# Generate quantum validator keys
+./validator-cli -generate -algorithm dilithium -output validator-keys
+
+# Register as validator
+./validator-cli -register -stake 100000 -commission 500 -rpc http://localhost:8545
+
+# Check validator status
+./validator-cli -status -rpc http://localhost:8545
+```
+
+#### 5. Run Tests
+```bash
+# Run integration tests
+go test ./tests/integration/ -v
+
+# Test multi-validator consensus (optional)
+go run tests/performance/test_multi_validator_consensus.go
+```
+
+### ✅ You're Ready!
+Your quantum blockchain network is now running with:
+- 🔐 **Quantum-resistant signatures** (CRYSTALS-Dilithium-II)
+- ⚡ **2-second blocks** with automatic reward distribution
+- 🏛️ **Multi-validator consensus** (3 validators)
+- 🔗 **Full JSON-RPC API** compatibility
+
+## 🎯 ONE-COMMAND SETUP
+
+For the fastest setup, use our automated script:
+```bash
+./quick-start.sh
+```
+This single command will:
+1. Build everything from scratch
+2. Deploy 3-validator network
+3. Set up validator CLI with keys
+4. Run tests to verify functionality
+5. Show you exactly what's running and how to use it
+
+**Total time: 5 minutes** ⏱️
 
 ## 📁 Project Structure
 

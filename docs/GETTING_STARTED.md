@@ -1,48 +1,74 @@
-# 🚀 Getting Started with Quantum Blockchain
+# Getting Started Guide
 
-## What You Need (FREE - No Payment Required!)
+## 🎯 Complete Setup from Scratch (5 Minutes)
 
-### Prerequisites
-- **Go 1.23+** (free from https://golang.org/dl/)
-- **Git** (free)
-- **Your computer** (Windows/Mac/Linux)
+This guide walks you through setting up and running the quantum-resistant blockchain from a fresh start.
 
-**💡 That's it! No cloud services, no payments, no subscriptions needed to run locally.**
-
-## Quick Start (5 Minutes)
-
-### Step 1: Build the Quantum Node
+### Prerequisites Check
 ```bash
-# Clone if you haven't already
-cd /path/to/quantum
+# Verify Go installation (required: 1.21+)
+go version
 
-# Build the blockchain node (takes ~30 seconds)
-go build -o build/quantum-node ./cmd/quantum-node
+# Check available memory (recommended: 8GB+)
+free -h
+
+# Check disk space (required: 10GB+)
+df -h .
 ```
 
-### Step 2: Start Single Validator (Simplest)
-```bash
-# Start one validator node
-./build/quantum-node --data-dir ./data --rpc-port 8545
+## Step 1: Build Everything
 
-# In another terminal, test it works:
-curl -X POST -H "Content-Type: application/json" \
-  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
-  http://localhost:8545
+### Build the Core Components
+```bash
+# Navigate to project directory
+cd quantum-blockchain
+
+# Build the main quantum node
+go build -o build/quantum-node cmd/quantum-node/main.go
+
+# Build the validator CLI
+go build -o validator-cli cmd/validator-cli/main.go
+
+# Verify builds
+ls -la build/quantum-node validator-cli
 ```
 
-### Step 3: Start Multi-Validator Network (Recommended)
+**Expected Output:**
+```
+-rwxr-xr-x quantum-node
+-rwxr-xr-x validator-cli
+```
+
+## Step 2: Start the Network
+
+### Deploy Multi-Validator Network
 ```bash
-# Kill single validator first
-pkill -f quantum-node
+# Make script executable
+chmod +x scripts/deploy_multi_validators.sh
 
-# Start 3-validator network (our current setup)
-./deploy_multi_validators.sh
+# Start 3-validator network
+./scripts/deploy_multi_validators.sh
+```
 
-# Check all validators are working:
-curl -s http://localhost:8545 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
-curl -s http://localhost:8547 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'  
-curl -s http://localhost:8549 -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+**What Happens:**
+- ✅ Builds quantum-node binary
+- ✅ Creates validator data directories
+- ✅ Starts 3 validators on different ports
+- ✅ Begins block production (2-second intervals)
+- ✅ Shows live network status
+
+**Expected Output:**
+```
+🚀 Starting Multi-Validator Quantum Network Deployment
+==================================================
+✅ Binary built successfully
+✅ Created data directory for Validator 1
+✅ Created data directory for Validator 2  
+✅ Created data directory for Validator 3
+🔗 Starting Validator 1 (Primary) on ports RPC:8545, P2P:30303
+🔗 Starting Validator 2 (Secondary) on ports RPC:8547, P2P:30304
+🔗 Starting Validator 3 (Tertiary) on ports RPC:8549, P2P:30305
+🎉 All validators started!
 ```
 
 ## What You Get (Running Locally)

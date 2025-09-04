@@ -1,34 +1,96 @@
 # Quantum Blockchain Commands Guide
 
-This guide provides step-by-step commands to run the quantum blockchain and deploy smart contracts.
+Complete step-by-step commands to build, run, and test the quantum-resistant blockchain from scratch.
 
-## 🚀 Quick Start Commands
+## 🚀 Complete Setup Commands (From Scratch)
 
-### 1. Build the Quantum Node
+### 1. Build Everything
 
 ```bash
+# Navigate to project directory
+cd quantum-blockchain
+
 # Build the quantum blockchain node
-go build -o build/quantum-node ./cmd/quantum-node
+go build -o build/quantum-node cmd/quantum-node/main.go
+
+# Build the validator CLI tool
+go build -o validator-cli cmd/validator-cli/main.go
+
+# Verify builds completed
+ls -la build/quantum-node validator-cli
 ```
 
-### 2. Start the Blockchain
+### 2. Start Multi-Validator Network (Recommended)
 
 ```bash
-# Start with genesis configuration (recommended)
-./build/quantum-node --data-dir ./production-data --rpc-port 8545 --port 30303 --genesis ./config/genesis.json
+# Make deployment script executable
+chmod +x scripts/deploy_multi_validators.sh
 
-# Or start with basic configuration
-./build/quantum-node --data-dir ./data --rpc-port 8545 --port 30303
+# Deploy complete 3-validator network
+./scripts/deploy_multi_validators.sh
+```
+
+**This will:**
+- ✅ Build quantum-node automatically
+- ✅ Create 3 validator data directories  
+- ✅ Start validators on ports 8545, 8547, 8549
+- ✅ Begin 2-second block production
+- ✅ Show live network monitoring
+
+### 3. Verify Network is Running
+
+```bash
+# Test all 3 validators (multi-validator network)
+curl -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
+  http://localhost:8545
+
+curl -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
+  http://localhost:8547
+
+curl -X POST -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
+  http://localhost:8549
 ```
 
 **Expected Output:**
+```json
+{"jsonrpc":"2.0","result":"0x5a","id":1}
+{"jsonrpc":"2.0","result":"0x58","id":1}  
+{"jsonrpc":"2.0","result":"0x59","id":1}
 ```
-🚀 Starting Quantum Blockchain Node vdev
-🌐 P2P listening on port 30303
-🔗 JSON-RPC server listening on port 8545
-✅ Quantum blockchain is running!
-🚀 Fast block #1: 0 tx, 0.0% load, reward: 1 QTM
-🚀 Fast block #2: 0 tx, 0.0% load, reward: 1 QTM
+
+### 4. Set Up Validator CLI
+
+```bash
+# Generate quantum validator keys
+./validator-cli -generate -algorithm dilithium -output validator-keys
+
+# Register as validator (100K QTM stake, 5% commission)
+./validator-cli -register -stake 100000 -commission 500 -rpc http://localhost:8545
+
+# Check validator status
+./validator-cli -status -rpc http://localhost:8545
+
+# Test delegation
+./validator-cli -delegate -validator 0x... -amount 1000
+
+# Create backup
+./validator-cli -backup
+```
+
+### 5. Run Tests
+
+```bash
+# Run integration tests
+go test ./tests/integration/ -v
+
+# Test multi-validator consensus
+go run tests/performance/test_multi_validator_consensus.go
+
+# Test transaction processing
+go run tests/manual/test_multi_validator_transactions.go
 ```
 
 ## 📊 Verify Blockchain Status
