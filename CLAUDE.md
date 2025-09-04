@@ -2,6 +2,23 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## 🔧 QUANTUM BLOCKCHAIN AGENT REQUIREMENT
+
+**CRITICAL: Always use the quantum-blockchain-architect agent for all quantum blockchain development tasks.**
+
+For any work involving:
+- Quantum-resistant blockchain architecture
+- Multi-validator consensus systems
+- Post-quantum cryptography (Dilithium, Kyber, Falcon)
+- EVM-compatible quantum chains
+- Validator economics and staking
+- Quantum transaction processing
+- Blockchain security and governance
+
+**Use this agent:** `.claude\agents\quantum-blockchain-architect.md`
+
+This specialized agent has deep expertise in quantum-resistant blockchain design, NIST post-quantum standards, and multi-validator architectures. It ensures proper implementation of quantum cryptography, validator consensus, and enterprise-grade blockchain features.
+
 ## Project Overview
 
 This is a production-ready **multi-validator quantum-resistant blockchain** with full EVM compatibility. The network implements NIST-standardized post-quantum cryptographic algorithms (CRYSTALS-Dilithium-II, CRYSTALS-Kyber-512) using the Cloudflare CIRCL library for real cryptographic operations.
