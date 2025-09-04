@@ -13876,3 +13876,767 @@
 2025/09/03 18:51:40 📊 Block accepted with 0 transactions
 2025/09/03 18:51:40 🏛️ Multi-validator block #1516: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
 2025/09/03 18:51:40 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:42 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:42 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101383 QTM (was 101382 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:42 📊 Block accepted with 0 transactions
+2025/09/03 18:51:42 🏛️ Multi-validator block #1517: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:42 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:44 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:44 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101384 QTM (was 101383 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:44 📊 Block accepted with 0 transactions
+2025/09/03 18:51:44 🏛️ Multi-validator block #1518: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:44 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:46 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:46 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101385 QTM (was 101384 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:46 📊 Block accepted with 0 transactions
+2025/09/03 18:51:46 🏛️ Multi-validator block #1519: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:46 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:48 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:48 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101386 QTM (was 101385 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:48 📊 Block accepted with 0 transactions
+2025/09/03 18:51:48 🏛️ Multi-validator block #1520: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:48 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:50 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:50 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101387 QTM (was 101386 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:50 📊 Block accepted with 0 transactions
+2025/09/03 18:51:50 🏛️ Multi-validator block #1521: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:50 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:52 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:52 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101388 QTM (was 101387 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:52 📊 Block accepted with 0 transactions
+2025/09/03 18:51:52 🏛️ Multi-validator block #1522: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:52 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:54 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:54 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101389 QTM (was 101388 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:54 📊 Block accepted with 0 transactions
+2025/09/03 18:51:54 🏛️ Multi-validator block #1523: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:54 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:56 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:56 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101390 QTM (was 101389 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:56 📊 Block accepted with 0 transactions
+2025/09/03 18:51:56 🏛️ Multi-validator block #1524: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:56 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:51:58 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:51:58 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101391 QTM (was 101390 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:51:58 📊 Block accepted with 0 transactions
+2025/09/03 18:51:58 🏛️ Multi-validator block #1525: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:51:58 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:00 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:00 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101392 QTM (was 101391 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:00 📊 Block accepted with 0 transactions
+2025/09/03 18:52:00 🏛️ Multi-validator block #1526: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:00 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:02 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:02 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101393 QTM (was 101392 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:02 📊 Block accepted with 0 transactions
+2025/09/03 18:52:02 🏛️ Multi-validator block #1527: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:02 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:04 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:04 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101394 QTM (was 101393 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:04 📊 Block accepted with 0 transactions
+2025/09/03 18:52:04 🏛️ Multi-validator block #1528: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:04 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:06 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:06 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101395 QTM (was 101394 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:06 📊 Block accepted with 0 transactions
+2025/09/03 18:52:06 🏛️ Multi-validator block #1529: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:06 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:08 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:08 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101396 QTM (was 101395 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:08 📊 Block accepted with 0 transactions
+2025/09/03 18:52:08 🏛️ Multi-validator block #1530: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:08 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:10 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:10 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101397 QTM (was 101396 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:10 📊 Block accepted with 0 transactions
+2025/09/03 18:52:10 🏛️ Multi-validator block #1531: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:10 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:14 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:14 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101398 QTM (was 101397 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:14 📊 Block accepted with 0 transactions
+2025/09/03 18:52:14 🏛️ Multi-validator block #1532: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:14 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:16 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:16 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101399 QTM (was 101398 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:16 📊 Block accepted with 0 transactions
+2025/09/03 18:52:16 🏛️ Multi-validator block #1533: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:16 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:18 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:18 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101400 QTM (was 101399 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:18 📊 Block accepted with 0 transactions
+2025/09/03 18:52:18 🏛️ Multi-validator block #1534: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:18 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:20 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:20 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101401 QTM (was 101400 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:20 📊 Block accepted with 0 transactions
+2025/09/03 18:52:20 🏛️ Multi-validator block #1535: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:20 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:22 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:22 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101402 QTM (was 101401 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:22 📊 Block accepted with 0 transactions
+2025/09/03 18:52:22 🏛️ Multi-validator block #1536: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:22 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:24 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:24 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101403 QTM (was 101402 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:24 📊 Block accepted with 0 transactions
+2025/09/03 18:52:24 🏛️ Multi-validator block #1537: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:24 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:26 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:26 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101404 QTM (was 101403 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:26 📊 Block accepted with 0 transactions
+2025/09/03 18:52:26 🏛️ Multi-validator block #1538: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:26 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:28 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:28 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101405 QTM (was 101404 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:28 📊 Block accepted with 0 transactions
+2025/09/03 18:52:28 🏛️ Multi-validator block #1539: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:28 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:30 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:30 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101406 QTM (was 101405 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:30 📊 Block accepted with 0 transactions
+2025/09/03 18:52:30 🏛️ Multi-validator block #1540: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:30 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:32 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:32 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101407 QTM (was 101406 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:32 📊 Block accepted with 0 transactions
+2025/09/03 18:52:32 🏛️ Multi-validator block #1541: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:32 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:34 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:34 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101408 QTM (was 101407 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:34 📊 Block accepted with 0 transactions
+2025/09/03 18:52:34 🏛️ Multi-validator block #1542: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:34 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:36 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:36 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101409 QTM (was 101408 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:36 📊 Block accepted with 0 transactions
+2025/09/03 18:52:36 🏛️ Multi-validator block #1543: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:36 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:38 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:38 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101410 QTM (was 101409 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:38 📊 Block accepted with 0 transactions
+2025/09/03 18:52:38 🏛️ Multi-validator block #1544: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:38 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:40 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:40 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101411 QTM (was 101410 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:40 📊 Block accepted with 0 transactions
+2025/09/03 18:52:40 🏛️ Multi-validator block #1545: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:40 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:42 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:42 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101412 QTM (was 101411 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:42 📊 Block accepted with 0 transactions
+2025/09/03 18:52:42 🏛️ Multi-validator block #1546: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:42 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:44 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:44 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101413 QTM (was 101412 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:44 📊 Block accepted with 0 transactions
+2025/09/03 18:52:44 🏛️ Multi-validator block #1547: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:44 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:49 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:49 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101414 QTM (was 101413 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:49 📊 Block accepted with 0 transactions
+2025/09/03 18:52:49 🏛️ Multi-validator block #1548: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:49 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:51 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:51 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101415 QTM (was 101414 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:51 📊 Block accepted with 0 transactions
+2025/09/03 18:52:51 🏛️ Multi-validator block #1549: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:51 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:53 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:53 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101416 QTM (was 101415 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:53 📊 Block accepted with 0 transactions
+2025/09/03 18:52:53 🏛️ Multi-validator block #1550: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:53 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:55 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:55 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101417 QTM (was 101416 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:55 📊 Block accepted with 0 transactions
+2025/09/03 18:52:55 🏛️ Multi-validator block #1551: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:55 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:57 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:57 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101418 QTM (was 101417 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:57 📊 Block accepted with 0 transactions
+2025/09/03 18:52:57 🏛️ Multi-validator block #1552: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:57 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:52:59 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:52:59 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101419 QTM (was 101418 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:52:59 📊 Block accepted with 0 transactions
+2025/09/03 18:52:59 🏛️ Multi-validator block #1553: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:52:59 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:01 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:01 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101420 QTM (was 101419 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:01 📊 Block accepted with 0 transactions
+2025/09/03 18:53:01 🏛️ Multi-validator block #1554: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:01 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:03 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:03 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101421 QTM (was 101420 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:03 📊 Block accepted with 0 transactions
+2025/09/03 18:53:03 🏛️ Multi-validator block #1555: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:03 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:05 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:05 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101422 QTM (was 101421 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:05 📊 Block accepted with 0 transactions
+2025/09/03 18:53:05 🏛️ Multi-validator block #1556: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:05 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:07 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:07 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101423 QTM (was 101422 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:07 📊 Block accepted with 0 transactions
+2025/09/03 18:53:07 🏛️ Multi-validator block #1557: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:07 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:09 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:09 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101424 QTM (was 101423 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:09 📊 Block accepted with 0 transactions
+2025/09/03 18:53:09 🏛️ Multi-validator block #1558: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:09 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:11 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:11 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101425 QTM (was 101424 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:11 📊 Block accepted with 0 transactions
+2025/09/03 18:53:11 🏛️ Multi-validator block #1559: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:11 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:13 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:13 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101426 QTM (was 101425 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:13 📊 Block accepted with 0 transactions
+2025/09/03 18:53:13 🏛️ Multi-validator block #1560: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:13 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:15 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:15 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101427 QTM (was 101426 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:15 📊 Block accepted with 0 transactions
+2025/09/03 18:53:15 🏛️ Multi-validator block #1561: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:15 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:16 📞 RPC call: eth_getBalance
+2025/09/03 18:53:16 📞 RPC call: eth_blockNumber
+2025/09/03 18:53:17 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:17 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101428 QTM (was 101427 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:17 📊 Block accepted with 0 transactions
+2025/09/03 18:53:17 🏛️ Multi-validator block #1562: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:17 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:19 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:19 Block signed with quantum signature (len: 2420 bytes)
+🎯 DistributeBlockReward called: proposer=0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c, reward=1 QTM
+✅ Found validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💰 Minting 1 QTM to 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+💾 StateDB balance update: 0xe08901b2... -> 101429 QTM (was 101428 QTM)
+✅ Successfully minted reward!
+2025/09/03 18:53:19 📊 Block accepted with 0 transactions
+2025/09/03 18:53:19 🏛️ Multi-validator block #1563: 0 tx, 0.0% load, proposer: 0xe08901b2..., reward: 1 QTM (+ fees: 0 QTM)
+2025/09/03 18:53:19 🌐 Block broadcast via P2P network (enhanced implementation pending)
+2025/09/03 18:53:22 📞 RPC call: eth_sendRawTransaction
+2025/09/03 18:53:22 ✅ Transaction added to pool: 0xe4b508705924c939e83440fdbbacb3265101ffbcbbfeff17d518a6b98f84093f from 0x8c5cf9237e357e29872db915a729dec33d44c642
+2025/09/03 18:53:23 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:23 📦 Including 1 transactions in block
+2025/09/03 18:53:23 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:23 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:25 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:25 📦 Including 1 transactions in block
+2025/09/03 18:53:25 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:25 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:27 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:27 📦 Including 1 transactions in block
+2025/09/03 18:53:27 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:27 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:29 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:29 📦 Including 1 transactions in block
+2025/09/03 18:53:29 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:29 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:31 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:31 📦 Including 1 transactions in block
+2025/09/03 18:53:31 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:31 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:33 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:33 📦 Including 1 transactions in block
+2025/09/03 18:53:33 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:33 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:35 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:35 📦 Including 1 transactions in block
+2025/09/03 18:53:35 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:35 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:37 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:37 📦 Including 1 transactions in block
+2025/09/03 18:53:37 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:37 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:39 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:39 📦 Including 1 transactions in block
+2025/09/03 18:53:39 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:39 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:41 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:41 📦 Including 1 transactions in block
+2025/09/03 18:53:41 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:41 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:43 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:43 📦 Including 1 transactions in block
+2025/09/03 18:53:43 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:43 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:45 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:45 📦 Including 1 transactions in block
+2025/09/03 18:53:45 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:45 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:47 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:47 📦 Including 1 transactions in block
+2025/09/03 18:53:47 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:47 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:49 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:49 📦 Including 1 transactions in block
+2025/09/03 18:53:49 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:49 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:51 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:51 📦 Including 1 transactions in block
+2025/09/03 18:53:51 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:51 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:53 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:53 📦 Including 1 transactions in block
+2025/09/03 18:53:53 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:53 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:57 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:57 📦 Including 1 transactions in block
+2025/09/03 18:53:57 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:57 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:59 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:53:59 📦 Including 1 transactions in block
+2025/09/03 18:53:59 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:53:59 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:01 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:01 📦 Including 1 transactions in block
+2025/09/03 18:54:01 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:01 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:03 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:03 📦 Including 1 transactions in block
+2025/09/03 18:54:03 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:03 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:05 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:05 📦 Including 1 transactions in block
+2025/09/03 18:54:05 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:05 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:07 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:07 📦 Including 1 transactions in block
+2025/09/03 18:54:07 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:07 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:09 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:09 📦 Including 1 transactions in block
+2025/09/03 18:54:09 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:09 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:11 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:11 📦 Including 1 transactions in block
+2025/09/03 18:54:11 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:11 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:13 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:13 📦 Including 1 transactions in block
+2025/09/03 18:54:13 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:13 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:15 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:15 📦 Including 1 transactions in block
+2025/09/03 18:54:15 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:15 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:17 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:17 📦 Including 1 transactions in block
+2025/09/03 18:54:17 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:17 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:19 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:19 📦 Including 1 transactions in block
+2025/09/03 18:54:19 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:19 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:21 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:21 📦 Including 1 transactions in block
+2025/09/03 18:54:21 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:21 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:23 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:23 📦 Including 1 transactions in block
+2025/09/03 18:54:23 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:23 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:25 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:25 📦 Including 1 transactions in block
+2025/09/03 18:54:25 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:25 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:27 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:27 📦 Including 1 transactions in block
+2025/09/03 18:54:27 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:27 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:31 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:31 📦 Including 1 transactions in block
+2025/09/03 18:54:31 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:31 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:33 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:33 📦 Including 1 transactions in block
+2025/09/03 18:54:33 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:33 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:35 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:35 📦 Including 1 transactions in block
+2025/09/03 18:54:35 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:35 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:37 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:37 📦 Including 1 transactions in block
+2025/09/03 18:54:37 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:37 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:39 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:39 📦 Including 1 transactions in block
+2025/09/03 18:54:39 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:39 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:41 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:41 📦 Including 1 transactions in block
+2025/09/03 18:54:41 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:41 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:43 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:43 📦 Including 1 transactions in block
+2025/09/03 18:54:43 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:43 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:45 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:45 📦 Including 1 transactions in block
+2025/09/03 18:54:45 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:45 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:47 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:47 📦 Including 1 transactions in block
+2025/09/03 18:54:47 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:47 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:49 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:49 📦 Including 1 transactions in block
+2025/09/03 18:54:49 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:49 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:51 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:51 📦 Including 1 transactions in block
+2025/09/03 18:54:51 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:51 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:53 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:53 📦 Including 1 transactions in block
+2025/09/03 18:54:53 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:53 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:55 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:55 📦 Including 1 transactions in block
+2025/09/03 18:54:55 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:55 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:57 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:57 📦 Including 1 transactions in block
+2025/09/03 18:54:57 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:57 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:59 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:54:59 📦 Including 1 transactions in block
+2025/09/03 18:54:59 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:54:59 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:01 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:01 📦 Including 1 transactions in block
+2025/09/03 18:55:01 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:01 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:06 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:06 📦 Including 1 transactions in block
+2025/09/03 18:55:06 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:06 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:08 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:08 📦 Including 1 transactions in block
+2025/09/03 18:55:08 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:08 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:10 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:10 📦 Including 1 transactions in block
+2025/09/03 18:55:10 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:10 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:12 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:12 📦 Including 1 transactions in block
+2025/09/03 18:55:12 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:12 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:14 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:14 📦 Including 1 transactions in block
+2025/09/03 18:55:14 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:14 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:16 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:16 📦 Including 1 transactions in block
+2025/09/03 18:55:16 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:16 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:18 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:18 📦 Including 1 transactions in block
+2025/09/03 18:55:18 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:18 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:20 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:20 📦 Including 1 transactions in block
+2025/09/03 18:55:20 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:20 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:22 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:22 📦 Including 1 transactions in block
+2025/09/03 18:55:22 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:22 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:24 📊 Block proposed by validator: 0xe08901b23c9e5ed0c2cb853b6c3d76537d7ef88c
+2025/09/03 18:55:24 📦 Including 1 transactions in block
+2025/09/03 18:55:24 Block signed with quantum signature (len: 2420 bytes)
+❌ Insufficient balance for tx from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
+2025/09/03 18:55:24 Failed to add block: block validation failed: insufficient balance for transaction from 0x8c5cf9237e357e29872db915a729dec33d44c642: balance=0, cost=1000021000000000000
