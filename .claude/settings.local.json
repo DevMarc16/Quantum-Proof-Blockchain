@@ -27,7 +27,9 @@
       "Bash(gofmt:*)",
       "Bash(go vet ./tools/testing/tools/testing/test_simple_transaction/)",
       "Bash(go vet ./tools/testing/tools/testing/test_receipt_lookup/)",
-      "Bash(go install:*)"
+      "Bash(go install:*)",
+      "Bash(git config:*)",
+      "Read(//home/dillondev/**)"
     ],
     "deny": [],
     "ask": []
