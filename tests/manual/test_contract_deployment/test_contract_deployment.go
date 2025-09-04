@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"quantum-blockchain/chain/crypto"
@@ -23,7 +24,7 @@ var contractBytecode = []byte{
 
 func runTestContractDeployment() {
 	fmt.Println("🧪 Testing Quantum Blockchain EVM Smart Contract Deployment")
-	fmt.Println("=" + fmt.Sprintf("%s", make([]rune, 60)))
+	fmt.Println(strings.Repeat("=", 60))
 
 	// Test 1: Generate quantum keys for contract deployment
 	fmt.Println("1️⃣ Generating Dilithium keys for contract deployment...")

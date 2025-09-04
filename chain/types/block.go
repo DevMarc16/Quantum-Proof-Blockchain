@@ -31,7 +31,7 @@ type BlockHeader struct {
 	ValidatorAddr Address             `json:"validatorAddress"`
 
 	// Computed fields
-	hash Hash `json:"hash"`
+	hash Hash // Internal field, not exposed in JSON
 }
 
 // Block represents a complete block
@@ -41,8 +41,8 @@ type Block struct {
 	Uncles       []*BlockHeader        `json:"uncles"`
 
 	// Computed fields
-	size uint64 `json:"size"`
-	hash Hash   `json:"hash"`
+	size uint64 // Internal field, not exposed in JSON
+	hash Hash   // Internal field, not exposed in JSON
 }
 
 // NewBlockHeader creates a new block header

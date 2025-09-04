@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"quantum-blockchain/chain/crypto"
@@ -37,7 +38,7 @@ var quantumTokenBytecode = []byte{
 
 func runDeployQuantumToken() {
 	fmt.Println("🚀 Deploying Quantum Token Contract to Quantum Blockchain")
-	fmt.Println("=" + fmt.Sprintf("%s", make([]rune, 55)))
+	fmt.Println(strings.Repeat("=", 55))
 
 	// Generate quantum keys for contract deployment
 	fmt.Println("1️⃣ Generating Dilithium keys for contract deployment...")

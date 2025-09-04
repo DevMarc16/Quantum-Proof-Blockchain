@@ -33,9 +33,9 @@ type QuantumTransaction struct {
 	KemCapsule []byte                    `json:"kemCapsule,omitempty"` // Optional KEM encapsulation
 
 	// Computed fields
-	hash Hash    `json:"hash"`
-	size uint64  `json:"size"`
-	from Address `json:"from"`
+	hash Hash    // Internal field, not exposed in JSON
+	size uint64  // Internal field, not exposed in JSON
+	from Address // Internal field, not exposed in JSON
 }
 
 // NewQuantumTransaction creates a new quantum-resistant transaction
