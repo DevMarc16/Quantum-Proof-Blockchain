@@ -10,8 +10,9 @@ echo "================================="
 echo "Starting complete setup from scratch..."
 echo ""
 
-# Step 1: Build everything
-echo "📦 Step 1: Building quantum node and CLI..."
+# Step 1: Clean and build everything
+echo "📦 Step 1: Cleaning dependencies and building..."
+go mod tidy
 go build -o build/quantum-node cmd/quantum-node/main.go
 go build -o validator-cli cmd/validator-cli/main.go
 echo "✅ Build completed successfully"

@@ -13,6 +13,9 @@ A production-ready multi-validator quantum-resistant blockchain with full EVM co
 
 #### 1. Build the Quantum Node
 ```bash
+# Clean dependencies first
+go mod tidy
+
 # Build the main quantum blockchain node
 go build -o build/quantum-node cmd/quantum-node/main.go
 
