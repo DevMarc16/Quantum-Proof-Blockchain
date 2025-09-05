@@ -298,7 +298,7 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for development guidelines.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This software is proprietary and confidential. All rights reserved. No permission is granted to use, copy, modify, or distribute this software without explicit written permission from the copyright holder. See the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
