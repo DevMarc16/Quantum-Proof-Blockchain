@@ -13,14 +13,12 @@ A production-ready multi-validator quantum-resistant blockchain with full EVM co
 
 #### 1. Build the Quantum Node
 ```bash
-# Clean dependencies first
-go mod tidy
+# Clean dependencies and build all components
+make clean build
 
-# Build the main quantum blockchain node
-go build -o build/quantum-node cmd/quantum-node/main.go
-
-# Build the validator CLI tool
-go build -o validator-cli cmd/validator-cli/main.go
+# Or build individual components:
+make build-node          # Build quantum-node only
+make build-validator-cli  # Build validator CLI only
 ```
 
 #### 2. Start Multi-Validator Network
@@ -47,23 +45,30 @@ curl -X POST -H "Content-Type: application/json" \
 
 #### 4. Set Up Validator CLI
 ```bash
+# Build validator CLI first
+make build-validator-cli
+
 # Generate quantum validator keys
-./validator-cli -generate -algorithm dilithium -output validator-keys
+./build/binaries/validator-cli -generate -algorithm dilithium -output validator-keys
 
 # Register as validator
-./validator-cli -register -stake 100000 -commission 500 -rpc http://localhost:8545
+./build/binaries/validator-cli -register -stake 100000 -commission 500 -rpc http://localhost:8545
 
 # Check validator status
-./validator-cli -status -rpc http://localhost:8545
+./build/binaries/validator-cli -status -rpc http://localhost:8545
 ```
 
 #### 5. Run Tests
 ```bash
 # Run integration tests
-go test ./tests/integration/ -v
+make test-integration
 
-# Test multi-validator consensus (optional)
-go run tests/performance/test_multi_validator_consensus.go
+# Run unit tests
+make test-unit
+
+# Test specific performance scenarios
+go run tests/performance/test_fast_performance/test_fast_performance.go
+go run tests/performance/test_live_blockchain/test_live_blockchain.go
 ```
 
 ### ✅ You're Ready!
@@ -93,27 +98,76 @@ This single command will:
 ```
 quantum-blockchain/
 ├── README.md                    # This file
+├── build/                       # Compiled artifacts and binaries
+│   ├── binaries/                # Built executables
+│   ├── contracts/               # Compiled smart contracts (ABI/bytecode)
+│   └── docs/                    # Generated documentation
+├── cache/                       # Build cache files
 ├── chain/                       # Core blockchain implementation
-│   ├── crypto/                  # Quantum cryptography (Dilithium, Kyber, Falcon)
-│   ├── types/                   # Transaction and block types
-│   ├── node/                    # Multi-validator node implementation
+│   ├── config/                  # Chain configuration
 │   ├── consensus/               # Quantum consensus algorithms
-│   └── evm/                     # EVM compatibility layer
+│   ├── crypto/                  # Quantum cryptography (Dilithium, Kyber, Falcon)
+│   ├── economics/               # Token economics and rewards
+│   ├── evm/                     # EVM compatibility layer
+│   ├── governance/              # On-chain governance
+│   ├── monitoring/              # Metrics and monitoring
+│   ├── network/                 # P2P networking layer
+│   ├── node/                    # Multi-validator node implementation
+│   ├── security/                # Security modules (including HSM)
+│   └── types/                   # Transaction and block types
+├── clients/                     # Client implementations
+│   ├── cli/                     # Command-line interface
+│   └── wallet-sdk/              # Wallet software development kit
 ├── cmd/                         # Main executables
 │   ├── quantum-node/            # Main node binary
 │   └── validator-cli/           # Validator management CLI
-├── config/                      # Configuration files
-├── contracts/                   # Smart contracts
-├── docs/                        # Documentation
+├── config/                      # Configuration templates
+├── configs/                     # Runtime configurations
+├── contracts/                   # Smart contract source code
+│   ├── interfaces/              # Contract interfaces
+│   ├── libraries/               # Reusable contract libraries
+│   └── scripts/                 # Deployment scripts
+├── data/                        # Runtime data
+├── deploy/                      # Deployment configurations
+├── docs/                        # Comprehensive documentation
+│   ├── developer/               # Developer guides
+│   ├── enterprise/              # Enterprise features
+│   └── user/                    # User documentation
 ├── examples/                    # Usage examples
-├── scripts/                     # Deployment and management scripts
-├── sdk/                         # JavaScript/TypeScript SDK
-├── tests/                       # Test suites
-└── tools/                       # Development and deployment tools
-    ├── deployment/              # Contract deployment tools
-    ├── testing/                 # Testing utilities
+├── infra/                       # Infrastructure as code
+│   ├── ci/                      # CI/CD configurations
+│   ├── docker/                  # Docker configurations
+│   ├── helm/                    # Kubernetes Helm charts
+│   └── nginx/                   # Load balancer configs
+├── integrations/                # Third-party integrations
+│   └── metamask/                # MetaMask snap integration
+├── k8s/                         # Kubernetes manifests
+│   ├── base/                    # Base configurations
+│   ├── monitoring/              # Monitoring stack
+│   ├── networking/              # Network policies
+│   ├── security/                # Security policies
+│   └── validators/              # Validator deployments
+├── monitoring/                  # Monitoring configurations
+├── scripts/                     # Operational scripts
+├── sdk/                         # Software Development Kits
+│   └── js/                      # JavaScript/TypeScript SDK
+│       ├── examples/            # SDK usage examples
+│       ├── src/                 # SDK source code
+│       ├── tests/               # SDK tests
+│       └── types/               # Type definitions
+├── spec/                        # Technical specifications
+├── tests/                       # Comprehensive test suites
+│   ├── benchmark/               # Performance benchmarks
+│   ├── integration/             # Integration tests
+│   ├── manual/                  # Manual testing tools
+│   ├── performance/             # Performance tests
+│   ├── production/              # Production environment tests
+│   └── unit/                    # Unit tests
+└── tools/                       # Development and operational tools
+    ├── cli/                     # Command-line utilities
     ├── debug/                   # Debugging tools
-    └── cli/                     # Command-line utilities
+    ├── deployment/              # Deployment automation
+    └── testing/                 # Testing utilities
 ```
 
 ## 🔧 Core Components
@@ -138,20 +192,37 @@ quantum-blockchain/
 
 ### Deployment
 ```bash
-# Deploy quantum contracts
-go run tools/deployment/deploy_with_fixed_keys.go
+# Deploy quantum contracts with fixed keys
+go run tools/deployment/deploy_with_fixed_keys/deploy_with_fixed_keys.go
+
+# Deploy simple contracts
+go run tools/deployment/deploy_simple/deploy_simple.go
 
 # Fund quantum accounts
-go run tools/deployment/fund_quantum_account.go
+go run tools/deployment/fund_quantum_account/fund_quantum_account.go
+
+# Deploy contracts for quantum blockchain
+go run tools/deployment/deploy_contracts_quantum/deploy_contracts_quantum.go
 ```
 
 ### Testing
 ```bash
-# Run integration tests
-go test ./tests/integration/...
+# Run all test suites
+make test-unit test-integration
+
+# Run integration tests only
+make test-integration
+
+# Run unit tests only  
+make test-unit
 
 # Performance testing
-go run tools/testing/test_performance.go
+go run tests/performance/test_fast_performance/test_fast_performance.go
+go run tests/performance/test_live_blockchain/test_live_blockchain.go
+
+# Manual testing tools
+go run tests/manual/test_simple_balance/test_simple_balance.go
+go run tests/manual/test_rpc_submit/test_rpc_submit.go
 ```
 
 ### Debugging
@@ -161,6 +232,10 @@ go run tools/debug/debug_transaction.go
 
 # CLI utilities
 go run tools/cli/simple_validator_cli.go
+
+# Testing utilities
+go run tools/testing/tools/testing/test_simple_transaction/test_simple_transaction.go
+go run tools/testing/tools/testing/test_receipt_lookup/test_receipt_lookup.go
 ```
 
 ## 🌐 API Reference

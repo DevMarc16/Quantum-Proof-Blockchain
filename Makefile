@@ -18,27 +18,29 @@ BINARY_PATH=./cmd/quantum-node
 BUILD_DIR=./build
 DOCKER_IMAGE=quantum-blockchain
 VERSION?=$(shell git describe --tags --always --dirty)
-BUILD_TIME=$(shell date -u '+%Y-%m-%d_%H:%M:%S_UTC')
-COMMIT=$(shell git rev-parse --short HEAD)
-
-# Linker flags
+BUILD_TIME=$(shell date -u '+%Y-%m-%d_%I:%M:%S%p')
+COMMIT=$(shell git rev-parse HEAD)
 LDFLAGS=-ldflags "-X main.Version=$(VERSION) -X main.BuildTime=$(BUILD_TIME) -X main.Commit=$(COMMIT)"
 
-# Colors for terminal output
+# Colors
 RED=\033[0;31m
 GREEN=\033[0;32m
-YELLOW=\033[1;33m
+YELLOW=\033[0;33m
 BLUE=\033[0;34m
+PURPLE=\033[0;35m
+CYAN=\033[0;36m
+WHITE=\033[0;37m
 NC=\033[0m # No Color
 
+# Default target
 all: deps lint test build
 
-# Help target
+# Help
 help: ## Show this help message
 	@echo 'Usage: make [target]'
 	@echo ''
 	@echo 'Targets:'
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  $(CYAN)%-15s$(NC) %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
 # Dependencies
 deps: ## Download dependencies
@@ -50,111 +52,14 @@ deps: ## Download dependencies
 build: deps ## Build the quantum node binary
 	@echo "$(BLUE)Building quantum node...$(NC)"
 	@mkdir -p $(BUILD_DIR)
-	@if [ ! -f "$(BINARY_PATH)/main.go" ]; then \
-		mkdir -p $(BINARY_PATH); \
-		cat > $(BINARY_PATH)/main.go << 'EOF'; \
-package main\
-\
-import (\
-	"context"\
-	"fmt"\
-	"log"\
-	"os"\
-	"os/signal"\
-	"syscall"\
-\
-	"quantum-blockchain/chain/node"\
-\
-	"github.com/spf13/cobra"\
-	"github.com/spf13/viper"\
-)\
-\
-var (\
-	Version   = "dev"\
-	BuildTime = "unknown"\
-	Commit    = "unknown"\
-)\
-\
-var rootCmd = &cobra.Command{\
-	Use:   "quantum-node",\
-	Short: "Quantum-resistant blockchain node",\
-	Long:  "A quantum-resistant blockchain node with EVM compatibility",\
-	Run:   runNode,\
-}\
-\
-func init() {\
-	cobra.OnInitialize(initConfig)\
-	\
-	rootCmd.PersistentFlags().String("config", "", "config file")\
-	rootCmd.PersistentFlags().String("data-dir", "./data", "data directory")\
-	rootCmd.PersistentFlags().Uint64("network-id", 8888, "network identifier")\
-	rootCmd.PersistentFlags().String("listen-addr", "0.0.0.0:30303", "listen address")\
-	rootCmd.PersistentFlags().Int("http-port", 8545, "HTTP-RPC server listening port")\
-	rootCmd.PersistentFlags().Int("ws-port", 8546, "WS-RPC server listening port")\
-	rootCmd.PersistentFlags().StringSlice("bootstrap-peers", []string{}, "bootstrap peers")\
-	rootCmd.PersistentFlags().Bool("mining", false, "enable mining")\
-	rootCmd.PersistentFlags().Bool("validator", false, "enable validator mode")\
-	\
-	viper.BindPFlags(rootCmd.PersistentFlags())\
-}\
-\
-func initConfig() {\
-	if cfgFile := viper.GetString("config"); cfgFile != "" {\
-		viper.SetConfigFile(cfgFile)\
-	} else {\
-		viper.AddConfigPath(".")\
-		viper.AddConfigPath("./configs")\
-		viper.SetConfigType("json")\
-		viper.SetConfigName("default")\
-	}\
-	\
-	viper.AutomaticEnv()\
-	viper.ReadInConfig()\
-}\
-\
-func runNode(cmd *cobra.Command, args []string) {\
-	fmt.Printf("Quantum Node %s (built %s, commit %s)\n", Version, BuildTime, Commit)\
-	\
-	config := &node.Config{\
-		DataDir:         viper.GetString("data-dir"),\
-		NetworkID:       viper.GetUint64("network-id"),\
-		ListenAddr:      viper.GetString("listen-addr"),\
-		HTTPPort:        viper.GetInt("http-port"),\
-		WSPort:          viper.GetInt("ws-port"),\
-		BootstrapPeers:  viper.GetStringSlice("bootstrap-peers"),\
-		Mining:          viper.GetBool("mining"),\
-	}\
-	\
-	node, err := node.NewNode(config)\
-	if err != nil {\
-		log.Fatalf("Failed to create node: %v", err)\
-	}\
-	\
-	err = node.Start()\
-	if err != nil {\
-		log.Fatalf("Failed to start node: %v", err)\
-	}\
-	\
-	sigCh := make(chan os.Signal, 1)\
-	signal.Notify(sigCh, syscall.SIGINT, syscall.SIGTERM)\
-	\
-	log.Println("Node started. Press Ctrl+C to stop...")\
-	<-sigCh\
-	\
-	log.Println("Shutting down node...")\
-	node.Stop()\
-}\
-\
-func main() {\
-	if err := rootCmd.Execute(); err != nil {\
-		fmt.Println(err)\
-		os.Exit(1)\
-	}\
-}\
-EOF; \
-	fi
 	CGO_ENABLED=1 $(GOBUILD) $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) $(BINARY_PATH)
 	@echo "$(GREEN)Build completed: $(BUILD_DIR)/$(BINARY_NAME)$(NC)"
+
+build-validator-cli: deps ## Build validator CLI
+	@echo "$(BLUE)Building validator CLI...$(NC)"
+	@mkdir -p $(BUILD_DIR)/binaries
+	CGO_ENABLED=1 $(GOBUILD) $(LDFLAGS) -o $(BUILD_DIR)/binaries/validator-cli ./cmd/validator-cli
+	@echo "$(GREEN)Validator CLI build completed: $(BUILD_DIR)/binaries/validator-cli$(NC)"
 
 build-cross: deps ## Build for multiple platforms
 	@echo "$(BLUE)Building for multiple platforms...$(NC)"
@@ -259,165 +164,3 @@ docker-down: ## Stop Docker Compose services
 
 docker-logs: ## Show Docker Compose logs
 	docker-compose logs -f
-
-# Deployment targets  
-deploy: ## Deploy multi-validator network
-	@echo "$(BLUE)Deploying multi-validator quantum network...$(NC)"
-	./scripts/deploy_multi_validators.sh
-	@echo "$(GREEN)Network deployment completed$(NC)"
-
-deploy-contract: ## Deploy quantum smart contract
-	@echo "$(BLUE)Deploying quantum smart contract...$(NC)"
-	$(GOCMD) run tools/deployment/deploy_with_fixed_keys.go
-	@echo "$(GREEN)Contract deployment completed$(NC)"
-
-fund-account: ## Generate and fund quantum account
-	@echo "$(BLUE)Generating funded quantum account...$(NC)"
-	$(GOCMD) run tools/deployment/fund_quantum_account.go
-	@echo "$(GREEN)Account funding completed$(NC)"
-
-deploy-build: ## Build components for deployment
-	@echo "$(BLUE)Building components for deployment...$(NC)"
-	./scripts/deploy.sh build
-	@echo "$(GREEN)Build completed$(NC)"
-
-network-status: ## Show quantum network status  
-	@echo "$(BLUE)Quantum Network Status:$(NC)"
-	@echo "======================="
-	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8545 | jq -r '"Validator 1: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 1: Offline"
-	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8547 | jq -r '"Validator 2: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 2: Offline"
-	@curl -s -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' http://localhost:8549 | jq -r '"Validator 3: Block " + (.result | tostring)' 2>/dev/null || echo "Validator 3: Offline"
-
-stop-network: ## Stop quantum network validators
-	@echo "$(YELLOW)Stopping quantum network...$(NC)"
-	pkill -f quantum-node || true
-	@echo "$(GREEN)Network stopped$(NC)"
-
-debug-transaction: ## Debug quantum transactions
-	@echo "$(BLUE)Running transaction debugger...$(NC)"
-	$(GOCMD) run tools/debug/debug_transaction.go
-
-deploy-clean: ## Clean up deployment
-	@echo "$(YELLOW)Cleaning up deployment...$(NC)"
-	./scripts/deploy.sh cleanup
-	@echo "$(GREEN)Cleanup completed$(NC)"
-
-# Development targets
-dev-setup: deps ## Set up development environment
-	@echo "$(BLUE)Setting up development environment...$(NC)"
-	
-	# Install development tools
-	@if ! command -v golangci-lint >/dev/null 2>&1; then \
-		echo "Installing golangci-lint..."; \
-		$(GOCMD) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest; \
-	fi
-	
-	@if ! command -v gosec >/dev/null 2>&1; then \
-		echo "Installing gosec..."; \
-		$(GOCMD) install github.com/securecodewarrior/gosec/v2/cmd/gosec@latest; \
-	fi
-	
-	# Create directories
-	@mkdir -p data logs configs build
-	
-	# Create default config if it doesn't exist
-	@if [ ! -f "configs/default.json" ]; then \
-		echo "Creating default config..."; \
-		mkdir -p configs; \
-		cat > configs/default.json << 'EOF'; \
-{\
-  "networkId": 8888,\
-  "dataDir": "./data",\
-  "listenAddr": "0.0.0.0:30303",\
-  "httpPort": 8545,\
-  "wsPort": 8546,\
-  "bootstrapPeers": [],\
-  "mining": false,\
-  "gasLimit": 15000000,\
-  "gasPrice": "1000000000"\
-}\
-EOF; \
-	fi
-	
-	@echo "$(GREEN)Development environment setup completed$(NC)"
-
-dev-run: build ## Run node in development mode
-	@echo "$(BLUE)Starting quantum node in development mode...$(NC)"
-	$(BUILD_DIR)/$(BINARY_NAME) --config configs/default.json --mining
-
-dev-run-validator: build ## Run node as validator
-	@echo "$(BLUE)Starting quantum node as validator...$(NC)"
-	$(BUILD_DIR)/$(BINARY_NAME) --config configs/default.json --mining --validator
-
-# Maintenance targets
-update-deps: ## Update dependencies
-	@echo "$(BLUE)Updating dependencies...$(NC)"
-	$(GOGET) -u ./...
-	$(GOMOD) tidy
-	@echo "$(GREEN)Dependencies updated$(NC)"
-
-check-deps: ## Check for dependency vulnerabilities
-	@echo "$(BLUE)Checking dependencies for vulnerabilities...$(NC)"
-	@if ! command -v nancy >/dev/null 2>&1; then \
-		echo "Installing nancy..."; \
-		$(GOCMD) install github.com/sonatypecommunity/nancy@latest; \
-	fi
-	$(GOCMD) list -json -deps ./... | nancy sleuth
-	@echo "$(GREEN)Dependency check completed$(NC)"
-
-mod-verify: ## Verify module dependencies
-	@echo "$(BLUE)Verifying module dependencies...$(NC)"
-	$(GOMOD) verify
-	@echo "$(GREEN)Module verification completed$(NC)"
-
-# Release targets
-release-prepare: ## Prepare for release
-	@echo "$(BLUE)Preparing for release...$(NC)"
-	@$(MAKE) clean
-	@$(MAKE) deps
-	@$(MAKE) lint
-	@$(MAKE) test
-	@$(MAKE) security
-	@$(MAKE) build-cross
-	@echo "$(GREEN)Release preparation completed$(NC)"
-
-# Documentation targets
-docs: ## Generate documentation
-	@echo "$(BLUE)Generating documentation...$(NC)"
-	@if ! command -v godoc >/dev/null 2>&1; then \
-		echo "Installing godoc..."; \
-		$(GOCMD) install golang.org/x/tools/cmd/godoc@latest; \
-	fi
-	@echo "Starting documentation server at http://localhost:6060"
-	@echo "Visit http://localhost:6060/pkg/quantum-blockchain/ to view docs"
-	godoc -http=:6060
-
-# Utility targets
-version: ## Show version information
-	@echo "Version: $(VERSION)"
-	@echo "Build Time: $(BUILD_TIME)"
-	@echo "Commit: $(COMMIT)"
-
-env: ## Show environment information
-	@echo "Go version: $(shell $(GOCMD) version)"
-	@echo "Go path: $(shell $(GOCMD) env GOPATH)"
-	@echo "Go root: $(shell $(GOCMD) env GOROOT)"
-	@echo "OS/Arch: $(shell $(GOCMD) env GOOS)/$(shell $(GOCMD) env GOARCH)"
-
-# Quick development workflow
-quick: fmt vet test-unit build ## Quick development check (fmt, vet, test, build)
-
-# Full CI workflow
-ci: clean deps lint security test build ## Full CI workflow
-
-# Installation target
-install: build ## Install binary to GOPATH/bin
-	@echo "$(BLUE)Installing quantum-node...$(NC)"
-	@cp $(BUILD_DIR)/$(BINARY_NAME) $(shell $(GOCMD) env GOPATH)/bin/
-	@echo "$(GREEN)quantum-node installed to $(shell $(GOCMD) env GOPATH)/bin/$(NC)"
-
-# Uninstall target
-uninstall: ## Remove installed binary
-	@echo "$(YELLOW)Removing quantum-node...$(NC)"
-	@rm -f $(shell $(GOCMD) env GOPATH)/bin/$(BINARY_NAME)
-	@echo "$(GREEN)quantum-node removed$(NC)"
