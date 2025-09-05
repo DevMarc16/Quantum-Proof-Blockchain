@@ -5,7 +5,7 @@ A production-ready multi-validator quantum-resistant blockchain with full EVM co
 ## 🚀 Quick Start (5 Minutes)
 
 ### Prerequisites
-- Go 1.21+ installed
+- Go 1.23+ installed
 - Linux/WSL/macOS terminal
 - 8GB RAM, 10GB free disk space
 
