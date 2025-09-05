@@ -3,6 +3,9 @@ src = "contracts"
 out = "build/contracts"
 libs = ["lib"]
 remappings = []
+optimizer = true
+optimizer_runs = 200
+via_ir = true
 
 [rpc_endpoints]
 localhost = "http://localhost:8545"
