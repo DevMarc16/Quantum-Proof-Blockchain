@@ -367,10 +367,9 @@ type AirdropRecipient struct {
 }
 
 func calculatePercentage(total *big.Int, percent int) *big.Int {
-	percentage := big.NewFloat(float64(percent) / 100.0)
-	totalFloat := new(big.Float).SetInt(total)
-	resultFloat := new(big.Float).Mul(totalFloat, percentage)
-	result, _ := resultFloat.Int(nil)
+	// Use integer math to avoid floating point precision issues
+	result := new(big.Int).Mul(total, big.NewInt(int64(percent)))
+	result = new(big.Int).Div(result, big.NewInt(100))
 	return result
 }
 
